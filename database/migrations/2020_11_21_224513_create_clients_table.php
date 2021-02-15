@@ -15,11 +15,9 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('organisation_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('clinic_id');
-            $table->unsignedBigInteger('clinician_id');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('identifier');
             $table->boolean('is_active')->default(true);
             $table->json('preferences')->nullable();
             $table->timestamps();

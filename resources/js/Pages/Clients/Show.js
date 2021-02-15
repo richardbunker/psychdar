@@ -30,7 +30,7 @@ export default function UserClient(props) {
     return (
         <MainContainer>
             <div className="flex w-full">
-                <Sidebar owner={"admin"} tab="clients" />
+                <Sidebar tab="clients" />
                 <main className="w-full h-full p-4 overflow-auto">
                     <ClientContainer
                         savedAt={savedAt}

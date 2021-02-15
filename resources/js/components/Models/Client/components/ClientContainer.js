@@ -11,10 +11,12 @@ import UpdateStatusForm from "../../../UI/forms/UpdateStatusForm";
 import { spinnerBootUp } from "../../../UI/spinners/SpinnerBootUp";
 
 export default function ClientContainer(props) {
-    return props.client.first_name ? (
+    return props.client.identifier ? (
         <div className="space-y-2">
             <div className="bg-white rounded-b">
-                <GrayFadedBanner title={props.client.name || "Loading..."} />
+                <GrayFadedBanner
+                    title={props.client.identifier || "Loading..."}
+                />
                 <div className="text-base py-4 px-6 space-y-4">
                     <TreatmentEpisodesRow
                         iconSize="10"

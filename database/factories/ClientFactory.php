@@ -22,8 +22,7 @@ class ClientFactory extends Factory
     public function definition()
     {
         return [            
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
+            'identifier' => ($this->faker->lastName.", ".$this->faker->firstName),
             'is_active' => true,
             'preferences' => json_encode([
                 'create_own_resources' => true,

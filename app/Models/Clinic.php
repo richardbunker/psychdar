@@ -31,14 +31,14 @@ class Clinic extends Model
         return Hasher::encode($this->attributes['id']);
     }
 
-    public function clinicians()
+    public function clients()
     {
-        return $this->hasMany(Clinician::class)->orderBy("first_name");
+        return $this->hasMany(Client::class)->orderBy('identifier');
     }
     
-    public function organisation()
+    public function user()
     {
-        return $this->belongsTo(Organisation::class);
+        return $this->belongsTo(User::class);
     }
     
 }

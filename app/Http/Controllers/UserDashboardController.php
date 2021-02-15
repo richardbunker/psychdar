@@ -12,14 +12,16 @@ use App\Models\Treatment;
 use App\Models\Assessment;
 use App\Models\Consultation;
 use App\Helpers\CanUserAccess;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserDashboardController extends Controller
 {
     public function index()
     {
+        // return User::find(Auth::user()->id)->with('clients.treatments.assessments')->get();
         return Inertia::render('Dashboard/User', [
-            'organisations' => Auth::user()->organisations
+            'user' => User::find(Auth::user()->id)->with('clients.treatments.assessments')->first()
         ]);
     }
 

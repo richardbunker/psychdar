@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./sidebar.css";
-import { logo } from "../../../components/UI/Logo";
 
 function Sidebar(props) {
     const [active, setActive] = useState(true);
@@ -16,8 +15,6 @@ function Sidebar(props) {
     } else {
         toggle += "close";
     }
-
-    const uri = props.owner === "admin" ? "/" : "/c/";
     const tabActive = "ml-6 border-l-4 border-blue-300 pl-4 py-2 text-gray-200";
     const tabInActive =
         "ml-6 border-l-4 border-transparent pl-4 py-2 text-gray-500 hover:text-gray-300";
@@ -29,58 +26,34 @@ function Sidebar(props) {
                     className="h-full py-4 text-base font-semibold flex flex-col bg-gray-900"
                     style={{ width: "230px" }}
                 >
-                    <div className="text-white px-5 pt-2 pb-4 mb-2">
-                        {logo()}
+                    <div className="font-semibold mb-2 pb-4 pt-2 px-5 text-2xl text-white">
+                        Psychdar
                     </div>
                     <div
                         className={
                             props.tab === "dashboard" ? tabActive : tabInActive
                         }
                     >
-                        <a href={uri + "dashboard"}>Dashboard</a>
+                        <a href={"/dashboard"}>Dashboard</a>
                     </div>
-                    {props.owner === "admin" && (
-                        <>
-                            <div
-                                className={
-                                    props.tab === "clinics"
-                                        ? tabActive
-                                        : tabInActive
-                                }
-                            >
-                                <a href={"/clinics"}>Clinics</a>
-                            </div>
-                            <div
-                                className={
-                                    props.tab === "clinicians"
-                                        ? tabActive
-                                        : tabInActive
-                                }
-                            >
-                                <a href={"/clinicians"}>Clinicians</a>
-                            </div>
-                        </>
-                    )}
                     <div
                         className={
                             props.tab === "clients" ? tabActive : tabInActive
                         }
                     >
-                        <a href={uri + "clients"}>Clients</a>
+                        <a href={"/clients"}>Clients</a>
                     </div>
-                    {props.owner === "admin" && (
-                        <>
-                            <div
-                                className={
-                                    props.tab === "measures"
-                                        ? tabActive
-                                        : tabInActive
-                                }
-                            >
-                                <a href={"/measures"}>Measures</a>
-                            </div>
-                        </>
-                    )}
+                    <>
+                        <div
+                            className={
+                                props.tab === "measures"
+                                    ? tabActive
+                                    : tabInActive
+                            }
+                        >
+                            <a href={"/measures"}>Measures</a>
+                        </div>
+                    </>
                 </div>
             </div>
             <div className="fixed left-0 bottom-0 p-6">

@@ -24,9 +24,7 @@ export default function ClientsContainer(props) {
                         >
                             <a href={uri + client.hashed_id}>
                                 <div className="hover:text-teal-500 hover:underline font-semibold">
-                                    {client.last_name +
-                                        ", " +
-                                        client.first_name}
+                                    {client.identifier}
                                 </div>
                             </a>
                             <div

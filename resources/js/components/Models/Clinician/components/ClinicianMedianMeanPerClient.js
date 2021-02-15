@@ -27,11 +27,7 @@ export default function ClinicianMedianMeanPerClient(props) {
                     colour="#C7D2FE"
                     barThickness="100"
                     yAxisLabel="Consultations"
-                    xAxisLabel={
-                        props.clinician.first_name +
-                        " " +
-                        props.clinician.last_name
-                    }
+                    xAxisLabel={props.clinician.name}
                 />
             </div>
         </div>

@@ -6,39 +6,6 @@ import ClientsContainer from "../../components/Models/Client/components/ClientsC
 import LargeSpinner from "../../components/UI/spinners/LargeSpinner";
 
 export default function UserClients(props) {
-    const [organisation, setOrganisation] = useState([]);
-    const [clients, setClients] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    const handleChange = event => {
-        changeOrganisation(
-            props.organisations.find(org => org.hashed_id == event.target.value)
-        );
-    };
-
-    const changeOrganisation = organisation => {
-        setOrganisation(organisation);
-        fetchClients(organisation.hashed_id);
-    };
-
-    const fetchClients = orgHashedId => {
-        setIsLoading(true);
-        axios
-            .get("/api/organisation/" + orgHashedId + "/clients")
-            .then(response => {
-                setClients(response.data);
-                setIsLoading(false);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
-    useEffect(() => {
-        setOrganisation(props.organisations[0]);
-        fetchClients(props.organisations[0].hashed_id);
-    }, []);
-
     const showSpinner = () => {
         return (
             <div className="flex items-center justify-center pt-52">
@@ -58,20 +25,9 @@ export default function UserClients(props) {
                                 Clients
                             </div>
                         </div>
-                        <SelectOrganisation
-                            handleChange={handleChange}
-                            organisations={props.organisations}
-                        />
                     </div>
                     <div className="py-2">
-                        {isLoading ? (
-                            showSpinner()
-                        ) : (
-                            <ClientsContainer
-                                owner={"admin"}
-                                clients={clients}
-                            />
-                        )}
+                        <ClientsContainer clients={props.user.clients} />
                     </div>
                 </main>
             </div>

@@ -25,11 +25,7 @@ export default function ClinicianMedianMeanPerTreatmentEpisode(props) {
                     colour="#FBCFE8"
                     barThickness="100"
                     yAxisLabel="Consultations"
-                    xAxisLabel={
-                        props.clinician.first_name +
-                        " " +
-                        props.clinician.last_name
-                    }
+                    xAxisLabel={props.clinician.name}
                 />
             </div>
         </div>

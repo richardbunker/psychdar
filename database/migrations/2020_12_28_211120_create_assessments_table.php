@@ -15,9 +15,8 @@ class CreateAssessmentsTable extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('organisation_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('clinic_id');
-            $table->unsignedBigInteger('clinician_id');
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('treatment_id');
             $table->unsignedBigInteger('measure_id');

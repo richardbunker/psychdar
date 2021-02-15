@@ -88380,18 +88380,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/Organisation/Selector */ "./resources/js/components/Models/Organisation/Selector.js");
 /* harmony import */ var _components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Models/Client/components/ClientsContainer */ "./resources/js/components/Models/Client/components/ClientsContainer.js");
 /* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -88399,47 +88387,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function UserClients(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      organisation = _useState2[0],
-      setOrganisation = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      clients = _useState4[0],
-      setClients = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isLoading = _useState6[0],
-      setIsLoading = _useState6[1];
-
-  var handleChange = function handleChange(event) {
-    changeOrganisation(props.organisations.find(function (org) {
-      return org.hashed_id == event.target.value;
-    }));
-  };
-
-  var changeOrganisation = function changeOrganisation(organisation) {
-    setOrganisation(organisation);
-    fetchClients(organisation.hashed_id);
-  };
-
-  var fetchClients = function fetchClients(orgHashedId) {
-    setIsLoading(true);
-    axios.get("/api/organisation/" + orgHashedId + "/clients").then(function (response) {
-      setClients(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setOrganisation(props.organisations[0]);
-    fetchClients(props.organisations[0].hashed_id);
-  }, []);
-
   var showSpinner = function showSpinner() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex items-center justify-center pt-52"
@@ -88461,14 +88408,10 @@ function UserClients(props) {
     className: "flex items-center space-x-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-3xl font-bold text-gray-700"
-  }, "Clients")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    handleChange: handleChange,
-    organisations: props.organisations
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Clients"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "py-2"
-  }, isLoading ? showSpinner() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    owner: "admin",
-    clients: clients
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    clients: props.user.clients
   })))));
 }
 
@@ -88531,7 +88474,6 @@ function UserClient(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    owner: "admin",
     tab: "clients"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "w-full h-full p-4 overflow-auto"
@@ -88853,17 +88795,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Models/Organisation/Selector */ "./resources/js/components/Models/Organisation/Selector.js");
 /* harmony import */ var _components_Models_Organisation_OrgStats__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/Organisation/OrgStats */ "./resources/js/components/Models/Organisation/OrgStats.js");
 /* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var _components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Models/User/UserStats */ "./resources/js/components/Models/User/UserStats.js");
 
 
 
@@ -88871,43 +88803,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function UserDashboard(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.organisations[0]),
-      _useState2 = _slicedToArray(_useState, 2),
-      organisation = _useState2[0],
-      setOrganisation = _useState2[1];
-
-  var handleChange = function handleChange(event) {
-    changeOrganisation(props.organisations.find(function (org) {
-      return org.hashed_id == event.target.value;
-    }));
-  };
-
-  var changeOrganisation = function changeOrganisation(organisation) {
-    setOrganisation(organisation);
-  };
-
+  // console.log(props.user);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    owner: "admin",
     tab: "dashboard"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "w-full overflow-auto h-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-col p-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-    className: "flex items-center justify-between"
+    className: "flex items-center justify-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-3xl font-bold text-gray-700"
-  }, "Dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    handleChange: handleChange,
-    organisations: props.organisations
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Dashboard")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "py-4"
-  }, organisation && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Organisation_OrgStats__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    organisation: organisation
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    user: props.user
   }))))));
 }
 
@@ -89580,12 +89492,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function ClientContainer(props) {
-  return props.client.first_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return props.client.identifier ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white rounded-b"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: props.client.name || "Loading..."
+    title: props.client.identifier || "Loading..."
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-base py-4 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -89692,12 +89604,11 @@ function ClientsContainer(props) {
 
   var filterClientsBySearch = function filterClientsBySearch(searchTerm) {
     var filteredClients = clients.filter(function (client) {
-      return client.first_name.toLowerCase().includes(searchTerm.toLowerCase()) || client.last_name.toLowerCase().includes(searchTerm.toLowerCase());
+      return client.identifier.toLowerCase().includes(searchTerm.toLowerCase());
     });
     setfiltered(filteredClients);
   };
 
-  var uri = props.owner === "admin" ? "/client/" : "/c/client/";
   var row = "p-2 flex items-center justify-between w-full rounded-b";
   var bubble = "text-white rounded py-2 px-3 flex items-center justify-center";
 
@@ -89717,9 +89628,9 @@ function ClientsContainer(props) {
         key: client.hashed_id,
         className: index % 2 ? row + " bg-teal-50" : row + " bg-white"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: uri + client.hashed_id,
+        href: "client/" + client.hashed_id,
         className: "min-w-max-content pr-4 hover:text-teal-500 hover:underline font-semibold"
-      }, client.last_name + ", " + client.first_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, client.identifier), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "space-x-2 flex items-center justify-end text-center min-w-max-content font-semibold"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: client.is_active ? bubble + " bg-green-400" : bubble + " bg-gray-500"
@@ -89735,7 +89646,7 @@ function ClientsContainer(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white rounded-b"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: "Last, First"
+    title: "identifier"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full bg-white rounded overflow-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -90488,7 +90399,7 @@ function ClientsContainer(props) {
       href: uri + client.hashed_id
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "hover:text-teal-500 hover:underline font-semibold"
-    }, client.last_name + ", " + client.first_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }, client.identifier)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: client.is_active ? status + " bg-green-500" : status + " bg-gray-600"
     }, client.is_active ? "Active" : "Inactive"));
   })));
@@ -90755,7 +90666,7 @@ function ClinicianMedianMeanPerClient(props) {
     colour: "#C7D2FE",
     barThickness: "100",
     yAxisLabel: "Consultations",
-    xAxisLabel: props.clinician.first_name + " " + props.clinician.last_name
+    xAxisLabel: props.clinician.name
   })));
 }
 
@@ -90797,7 +90708,7 @@ function ClinicianMedianMeanPerTreatmentEpisode(props) {
     colour: "#FBCFE8",
     barThickness: "100",
     yAxisLabel: "Consultations",
-    xAxisLabel: props.clinician.first_name + " " + props.clinician.last_name
+    xAxisLabel: props.clinician.name
   })));
 }
 
@@ -94531,6 +94442,129 @@ function OrganisationClinics(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Models/User/UserStats.js":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Models/User/UserStats.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserStats; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
+/* harmony import */ var _Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Stats/row/EffectSize */ "./resources/js/components/Stats/row/EffectSize.js");
+/* harmony import */ var _UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../UI/HorizontalScroller */ "./resources/js/components/UI/HorizontalScroller.js");
+/* harmony import */ var _Clinician_components_ClinicianConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode */ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode.js");
+/* harmony import */ var _Clinician_components_ClinicianConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Clinician/components/ClinicianConsultationSpreadPerClient */ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerClient.js");
+/* harmony import */ var _Clinician_components_ClinicianMedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Clinician/components/ClinicianMedianMeanPerTreatmentEpisode */ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerTreatmentEpisode.js");
+/* harmony import */ var _Clinician_components_ClinicianMedianMeanPerClient__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Clinician/components/ClinicianMedianMeanPerClient */ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerClient.js");
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _Stats_row_Clients__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Stats/row/Clients */ "./resources/js/components/Stats/row/Clients.js");
+/* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
+/* harmony import */ var _Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Stats/row/TotalConsultations */ "./resources/js/components/Stats/row/TotalConsultations.js");
+/* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
+/* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
+/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function UserStats(props) {
+  var totalTreatmentEpisodes = props.user.clients.map(function (client) {
+    return client.treatments.length;
+  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_8__["sum"], 0);
+  var totalConsultations = props.user.clients.flatMap(function (client) {
+    return client.treatments.map(function (treatment) {
+      return treatment.consultation_count;
+    });
+  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_8__["sum"], 0);
+  var totalAssessments = props.user.clients.flatMap(function (client) {
+    return client.treatments.map(function (treatment) {
+      return treatment.assessments.length;
+    });
+  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_8__["sum"], 0);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full bg-white rounded-b"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    title: props.user.name
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-base py-4 px-6 space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clients__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    iconSize: "10",
+    iconColour: "text-green-400",
+    number: props.user.clients.length
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    iconSize: "10",
+    iconColour: "text-pink-400",
+    number: totalTreatmentEpisodes
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    iconSize: "10",
+    iconColour: "text-indigo-400",
+    number: totalConsultations
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    iconSize: "10",
+    iconColour: "text-gray-400",
+    number: totalAssessments
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    heading: "Effect Size Measure",
+    iconSize: "10",
+    iconColour: "text-teal-400",
+    title: "CORE10"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    iconSize: "10",
+    iconColour: "text-yellow-400",
+    clinician: props.user
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full bg-white rounded-b"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    title: "Settings"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-base pt-2 pb-6 px-6 space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Outcome Measure"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-teal-100 rounded"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    width: {
+      width: "900px"
+    },
+    clinician: props.user
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    width: {
+      width: "900px"
+    },
+    clinician: props.user
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-teal-100 rounded"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianMedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    width: {
+      width: "900px"
+    },
+    clinician: props.user
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianMedianMeanPerClient__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    width: {
+      width: "900px"
+    },
+    clinician: props.user
+  }))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Stats/Stats.js":
 /*!************************************************!*\
   !*** ./resources/js/components/Stats/Stats.js ***!
@@ -95167,31 +95201,6 @@ function HorziontalScroller(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UI/Logo.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/UI/Logo.js ***!
-  \********************************************/
-/*! exports provided: logo */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logo", function() { return logo; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-var logo = function logo() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    xmlns: "http://www.w3.org/2000/svg",
-    fill: "currentColor",
-    viewBox: "0 0 2612 316"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M1265.5 31.6c-23.1 3.5-41.9 12.3-57.2 26.8-23.1 21.8-34.3 50.4-33 84.1.8 19.5 4.6 34.1 12.7 49.2 18.4 34.3 51.8 53.3 93.5 53.3 30.6 0 56.3-10 75.7-29.4 21.4-21.4 32.1-50.6 30.5-83.6-1.4-27.7-11-50.9-29.1-69.8-12.7-13.2-28.8-22.6-47.6-27.8-8-2.2-12-2.6-26-2.9-9.1-.2-17.8-.1-19.5.1zm32.4 23.9c30.5 5.8 53.4 27 62.1 57.7 2.9 10.1 3.8 30.3 1.7 41.8-2.4 14.1-8.7 27.9-17.1 37.8-17.6 20.5-41.6 30.6-69 28.8-11-.6-14.6-1.4-24.9-5.3-15.1-5.6-30.7-19-39.4-33.8-11.2-19-14.6-44.7-8.9-66.7 4.5-17.7 15.8-35.6 28.7-45.5 17.3-13.3 43.6-19.2 66.8-14.8zM25.3 33.7c-9.6 1.3-12.6 15.5-4.4 21C24.3 57 24.7 57 55.6 57h31.3l.3 88.3c.3 99.8-.3 92 8.4 95.8 4.4 2 4.4 2 8.8 0 8.7-3.8 8.1 4 8.4-95.8l.3-88.3h31c34 0 35.4-.2 38.4-6 2.8-5.4 1.2-12.6-3.3-15.7-2.5-1.7-6.9-1.8-76.7-1.9-40.7-.1-75.4.1-77.2.3zm191.1 3.7l-3.4 3.4v96.6c0 107-.4 100.8 6.6 104.1 5.9 2.8 13.8.4 16.2-5.1.9-1.7 1.2-14.2 1.2-41.7 0-39.4.7-49.2 3.7-55.1 6.8-13.2 21.9-21.8 38.8-21.9 16.8-.2 31 6.9 38 18.8 5.9 9.9 5.9 9.6 6.4 55.5.7 47.4.5 46 7.8 49.5 4.5 2.2 9.4 1.3 13.6-2.5l3.2-2.8.3-41.5c.2-38.4.1-42.2-1.7-50.7-6.4-29.1-28.6-47.4-59.2-48.8-17.2-.7-33.7 4.3-45 13.8-2.6 2.2-4.9 3.6-5.3 3.3-.3-.4-.6-16.6-.6-36.1V40.8l-3.4-3.4c-3-3-4-3.4-8.6-3.4s-5.6.4-8.6 3.4zm1407 14.5c-4.8 2.9-5.4 6.2-5.4 28.7V101h-6.2c-13.5.1-18.8 3.2-18.8 11 0 8.3 4.6 11 18.8 11h6.2v37.8c0 30.7.3 38.9 1.5 43.7 3.4 13.1 10.1 23 20.4 29.9 8.2 5.5 16 7.9 27.1 8 7.2.1 9.1-.2 12.1-2.1 6.1-3.8 7.7-10.7 3.9-16.8-2.5-4.1-6.3-5.5-14.9-5.5-10.5-.1-17.5-4.2-22.3-13.1-2.3-4.4-2.3-4.7-2.6-43l-.3-38.7 15.1-.3 15.2-.4 2.9-3.3c3.7-4.1 4-9.8.6-13.7-2.9-3.4-7.9-4.4-22.4-4.5H1643V81.7c0-10.5-.5-20.9-1-22.9-2.2-7.9-11.4-11.3-18.6-6.9zM448 95.7c-15.9 2.7-28.7 9-39.1 19.3-14.8 14.6-21.1 31.3-21 55.4.1 34 18.9 59.7 50.5 69.5 10.3 3.2 23.3 4.4 33 3 16.1-2.2 34.1-9.7 40.9-16.9 4.7-5.2 3.2-12.1-3.5-15.6-4.3-2.2-9.1-1.3-16.3 3-8.4 5.1-17.3 7.7-28.6 8.3-8.1.5-10.8.2-17.4-1.8-9.3-2.7-17.4-7.8-23.4-14.5-5.1-5.7-11-17.5-11.8-23.4l-.6-4h53.4c51.6 0 53.5-.1 56.7-2 5-3.1 5.6-5.8 4.3-18.2-2.1-19.5-7.8-32.5-19.6-44.4-12.1-12.2-28.4-18.5-47.5-18.2-4.1 0-8.6.3-10 .5zm20 21.8c5.5.7 13.9 4.4 19 8.5 7 5.5 13.4 17.2 15.4 28.2l.7 3.8H457c-37.7 0-46-.2-46-1.3 0-.8.9-4.2 2.1-7.7 4.8-14.8 15.3-25.4 29.4-30 4.5-1.5 14.7-2.8 18.5-2.4l7 .9zm147-20.7c-9 2.6-15.9 6.3-23.5 12.8l-6.5 5.5v-5.9c0-7.2-2.3-10.7-8.1-12.2-4.8-1.3-10.7 0-13.5 3.1-1.8 2-1.9 4.6-1.9 69.4s.1 67.4 1.9 69.4c4.3 4.7 14.9 4.7 19.2 0 1.8-2 1.9-4.7 2.5-48.3.4-32.5.9-47.2 1.8-49.9 1.8-5.5 8.8-13.6 14.7-16.9 2.8-1.5 8.9-3.8 13.5-4.9 7.3-1.9 9.8-2.1 19.4-1.4 17.6 1.2 18.3 1.2 21.1-1.6 3.3-3.3 4.2-8.8 1.9-12.2-.9-1.5-4.2-3.9-7.3-5.4-5.1-2.5-6.9-2.8-17.2-3-8.7-.2-13.1.2-18 1.5zm115-.3c-16.7 3.4-25.9 8.4-38.1 20.5-14.5 14.4-20.9 30.2-21 51.5-.1 6 .2 12.8.6 15 3.8 21.8 16.4 40.7 34.1 51.1 15.4 9 38.9 11.3 56.4 5.4 11-3.7 16.5-7.2 25.8-16.2l5.2-5.1v6.7c0 8.2 1.9 12.9 6.2 15.6 4.3 2.6 8.7 2.5 12.9-.3 5.9-4 5.9-3.8 5.9-43.4 0-38.9-.5-44.4-5.4-56.5-7.5-18.5-23.2-34.3-40.6-40.6-13.9-5.1-28.9-6.4-42-3.7zm23 21.5c19 3 36.4 20.3 40 39.9 5 27.2-9.2 53.8-32.8 61.2-8.8 2.7-22.7 2.9-30.3.4-8.4-2.8-12.3-5-18.8-11.1-10.9-10.1-16.4-23-16.4-38.9 0-16 5.2-28.4 16.1-38.7 12.1-11.2 25.7-15.4 42.2-12.8zm167.5-21.9c-11.8 1.6-26.1 8.1-35.4 16-9.2 7.9-18.6 22.3-22.4 34.4-3.5 11-3.8 19.1-3.5 81l.3 61 24.5.6v-34.6c0-19 .3-34.5.6-34.5.4 0 3.4 2.6 6.8 5.8 7.1 6.6 19.1 13.2 28.6 15.8 8.7 2.3 26.2 2.3 35 0 23.4-6.2 43.2-26.7 49.7-51.6 2.4-9.1 2.4-31.1 0-40-7-26.1-27.3-46.2-52.8-52.4-8.4-2.1-22.5-2.7-31.4-1.5zm27 23.4c16 4.5 29 18.5 33.5 36 4.8 18.8 0 37.3-13.2 51.1-15.3 15.9-37.5 19.5-58.1 9.2-16.6-8.3-26.1-25.1-26.1-46.3.1-21.8 9.6-38.1 27.6-47 11.3-5.5 23.6-6.5 36.3-3zm820-22.9c-21.3 4.7-37.5 16.8-47.2 35-9.4 17.9-11.7 42.7-5.6 61.9 7.2 23 26.6 41.4 50.1 47.6 10.9 2.9 28.8 2.9 39.5.1 15.2-4.1 31.7-15.3 31.7-21.6 0-3.6-2.3-7.9-5.4-10-4.3-2.7-8.6-2-15.7 2.6-3.5 2.3-8.5 4.9-11.1 5.9-9.2 3.6-25.8 4.1-35.3 1.1-13.8-4.3-26.3-17.5-31.1-32.9-5.8-18.6-.2-43.5 12.7-56.1 6.6-6.5 13.1-9.8 23.5-11.9 15.2-3.1 29.4 1 42.2 12.1 7.4 6.5 11.5 7.8 16.4 4.9 1.8-1 4.1-3.5 5.1-5.5 1.7-3.5 1.7-3.9.1-7.3-2.1-4.5-12-13.6-19.8-18.1-9.8-5.8-19.1-8.4-31.9-8.9-7.9-.3-13.2 0-18.2 1.1zm161 .4c-13.9 3-26.2 9.5-35.5 18.9-14.1 14.3-19.9 28.2-20.7 49.6-.4 9.6-.1 15 1 20.7 5.8 27.7 24.8 47.8 52.2 54.9 11.1 2.9 28.9 2.9 40 0 27.4-7.1 46.4-27.2 52.1-54.8 2-9.4 1.4-29.9-1-38.8-3.7-13.6-14.1-29.4-24.4-37-17.8-13.3-41.2-18.2-63.7-13.5zm25.5 21c9.5 1.6 20.1 6.9 26.5 13.4 6.1 6.3 11.8 16.9 13.5 25.3 1.8 8.6.8 25.4-1.9 32.5-8.5 22.2-28.7 34.3-52.8 31.7-18.6-2-33.4-13.6-40.4-31.7-2.7-7.1-3.7-23.9-1.9-32.5 3-14.5 13-27.7 26-34 10.5-5.2 19.4-6.5 31-4.7zm156.5-21.6c-2.7.7-6.8 2-9 3-4.8 2-14.5 8.6-14.5 9.8 0 .4-.4.8-1 .8-.5 0-1-.9-1-2 0-2.9-2.6-7.6-5.2-9.4-2.9-2.1-11.2-2.1-14.3 0-5.5 3.6-5.6 4.2-5.3 72.9.3 70.4-.1 66.4 7.4 70 3.8 1.8 9.6 1.4 12.4-.8 5-3.9 5-3.5 5-45.7 0-21.7.5-42.7 1-46.5 2.4-18.9 15.2-30.7 33.2-30.7 13.8 0 23.6 6.1 29.2 18.2 2 4.3 2.1 6.5 2.6 51.5.5 43.2.6 47.2 2.3 49.7 4.4 6.5 13.9 7.3 19.3 1.7l2.9-3 .5-45.2c.7-50.8.7-51.4 8-60.6 4.1-5.1 10.3-9.4 16.2-11.2 4.4-1.3 14.7-1.3 19.5 0 5.5 1.5 12.6 6.4 15.7 11 5.9 8.4 6 9.6 6.6 59.3.5 44.3.6 45.7 2.6 48.5 1.1 1.5 3.9 3.4 6.1 4.2 3.5 1.3 4.6 1.3 7.8 0 2.1-.8 4.7-2.7 5.9-4.2 2.1-2.8 2.1-3.6 2.1-51l-.1-48.2-2.7-8c-7.8-22.5-25.7-35.4-49.2-35.5-17 0-30.6 5.3-42.3 16.4l-5.3 5.1-4-4.8c-5.2-6-10.6-9.7-19.4-13.2-5.7-2.3-8.9-2.8-17.5-3.1-6.6-.2-12.4.1-15.5 1zm251.5.1c-22.6 4.6-39.2 17-49.1 36.6-9 18-10.3 45.5-2.9 65.2 7 18.7 24.5 34.9 44.4 41.2 20.2 6.5 43.3 4.7 61.9-4.7 15.8-7.9 19.8-14.1 13.8-21.4-4.8-5.9-9.7-5.8-21.6.6-18.2 9.9-37.3 10.7-53.6 2.5-13-6.7-23.6-20.7-26.4-35.3l-.7-3.2h53.1c30.6 0 54-.4 55.4-.9 5.2-2 6.7-4.9 6.7-12.7 0-14-4.5-30-11.5-40.9-13.9-21.8-41.8-32.6-69.5-27zm27.2 21.7c6 1.3 15.2 7.2 19.9 12.6 2 2.3 4.8 6.7 6.3 9.8 2.8 5.6 5.5 15.9 4.5 16.9-.3.3-21.1.4-46.1.3l-45.5-.3 1.3-5.4c6.8-26.5 31-40.2 59.6-33.9zm125.7-21.7c-9.6 1.8-16.6 4.6-23.5 9.1-6.6 4.4-10 8.3-13.3 15.4-3.4 7.3-3.6 20-.4 27 6.9 15.2 19.2 22.6 47.8 28.9 17.5 3.9 25 6.5 30.7 10.6 14.2 10.3 8.1 28.1-11.2 32.5-7.9 1.9-23.3 1.6-30.4-.4-8.4-2.5-16.2-6.6-22.4-12-7.4-6.3-12.5-6.3-19.4.2-7.8 7.2-2.4 17 14 25.5 13.8 7.1 26.9 10 45.2 9.9 26.3-.2 44.2-9.1 52.4-26.2 2.8-5.9 3.1-7.4 3.1-16.5 0-8.8-.3-10.6-2.7-15.5-6.7-13.7-22.2-22.2-51.1-28-25.4-5.1-33.8-10.6-34-22.1-.1-5.5 1.9-9 7.3-12.6 4.5-3.1 9.1-4.3 18.7-5 14.1-1 26 2.6 34.6 10.3 6.9 6.3 14.2 8 19.7 4.7 3-1.7 5-5.1 5-8.4 0-8.7-18.1-22.3-35-26.4-9.6-2.3-26-2.7-35.1-1zm-1490 1.8c-4.2 2.8-6.1 6.3-5.5 10.2.2 1.6 8.4 18.5 18.1 37.5l30.3 59.1 12.6 24.7-26.2 58.7 12 .3c6.7.1 12.5-.1 13-.6.9-.9 15-32.1 55.6-122.7 17.8-39.9 24.6-56 24.6-58.8.1-3.3-.4-4.4-3.6-6.9-4.9-4-11.2-4.8-14.9-1.9-1.9 1.4-8.9 16.1-25.4 53.3l-23.5 52.1c-.4.5-2.6-2.9-4.8-7.5l-25.6-52c-22.7-46-23.9-47.8-30.4-47.8-1.6 0-4.4 1-6.3 2.3zm408.1-1.1c-1.3.7-3.5 2.9-4.8 4.8l-2.3 3.5.3 42.5c.4 36.3.7 43.4 2.1 48.5 7.1 24.7 22.3 39.8 45.8 45.5 22.4 5.3 45.5-.1 60.7-14.3l3.2-3.1v4.6c0 5.8 3.2 10.7 8.2 12.6 3.1 1.2 4.3 1.2 7.9.1 2.4-.8 5.1-2.6 6.3-4.2 2.1-2.8 2.1-3.7 2.4-67.3.3-70.9.4-69.1-5.7-72.7-5.5-3.3-14.5-1.4-17.3 3.6-1 1.7-1.4 13.2-1.8 47.2l-.5 45-2.8 5.6c-3.5 7.2-11 14.2-19.4 18.1-5.7 2.7-8.1 3.2-16.9 3.6-8.5.4-11.4.1-17.4-1.7-12.6-3.9-19.9-9.9-25.1-20.7-1.6-3.4-3.4-8.8-3.9-12-.6-3.3-1-23.1-1-44.2V104l-3.3-3.6c-2.6-2.9-4.2-3.7-7.7-4-2.6-.3-5.5.1-7 .8z"
-  }));
-};
-
-/***/ }),
-
 /***/ "./resources/js/components/UI/SaveableBanner.js":
 /*!******************************************************!*\
   !*** ./resources/js/components/UI/SaveableBanner.js ***!
@@ -95730,7 +95739,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _sidebar_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sidebar.css */ "./resources/js/components/UI/sidebar/sidebar.css");
 /* harmony import */ var _sidebar_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_sidebar_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_UI_Logo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/UI/Logo */ "./resources/js/components/UI/Logo.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -95742,7 +95750,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -95767,7 +95774,6 @@ function Sidebar(props) {
     toggle += "close";
   }
 
-  var uri = props.owner === "admin" ? "/" : "/c/";
   var tabActive = "ml-6 border-l-4 border-blue-300 pl-4 py-2 text-gray-200";
   var tabInActive = "ml-6 border-l-4 border-transparent pl-4 py-2 text-gray-500 hover:text-gray-300";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -95780,24 +95786,16 @@ function Sidebar(props) {
       width: "230px"
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-white px-5 pt-2 pb-4 mb-2"
-  }, Object(_components_UI_Logo__WEBPACK_IMPORTED_MODULE_2__["logo"])()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "font-semibold mb-2 pb-4 pt-2 px-5 text-2xl text-white"
+  }, "Psychdar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: props.tab === "dashboard" ? tabActive : tabInActive
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: uri + "dashboard"
-  }, "Dashboard")), props.owner === "admin" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: props.tab === "clinics" ? tabActive : tabInActive
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/clinics"
-  }, "Clinics")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: props.tab === "clinicians" ? tabActive : tabInActive
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/clinicians"
-  }, "Clinicians"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    href: "/dashboard"
+  }, "Dashboard")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: props.tab === "clients" ? tabActive : tabInActive
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: uri + "clients"
-  }, "Clients")), props.owner === "admin" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    href: "/clients"
+  }, "Clients")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: props.tab === "measures" ? tabActive : tabInActive
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/measures"
@@ -96009,8 +96007,8 @@ var validateChronbachsAlpha = function validateChronbachsAlpha(string) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/richardb/code/therapyoutcomes/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/richardb/code/therapyoutcomes/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/richardb/code/psychdar/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/richardb/code/psychdar/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -58,9 +58,4 @@ class Client extends Model
     {
         return $this->belongsTo(Clinic::class);
     }
-
-    public function clinician()
-    {
-        return $this->belongsTo(Clinician::class);
-    }
 }

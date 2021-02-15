@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Client;
 use App\Helpers\Hasher;
@@ -14,24 +15,23 @@ class UserClientsController extends Controller
     public function index()
     {        
         return Inertia::render('Clients/Index', [
-            'organisations' => Auth::user()->organisations
+            'user' => User::find(Auth::user()->id)->with('clients.treatments.assessments')->first()
         ]);
     }
 
     public function show($hashed_client_id)
     {
-        $hashed_organisation_id = Hasher::encode(Client::where('id', Hasher::decode($hashed_client_id))->first()->organisation_id);
+        return Inertia::render('Clients/Show', [
+            'client' => Client::where('id', Hasher::decode($hashed_client_id))
+                            ->with('treatments.assessments')
+                            ->with('clinic')
+                            ->first()
+        ]); 
+        // $hashed_organisation_id = Hasher::encode(Client::where('id', Hasher::decode($hashed_client_id))->first()->organisation_id);
 
-        if (CanUserAccess::organisationResources($hashed_organisation_id)) {
-            return Inertia::render('Clients/Show', [
-                'client' => Client::where('id', Hasher::decode($hashed_client_id))
-                                ->with('treatments.assessments')
-                                ->with('clinic')
-                                ->with('clinician')
-                                ->first()
-            ]);                
-        }
+        // if (CanUserAccess::organisationResources($hashed_organisation_id)) {               
+        // }
             
-        return abort(403);
+        // return abort(403);
     }
 }

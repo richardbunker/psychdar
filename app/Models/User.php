@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Organisation;
+use App\Models\Client;
+use App\Helpers\Hasher;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,12 +13,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $appends = ['role'];
+    protected $appends = ['hashed_id'];
 
-
-    public function getRoleAttribute()
+    public function getHashedIdAttribute()
     {
-        return 'admin';
+        return Hasher::encode($this->attributes['id']);
     }
 
     /**
@@ -50,22 +50,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function organisations()
+    public function measures()
     {
-        return $this->belongsToMany(Organisation::class)->withPivot('is_active')->withTimestamps();
+        return $this->belongsToMany(Measure::class);
     }
 
-    public function organisationsInclude($organisation_id)
+    public function clinics()
     {
-        $userOrganisations = $this->organisations;
-
-        $includesOrganisation = $userOrganisations->map(function($organisation) use ($organisation_id) {
-            return $organisation->id == $organisation_id ? true : false;
-        })->contains(function($values) {
-            return $values === true;
-        });
-
-        return $includesOrganisation;
-        
+        return $this->hasMany(Clinic::class);
+    }
+    
+    public function clients()
+    {
+        return $this->hasMany(Client::class)->orderBy('identifier');
     }
 }

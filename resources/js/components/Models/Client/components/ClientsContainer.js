@@ -12,19 +12,12 @@ export default function ClientsContainer(props) {
 
     const filterClientsBySearch = searchTerm => {
         const filteredClients = clients.filter(client => {
-            return (
-                client.first_name
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase()) ||
-                client.last_name
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-            );
+            return client.identifier
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase());
         });
         setfiltered(filteredClients);
     };
-
-    const uri = props.owner === "admin" ? "/client/" : "/c/client/";
 
     const row = "p-2 flex items-center justify-between w-full rounded-b";
 
@@ -53,37 +46,12 @@ export default function ClientsContainer(props) {
                     }
                 >
                     <a
-                        href={uri + client.hashed_id}
+                        href={"client/" + client.hashed_id}
                         className="min-w-max-content pr-4 hover:text-teal-500 hover:underline font-semibold"
                     >
-                        {client.last_name + ", " + client.first_name}
+                        {client.identifier}
                     </a>
                     <div className="space-x-2 flex items-center justify-end text-center min-w-max-content font-semibold">
-                        {/* <div className={bubble + " bg-teal-400"}>
-                            Attends {client.clinic.name}
-                        </div> */}
-                        {/* <span>
-                            <svg className="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
-                        </span>
-                        <div
-                            className={client.is_active ? bubble + " bg-blue-400" : bubble + " bg-gray-400"}
-                        >
-                            {client.is_active ? "Currently seeing" : "Used to see"} {client.clinician.first_name}
-                        </div> */}
-                        {/* <span>
-                            <svg
-                                className="w-6 h-6 text-gray-300"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </span> */}
                         <div
                             className={
                                 client.is_active
@@ -110,7 +78,7 @@ export default function ClientsContainer(props) {
                 />
             </div>
             <div className="bg-white rounded-b">
-                <GrayFadedBanner title="Last, First" />
+                <GrayFadedBanner title="identifier" />
                 <div className="w-full bg-white rounded overflow-auto">
                     <div className="min-w-min-content overflow-auto text-gray-600 text-lg w-full">
                         {filtered.length > 0 ? filterResults() : noResults()}
