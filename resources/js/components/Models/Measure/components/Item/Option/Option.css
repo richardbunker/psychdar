@@ -1,0 +1,15 @@
+.radioButton input:checked + label {
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        from(var(--gradient-color-stops))
+    );
+    background-image: -o-linear-gradient(bottom, var(--gradient-color-stops));
+    background-image: linear-gradient(to top, var(--gradient-color-stops));
+    --gradient-from-color: #76a9fa;
+    --gradient-to-color: #3f83f8;
+    --gradient-color-stops: var(--gradient-from-color),
+        var(--gradient-to-color, rgba(118, 169, 250, 0));
+    color: #fff;
+}
