@@ -77,9 +77,6 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/api/organisation/{hashed_organisation_id}/clinics', [App\Http\Controllers\UserClinicsController::class, 'clinics']);
     Route::get('/clinic/{hashed_clinic_id}', [App\Http\Controllers\UserClinicsController::class, 'show']);
     
-    // Clinicians
-    Route::get('/clinicians', [App\Http\Controllers\UserCliniciansController::class, 'index']);
-    Route::get('/clinician/{hashed_clinician_id}', [App\Http\Controllers\UserCliniciansController::class, 'show']);
     
     // Clients
     Route::get('/clients', [App\Http\Controllers\UserClientsController::class, 'index']);

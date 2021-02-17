@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import MainContainer from "../../components/UI/containers/MainContainer";
 import Sidebar from "../../components/UI/sidebar/Sidebar";
 import ClinicTileContainer from "../../components/Models/Clinic/components/ClinicTileContainer";
-import SelectOrganisation from "../../components/Models/Organisation/Selector";
 import LargeSpinner from "../../components/UI/spinners/LargeSpinner";
 
 export default function UserClinics(props) {
@@ -58,10 +57,6 @@ export default function UserClinics(props) {
                                 Clinics
                             </div>
                         </div>
-                        <SelectOrganisation
-                            handleChange={handleChange}
-                            organisations={props.organisations}
-                        />
                     </div>
                     {isLoading ? (
                         showSpinner()

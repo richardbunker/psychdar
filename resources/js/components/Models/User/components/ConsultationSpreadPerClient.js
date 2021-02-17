@@ -2,7 +2,7 @@ import React from "react";
 import BarChart from "../../../Chartjs/BarChart";
 import { frequency } from "../../../Stats/Stats";
 
-export default function ClinicianConsultationSpreadPerClient(props) {
+export default function ConsultationSpreadPerClient(props) {
     const totalConsultations = props.clinician.clients.flatMap(client => {
         let total = 0;
         client.treatments.map(treatment => {

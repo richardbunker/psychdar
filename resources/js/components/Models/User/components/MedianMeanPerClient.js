@@ -2,11 +2,13 @@ import React from "react";
 import BarChart from "../../../Chartjs/BarChart";
 import { mean, median } from "../../../Stats/Stats";
 
-export default function ClinicianMedianMeanPerTreatmentEpisode(props) {
+export default function MedianMeanPerClient(props) {
     const totalConsultations = props.clinician.clients.flatMap(client => {
-        return client.treatments.map(treatment => {
-            return treatment.consultation_count;
+        let total = 0;
+        client.treatments.map(treatment => {
+            total = total + treatment.consultation_count;
         });
+        return total;
     });
 
     const meanConsultations = mean(totalConsultations).toFixed(2);
@@ -16,13 +18,13 @@ export default function ClinicianMedianMeanPerTreatmentEpisode(props) {
     return (
         <div style={props.width} className="bg-white rounded p-2">
             <div className="w-full text-base font-semibold text-gray-400 uppercase">
-                Median/Mean Consultations Per Treatment Episode
+                Median/Mean Consultations Per Client
             </div>
             <div>
                 <BarChart
                     labels={["Median", "Mean"]}
                     data={[medianConsultations, meanConsultations]}
-                    colour="#FBCFE8"
+                    colour="#C7D2FE"
                     barThickness="100"
                     yAxisLabel="Consultations"
                     xAxisLabel={props.clinician.name}

@@ -2,10 +2,6 @@ import React from "react";
 import GrayFadedBanner from "../../UI/GrayFadedBanner";
 import EffectSizeRow from "../../Stats/row/EffectSize";
 import HorizontalScroller from "../../UI/HorizontalScroller";
-import ClinicianConsultationSpreadPerTreatmentEpisode from "../Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode";
-import ClinicianConsultationSpreadPerClient from "../Clinician/components/ClinicianConsultationSpreadPerClient";
-import ClinicianMedianMeanPerTreatmentEpisode from "../Clinician/components/ClinicianMedianMeanPerTreatmentEpisode";
-import ClinicianMedianMeanPerClient from "../Clinician/components/ClinicianMedianMeanPerClient";
 import { sum } from "../../Stats/Stats";
 import ClientsRow from "../../Stats/row/Clients";
 import TreatmentEpisodesRow from "../../Stats/row/TreatmentEpisodes";
@@ -13,6 +9,10 @@ import TotalConsultationsRow from "../../Stats/row/TotalConsultations";
 import TotalAssessmentsRow from "../../Stats/row/TotalAssessments";
 import SaveableBanner from "../../UI/SaveableBanner";
 import MeasureRow from "../../Stats/row/Measure";
+import ConsultationSpreadPerTreatmentEpisode from "./components/ConsultationSpreadPerTreatmentEpisode";
+import MedianMeanPerClient from "./components/MedianMeanPerClient";
+import MedianMeanPerTreatmentEpisode from "./components/MedianMeanPerTreatmentEpisode";
+import ConsultationSpreadPerClient from "./components/ConsultationSpreadPerClient";
 
 export default function UserStats(props) {
     const totalTreatmentEpisodes = props.user.clients
@@ -83,11 +83,11 @@ export default function UserStats(props) {
             </div>
             <div className="bg-teal-100 rounded">
                 <HorizontalScroller>
-                    <ClinicianConsultationSpreadPerTreatmentEpisode
+                    <ConsultationSpreadPerTreatmentEpisode
                         width={{ width: "900px" }}
                         clinician={props.user}
                     />
-                    <ClinicianConsultationSpreadPerClient
+                    <ConsultationSpreadPerClient
                         width={{ width: "900px" }}
                         clinician={props.user}
                     />
@@ -95,11 +95,11 @@ export default function UserStats(props) {
             </div>
             <div className="bg-teal-100 rounded">
                 <HorizontalScroller>
-                    <ClinicianMedianMeanPerTreatmentEpisode
+                    <MedianMeanPerTreatmentEpisode
                         width={{ width: "900px" }}
                         clinician={props.user}
                     />
-                    <ClinicianMedianMeanPerClient
+                    <MedianMeanPerClient
                         width={{ width: "900px" }}
                         clinician={props.user}
                     />

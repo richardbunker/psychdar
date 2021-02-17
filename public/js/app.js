@@ -88165,20 +88165,10 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./C/Clients/Index": "./resources/js/Pages/C/Clients/Index.js",
-	"./C/Clients/Index.js": "./resources/js/Pages/C/Clients/Index.js",
-	"./C/Clients/Show": "./resources/js/Pages/C/Clients/Show.js",
-	"./C/Clients/Show.js": "./resources/js/Pages/C/Clients/Show.js",
-	"./C/Dashboard/Index": "./resources/js/Pages/C/Dashboard/Index.js",
-	"./C/Dashboard/Index.js": "./resources/js/Pages/C/Dashboard/Index.js",
 	"./Clients/Index": "./resources/js/Pages/Clients/Index.js",
 	"./Clients/Index.js": "./resources/js/Pages/Clients/Index.js",
 	"./Clients/Show": "./resources/js/Pages/Clients/Show.js",
 	"./Clients/Show.js": "./resources/js/Pages/Clients/Show.js",
-	"./Clinicians/Index": "./resources/js/Pages/Clinicians/Index.js",
-	"./Clinicians/Index.js": "./resources/js/Pages/Clinicians/Index.js",
-	"./Clinicians/Show": "./resources/js/Pages/Clinicians/Show.js",
-	"./Clinicians/Show.js": "./resources/js/Pages/Clinicians/Show.js",
 	"./Clinics/Index": "./resources/js/Pages/Clinics/Index.js",
 	"./Clinics/Index.js": "./resources/js/Pages/Clinics/Index.js",
 	"./Clinics/Show": "./resources/js/Pages/Clinics/Show.js",
@@ -88215,154 +88205,6 @@ webpackContext.id = "./resources/js/Pages sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
-/***/ "./resources/js/Pages/C/Clients/Index.js":
-/*!***********************************************!*\
-  !*** ./resources/js/Pages/C/Clients/Index.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianClients; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
-/* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
-/* harmony import */ var _components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Models/Client/components/ClientsContainer */ "./resources/js/components/Models/Client/components/ClientsContainer.js");
-
-
-
-
-function ClinicianClients(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    owner: "clinician",
-    tab: "clients"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "w-full h-full p-4 space-y-2 overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center space-x-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-3xl font-bold text-gray-700"
-  }, "Clients"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    owner: "clinician",
-    clients: props.clients
-  })))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/Pages/C/Clients/Show.js":
-/*!**********************************************!*\
-  !*** ./resources/js/Pages/C/Clients/Show.js ***!
-  \**********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianClient; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
-/* harmony import */ var _components_Models_Client_components_ClientContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/Models/Client/components/ClientContainer */ "./resources/js/components/Models/Client/components/ClientContainer.js");
-/* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-function ClinicianClient(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(),
-      _useState2 = _slicedToArray(_useState, 2),
-      savedAt = _useState2[0],
-      setSavedAt = _useState2[1];
-
-  var getTimeStamp = function getTimeStamp() {
-    return "Saved at " + moment__WEBPACK_IMPORTED_MODULE_1___default()().format("h:mm:ss a");
-  };
-
-  var onStatusUpdate = function onStatusUpdate(toUpdate, newStatus) {
-    axios.post("/api/c/client-" + toUpdate + "-status/" + props.client.hashed_id, _defineProperty({}, toUpdate, newStatus)).then(function (response) {
-      setSavedAt(getTimeStamp());
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    owner: "clinician",
-    tab: "clients"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "w-full h-full p-4 overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    savedAt: savedAt,
-    onStatusUpdate: onStatusUpdate,
-    client: props.client
-  }))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/Pages/C/Dashboard/Index.js":
-/*!*************************************************!*\
-  !*** ./resources/js/Pages/C/Dashboard/Index.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianDashboard; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
-/* harmony import */ var _components_Models_Clinician_components_ClinicianContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/Models/Clinician/components/ClinicianContainer */ "./resources/js/components/Models/Clinician/components/ClinicianContainer.js");
-/* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
-
-
-
-
-function ClinicianDashboard(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_1__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    owner: "clinician",
-    tab: "dashboard"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "w-full h-full p-4 space-y-2 overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Clinician_components_ClinicianContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    owner: props.clinician.role,
-    clinician: props.clinician
-  }))));
-}
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Clients/Index.js":
 /*!*********************************************!*\
   !*** ./resources/js/Pages/Clients/Index.js ***!
@@ -88377,10 +88219,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
 /* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
-/* harmony import */ var _components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/Organisation/Selector */ "./resources/js/components/Models/Organisation/Selector.js");
-/* harmony import */ var _components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Models/Client/components/ClientsContainer */ "./resources/js/components/Models/Client/components/ClientsContainer.js");
-/* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
-
+/* harmony import */ var _components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/Client/components/ClientsContainer */ "./resources/js/components/Models/Client/components/ClientsContainer.js");
+/* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
 
 
 
@@ -88390,7 +88230,7 @@ function UserClients(props) {
   var showSpinner = function showSpinner() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex items-center justify-center pt-52"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_4__["default"], {
       size: "100px"
     }));
   };
@@ -88402,17 +88242,9 @@ function UserClients(props) {
     tab: "clients"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "w-full h-full p-4 space-y-2 overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center space-x-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-3xl font-bold text-gray-700"
-  }, "Clients"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
     clients: props.user.clients
-  })))));
+  }))));
 }
 
 /***/ }),
@@ -88486,155 +88318,6 @@ function UserClient(props) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Clinicians/Index.js":
-/*!************************************************!*\
-  !*** ./resources/js/Pages/Clinicians/Index.js ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserClinicians; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Models_Clinician_components_ClinicCliniciansContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Models/Clinician/components/ClinicCliniciansContainer */ "./resources/js/components/Models/Clinician/components/ClinicCliniciansContainer.js");
-/* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
-/* harmony import */ var _components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/Organisation/Selector */ "./resources/js/components/Models/Organisation/Selector.js");
-/* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
-/* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-function UserClinicians(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      organisation = _useState2[0],
-      setOrganisation = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      clinics = _useState4[0],
-      setClinics = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isLoading = _useState6[0],
-      setIsLoading = _useState6[1];
-
-  var handleChange = function handleChange(event) {
-    changeOrganisation(props.organisations.find(function (org) {
-      return org.hashed_id == event.target.value;
-    }));
-  };
-
-  var changeOrganisation = function changeOrganisation(organisation) {
-    setOrganisation(organisation);
-    fetchClinics(organisation.hashed_id);
-  };
-
-  var fetchClinics = function fetchClinics(orgHashedId) {
-    setIsLoading(true);
-    axios.get("/api/organisation/" + orgHashedId + "/clinics").then(function (response) {
-      setClinics(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setOrganisation(props.organisations[0]);
-    fetchClinics(props.organisations[0].hashed_id);
-  }, []);
-
-  var showSpinner = function showSpinner() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "flex items-center justify-center pt-52"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      size: "100px"
-    }));
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    owner: "admin",
-    tab: "clinicians"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "w-full h-full p-4 space-y-2 overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center space-x-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-3xl font-bold text-gray-700"
-  }, "Clinicians")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    handleChange: handleChange,
-    organisations: props.organisations
-  })), isLoading ? showSpinner() : clinics.map(function (clinic) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: clinic.hashed_id,
-      className: "space-y-2 py-2"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Clinician_components_ClinicCliniciansContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: clinic.hashed_id,
-      clinic: clinic
-    }));
-  }))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Clinicians/Show.js":
-/*!***********************************************!*\
-  !*** ./resources/js/Pages/Clinicians/Show.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserClinician; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Models_Clinician_components_ClinicianContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/Models/Clinician/components/ClinicianContainer */ "./resources/js/components/Models/Clinician/components/ClinicianContainer.js");
-/* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
-/* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
-
-
-
-
-function UserClinician(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    owner: props.role,
-    tab: "clinicians"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "w-full h-full p-4 overflow-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Clinician_components_ClinicianContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    owner: props.role,
-    clinician: props.clinician
-  }))));
-}
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Clinics/Index.js":
 /*!*********************************************!*\
   !*** ./resources/js/Pages/Clinics/Index.js ***!
@@ -88650,8 +88333,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
 /* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
 /* harmony import */ var _components_Models_Clinic_components_ClinicTileContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/Clinic/components/ClinicTileContainer */ "./resources/js/components/Models/Clinic/components/ClinicTileContainer.js");
-/* harmony import */ var _components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Models/Organisation/Selector */ "./resources/js/components/Models/Organisation/Selector.js");
-/* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
+/* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -88663,7 +88345,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -88715,7 +88396,7 @@ function UserClinics(props) {
   var showSpinner = function showSpinner() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "flex items-center justify-center pt-52"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_4__["default"], {
       size: "100px"
     }));
   };
@@ -88733,10 +88414,7 @@ function UserClinics(props) {
     className: "flex items-center space-x-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-3xl font-bold text-gray-700"
-  }, "Clinics")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    handleChange: handleChange,
-    organisations: props.organisations
-  })), isLoading ? showSpinner() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Clinics"))), isLoading ? showSpinner() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "py-2 grid grid-cols-3 gap-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Clinic_components_ClinicTileContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
     clinics: clinics
@@ -88792,19 +88470,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
-/* harmony import */ var _components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Models/Organisation/Selector */ "./resources/js/components/Models/Organisation/Selector.js");
-/* harmony import */ var _components_Models_Organisation_OrgStats__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/Organisation/OrgStats */ "./resources/js/components/Models/Organisation/OrgStats.js");
-/* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
-/* harmony import */ var _components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Models/User/UserStats */ "./resources/js/components/Models/User/UserStats.js");
-
-
+/* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
+/* harmony import */ var _components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/User/UserStats */ "./resources/js/components/Models/User/UserStats.js");
 
 
 
 
 function UserDashboard(props) {
   // console.log(props.user);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     tab: "dashboard"
@@ -88812,15 +88486,9 @@ function UserDashboard(props) {
     className: "w-full overflow-auto h-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-col p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-    className: "flex items-center justify-start"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-3xl font-bold text-gray-700"
-  }, "Dashboard")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: props.user
-  }))))));
+  })))));
 }
 
 /***/ }),
@@ -88875,79 +88543,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
 /* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
 /* harmony import */ var _components_Models_Measure_components_Tiles_MeasureTileContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Models/Measure/components/Tiles/MeasureTileContainer */ "./resources/js/components/Models/Measure/components/Tiles/MeasureTileContainer.js");
-/* harmony import */ var _components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Models/Organisation/Selector */ "./resources/js/components/Models/Organisation/Selector.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
 
 
 function UserMeasures(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.organisations[0]),
-      _useState2 = _slicedToArray(_useState, 2),
-      organisation = _useState2[0],
-      setOrganisation = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState4 = _slicedToArray(_useState3, 2),
-      measures = _useState4[0],
-      setMeasures = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      isLoading = _useState6[0],
-      setIsLoading = _useState6[1];
-
-  var handleChange = function handleChange(event) {
-    changeOrganisation(props.organisations.find(function (org) {
-      return org.hashed_id == event.target.value;
-    }));
-  };
-
-  var changeOrganisation = function changeOrganisation(organisation) {
-    setOrganisation(organisation);
-    fetchMeasures(organisation.hashed_id);
-  };
-
-  var fetchMeasures = function fetchMeasures(orgHashedId) {
-    setIsLoading(true);
-    axios.get("/api/organisation/" + orgHashedId + "/measures").then(function (response) {
-      setMeasures(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setOrganisation(props.organisations[0]);
-    fetchMeasures(props.organisations[0].hashed_id);
-  }, []);
-
-  var showSpinner = function showSpinner() {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "flex items-center justify-center pt-52"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      size: "100px"
-    }));
-  };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    owner: "admin",
     tab: "measures"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full h-full p-4 space-y-2 overflow-auto"
@@ -88957,13 +88561,10 @@ function UserMeasures(props) {
     className: "flex items-center space-x-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-3xl font-bold text-gray-700"
-  }, "Measures")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Organisation_Selector__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    handleChange: handleChange,
-    organisations: props.organisations
-  })), isLoading ? showSpinner() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Measures"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "py-2 grid grid-cols-3 gap-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Measure_components_Tiles_MeasureTileContainer__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    measures: measures
+    measures: props.measures
   })))));
 }
 
@@ -89641,7 +89242,7 @@ function ClientsContainer(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onKeyUp: handleKeyUp,
     type: "text",
-    placeholder: "Search for a client",
+    placeholder: "Search...",
     className: "mb-2 px-3 py-2 rounded shadow text-gray-600 text-xl w-full focus:outline-none"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white rounded-b"
@@ -90334,508 +89935,6 @@ function MedianMeanSessionsPerTreatmentEpisode(props) {
     dataset2Colour: "#FBCFE8",
     dataset2Type: "bar"
   })));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicCliniciansContainer.js":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicCliniciansContainer.js ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicCliniciansContainer; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
-/* harmony import */ var _ClinicianTileContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ClinicianTileContainer */ "./resources/js/components/Models/Clinician/components/ClinicianTileContainer.js");
-
-
-
-function ClinicCliniciansContainer(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: props.isLoading ? "Loading..." : props.clinic.name
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianTileContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    isLoading: props.isLoading,
-    clinicians: props.clinic.clinicians
-  }));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianClientsContainer.js":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianClientsContainer.js ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClientsContainer; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
-
-
-function ClientsContainer(props) {
-  var uri = props.owner === "admin" ? "/client/" : "/c/client/";
-  var row = "p-2 flex items-center justify-between w-full rounded-b";
-  var status = "text-white rounded py-1 px-2";
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full bg-white rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: "Clients"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg text-gray-600"
-  }, props.clients.map(function (client, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: client.hashed_id,
-      className: index % 2 ? row + " bg-teal-50" : row + " bg-white"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: uri + client.hashed_id
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "hover:text-teal-500 hover:underline font-semibold"
-    }, client.identifier)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: client.is_active ? status + " bg-green-500" : status + " bg-gray-600"
-    }, client.is_active ? "Active" : "Inactive"));
-  })));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerClient.js":
-/*!*****************************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerClient.js ***!
-  \*****************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianConsultationSpreadPerClient; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-
-
-
-function ClinicianConsultationSpreadPerClient(props) {
-  var totalConsultations = props.clinician.clients.flatMap(function (client) {
-    var total = 0;
-    client.treatments.map(function (treatment) {
-      total = total + treatment.consultation_count;
-    });
-    return total;
-  });
-  var frequencyOfTotalConsultations = totalConsultations.reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["frequency"], {});
-  var freqPercentage = Object.keys(frequencyOfTotalConsultations).map(function (key, index) {
-    return (frequencyOfTotalConsultations[key] / Object.keys(frequencyOfTotalConsultations).length * 100).toFixed(2);
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: props.width,
-    className: "bg-white rounded p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
-  }, "Consultation Spread Per Client"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    colour: "#C7D2FE",
-    xAxisLabel: "Consultation Length (Per Client)",
-    yAxisLabel: "Percentage Used (%)",
-    label: "Percentage Used (%)",
-    labels: Object.keys(frequencyOfTotalConsultations),
-    data: Object.values(freqPercentage)
-  })));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode.js":
-/*!***************************************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode.js ***!
-  \***************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianConsultationSpreadPerTreatmentEpisode; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
-
-
-
-function ClinicianConsultationSpreadPerTreatmentEpisode(props) {
-  var totalConsultations = props.clinician.clients.flatMap(function (client) {
-    return client.treatments.map(function (treatment) {
-      return treatment.consultation_count;
-    });
-  });
-  var frequencyOfTotalConsultations = totalConsultations.reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["frequency"], {});
-  var freqPercentage = Object.keys(frequencyOfTotalConsultations).map(function (key, index) {
-    return (frequencyOfTotalConsultations[key] / Object.keys(frequencyOfTotalConsultations).length * 100).toFixed(2);
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: props.width,
-    className: "bg-white rounded p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
-  }, "Consultation Spread Per Treatment Episode"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    colour: "#FBCFE8",
-    xAxisLabel: "Consultation Length (Per Treatment Episode)",
-    yAxisLabel: "Percentage Used (%)",
-    label: "Percentage Used (%)",
-    labels: Object.keys(frequencyOfTotalConsultations),
-    data: Object.values(freqPercentage)
-  })));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianContainer.js":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianContainer.js ***!
-  \***********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianContainer; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
-/* harmony import */ var _Stats_row_Clients__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/row/Clients */ "./resources/js/components/Stats/row/Clients.js");
-/* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
-/* harmony import */ var _Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Stats/row/TotalConsultations */ "./resources/js/components/Stats/row/TotalConsultations.js");
-/* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
-/* harmony import */ var _Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Stats/row/EffectSize */ "./resources/js/components/Stats/row/EffectSize.js");
-/* harmony import */ var _UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../UI/HorizontalScroller */ "./resources/js/components/UI/HorizontalScroller.js");
-/* harmony import */ var _UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../UI/spinners/SpinnerBootUp */ "./resources/js/components/UI/spinners/SpinnerBootUp.js");
-/* harmony import */ var _ClinicianConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./ClinicianConsultationSpreadPerTreatmentEpisode */ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode.js");
-/* harmony import */ var _ClinicianConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ClinicianConsultationSpreadPerClient */ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerClient.js");
-/* harmony import */ var _ClinicianMedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ClinicianMedianMeanPerTreatmentEpisode */ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerTreatmentEpisode.js");
-/* harmony import */ var _ClinicianMedianMeanPerClient__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./ClinicianMedianMeanPerClient */ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerClient.js");
-/* harmony import */ var _ClinicianClientsContainer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ClinicianClientsContainer */ "./resources/js/components/Models/Clinician/components/ClinicianClientsContainer.js");
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-/* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
-/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function ClinicianContainer(props) {
-  var totalTreatmentEpisodes = props.clinician.clients.map(function (client) {
-    return client.treatments.length;
-  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_14__["sum"], 0);
-  var totalConsultations = props.clinician.clients.flatMap(function (client) {
-    return client.treatments.map(function (treatment) {
-      return treatment.consultation_count;
-    });
-  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_14__["sum"], 0);
-  var totalAssessments = props.clinician.clients.flatMap(function (client) {
-    return client.treatments.map(function (treatment) {
-      return treatment.assessments.length;
-    });
-  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_14__["sum"], 0); // console.log(props.owner)
-
-  return props.owner ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full bg-white rounded-b"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: props.clinician.first_name + " " + props.clinician.last_name
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base py-4 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clients__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    iconSize: "10",
-    iconColour: "text-green-400",
-    number: props.clinician.clients.length
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    iconSize: "10",
-    iconColour: "text-pink-400",
-    number: totalTreatmentEpisodes
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    iconSize: "10",
-    iconColour: "text-indigo-400",
-    number: totalConsultations
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    iconSize: "10",
-    iconColour: "text-gray-400",
-    number: totalAssessments
-  }), props.owner === "admin" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_16__["default"], {
-    heading: "Effect Size Measure",
-    iconSize: "10",
-    iconColour: "text-teal-400",
-    title: "CORE10"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    iconSize: "10",
-    iconColour: "text-yellow-400",
-    clinician: props.clinician
-  })))), props.owner === "admin" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full bg-white rounded-b"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_15__["default"], {
-    title: "Clinician Settings"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base pt-2 pb-6 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Login Access"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Outcome Measure"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-teal-100 rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    width: {
-      width: "900px"
-    },
-    clinician: props.clinician
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    width: {
-      width: "900px"
-    },
-    clinician: props.clinician
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-teal-100 rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_7__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianMedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    width: {
-      width: "900px"
-    },
-    clinician: props.clinician
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianMedianMeanPerClient__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    width: {
-      width: "900px"
-    },
-    clinician: props.clinician
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianClientsContainer__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    owner: props.owner,
-    clients: props.clinician.clients
-  })) : Object(_UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_8__["spinnerBootUp"])();
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerClient.js":
-/*!*********************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerClient.js ***!
-  \*********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianMedianMeanPerClient; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-
-
-
-function ClinicianMedianMeanPerClient(props) {
-  var totalConsultations = props.clinician.clients.flatMap(function (client) {
-    var total = 0;
-    client.treatments.map(function (treatment) {
-      total = total + treatment.consultation_count;
-    });
-    return total;
-  });
-  var meanConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["mean"])(totalConsultations).toFixed(2);
-  var medianConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["median"])(totalConsultations);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: props.width,
-    className: "bg-white rounded p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
-  }, "Median/Mean Consultations Per Client"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    labels: ["Median", "Mean"],
-    data: [medianConsultations, meanConsultations],
-    colour: "#C7D2FE",
-    barThickness: "100",
-    yAxisLabel: "Consultations",
-    xAxisLabel: props.clinician.name
-  })));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerTreatmentEpisode.js":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerTreatmentEpisode.js ***!
-  \*******************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianMedianMeanPerTreatmentEpisode; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-
-
-
-function ClinicianMedianMeanPerTreatmentEpisode(props) {
-  var totalConsultations = props.clinician.clients.flatMap(function (client) {
-    return client.treatments.map(function (treatment) {
-      return treatment.consultation_count;
-    });
-  });
-  var meanConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["mean"])(totalConsultations).toFixed(2);
-  var medianConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["median"])(totalConsultations);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: props.width,
-    className: "bg-white rounded p-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
-  }, "Median/Mean Consultations Per Treatment Episode"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    labels: ["Median", "Mean"],
-    data: [medianConsultations, meanConsultations],
-    colour: "#FBCFE8",
-    barThickness: "100",
-    yAxisLabel: "Consultations",
-    xAxisLabel: props.clinician.name
-  })));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianTile.js":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianTile.js ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianTile; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function ClinicianTile(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: props.isLoading ? "hidden" : "w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/clinician/" + props.clinician.hashed_id,
-    style: {
-      height: 190
-    },
-    className: "cursor-pointer w-full p-6 rounded bg-white shadow flex flex-col space-y-4 items-center justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-gray-100 rounded-full"
-  }, props.isClinician ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "p-3 w-20 h-20 text-blue-400",
-    fill: "currentColor",
-    viewBox: "0 0 20 20",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    fillRule: "evenodd",
-    d: "M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z",
-    clipRule: "evenodd"
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "w-20 h-20 text-blue-400",
-    fill: "currentColor",
-    viewBox: "0 0 20 20",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    fillRule: "evenodd",
-    d: "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
-    clipRule: "evenodd"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg font-semibold text-gray-500 uppercase text-center"
-  }, props.clinician.first_name + " " + props.clinician.last_name)));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianTileContainer.js":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianTileContainer.js ***!
-  \***************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicTileContainer; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _ClinicianTile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ClinicianTile */ "./resources/js/components/Models/Clinician/components/ClinicianTile.js");
-/* harmony import */ var _ClinicianTileLoading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ClinicianTileLoading */ "./resources/js/components/Models/Clinician/components/ClinicianTileLoading.js");
-
-
-
-function ClinicTileContainer(props) {
-  var clinicians = props.clinicians.map(function (clinician) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianTile__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      selectClinician: props.selectClinician,
-      key: clinician.hashed_id,
-      isLoading: props.isLoading,
-      isClinician: true,
-      clinician: clinician
-    });
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-gray-200 rounded-b p-2 grid grid-cols-3 gap-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianTile__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isClinician: false,
-    clinician: {
-      first_name: "Add",
-      last_name: "Clinician"
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClinicianTileLoading__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    isLoading: props.isLoading,
-    title: "Loading..."
-  }), clinicians);
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Clinician/components/ClinicianTileLoading.js":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/Models/Clinician/components/ClinicianTileLoading.js ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicianTileLoading; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
-
-
-function ClinicianTileLoading(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: props.isLoading ? "w-full animate-pulse" : "hidden"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      height: 190
-    },
-    className: "w-full p-6 rounded bg-white shadow flex flex-col space-y-4 items-center justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-gray-100 rounded-full p-4 h-20 w-20 flex items-center justify-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    size: "40px"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg font-semibold text-gray-500 uppercase text-center"
-  }, props.title)));
 }
 
 /***/ }),
@@ -93999,449 +93098,6 @@ var formatNameAndAbbr = function formatNameAndAbbr(name, abbr) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Models/Organisation/OrgStats.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/OrgStats.js ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrgStats; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
-/* harmony import */ var _components_OrganisationClinics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/OrganisationClinics */ "./resources/js/components/Models/Organisation/components/OrganisationClinics.js");
-/* harmony import */ var _components_OrganisationClinicians__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/OrganisationClinicians */ "./resources/js/components/Models/Organisation/components/OrganisationClinicians.js");
-/* harmony import */ var _components_OrganisationClients__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/OrganisationClients */ "./resources/js/components/Models/Organisation/components/OrganisationClients.js");
-/* harmony import */ var _components_OrganisationTreatments__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/OrganisationTreatments */ "./resources/js/components/Models/Organisation/components/OrganisationTreatments.js");
-/* harmony import */ var _components_OrganisationConsultations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/OrganisationConsultations */ "./resources/js/components/Models/Organisation/components/OrganisationConsultations.js");
-/* harmony import */ var _components_OrganisationAssessments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/OrganisationAssessments */ "./resources/js/components/Models/Organisation/components/OrganisationAssessments.js");
-
-
-
-
-
-
-
-
-function OrgStats(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-700 overflow-auto min-w-max-content"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      width: "100%"
-    },
-    className: "bg-white rounded-b"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: props.organisation.name
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base py-4 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_OrganisationClinics__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    organisationHashedId: props.organisation.hashed_id
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_OrganisationClinicians__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    organisationHashedId: props.organisation.hashed_id
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_OrganisationClients__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    organisationHashedId: props.organisation.hashed_id
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_OrganisationTreatments__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    organisationHashedId: props.organisation.hashed_id
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_OrganisationConsultations__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    organisationHashedId: props.organisation.hashed_id
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_OrganisationAssessments__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    organisationHashedId: props.organisation.hashed_id
-  }))));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Organisation/Selector.js":
-/*!*****************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/Selector.js ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function SelectOrganisation(props) {
-  var selectOptions = props.organisations.map(function (org) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-      className: "overflow-hidden",
-      key: org.hashed_id,
-      value: org.hashed_id
-    }, org.name);
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: props.organisations.length > 0 ? "" : "hidden"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "relative w-62"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    onChange: function onChange(e) {
-      return props.handleChange(e);
-    },
-    className: "text-gray-500 overflow-hidden block border appearance-none w-full py-1 px-2 rounded text-sm leading-normal"
-  }, selectOptions), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "fill-current h-4 w-4 bg-white",
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 20 20"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-  })))));
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (SelectOrganisation);
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Organisation/components/OrganisationAssessments.js":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/components/OrganisationAssessments.js ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrganisationAssessments; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function OrganisationAssessments(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      assessmentsTotal = _useState2[0],
-      setAssessmentsTotal = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setIsLoading(true);
-    axios.get("/api/dashboard/organisation/" + props.organisationHashedId + "/assessments").then(function (response) {
-      setAssessmentsTotal(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  }, [props.organisationHashedId]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isLoading: isLoading,
-    iconSize: "10",
-    iconColour: "text-gray-400",
-    number: assessmentsTotal
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Organisation/components/OrganisationClients.js":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/components/OrganisationClients.js ***!
-  \***************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrganisationClinics; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Stats_row_Clients__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/row/Clients */ "./resources/js/components/Stats/row/Clients.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function OrganisationClinics(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      clients = _useState2[0],
-      setClients = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setIsLoading(true);
-    axios.get("/api/dashboard/organisation/" + props.organisationHashedId + "/clients").then(function (response) {
-      setClients(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  }, [props.organisationHashedId]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clients__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isLoading: isLoading,
-    iconSize: "10",
-    iconColour: "text-green-400",
-    number: clients.length
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Organisation/components/OrganisationClinicians.js":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/components/OrganisationClinicians.js ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrganisationClinics; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Stats_row_Clinicians__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/row/Clinicians */ "./resources/js/components/Stats/row/Clinicians.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function OrganisationClinics(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      clinicians = _useState2[0],
-      setClinicians = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setIsLoading(true);
-    axios.get("/api/dashboard/organisation/" + props.organisationHashedId + "/clinicians").then(function (response) {
-      setClinicians(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  }, [props.organisationHashedId]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clinicians__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isLoading: isLoading,
-    iconSize: "10",
-    iconColour: "text-blue-400",
-    number: clinicians.length
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Organisation/components/OrganisationClinics.js":
-/*!***************************************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/components/OrganisationClinics.js ***!
-  \***************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrganisationClinics; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Stats_row_Clinics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/row/Clinics */ "./resources/js/components/Stats/row/Clinics.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function OrganisationClinics(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      clinics = _useState2[0],
-      setClinics = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setIsLoading(true);
-    axios.get("/api/dashboard/organisation/" + props.organisationHashedId + "/clinics").then(function (response) {
-      setClinics(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  }, [props.organisationHashedId]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clinics__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isLoading: isLoading,
-    iconSize: "10",
-    iconColour: "text-teal-400",
-    number: clinics.length
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Organisation/components/OrganisationConsultations.js":
-/*!*********************************************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/components/OrganisationConsultations.js ***!
-  \*********************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrganisationClinics; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/row/TotalConsultations */ "./resources/js/components/Stats/row/TotalConsultations.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function OrganisationClinics(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      consultationsTotal = _useState2[0],
-      setConsultationsTotal = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setIsLoading(true);
-    axios.get("/api/dashboard/organisation/" + props.organisationHashedId + "/consultations").then(function (response) {
-      setConsultationsTotal(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  }, [props.organisationHashedId]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isLoading: isLoading,
-    iconSize: "10",
-    iconColour: "text-indigo-400",
-    number: consultationsTotal
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Models/Organisation/components/OrganisationTreatments.js":
-/*!******************************************************************************************!*\
-  !*** ./resources/js/components/Models/Organisation/components/OrganisationTreatments.js ***!
-  \******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return OrganisationClinics; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-function OrganisationClinics(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      treatments = _useState2[0],
-      setTreatments = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      isLoading = _useState4[0],
-      setIsLoading = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    setIsLoading(true);
-    axios.get("/api/dashboard/organisation/" + props.organisationHashedId + "/treatments").then(function (response) {
-      setTreatments(response.data);
-      setIsLoading(false);
-    })["catch"](function (e) {
-      console.log(e);
-    });
-  }, [props.organisationHashedId]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    isLoading: isLoading,
-    iconSize: "10",
-    iconColour: "text-pink-400",
-    number: treatments.length
-  });
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/Models/User/UserStats.js":
 /*!**********************************************************!*\
   !*** ./resources/js/components/Models/User/UserStats.js ***!
@@ -94457,17 +93113,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
 /* harmony import */ var _Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Stats/row/EffectSize */ "./resources/js/components/Stats/row/EffectSize.js");
 /* harmony import */ var _UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../UI/HorizontalScroller */ "./resources/js/components/UI/HorizontalScroller.js");
-/* harmony import */ var _Clinician_components_ClinicianConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode */ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerTreatmentEpisode.js");
-/* harmony import */ var _Clinician_components_ClinicianConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Clinician/components/ClinicianConsultationSpreadPerClient */ "./resources/js/components/Models/Clinician/components/ClinicianConsultationSpreadPerClient.js");
-/* harmony import */ var _Clinician_components_ClinicianMedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Clinician/components/ClinicianMedianMeanPerTreatmentEpisode */ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerTreatmentEpisode.js");
-/* harmony import */ var _Clinician_components_ClinicianMedianMeanPerClient__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Clinician/components/ClinicianMedianMeanPerClient */ "./resources/js/components/Models/Clinician/components/ClinicianMedianMeanPerClient.js");
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-/* harmony import */ var _Stats_row_Clients__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Stats/row/Clients */ "./resources/js/components/Stats/row/Clients.js");
-/* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
-/* harmony import */ var _Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../Stats/row/TotalConsultations */ "./resources/js/components/Stats/row/TotalConsultations.js");
-/* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
-/* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
-/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _Stats_row_Clients__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Stats/row/Clients */ "./resources/js/components/Stats/row/Clients.js");
+/* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
+/* harmony import */ var _Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Stats/row/TotalConsultations */ "./resources/js/components/Stats/row/TotalConsultations.js");
+/* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
+/* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
+/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
+/* harmony import */ var _components_ConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/ConsultationSpreadPerTreatmentEpisode */ "./resources/js/components/Models/User/components/ConsultationSpreadPerTreatmentEpisode.js");
+/* harmony import */ var _components_MedianMeanPerClient__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/MedianMeanPerClient */ "./resources/js/components/Models/User/components/MedianMeanPerClient.js");
+/* harmony import */ var _components_MedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/MedianMeanPerTreatmentEpisode */ "./resources/js/components/Models/User/components/MedianMeanPerTreatmentEpisode.js");
+/* harmony import */ var _components_ConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/ConsultationSpreadPerClient */ "./resources/js/components/Models/User/components/ConsultationSpreadPerClient.js");
 
 
 
@@ -94486,17 +93142,17 @@ __webpack_require__.r(__webpack_exports__);
 function UserStats(props) {
   var totalTreatmentEpisodes = props.user.clients.map(function (client) {
     return client.treatments.length;
-  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_8__["sum"], 0);
+  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_4__["sum"], 0);
   var totalConsultations = props.user.clients.flatMap(function (client) {
     return client.treatments.map(function (treatment) {
       return treatment.consultation_count;
     });
-  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_8__["sum"], 0);
+  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_4__["sum"], 0);
   var totalAssessments = props.user.clients.flatMap(function (client) {
     return client.treatments.map(function (treatment) {
       return treatment.assessments.length;
     });
-  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_8__["sum"], 0);
+  }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_4__["sum"], 0);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -94505,23 +93161,23 @@ function UserStats(props) {
     title: props.user.name
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-base py-4 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clients__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clients__WEBPACK_IMPORTED_MODULE_5__["default"], {
     iconSize: "10",
     iconColour: "text-green-400",
     number: props.user.clients.length
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_6__["default"], {
     iconSize: "10",
     iconColour: "text-pink-400",
     number: totalTreatmentEpisodes
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalConsultations__WEBPACK_IMPORTED_MODULE_7__["default"], {
     iconSize: "10",
     iconColour: "text-indigo-400",
     number: totalConsultations
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_8__["default"], {
     iconSize: "10",
     iconColour: "text-gray-400",
     number: totalAssessments
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_10__["default"], {
     heading: "Effect Size Measure",
     iconSize: "10",
     iconColour: "text-teal-400",
@@ -94532,35 +93188,211 @@ function UserStats(props) {
     clinician: props.user
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full bg-white rounded-b"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_9__["default"], {
     title: "Settings"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-base pt-2 pb-6 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Outcome Measure"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-teal-100 rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_11__["default"], {
     width: {
       width: "900px"
     },
     clinician: props.user
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ConsultationSpreadPerClient__WEBPACK_IMPORTED_MODULE_14__["default"], {
     width: {
       width: "900px"
     },
     clinician: props.user
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-teal-100 rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianMedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_HorizontalScroller__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MedianMeanPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_13__["default"], {
     width: {
       width: "900px"
     },
     clinician: props.user
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Clinician_components_ClinicianMedianMeanPerClient__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_MedianMeanPerClient__WEBPACK_IMPORTED_MODULE_12__["default"], {
     width: {
       width: "900px"
     },
     clinician: props.user
   }))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/User/components/ConsultationSpreadPerClient.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Models/User/components/ConsultationSpreadPerClient.js ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ConsultationSpreadPerClient; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+
+
+
+function ConsultationSpreadPerClient(props) {
+  var totalConsultations = props.clinician.clients.flatMap(function (client) {
+    var total = 0;
+    client.treatments.map(function (treatment) {
+      total = total + treatment.consultation_count;
+    });
+    return total;
+  });
+  var frequencyOfTotalConsultations = totalConsultations.reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["frequency"], {});
+  var freqPercentage = Object.keys(frequencyOfTotalConsultations).map(function (key, index) {
+    return (frequencyOfTotalConsultations[key] / Object.keys(frequencyOfTotalConsultations).length * 100).toFixed(2);
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: props.width,
+    className: "bg-white rounded p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full text-base font-semibold text-gray-400 uppercase"
+  }, "Consultation Spread Per Client"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    colour: "#C7D2FE",
+    xAxisLabel: "Consultation Length (Per Client)",
+    yAxisLabel: "Percentage Used (%)",
+    label: "Percentage Used (%)",
+    labels: Object.keys(frequencyOfTotalConsultations),
+    data: Object.values(freqPercentage)
+  })));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/User/components/ConsultationSpreadPerTreatmentEpisode.js":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Models/User/components/ConsultationSpreadPerTreatmentEpisode.js ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ConsultationSpreadPerTreatmentEpisode; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
+
+
+
+function ConsultationSpreadPerTreatmentEpisode(props) {
+  var totalConsultations = props.clinician.clients.flatMap(function (client) {
+    return client.treatments.map(function (treatment) {
+      return treatment.consultation_count;
+    });
+  });
+  var frequencyOfTotalConsultations = totalConsultations.reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["frequency"], {});
+  var freqPercentage = Object.keys(frequencyOfTotalConsultations).map(function (key, index) {
+    return (frequencyOfTotalConsultations[key] / Object.keys(frequencyOfTotalConsultations).length * 100).toFixed(2);
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: props.width,
+    className: "bg-white rounded p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full text-base font-semibold text-gray-400 uppercase"
+  }, "Consultation Spread Per Treatment Episode"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    colour: "#FBCFE8",
+    xAxisLabel: "Consultation Length (Per Treatment Episode)",
+    yAxisLabel: "Percentage Used (%)",
+    label: "Percentage Used (%)",
+    labels: Object.keys(frequencyOfTotalConsultations),
+    data: Object.values(freqPercentage)
+  })));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/User/components/MedianMeanPerClient.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/Models/User/components/MedianMeanPerClient.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MedianMeanPerClient; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+
+
+
+function MedianMeanPerClient(props) {
+  var totalConsultations = props.clinician.clients.flatMap(function (client) {
+    var total = 0;
+    client.treatments.map(function (treatment) {
+      total = total + treatment.consultation_count;
+    });
+    return total;
+  });
+  var meanConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["mean"])(totalConsultations).toFixed(2);
+  var medianConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["median"])(totalConsultations);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: props.width,
+    className: "bg-white rounded p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full text-base font-semibold text-gray-400 uppercase"
+  }, "Median/Mean Consultations Per Client"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    labels: ["Median", "Mean"],
+    data: [medianConsultations, meanConsultations],
+    colour: "#C7D2FE",
+    barThickness: "100",
+    yAxisLabel: "Consultations",
+    xAxisLabel: props.clinician.name
+  })));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/User/components/MedianMeanPerTreatmentEpisode.js":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Models/User/components/MedianMeanPerTreatmentEpisode.js ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MedianMeanPerTreatmentEpisode; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+
+
+
+function MedianMeanPerTreatmentEpisode(props) {
+  var totalConsultations = props.clinician.clients.flatMap(function (client) {
+    return client.treatments.map(function (treatment) {
+      return treatment.consultation_count;
+    });
+  });
+  var meanConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["mean"])(totalConsultations).toFixed(2);
+  var medianConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["median"])(totalConsultations);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: props.width,
+    className: "bg-white rounded p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full text-base font-semibold text-gray-400 uppercase"
+  }, "Median/Mean Consultations Per Treatment Episode"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    labels: ["Median", "Mean"],
+    data: [medianConsultations, meanConsultations],
+    colour: "#FBCFE8",
+    barThickness: "100",
+    yAxisLabel: "Consultations",
+    xAxisLabel: props.clinician.name
+  })));
 }
 
 /***/ }),
@@ -94741,46 +93573,6 @@ function CliniciansRow(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " font-bold w-full"
   }, "Clinicians"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2  font-bold"
-  }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    size: "20px"
-  }) : props.number)));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Stats/row/Clinics.js":
-/*!******************************************************!*\
-  !*** ./resources/js/components/Stats/row/Clinics.js ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClinicsRow; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
-
-
-function ClinicsRow(props) {
-  var size = props.iconSize;
-  var colour = props.iconColour;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "w-" + size + " " + "h-" + size + " " + colour,
-    fill: "currentColor",
-    viewBox: "0 0 20 20",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    d: "M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " font-bold w-full"
-  }, "Clinics"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-2  font-bold"
   }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     size: "20px"

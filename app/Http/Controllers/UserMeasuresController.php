@@ -15,7 +15,7 @@ class UserMeasuresController extends Controller
     public function index()
     {        
         return Inertia::render('Measures/Index', [
-            'organisations' => Auth::user()->organisations
+            'measures' => Auth::user()->measures
         ]);
     }
 
