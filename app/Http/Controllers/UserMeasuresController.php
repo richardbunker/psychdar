@@ -21,9 +21,7 @@ class UserMeasuresController extends Controller
 
     public function create()
     {                
-        return Inertia::render('Measures/Create', [
-            'organisations' => Auth::user()->organisations
-        ]);
+        return Inertia::render('Measures/Create');
     }
 
     public function show($hashed_measure_id)

@@ -13,8 +13,7 @@ import TextInput from "../../../../UI/inputs/TextInput";
 import CancelableContainer from "../../../../UI/containers/CancelableContainer";
 
 export default function MeasureBuilder(props) {
-    const [addOrganistationsModal, setAddOrganisationsmodal] = useState(false);
-    const [selectedOrganisations, setSelectedOrganisations] = useState([]);
+    const [confirmCreateModal, setConfirmCreateModal] = useState(false);
     const [name, setName] = useState("");
     const [abbr, setAbbr] = useState("");
     const [instructions, setInstructions] = useState("");
@@ -123,18 +122,8 @@ export default function MeasureBuilder(props) {
         setDisplayPreview(prevState => !prevState);
     };
 
-    const toggleAddOrganisationsModal = () => {
-        setAddOrganisationsmodal(prevState => !prevState);
-    };
-
-    const updateSelectedOrganisations = orgHash => {
-        setSelectedOrganisations(prevState => {
-            if (prevState.includes(orgHash)) {
-                return [...prevState].filter(hash => hash !== orgHash);
-            } else {
-                return [...prevState, orgHash];
-            }
-        });
+    const toggleConfirmCreate = () => {
+        setConfirmCreateModal(prevState => !prevState);
     };
 
     const submitMeasure = () => {
@@ -142,40 +131,27 @@ export default function MeasureBuilder(props) {
             name: name,
             abbr: abbr,
             instructions: instructions,
-            items: items,
-            orgs: selectedOrganisations
+            items: items
         };
         Inertia.post("/measures", measure);
     };
 
     return (
         <main className="w-full">
-            {addOrganistationsModal && (
+            {confirmCreateModal && (
                 <ModalCentered
-                    heading="Add Organisations"
-                    toggleModal={toggleAddOrganisationsModal}
+                    maxWidth="max-w-sm"
+                    heading="Confirm"
+                    toggleModal={toggleConfirmCreate}
                 >
-                    <div className="space-y-2">
-                        {props.organisations.map(org => {
-                            return (
-                                <Checkbox
-                                    onCheckboxChange={
-                                        updateSelectedOrganisations
-                                    }
-                                    key={org.hashed_id}
-                                    checked={
-                                        selectedOrganisations[org.hashed_id]
-                                    }
-                                    value={org.hashed_id}
-                                    label={org.name}
-                                />
-                            );
-                        })}
-                    </div>
                     <div className="flex items-center justify-end space-x-2">
-                        {selectedOrganisations.length > 0 && (
-                            <SaveSubmitButton onHandleClick={submitMeasure} />
-                        )}
+                        <button
+                            className="w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
+                            onClick={() => toggleConfirmCreate()}
+                        >
+                            Cancel
+                        </button>
+                        <SaveSubmitButton onHandleClick={submitMeasure} />
                     </div>
                 </ModalCentered>
             )}
@@ -201,7 +177,7 @@ export default function MeasureBuilder(props) {
                             Preview
                         </button>
                         <button
-                            onClick={() => toggleAddOrganisationsModal()}
+                            onClick={() => toggleConfirmCreate()}
                             className="flex items-center bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase w-full"
                         >
                             <svg

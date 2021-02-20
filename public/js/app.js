@@ -88472,6 +88472,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/UI/sidebar/Sidebar */ "./resources/js/components/UI/sidebar/Sidebar.js");
 /* harmony import */ var _components_UI_containers_MainContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/UI/containers/MainContainer */ "./resources/js/components/UI/containers/MainContainer.js");
 /* harmony import */ var _components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Models/User/UserStats */ "./resources/js/components/Models/User/UserStats.js");
+/* harmony import */ var _components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/UI/ads/AdsContainer */ "./resources/js/components/UI/ads/AdsContainer.js");
+
 
 
 
@@ -88486,7 +88488,7 @@ function UserDashboard(props) {
     className: "w-full overflow-auto h-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-col p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null, "Ads Container"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: props.user
   })))));
 }
@@ -92647,45 +92649,40 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function MeasureBuilder(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
-      addOrganistationsModal = _useState2[0],
-      setAddOrganisationsmodal = _useState2[1];
+      confirmCreateModal = _useState2[0],
+      setConfirmCreateModal = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState4 = _slicedToArray(_useState3, 2),
-      selectedOrganisations = _useState4[0],
-      setSelectedOrganisations = _useState4[1];
+      name = _useState4[0],
+      setName = _useState4[1];
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      name = _useState6[0],
-      setName = _useState6[1];
+      abbr = _useState6[0],
+      setAbbr = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState8 = _slicedToArray(_useState7, 2),
-      abbr = _useState8[0],
-      setAbbr = _useState8[1];
+      instructions = _useState8[0],
+      setInstructions = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState10 = _slicedToArray(_useState9, 2),
-      instructions = _useState10[0],
-      setInstructions = _useState10[1];
+      items = _useState10[0],
+      setItems = _useState10[1];
 
-  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState12 = _slicedToArray(_useState11, 2),
-      items = _useState12[0],
-      setItems = _useState12[1];
+      displayItemBuilder = _useState12[0],
+      setDisplayItemBuilder = _useState12[1];
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState14 = _slicedToArray(_useState13, 2),
-      displayItemBuilder = _useState14[0],
-      setDisplayItemBuilder = _useState14[1];
+      displayPreview = _useState14[0],
+      setDisplayPreview = _useState14[1];
 
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState16 = _slicedToArray(_useState15, 2),
-      displayPreview = _useState16[0],
-      setDisplayPreview = _useState16[1];
-
-  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     name: false,
     abbr: true,
     instructions: true,
@@ -92694,9 +92691,9 @@ function MeasureBuilder(props) {
       return this.name && this.abbr && this.instructions && this.items;
     }
   }),
-      _useState18 = _slicedToArray(_useState17, 2),
-      inputFields = _useState18[0],
-      setInputFields = _useState18[1];
+      _useState16 = _slicedToArray(_useState15, 2),
+      inputFields = _useState16[0],
+      setInputFields = _useState16[1];
 
   var validateString = function validateString(string, minLength, field) {
     if (string.length >= minLength) {
@@ -92803,21 +92800,9 @@ function MeasureBuilder(props) {
     });
   };
 
-  var toggleAddOrganisationsModal = function toggleAddOrganisationsModal() {
-    setAddOrganisationsmodal(function (prevState) {
+  var toggleConfirmCreate = function toggleConfirmCreate() {
+    setConfirmCreateModal(function (prevState) {
       return !prevState;
-    });
-  };
-
-  var updateSelectedOrganisations = function updateSelectedOrganisations(orgHash) {
-    setSelectedOrganisations(function (prevState) {
-      if (prevState.includes(orgHash)) {
-        return _toConsumableArray(prevState).filter(function (hash) {
-          return hash !== orgHash;
-        });
-      } else {
-        return [].concat(_toConsumableArray(prevState), [orgHash]);
-      }
     });
   };
 
@@ -92826,30 +92811,25 @@ function MeasureBuilder(props) {
       name: name,
       abbr: abbr,
       instructions: instructions,
-      items: items,
-      orgs: selectedOrganisations
+      items: items
     };
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/measures", measure);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "w-full"
-  }, addOrganistationsModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Centered__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    heading: "Add Organisations",
-    toggleModal: toggleAddOrganisationsModal
+  }, confirmCreateModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Centered__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    maxWidth: "max-w-sm",
+    heading: "Confirm",
+    toggleModal: toggleConfirmCreate
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2"
-  }, props.organisations.map(function (org) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      onCheckboxChange: updateSelectedOrganisations,
-      key: org.hashed_id,
-      checked: selectedOrganisations[org.hashed_id],
-      value: org.hashed_id,
-      label: org.name
-    });
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
-  }, selectedOrganisations.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase",
+    onClick: function onClick() {
+      return toggleConfirmCreate();
+    }
+  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onHandleClick: submitMeasure
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-between h-12"
@@ -92871,7 +92851,7 @@ function MeasureBuilder(props) {
     d: "M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
   })), "Preview"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
-      return toggleAddOrganisationsModal();
+      return toggleConfirmCreate();
     },
     className: "flex items-center bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -93531,7 +93511,7 @@ function ClientsRow(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " font-bold w-full"
+    className: "font-bold w-full"
   }, "Clients"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-2  font-bold"
   }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -94046,6 +94026,27 @@ function SaveableBanner(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/UI/ads/AdsContainer.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/UI/ads/AdsContainer.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AdsContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function AdsContainer(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-gray-200 border font-semibold mb-2 p-4 rounded text-center text-gray-400 uppercase"
+  }, props.children);
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/UI/buttons/CircularCancelButton.js":
 /*!********************************************************************!*\
   !*** ./resources/js/components/UI/buttons/CircularCancelButton.js ***!
@@ -94506,7 +94507,7 @@ function ModalCentered(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-center w-full h-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white rounded shadow max-w-2xl w-full p-4 relative"
+    className: "bg-white rounded shadow w-full p-4 relative " + props.maxWidth
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "absolute m-2 right-0 top-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_CircularCancelButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
