@@ -2,15 +2,15 @@
 
 namespace App\Helpers;
 
-use App\Models\User;
+use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
 
 class CanUserAccess
 {
-    public static function organisationResources($hashed_organisation_id)
+    public static function client($hashed_client_id)
     {
-        $user = User::find(Auth::user()->id);
-        if ($user->organisationsInclude(Hasher::decode($hashed_organisation_id))) {
+        $client = Client::findOrFail(Hasher::decode($hashed_client_id));
+        if (Auth::user()->id === $client->user_id) {
             return true;            
         }
         return false;

@@ -18,6 +18,13 @@ export default function ItemEditor(props) {
         true
     );
 
+    const itemOptions = [
+        { title: "Options", value: "Options" },
+        { title: "Slider", value: "Slider" },
+        { title: "Text", value: "Text" },
+        { title: "Qualitative", value: "Qualitative" }
+    ];
+
     const [inputFields, setInputFields] = useState({
         title: true,
         type: true,
@@ -159,7 +166,7 @@ export default function ItemEditor(props) {
                 title="Type"
                 defaultValue={props.item.type}
                 defaultText="Please select..."
-                options={["Options", "Slider", "Text", "Qualitative"].sort()}
+                options={itemOptions}
             />
             {(type === "Options" || type === "Slider") && (
                 <RenderCustomAnchorGroups

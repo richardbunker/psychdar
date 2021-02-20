@@ -17,7 +17,7 @@ export default function UpdateStatusForm(props) {
         <form>
             <div className="flex items-center justify-between w-full">
                 <div>
-                    <div className="text-gray-600 font-bold">{props.title}</div>
+                    <div className="text-gray-600">{props.title}</div>
                 </div>
                 <RadioPair
                     handleChange={handleChange}

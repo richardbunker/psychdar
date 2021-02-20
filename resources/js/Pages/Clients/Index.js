@@ -18,7 +18,7 @@ export default function UserClients(props) {
             <div className="flex w-full">
                 <Sidebar owner={"admin"} tab="clients" />
                 <main className="w-full h-full p-4 space-y-2 overflow-auto">
-                    <ClientsContainer clients={props.user.clients} />
+                    <ClientsContainer clients={props.userClients} />
                 </main>
             </div>
         </MainContainer>

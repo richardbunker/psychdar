@@ -18,6 +18,13 @@ export default function ItemBuilder(props) {
         true
     );
 
+    const itemOptions = [
+        { title: "Options", value: "Options" },
+        { title: "Slider", value: "Slider" },
+        { title: "Text", value: "Text" },
+        { title: "Qualitative", value: "Qualitative" }
+    ];
+
     const [inputFields, setInputFields] = useState({
         title: false,
         type: false,
@@ -159,7 +166,7 @@ export default function ItemBuilder(props) {
                 title="Type"
                 defaultText="Please Select..."
                 defaultValue="Please Select..."
-                options={["Options", "Slider", "Text", "Qualitative"].sort()}
+                options={itemOptions}
             />
             {(type === "Options" || type === "Slider") && (
                 <RenderCustomAnchorGroups

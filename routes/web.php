@@ -80,11 +80,14 @@ Route::group(['middleware' => ['auth:web']], function () {
     
     // Clients
     Route::get('/clients', [App\Http\Controllers\UserClientsController::class, 'index']);
-    Route::get('/client/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'show']);
+    Route::get('/client/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'show'])->name('showClient');
     Route::get('/api/organisation/{hashed_organisation_id}/clients', [App\Http\Controllers\OrganisationClientsController::class, 'index']);
     Route::post('/api/client-active-status/{hashed_client_id}', [App\Http\Controllers\OrganisationClientsController::class, 'updateActiveStatus']);
     Route::post('/api/client-url-status/{hashed_client_id}', [App\Http\Controllers\OrganisationClientsController::class, 'updateUrlStatus']);
     Route::post('/api/client-stats-status/{hashed_client_id}', [App\Http\Controllers\OrganisationClientsController::class, 'updateStatsStatus']);
+
+    // ClientMeasure
+    Route::post('/client-measure', [App\Http\Controllers\ClientMeasureController::class, 'store']);
 
     // Measures
     Route::get('/measures', [App\Http\Controllers\UserMeasuresController::class, 'index']);

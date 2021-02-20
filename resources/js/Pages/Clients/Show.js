@@ -36,6 +36,7 @@ export default function UserClient(props) {
                         savedAt={savedAt}
                         onStatusUpdate={onStatusUpdate}
                         client={props.client}
+                        userMeasures={props.userMeasures}
                     />
                 </main>
             </div>

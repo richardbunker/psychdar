@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\User;
+use App\Models\Client;
 use App\Helpers\Hasher;
-use App\Models\Organisation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -36,9 +37,14 @@ class Measure extends Model
         return json_decode($value);
     }
 
-    public function organisations()
+    public function users()
     {
-        return $this->belongsToMany(Organisation::class);
+        return $this->belongsToMany(User::class);
+    }
+
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class);
     }
     
 }

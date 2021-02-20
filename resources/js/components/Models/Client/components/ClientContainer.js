@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
 import GrayFadedBanner from "../../../UI/GrayFadedBanner";
 import TreatmentEpisodesRow from "../../../Stats/row/TreatmentEpisodes";
 import TotalConsultationsRow from "../../../Stats/row/TotalConsultations";
@@ -8,8 +9,29 @@ import UrlRow from "../../../Stats/row/Url";
 import SaveableBanner from "../../../UI/SaveableBanner";
 import UpdateStatusForm from "../../../UI/forms/UpdateStatusForm";
 import { spinnerBootUp } from "../../../UI/spinners/SpinnerBootUp";
+import SelectInput from "../../../UI/inputs/SelectInput";
 
 export default function ClientContainer(props) {
+    const [selectedMeasure, setSelectedMeasure] = useState("");
+
+    const listOfMeasures = props.userMeasures.map(measure => {
+        return { title: measure.name, value: measure.hashed_id };
+    });
+
+    console.log(listOfMeasures);
+
+    const onSelect = event => {
+        setSelectedMeasure(event.target.value);
+    };
+
+    const submitAddMeasure = () => {
+        const values = {
+            measureHashedId: selectedMeasure,
+            clientHashedId: props.client.hashed_id
+        };
+        Inertia.post("/client-measure", values);
+    };
+
     return props.client.identifier ? (
         <div className="space-y-2">
             <div className="bg-white rounded-b">
@@ -47,13 +69,35 @@ export default function ClientContainer(props) {
                     Measures
                 </div>
                 <div className="text-base pt-2 pb-6 px-6 space-y-4">
-                    <div>Add Measure</div>
-                    <UrlRow
-                        heading="Depression, Anxiety and Stress Scale (DASS21)"
-                        iconSize="6"
-                        iconColour="text-gray-500"
-                        link={props.client.url}
-                    />
+                    <div className="flex items-center justify-between w-full">
+                        <SelectInput
+                            title="Add Measure URL"
+                            onSelect={onSelect}
+                            defaultText="Please Select..."
+                            defaultValue="Please Select..."
+                            options={listOfMeasures}
+                        />
+                        {selectedMeasure.length > 0 && (
+                            <button
+                                onClick={() => submitAddMeasure()}
+                                className="bg-green-400 font-bold hover:bg-green-500 ml-2 px-3 py-2 rounded text-sm text-white"
+                            >
+                                Add
+                            </button>
+                        )}
+                    </div>
+                    {props.client.measures.map(measure => {
+                        return (
+                            <UrlRow
+                                heading={measure.name}
+                                iconSize="6"
+                                iconColour="text-gray-500"
+                                link={
+                                    props.client.url + "/" + measure.hashed_id
+                                }
+                            />
+                        );
+                    })}
                 </div>
             </div>
             <div className="bg-white rounded">
@@ -71,7 +115,7 @@ export default function ClientContainer(props) {
                         falseyLabel="Archived"
                     />
                     <UpdateStatusForm
-                        title="Unique URL Access"
+                        title="URL Access"
                         onStatusUpdate={props.onStatusUpdate}
                         currentStatus={
                             props.client.preferences.create_own_resources

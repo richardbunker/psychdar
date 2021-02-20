@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Helpers\Hasher;
 use App\Models\Clinic;
+use App\Helpers\Hasher;
+use App\Models\Measure;
 use App\Models\Clinician;
 use App\Models\Treatment;
 use Illuminate\Database\Eloquent\Model;
@@ -57,5 +58,10 @@ class Client extends Model
     public function clinic()
     {
         return $this->belongsTo(Clinic::class);
+    }
+    
+    public function measures()
+    {
+        return $this->belongsToMany(Measure::class);
     }
 }

@@ -17,9 +17,15 @@ export default function Url(props) {
                     clipRule="evenodd"
                 />
             </svg>
-            <div className="text-gray-600 ml-3 mt-1 flex items-center justify-between w-full">
-                <div className=" font-bold w-full">{props.heading}</div>
-                <div className="ml-2 w-full text-right font-bold">{props.link}</div>
+            <div className="text-gray-600 ml-3 flex items-center justify-between w-full">
+                <div className=" w-full">{props.heading}</div>
+                <a
+                    href="http://127.0.0.1:8000/a/N1vDyr/xP0w18"
+                    className="ml-2 text-right"
+                    target="_blank"
+                >
+                    {props.link}
+                </a>
             </div>
         </div>
     );
