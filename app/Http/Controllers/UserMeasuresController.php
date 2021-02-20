@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Helpers\Hasher;
 use App\Models\Measure;
@@ -40,12 +41,9 @@ class UserMeasuresController extends Controller
         $newMeasure->structure = json_encode($request->all());
         $newMeasure->save();
 
-        $orgCollect = collect($request->orgs);
+        $user = User::find(Auth::user()->id);
 
-        foreach ($orgCollect as $orgHash) {
-            $organisation = Organisation::find(Hasher::decode($orgHash));
-            $organisation->measures()->attach($newMeasure->id);
-        }
+        $user->measures()->attach($newMeasure->id);
         
         return Redirect::route('showMeasure', $newMeasure->hashed_id);  
     }

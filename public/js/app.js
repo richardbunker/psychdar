@@ -89079,11 +89079,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
 /* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
 /* harmony import */ var _Stats_row_Url__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Stats/row/Url */ "./resources/js/components/Stats/row/Url.js");
-/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
-/* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
-/* harmony import */ var _UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../UI/forms/UpdateStatusForm */ "./resources/js/components/UI/forms/UpdateStatusForm.js");
-/* harmony import */ var _UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../UI/spinners/SpinnerBootUp */ "./resources/js/components/UI/spinners/SpinnerBootUp.js");
-
+/* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
+/* harmony import */ var _UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../UI/forms/UpdateStatusForm */ "./resources/js/components/UI/forms/UpdateStatusForm.js");
+/* harmony import */ var _UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../UI/spinners/SpinnerBootUp */ "./resources/js/components/UI/spinners/SpinnerBootUp.js");
 
 
 
@@ -89115,49 +89113,50 @@ function ClientContainer(props) {
     }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_5__["sum"], 0)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_4__["default"], {
     iconSize: "10",
-    iconColour: "text-gray-400",
+    iconColour: "text-green-400",
     number: props.client.treatments.map(function (treatment) {
       return treatment.assessments.length;
     }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_5__["sum"], 0)
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    heading: "Measure",
-    iconSize: "10",
-    iconColour: "text-teal-400",
-    title: "General Session Feedback"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Url__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    heading: "Measure URL",
-    iconSize: "10",
-    iconColour: "text-cool-gray-400",
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white rounded"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full rounded-t text-base font-bold text-gray-400 p-2 bg-white uppercase text-left"
+  }, "Measures"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-base pt-2 pb-6 px-6 space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Add Measure"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Url__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    heading: "Depression, Anxiety and Stress Scale (DASS21)",
+    iconSize: "6",
+    iconColour: "text-gray-500",
     link: props.client.url
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white rounded"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_7__["default"], {
     title: "Client Settings",
     savedAt: props.savedAt
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-base pt-2 pb-6 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     title: "Client Status",
     onStatusUpdate: props.onStatusUpdate,
     currentStatus: props.client.is_active,
     identifier: "active",
     truthyLabel: "Active",
     falseyLabel: "Archived"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     title: "Unique URL Access",
     onStatusUpdate: props.onStatusUpdate,
     currentStatus: props.client.preferences.create_own_resources,
     identifier: "url",
     truthyLabel: "Allowed",
     falseyLabel: "Disabled"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_8__["default"], {
     title: "Statistical Analyses",
     onStatusUpdate: props.onStatusUpdate,
     currentStatus: props.client.preferences.include_in_analyses,
     identifier: "stats",
     truthyLabel: "Included",
     falseyLabel: "Excluded"
-  })))) : Object(_UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_10__["spinnerBootUp"])();
+  })))) : Object(_UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_9__["spinnerBootUp"])();
 }
 
 /***/ }),

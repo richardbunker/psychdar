@@ -35,15 +35,6 @@ A Clinician:
 -   Can only calculate clinician effect size per 1 measure (e.g., CORE10 or ORS)
     -   will need to be able to set the clinician's outcome measure to then go ahead and filter the results
 
-_Clinician Settings_
-"is_active": 1 (add column)
-"preferences": {
-"effect_size_settings": {
-"selected_measure": 4,
-"current_measures": [ 1, 3, 4 ],
-}
-}
-
 ### Snapshots
 
 -   Snapshots of stats for clinics and clinicians
@@ -146,3 +137,10 @@ _URL API/Measure Refactor_
 -   finish Slider.js, Qualitative.js, Text.js
 -   create Preview.js in ./MeasureBuilder
     -> renders a preview of entire measure within a full screen modal
+
+## Flow ->
+
+-   fresh sign up creates a new measure
+-   structure is made first, then details can be added second
+-   add that measure to a client gives unqiue Client_Measure URL
+-   everytime URL is hit, creates and stores an Assemment instance with all relevant details (Client|Measure|User)

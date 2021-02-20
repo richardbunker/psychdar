@@ -5,7 +5,6 @@ import TotalConsultationsRow from "../../../Stats/row/TotalConsultations";
 import TotalAssessmentsRow from "../../../Stats/row/TotalAssessments";
 import { sum } from "../../../Stats/Stats";
 import UrlRow from "../../../Stats/row/Url";
-import MeasureRow from "../../../Stats/row/Measure";
 import SaveableBanner from "../../../UI/SaveableBanner";
 import UpdateStatusForm from "../../../UI/forms/UpdateStatusForm";
 import { spinnerBootUp } from "../../../UI/spinners/SpinnerBootUp";
@@ -34,23 +33,25 @@ export default function ClientContainer(props) {
                     />
                     <TotalAssessmentsRow
                         iconSize="10"
-                        iconColour="text-gray-400"
+                        iconColour="text-green-400"
                         number={props.client.treatments
                             .map(treatment => {
                                 return treatment.assessments.length;
                             })
                             .reduce(sum, 0)}
                     />
-                    <MeasureRow
-                        heading="Measure"
-                        iconSize="10"
-                        iconColour="text-teal-400"
-                        title={"General Session Feedback"}
-                    />
+                </div>
+            </div>
+            <div className="bg-white rounded">
+                <div className="w-full rounded-t text-base font-bold text-gray-400 p-2 bg-white uppercase text-left">
+                    Measures
+                </div>
+                <div className="text-base pt-2 pb-6 px-6 space-y-4">
+                    <div>Add Measure</div>
                     <UrlRow
-                        heading="Measure URL"
-                        iconSize="10"
-                        iconColour="text-cool-gray-400"
+                        heading="Depression, Anxiety and Stress Scale (DASS21)"
+                        iconSize="6"
+                        iconColour="text-gray-500"
                         link={props.client.url}
                     />
                 </div>
