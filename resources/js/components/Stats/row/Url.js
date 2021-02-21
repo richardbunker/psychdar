@@ -4,7 +4,7 @@ export default function Url(props) {
     const size = props.iconSize;
     const colour = props.iconColour;
     return (
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full pt-4">
             <svg
                 className={"w-" + size + " " + "h-" + size + " " + colour}
                 fill="currentColor"
@@ -21,7 +21,7 @@ export default function Url(props) {
                 <div className=" w-full">{props.heading}</div>
                 <a
                     href="http://127.0.0.1:8000/a/N1vDyr/xP0w18"
-                    className="ml-2 text-right"
+                    className="ml-2 text-right text-blue-600 hover:underline"
                     target="_blank"
                 >
                     {props.link}

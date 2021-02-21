@@ -20,8 +20,8 @@ export default function TotalAssessmentsRow(props) {
                 />
             </svg>
             <div className="text-gray-600 ml-3 mt-1 flex items-center justify-between w-full">
-                <div className=" font-bold w-full">Total Assessments</div>
-                <div className="ml-2  font-bold">
+                <div className="w-full">Total Assessments</div>
+                <div className="ml-2">
                     {props.isLoading ? <Spinner size="20px" /> : props.number}
                 </div>
             </div>

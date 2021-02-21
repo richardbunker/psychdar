@@ -19,8 +19,8 @@ export default function TotalConsultationsRow(props) {
                 ></path>
             </svg>
             <div className="text-gray-600 ml-3 mt-1 flex items-center justify-between w-full">
-                <div className=" font-bold w-full">Total Consultations</div>
-                <div className="ml-2  font-bold">
+                <div className=" w-full">Total Consultations</div>
+                <div className="ml-2">
                     {props.isLoading ? <Spinner size="20px" /> : props.number}
                 </div>
             </div>

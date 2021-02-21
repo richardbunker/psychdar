@@ -88223,7 +88223,7 @@ function UserClients(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     tab: "clients"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "h-screen min-h-screen overflow-auto w-full -mt-2"
+    className: "h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
     clients: props.userClients
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
@@ -88292,7 +88292,7 @@ function UserClient(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_3__["default"], {
     tab: "clients"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "h-screen min-h-screen overflow-auto w-full -mt-2"
+    className: "h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
     savedAt: savedAt,
     onStatusUpdate: onStatusUpdate,
@@ -88470,9 +88470,9 @@ function UserDashboard(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     tab: "dashboard"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "w-full overflow-auto h-full"
+    className: "w-full overflow-auto h-full border-t-4 border-teal-400"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-screen min-h-screen overflow-auto w-full -mt-2"
+    className: "h-screen min-h-screen overflow-auto w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: props.user
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
@@ -89072,8 +89072,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Stats_row_Url__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../Stats/row/Url */ "./resources/js/components/Stats/row/Url.js");
 /* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
 /* harmony import */ var _UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../UI/forms/UpdateStatusForm */ "./resources/js/components/UI/forms/UpdateStatusForm.js");
-/* harmony import */ var _UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../UI/spinners/SpinnerBootUp */ "./resources/js/components/UI/spinners/SpinnerBootUp.js");
-/* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
+/* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -89085,7 +89084,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -89136,14 +89134,14 @@ function ClientContainer(props) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/client-measure", values);
   };
 
-  return props.client.identifier ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2 mt-2"
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white rounded-b"
+    className: "bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_2__["default"], {
     title: props.client.identifier || "Loading..."
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base py-4 px-6 space-y-4"
+    className: "text-lg py-4 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_3__["default"], {
     iconSize: "10",
     iconColour: "text-pink-400",
@@ -89161,14 +89159,14 @@ function ClientContainer(props) {
       return treatment.assessments.length;
     }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_6__["sum"], 0)
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white rounded"
+    className: "bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full rounded-t text-base font-bold text-gray-400 p-2 bg-white uppercase text-left"
+    className: "w-full text-lg text-gray-400 p-2 bg-white uppercase text-left"
   }, "Measures"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base pt-2 pb-6 px-6 space-y-4"
+    className: "text-lg pt-2 pb-6 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-between w-full"
-  }, selectedMeasure.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, selectedMeasure.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_10__["default"], {
     title: "Add Measure URL",
     onSelect: onSelect,
     defaultText: "Please Select...",
@@ -89184,12 +89182,12 @@ function ClientContainer(props) {
     onClick: function onClick() {
       return setSelectedMeasure("");
     },
-    className: "bg-gray-400 font-bold hover:bg-gray-500 ml-2 px-3 py-2 rounded text-sm text-white"
+    className: "bg-gray-400 hover:bg-gray-500 ml-2 px-3 py-2 rounded text-base text-white"
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return submitAddMeasure();
     },
-    className: "bg-green-400 font-bold hover:bg-green-500 ml-2 px-3 py-2 rounded text-sm text-white"
+    className: "bg-green-400 hover:bg-green-500 ml-2 px-3 py-2 rounded text-base text-white"
   }, "Confirm")))), props.client.measures.map(function (measure, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Url__WEBPACK_IMPORTED_MODULE_7__["default"], {
       key: index,
@@ -89199,12 +89197,12 @@ function ClientContainer(props) {
       link: props.client.url + "/" + measure.hashed_id
     });
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white rounded"
+    className: "bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_8__["default"], {
     title: "Client Settings",
     savedAt: props.savedAt
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base pt-2 pb-6 px-6 space-y-4"
+    className: "text-lg pt-2 pb-6 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
     title: "Client Status",
     onStatusUpdate: props.onStatusUpdate,
@@ -89226,7 +89224,7 @@ function ClientContainer(props) {
     identifier: "stats",
     truthyLabel: "Included",
     falseyLabel: "Excluded"
-  })))) : Object(_UI_spinners_SpinnerBootUp__WEBPACK_IMPORTED_MODULE_10__["spinnerBootUp"])();
+  }))));
 }
 
 /***/ }),
@@ -89313,10 +89311,10 @@ function ClientsContainer(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onKeyUp: handleKeyUp,
     type: "text",
-    placeholder: "Search...",
-    className: "mt-2 px-3 py-2 text-gray-600 text-xl w-full focus:outline-none"
+    placeholder: "Search Clients",
+    className: "border-b-4 border-gray-300 focus:outline-none font-medium px-3 py-2 rounded-none text-2xl text-gray-700 w-full"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white rounded-b"
+    className: "bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     title: "identifier"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -93231,13 +93229,13 @@ function UserStats(props) {
     });
   }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_4__["sum"], 0);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2 mt-2"
+    className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full bg-white rounded-b"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     title: props.user.name
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base py-4 px-6 space-y-4"
+    className: "text-lg py-4 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Clients__WEBPACK_IMPORTED_MODULE_5__["default"], {
     iconSize: "10",
     iconColour: "text-green-400",
@@ -93264,11 +93262,11 @@ function UserStats(props) {
     iconColour: "text-yellow-400",
     clinician: props.user
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full bg-white rounded-b"
+    className: "w-full bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_9__["default"], {
     title: "Settings"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base pt-2 pb-6 px-6 space-y-4"
+    className: "text-lg text-gray-600 pt-2 pb-6 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Outcome Measure"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ConsultationSpreadPerTreatmentEpisode__WEBPACK_IMPORTED_MODULE_11__["default"], {
@@ -93329,9 +93327,9 @@ function ConsultationSpreadPerClient(props) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: props.width,
-    className: "bg-white rounded p-2"
+    className: "bg-white py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
+    className: "w-full text-lg text-gray-600 text-center"
   }, "Consultation Spread Per Client"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
     colour: "#C7D2FE",
     xAxisLabel: "Consultation Length (Per Client)",
@@ -93373,9 +93371,9 @@ function ConsultationSpreadPerTreatmentEpisode(props) {
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: props.width,
-    className: "bg-white rounded p-2"
+    className: "bg-white py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
+    className: "w-full text-lg text-gray-600 text-center"
   }, "Consultation Spread Per Treatment Episode"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_2__["default"], {
     colour: "#FBCFE8",
     xAxisLabel: "Consultation Length (Per Treatment Episode)",
@@ -93417,9 +93415,9 @@ function MedianMeanPerClient(props) {
   var medianConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["median"])(totalConsultations);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: props.width,
-    className: "bg-white rounded p-2"
+    className: "bg-white py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
+    className: "w-full text-lg text-gray-600 text-center"
   }, "Median/Mean Consultations Per Client"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
     labels: ["Median", "Mean"],
     data: [medianConsultations, meanConsultations],
@@ -93459,9 +93457,9 @@ function MedianMeanPerTreatmentEpisode(props) {
   var medianConsultations = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_2__["median"])(totalConsultations);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: props.width,
-    className: "bg-white rounded p-2"
+    className: "bg-white py-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-semibold text-gray-400 uppercase"
+    className: "w-full text-lg text-gray-600 text-center"
   }, "Median/Mean Consultations Per Treatment Episode"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
     labels: ["Median", "Mean"],
     data: [medianConsultations, meanConsultations],
@@ -93608,9 +93606,9 @@ function ClientsRow(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "font-bold w-full"
+    className: "w-full"
   }, "Clients"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2  font-bold"
+    className: "ml-2"
   }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     size: "20px"
   }) : props.number)));
@@ -93769,9 +93767,9 @@ function EffectSizeRow(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "font-bold"
+    className: ""
   }, "Effect Size"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2 font-bold flex"
+    className: "ml-2  flex"
   }, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     size: "20px"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -93833,9 +93831,9 @@ function Measure(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " font-bold"
+    className: ""
   }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2 font-bold"
+    className: "ml-2"
   }, props.title)));
 }
 
@@ -93875,9 +93873,9 @@ function TotalAssessmentsRow(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " font-bold w-full"
+    className: "w-full"
   }, "Total Assessments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2  font-bold"
+    className: "ml-2"
   }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     size: "20px"
   }) : props.number)));
@@ -93917,9 +93915,9 @@ function TotalConsultationsRow(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " font-bold w-full"
+    className: " w-full"
   }, "Total Consultations"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2  font-bold"
+    className: "ml-2"
   }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     size: "20px"
   }) : props.number)));
@@ -93957,9 +93955,9 @@ function TreatmentEpisodesRow(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: " font-bold w-full"
+    className: "w-full"
   }, "Treatment Episodes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2  font-bold"
+    className: "ml-2"
   }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     size: "20px"
   }) : props.number)));
@@ -93984,7 +93982,7 @@ function Url(props) {
   var size = props.iconSize;
   var colour = props.iconColour;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between w-full"
+    className: "flex items-center justify-between w-full pt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "w-" + size + " " + "h-" + size + " " + colour,
     fill: "currentColor",
@@ -94000,7 +93998,7 @@ function Url(props) {
     className: " w-full"
   }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "http://127.0.0.1:8000/a/N1vDyr/xP0w18",
-    className: "ml-2 text-right",
+    className: "ml-2 text-right text-blue-600 hover:underline",
     target: "_blank"
   }, props.link)));
 }
@@ -94022,7 +94020,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function GrayFadedBanner(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-base font-bold text-white px-2 h-10 flex items-center bg-gradient-to-r from-gray-400 to-gray-300 uppercase"
+    className: "w-full text-lg font-bold text-white px-2 h-10 flex items-center bg-gradient-to-r from-gray-400 to-gray-300 uppercase"
   }, props.title);
 }
 
@@ -94098,7 +94096,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function SaveableBanner(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState2 = _slicedToArray(_useState, 2),
       time = _useState2[0],
       setTime = _useState2[1];
@@ -94109,7 +94107,7 @@ function SaveableBanner(props) {
 
   var displaySaved = function displaySaved() {
     setTime(function (prevState) {
-      return prevState === '' ? '' : 'Saving...';
+      return prevState === "" ? "" : "Saving...";
     });
     setTimeout(function () {
       setTime(props.savedAt);
@@ -94117,9 +94115,9 @@ function SaveableBanner(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full rounded-t text-base font-bold text-gray-400 p-2 bg-white uppercase flex items-center justify-between"
+    className: "w-full text-lg text-gray-400 p-2 bg-white uppercase flex items-center justify-between"
   }, props.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "text-sm italic normal-case pr-2"
+    className: "text-base italic normal-case pr-2"
   }, time));
 }
 
@@ -94140,7 +94138,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function AdsContainer(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-gray-200 flex items-center justify-center text-center text-gray-400 uppercase w-1/5"
+    className: "bg-gray-200 flex items-center justify-center text-center text-gray-400 uppercase w-1/5 border-t-4 border-teal-400"
   }, "Ads Column");
 }
 
@@ -94253,8 +94251,6 @@ function MainContainer(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-gray-100 antialiased leading-none font-sans flex flex-col min-h-screen"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-1 bg-teal-400 w-full z-10"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-1"
   }, props.children));
 }
@@ -94666,14 +94662,14 @@ function Sidebar(props) {
     toggle += "close";
   }
 
-  var tabActive = "ml-6 border-l-4 border-blue-300 pl-4 py-2 text-gray-200";
+  var tabActive = "ml-6 border-l-4 border-teal-400 pl-4 py-2 text-gray-200";
   var tabInActive = "ml-6 border-l-4 border-transparent pl-4 py-2 text-gray-500 hover:text-gray-300";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-full w-1/5"
+    className: "h-full w-1/5 border-t-4 border-teal-400"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: toggle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-full py-4 text-base font-semibold flex flex-col bg-gray-900" // style={{ width: "240px" }}
+    className: "h-full py-4 text-lg font-semibold flex flex-col bg-gray-900" // style={{ width: "240px" }}
 
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "font-semibold mb-2 pb-4 pt-2 px-5 text-2xl text-white"
@@ -94749,31 +94745,6 @@ function Spinner(props) {
     className: "spinner"
   });
 }
-
-/***/ }),
-
-/***/ "./resources/js/components/UI/spinners/SpinnerBootUp.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/UI/spinners/SpinnerBootUp.js ***!
-  \**************************************************************/
-/*! exports provided: spinnerBootUp */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "spinnerBootUp", function() { return spinnerBootUp; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _LargeSpinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
-
-
-var spinnerBootUp = function spinnerBootUp() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-center pt-52"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LargeSpinner__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    size: "100px"
-  }));
-};
 
 /***/ }),
 

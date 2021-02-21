@@ -8,7 +8,6 @@ import { sum } from "../../../Stats/Stats";
 import UrlRow from "../../../Stats/row/Url";
 import SaveableBanner from "../../../UI/SaveableBanner";
 import UpdateStatusForm from "../../../UI/forms/UpdateStatusForm";
-import { spinnerBootUp } from "../../../UI/spinners/SpinnerBootUp";
 import SelectInput from "../../../UI/inputs/SelectInput";
 
 export default function ClientContainer(props) {
@@ -42,13 +41,13 @@ export default function ClientContainer(props) {
         Inertia.post("/client-measure", values);
     };
 
-    return props.client.identifier ? (
-        <div className="space-y-2 mt-2">
-            <div className="bg-white rounded-b">
+    return (
+        <div className="space-y-2">
+            <div className="bg-white">
                 <GrayFadedBanner
                     title={props.client.identifier || "Loading..."}
                 />
-                <div className="text-base py-4 px-6 space-y-4">
+                <div className="text-lg py-4 px-6 space-y-4">
                     <TreatmentEpisodesRow
                         iconSize="10"
                         iconColour="text-pink-400"
@@ -74,11 +73,11 @@ export default function ClientContainer(props) {
                     />
                 </div>
             </div>
-            <div className="bg-white rounded">
-                <div className="w-full rounded-t text-base font-bold text-gray-400 p-2 bg-white uppercase text-left">
+            <div className="bg-white">
+                <div className="w-full text-lg text-gray-400 p-2 bg-white uppercase text-left">
                     Measures
                 </div>
-                <div className="text-base pt-2 pb-6 px-6 space-y-4">
+                <div className="text-lg pt-2 pb-6 px-6 space-y-4">
                     <div className="flex items-center justify-between w-full">
                         {selectedMeasure.length === 0 && (
                             <SelectInput
@@ -101,13 +100,13 @@ export default function ClientContainer(props) {
                                 <div>
                                     <button
                                         onClick={() => setSelectedMeasure("")}
-                                        className="bg-gray-400 font-bold hover:bg-gray-500 ml-2 px-3 py-2 rounded text-sm text-white"
+                                        className="bg-gray-400 hover:bg-gray-500 ml-2 px-3 py-2 rounded text-base text-white"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         onClick={() => submitAddMeasure()}
-                                        className="bg-green-400 font-bold hover:bg-green-500 ml-2 px-3 py-2 rounded text-sm text-white"
+                                        className="bg-green-400 hover:bg-green-500 ml-2 px-3 py-2 rounded text-base text-white"
                                     >
                                         Confirm
                                     </button>
@@ -130,12 +129,12 @@ export default function ClientContainer(props) {
                     })}
                 </div>
             </div>
-            <div className="bg-white rounded">
+            <div className="bg-white">
                 <SaveableBanner
                     title="Client Settings"
                     savedAt={props.savedAt}
                 />
-                <div className="text-base pt-2 pb-6 px-6 space-y-4">
+                <div className="text-lg pt-2 pb-6 px-6 space-y-4">
                     <UpdateStatusForm
                         title="Client Status"
                         onStatusUpdate={props.onStatusUpdate}
@@ -167,7 +166,5 @@ export default function ClientContainer(props) {
                 </div>
             </div>
         </div>
-    ) : (
-        spinnerBootUp()
     );
 }

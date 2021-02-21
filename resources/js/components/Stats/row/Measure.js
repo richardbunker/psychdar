@@ -19,8 +19,8 @@ export default function Measure(props) {
                 />
             </svg>
             <div className="text-gray-600 ml-3 mt-1 flex items-center justify-between w-full">
-                <div className=" font-bold">{props.heading}</div>
-                <div className="ml-2 font-bold">{props.title}</div>
+                <div className="">{props.heading}</div>
+                <div className="ml-2">{props.title}</div>
             </div>
         </div>
     );

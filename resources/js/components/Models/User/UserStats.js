@@ -38,10 +38,10 @@ export default function UserStats(props) {
         .reduce(sum, 0);
 
     return (
-        <div className="space-y-2 mt-2">
+        <div className="space-y-2">
             <div className="w-full bg-white rounded-b">
                 <GrayFadedBanner title={props.user.name} />
-                <div className="text-base py-4 px-6 space-y-4">
+                <div className="text-lg py-4 px-6 space-y-4">
                     <ClientsRow
                         iconSize="10"
                         iconColour="text-green-400"
@@ -75,9 +75,9 @@ export default function UserStats(props) {
                     />
                 </div>
             </div>
-            <div className="w-full bg-white rounded-b">
+            <div className="w-full bg-white">
                 <SaveableBanner title="Settings" />
-                <div className="text-base pt-2 pb-6 px-6 space-y-4">
+                <div className="text-lg text-gray-600 pt-2 pb-6 px-6 space-y-4">
                     <div>Outcome Measure</div>
                 </div>
             </div>

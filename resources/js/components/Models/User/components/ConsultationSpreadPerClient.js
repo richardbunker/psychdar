@@ -27,8 +27,8 @@ export default function ConsultationSpreadPerClient(props) {
     );
 
     return (
-        <div style={props.width} className="bg-white rounded p-2">
-            <div className="w-full text-base font-semibold text-gray-400 uppercase">
+        <div style={props.width} className="bg-white py-4">
+            <div className="w-full text-lg text-gray-600 text-center">
                 Consultation Spread Per Client
             </div>
             <div>

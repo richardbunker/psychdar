@@ -74,8 +74,8 @@ export default function EffectSizeRow(props) {
                 />
             </svg>
             <div className="text-gray-600 ml-3 mt-1 flex items-center justify-between w-full">
-                <div className="font-bold">Effect Size</div>
-                <div className="ml-2 font-bold flex">
+                <div className="">Effect Size</div>
+                <div className="ml-2  flex">
                     {isLoading ? (
                         <Spinner size="20px" />
                     ) : (

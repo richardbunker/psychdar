@@ -32,7 +32,7 @@ export default function UserClient(props) {
         <MainContainer>
             <div className="flex w-full">
                 <Sidebar tab="clients" />
-                <main className="h-screen min-h-screen overflow-auto w-full -mt-2">
+                <main className="h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400">
                     <ClientContainer
                         savedAt={savedAt}
                         onStatusUpdate={onStatusUpdate}

@@ -16,8 +16,8 @@ export default function MedianMeanPerClient(props) {
     const medianConsultations = median(totalConsultations);
 
     return (
-        <div style={props.width} className="bg-white rounded p-2">
-            <div className="w-full text-base font-semibold text-gray-400 uppercase">
+        <div style={props.width} className="bg-white py-4">
+            <div className="w-full text-lg text-gray-600 text-center">
                 Median/Mean Consultations Per Client
             </div>
             <div>

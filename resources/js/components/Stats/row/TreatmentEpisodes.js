@@ -15,8 +15,8 @@ export default function TreatmentEpisodesRow(props) {
                 <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"></path>
             </svg>
             <div className="text-gray-600 ml-3 mt-1 flex items-center justify-between w-full">
-                <div className=" font-bold w-full">Treatment Episodes</div>
-                <div className="ml-2  font-bold">
+                <div className="w-full">Treatment Episodes</div>
+                <div className="ml-2">
                     {props.isLoading ? <Spinner size="20px" /> : props.number}
                 </div>
             </div>

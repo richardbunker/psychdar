@@ -18,7 +18,7 @@ export default function UserClients(props) {
         <MainContainer>
             <div className="flex w-full">
                 <Sidebar tab="clients" />
-                <main className="h-screen min-h-screen overflow-auto w-full -mt-2">
+                <main className="h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400">
                     <ClientsContainer clients={props.userClients} />
                 </main>
                 <AdsContainer />
