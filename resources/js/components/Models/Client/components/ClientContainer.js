@@ -28,6 +28,7 @@ export default function ClientContainer(props) {
             userMeasure => userMeasure.value !== clientMeasure.value
         );
     });
+
     const onSelect = event => {
         setSelectedMeasure(event.target.value);
     };
