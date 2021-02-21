@@ -89116,13 +89116,24 @@ function ClientContainer(props) {
       selectedMeasure = _useState2[0],
       setSelectedMeasure = _useState2[1];
 
-  var listOfMeasures = props.userMeasures.map(function (measure) {
+  var userMeasures = props.userMeasures.map(function (measure) {
     return {
       title: measure.name,
       value: measure.hashed_id
     };
   });
-  console.log(listOfMeasures);
+  var clientMeasures = props.client.measures.map(function (measure) {
+    return {
+      title: measure.name,
+      value: measure.hashed_id
+    };
+  });
+  var addableMeasures = userMeasures;
+  clientMeasures.forEach(function (clientMeasure) {
+    addableMeasures = addableMeasures.filter(function (userMeasure) {
+      return userMeasure.value !== clientMeasure.value;
+    });
+  });
 
   var onSelect = function onSelect(event) {
     setSelectedMeasure(event.target.value);
@@ -89133,6 +89144,7 @@ function ClientContainer(props) {
       measureHashedId: selectedMeasure,
       clientHashedId: props.client.hashed_id
     };
+    setSelectedMeasure("");
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/client-measure", values);
   };
 
@@ -89168,19 +89180,31 @@ function ClientContainer(props) {
     className: "text-base pt-2 pb-6 px-6 space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-between w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, selectedMeasure.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_11__["default"], {
     title: "Add Measure URL",
     onSelect: onSelect,
     defaultText: "Please Select...",
     defaultValue: "Please Select...",
-    options: listOfMeasures
-  }), selectedMeasure.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    options: addableMeasures
+  }), selectedMeasure.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600"
+  }, "Add " + userMeasures.find(function (x) {
+    return x.value === selectedMeasure;
+  }).title + "?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setSelectedMeasure("");
+    },
+    className: "bg-gray-400 font-bold hover:bg-gray-500 ml-2 px-3 py-2 rounded text-sm text-white"
+  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return submitAddMeasure();
     },
     className: "bg-green-400 font-bold hover:bg-green-500 ml-2 px-3 py-2 rounded text-sm text-white"
-  }, "Add")), props.client.measures.map(function (measure) {
+  }, "Confirm")))), props.client.measures.map(function (measure, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Url__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      key: index,
       heading: measure.name,
       iconSize: "6",
       iconColour: "text-gray-500",

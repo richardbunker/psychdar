@@ -14,12 +14,20 @@ import SelectInput from "../../../UI/inputs/SelectInput";
 export default function ClientContainer(props) {
     const [selectedMeasure, setSelectedMeasure] = useState("");
 
-    const listOfMeasures = props.userMeasures.map(measure => {
+    const userMeasures = props.userMeasures.map(measure => {
         return { title: measure.name, value: measure.hashed_id };
     });
 
-    console.log(listOfMeasures);
+    const clientMeasures = props.client.measures.map(measure => {
+        return { title: measure.name, value: measure.hashed_id };
+    });
 
+    let addableMeasures = userMeasures;
+    clientMeasures.forEach(clientMeasure => {
+        addableMeasures = addableMeasures.filter(
+            userMeasure => userMeasure.value !== clientMeasure.value
+        );
+    });
     const onSelect = event => {
         setSelectedMeasure(event.target.value);
     };
@@ -29,6 +37,7 @@ export default function ClientContainer(props) {
             measureHashedId: selectedMeasure,
             clientHashedId: props.client.hashed_id
         };
+        setSelectedMeasure("");
         Inertia.post("/client-measure", values);
     };
 
@@ -70,25 +79,45 @@ export default function ClientContainer(props) {
                 </div>
                 <div className="text-base pt-2 pb-6 px-6 space-y-4">
                     <div className="flex items-center justify-between w-full">
-                        <SelectInput
-                            title="Add Measure URL"
-                            onSelect={onSelect}
-                            defaultText="Please Select..."
-                            defaultValue="Please Select..."
-                            options={listOfMeasures}
-                        />
+                        {selectedMeasure.length === 0 && (
+                            <SelectInput
+                                title="Add Measure URL"
+                                onSelect={onSelect}
+                                defaultText="Please Select..."
+                                defaultValue="Please Select..."
+                                options={addableMeasures}
+                            />
+                        )}
                         {selectedMeasure.length > 0 && (
-                            <button
-                                onClick={() => submitAddMeasure()}
-                                className="bg-green-400 font-bold hover:bg-green-500 ml-2 px-3 py-2 rounded text-sm text-white"
-                            >
-                                Add
-                            </button>
+                            <div className="flex items-center justify-between w-full">
+                                <div className="text-gray-600">
+                                    {"Add " +
+                                        userMeasures.find(
+                                            x => x.value === selectedMeasure
+                                        ).title +
+                                        "?"}
+                                </div>
+                                <div>
+                                    <button
+                                        onClick={() => setSelectedMeasure("")}
+                                        className="bg-gray-400 font-bold hover:bg-gray-500 ml-2 px-3 py-2 rounded text-sm text-white"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        onClick={() => submitAddMeasure()}
+                                        className="bg-green-400 font-bold hover:bg-green-500 ml-2 px-3 py-2 rounded text-sm text-white"
+                                    >
+                                        Confirm
+                                    </button>
+                                </div>
+                            </div>
                         )}
                     </div>
-                    {props.client.measures.map(measure => {
+                    {props.client.measures.map((measure, index) => {
                         return (
                             <UrlRow
+                                key={index}
                                 heading={measure.name}
                                 iconSize="6"
                                 iconColour="text-gray-500"
