@@ -43,7 +43,7 @@ export default function ClientContainer(props) {
     };
 
     return props.client.identifier ? (
-        <div className="space-y-2">
+        <div className="space-y-2 mt-2">
             <div className="bg-white rounded-b">
                 <GrayFadedBanner
                     title={props.client.identifier || "Loading..."}

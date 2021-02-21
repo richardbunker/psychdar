@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./sidebar.css";
+// import "./sidebar.css";
 
 function Sidebar(props) {
     const [active, setActive] = useState(true);
@@ -20,11 +20,11 @@ function Sidebar(props) {
         "ml-6 border-l-4 border-transparent pl-4 py-2 text-gray-500 hover:text-gray-300";
 
     return (
-        <div className="h-full">
+        <div className="h-full w-1/5">
             <div className={toggle}>
                 <div
                     className="h-full py-4 text-base font-semibold flex flex-col bg-gray-900"
-                    style={{ width: "230px" }}
+                    // style={{ width: "240px" }}
                 >
                     <div className="font-semibold mb-2 pb-4 pt-2 px-5 text-2xl text-white">
                         Psychdar
@@ -56,7 +56,7 @@ function Sidebar(props) {
                     </>
                 </div>
             </div>
-            <div className="fixed left-0 bottom-0 p-6">
+            {/* <div className="fixed left-0 bottom-0 p-6">
                 <div
                     className="bg-gray-300 p-2 rounded-full cursor-pointer shadow-md"
                     onClick={handleClick}
@@ -74,7 +74,7 @@ function Sidebar(props) {
                         />
                     </svg>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

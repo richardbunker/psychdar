@@ -38,7 +38,7 @@ export default function UserStats(props) {
         .reduce(sum, 0);
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 mt-2">
             <div className="w-full bg-white rounded-b">
                 <GrayFadedBanner title={props.user.name} />
                 <div className="text-base py-4 px-6 space-y-4">
@@ -81,29 +81,25 @@ export default function UserStats(props) {
                     <div>Outcome Measure</div>
                 </div>
             </div>
-            <div className="bg-teal-100 rounded">
-                <HorizontalScroller>
-                    <ConsultationSpreadPerTreatmentEpisode
-                        width={{ width: "900px" }}
-                        clinician={props.user}
-                    />
-                    <ConsultationSpreadPerClient
-                        width={{ width: "900px" }}
-                        clinician={props.user}
-                    />
-                </HorizontalScroller>
+            <div className="flex w-full">
+                <ConsultationSpreadPerTreatmentEpisode
+                    width={{ width: "50%" }}
+                    clinician={props.user}
+                />
+                <ConsultationSpreadPerClient
+                    width={{ width: "50%" }}
+                    clinician={props.user}
+                />
             </div>
-            <div className="bg-teal-100 rounded">
-                <HorizontalScroller>
-                    <MedianMeanPerTreatmentEpisode
-                        width={{ width: "900px" }}
-                        clinician={props.user}
-                    />
-                    <MedianMeanPerClient
-                        width={{ width: "900px" }}
-                        clinician={props.user}
-                    />
-                </HorizontalScroller>
+            <div className="flex w-full">
+                <MedianMeanPerTreatmentEpisode
+                    width={{ width: "50%" }}
+                    clinician={props.user}
+                />
+                <MedianMeanPerClient
+                    width={{ width: "50%" }}
+                    clinician={props.user}
+                />
             </div>
         </div>
     );

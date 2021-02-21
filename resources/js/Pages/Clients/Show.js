@@ -3,6 +3,7 @@ import moment from "moment";
 import ClientContainer from "../../components/Models/Client/components/ClientContainer";
 import Sidebar from "../../components/UI/sidebar/Sidebar";
 import MainContainer from "../../components/UI/containers/MainContainer";
+import AdsContainer from "../../components/UI/ads/AdsContainer";
 
 export default function UserClient(props) {
     const [savedAt, setSavedAt] = useState();
@@ -31,7 +32,7 @@ export default function UserClient(props) {
         <MainContainer>
             <div className="flex w-full">
                 <Sidebar tab="clients" />
-                <main className="w-full h-full p-4 overflow-auto">
+                <main className="h-screen min-h-screen overflow-auto w-full -mt-2">
                     <ClientContainer
                         savedAt={savedAt}
                         onStatusUpdate={onStatusUpdate}
@@ -39,6 +40,7 @@ export default function UserClient(props) {
                         userMeasures={props.userMeasures}
                     />
                 </main>
+                <AdsContainer />
             </div>
         </MainContainer>
     );

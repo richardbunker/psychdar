@@ -50,7 +50,7 @@ export default function UserClinics(props) {
         <MainContainer>
             <div className="flex w-full">
                 <Sidebar owner={"admin"} tab="clinics" />
-                <main className="w-full h-full p-4 space-y-2 overflow-auto">
+                <main className="w-full h-full space-y-2 overflow-auto">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                             <div className="text-3xl font-bold text-gray-700">

@@ -3,6 +3,7 @@ import MainContainer from "../../components/UI/containers/MainContainer";
 import Sidebar from "../../components/UI/sidebar/Sidebar";
 import ClientsContainer from "../../components/Models/Client/components/ClientsContainer";
 import LargeSpinner from "../../components/UI/spinners/LargeSpinner";
+import AdsContainer from "../../components/UI/ads/AdsContainer";
 
 export default function UserClients(props) {
     const showSpinner = () => {
@@ -16,10 +17,11 @@ export default function UserClients(props) {
     return (
         <MainContainer>
             <div className="flex w-full">
-                <Sidebar owner={"admin"} tab="clients" />
-                <main className="w-full h-full p-4 space-y-2 overflow-auto">
+                <Sidebar tab="clients" />
+                <main className="h-screen min-h-screen overflow-auto w-full -mt-2">
                     <ClientsContainer clients={props.userClients} />
                 </main>
+                <AdsContainer />
             </div>
         </MainContainer>
     );

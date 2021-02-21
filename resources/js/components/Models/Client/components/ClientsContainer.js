@@ -69,14 +69,12 @@ export default function ClientsContainer(props) {
 
     return (
         <div>
-            <div>
-                <input
-                    onKeyUp={handleKeyUp}
-                    type="text"
-                    placeholder="Search..."
-                    className="mb-2 px-3 py-2 rounded shadow text-gray-600 text-xl w-full focus:outline-none"
-                />
-            </div>
+            <input
+                onKeyUp={handleKeyUp}
+                type="text"
+                placeholder="Search..."
+                className="mt-2 px-3 py-2 text-gray-600 text-xl w-full focus:outline-none"
+            />
             <div className="bg-white rounded-b">
                 <GrayFadedBanner title="identifier" />
                 <div className="w-full bg-white rounded overflow-auto">

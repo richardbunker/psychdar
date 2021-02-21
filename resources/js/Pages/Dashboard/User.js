@@ -11,11 +11,11 @@ export default function UserDashboard(props) {
             <div className="flex w-full">
                 <Sidebar tab="dashboard" />
                 <main className="w-full overflow-auto h-full">
-                    <div className="flex flex-col p-4">
-                        <AdsContainer>Ads Container</AdsContainer>
+                    <div className="h-screen min-h-screen overflow-auto w-full -mt-2">
                         <UserStats user={props.user} />
                     </div>
                 </main>
+                <AdsContainer />
             </div>
         </MainContainer>
     );
