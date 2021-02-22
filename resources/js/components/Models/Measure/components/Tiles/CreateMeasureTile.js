@@ -6,9 +6,9 @@ export default function MeasureTile(props) {
             <a
                 href={"/measures/create"}
                 style={{ height: 190 }}
-                className="w-full p-6 rounded bg-teal-300 shadow flex flex-col space-y-4 items-center justify-center"
+                className="p-6 bg-teal-500 flex flex-col space-y-4 items-center justify-center"
             >
-                <div className="bg-gray-100 rounded-full">
+                <div className="bg-white rounded-full hover:bg-gray-100">
                     <svg
                         className="p-4 w-20 h-20 text-teal-400"
                         fill="currentColor"
@@ -23,8 +23,8 @@ export default function MeasureTile(props) {
                         />
                     </svg>
                 </div>
-                <div className="text-lg font-semibold text-white text-center">
-                    Create
+                <div className="text-lg font-semibold text-white text-center hover:text-gray-300">
+                    Create New Measure
                 </div>
             </a>
         </div>

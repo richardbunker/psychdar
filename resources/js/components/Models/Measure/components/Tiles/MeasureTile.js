@@ -6,9 +6,9 @@ export default function MeasureTile(props) {
             <a
                 href={"/measures/" + props.measure.hashed_id}
                 style={{ height: 190 }}
-                className="w-full p-6 rounded bg-white shadow flex flex-col space-y-4 items-center justify-center"
+                className="w-full p-6 bg-white flex flex-col space-y-4 items-center justify-center"
             >
-                <div className="bg-gray-100 rounded-full">
+                <div className="bg-gray-50 rounded-full hover:bg-gray-100 border-2 border-gray-200">
                     <svg
                         className="p-4 w-20 h-20 text-teal-400"
                         fill="currentColor"
@@ -23,7 +23,7 @@ export default function MeasureTile(props) {
                         />
                     </svg>
                 </div>
-                <div className="text-base font-semibold text-gray-500 text-center">
+                <div className="text-lg font-semibold text-gray-500 text-center hover:text-gray-600">
                     {props.measure.name}{" "}
                     <span className="uppercase">
                         {props.measure.abbreviation !== null

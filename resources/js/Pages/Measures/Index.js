@@ -4,24 +4,17 @@ import MainContainer from "../../components/UI/containers/MainContainer";
 import LargeSpinner from "../../components/UI/spinners/LargeSpinner";
 import MeasureTileContainer from "../../components/Models/Measure/components/Tiles/MeasureTileContainer";
 import AdsContainer from "../../components/UI/ads/AdsContainer";
+import GrayFadedBanner from "../../components/UI/GrayFadedBanner";
 
 export default function UserMeasures(props) {
     return (
         <MainContainer>
             <div className="flex w-full">
                 <Sidebar tab="measures" />
-                <div className="w-full h-full p-2 space-y-2 overflow-auto">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                            <div className="text-3xl font-bold text-gray-700">
-                                Measures
-                            </div>
-                        </div>
-                    </div>
-                    <div className="py-2 grid grid-cols-3 gap-2">
-                        <MeasureTileContainer measures={props.measures} />
-                    </div>
-                </div>
+                <main className="h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400">
+                    <GrayFadedBanner title="Measures" />
+                    <MeasureTileContainer measures={props.measures} />
+                </main>
                 <AdsContainer />
             </div>
         </MainContainer>

@@ -7,7 +7,7 @@ export default function ModalCentered(props) {
             <div className="flex items-center justify-center w-full h-full">
                 <div
                     className={
-                        "bg-white rounded shadow w-full p-4 relative " +
+                        "bg-white rounded shadow w-full max-w-xl p-4 relative " +
                         props.maxWidth
                     }
                 >

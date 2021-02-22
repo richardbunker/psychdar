@@ -10,7 +10,7 @@ export default function RenderMeasure(props) {
     };
 
     return (
-        <div className="leading-normal p-6 bg-white rounded space-y-6 shadow">
+        <div className="leading-normal p-6 bg-white border-2 rounded space-y-6">
             <div className="space-y-2">
                 <div className="font-semibold text-3xl text-gray-700">
                     {formatNameAndAbbr(name, abbr)}

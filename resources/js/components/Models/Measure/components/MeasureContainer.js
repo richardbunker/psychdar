@@ -9,29 +9,13 @@ import ModalCentered from "../../../UI/modals/Centered";
 import DetailsBuilder from "../components/Details/DetailsBuilder";
 import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
 import ScaleScorer from "./Scoring/ScaleScorer";
+import WhiteMenuBanner from "../../../UI/WhiteMenuBanner";
+import WhiteBanner from "../../../UI/WhiteBanner";
 
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState({});
 
     const [showDetailsBuilder, setShowDetailsBuilder] = useState(false);
-
-    // useEffect(() => {
-    //     let itemsObject = {};
-    //     measure.structure.items.map((item, index) => {
-    //         if (item.type === "Text") {
-    //             return (itemsObject = {
-    //                 ...itemsObject,
-    //                 [String(index)]: "Text"
-    //             });
-    //         } else {
-    //             return (itemsObject = {
-    //                 ...itemsObject,
-    //                 [String(index)]: "..."
-    //             });
-    //         }
-    //     });
-    //     setResponses(itemsObject);
-    // }, []);
 
     const handleOnItemChange = itemValue => {
         setResponses(prevState => {
@@ -79,15 +63,18 @@ export default function MeasureContainer({ measure }) {
                     />
                 </ModalCentered>
             )}
-            <div className="space-y-4 py-2">
-                <div className="text-3xl font-bold text-gray-700">
-                    {formatNameAndAbbr(measure.name, measure.abbreviation)}
-                </div>
-                <div className="bg-white w-full rounded-b">
-                    <GrayFadedMenuBanner title="Details">
+            <div className="space-y-2">
+                <GrayFadedBanner
+                    title={formatNameAndAbbr(
+                        measure.name,
+                        measure.abbreviation
+                    )}
+                />
+                <div className="bg-white w-full">
+                    <WhiteMenuBanner title="Details">
                         <TealButton onHandleClick={toggleModal} text="Edit" />
-                    </GrayFadedMenuBanner>
-                    <div className="font-bold px-6 py-4 space-y-4 text-base text-gray-600">
+                    </WhiteMenuBanner>
+                    <div className="px-6 py-4 space-y-4 text-lg text-gray-600">
                         <div className="flex items-center justify-between">
                             <div>Cronbach's Alpha</div>
                             <div>
@@ -109,8 +96,8 @@ export default function MeasureContainer({ measure }) {
                     </div>
                 </div>
                 <div className="">
-                    <GrayFadedBanner title="Scoring" />
-                    <div className="p-6 bg-gray-700 rounded-b font-bold text-base space-y-4">
+                    <WhiteBanner title="Scoring" />
+                    <div className="py-4 px-6 bg-white text-lg text-gray-600 space-y-4">
                         <div className="space-y-2">
                             {measure.structure.items.map((item, index) => {
                                 return (
@@ -118,10 +105,10 @@ export default function MeasureContainer({ measure }) {
                                         key={index}
                                         className="flex items-center justify-between"
                                     >
-                                        <div className="text-green-400">
+                                        <div className="text-gray-600">
                                             {truncateString(item.title, 30)}
                                         </div>
-                                        <div className="text-blue-400">
+                                        <div className="text-gray-600">
                                             {item.type === "Qualitative"
                                                 ? truncateString(
                                                       String(
@@ -157,8 +144,8 @@ export default function MeasureContainer({ measure }) {
                     </div>
                 </div>
                 <div className="bg-white rounded-b">
-                    <GrayFadedBanner title="Structure" />
-                    <div className="p-2">
+                    <GrayFadedBanner title="Preview" />
+                    <div className="p-6">
                         <RenderMeasure
                             handleOnItemChange={handleOnItemChange}
                             measure={measure.structure}

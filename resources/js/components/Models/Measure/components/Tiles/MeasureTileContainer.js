@@ -12,9 +12,9 @@ export default function MeasureTileContainer(props) {
         />
     ));
     return (
-        <>
+        <div className="space-y-4">
             <CreateMeasureTile />
             {measures}
-        </>
+        </div>
     );
 }
