@@ -144,7 +144,7 @@ export default function ClientContainer(props) {
                         falseyLabel="Archived"
                     />
                     <UpdateStatusForm
-                        title="URL Access"
+                        title="Public URL Access"
                         onStatusUpdate={props.onStatusUpdate}
                         currentStatus={
                             props.client.preferences.create_own_resources

@@ -88470,12 +88470,10 @@ function UserDashboard(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_sidebar_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     tab: "dashboard"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-    className: "w-full overflow-auto h-full border-t-4 border-teal-400"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-screen min-h-screen overflow-auto w-full"
+    className: "h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: props.user
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 }
 
 /***/ }),
@@ -89211,7 +89209,7 @@ function ClientContainer(props) {
     truthyLabel: "Active",
     falseyLabel: "Archived"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    title: "URL Access",
+    title: "Public URL Access",
     onStatusUpdate: props.onStatusUpdate,
     currentStatus: props.client.preferences.create_own_resources,
     identifier: "url",
