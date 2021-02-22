@@ -93978,7 +93978,7 @@ function Url(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " w-full"
   }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "http://127.0.0.1:8000/a/N1vDyr/xP0w18",
+    href: props.link,
     className: "ml-2 text-right text-blue-600 hover:underline",
     target: "_blank"
   }, props.link)));

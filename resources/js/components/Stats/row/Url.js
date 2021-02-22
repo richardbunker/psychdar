@@ -20,7 +20,7 @@ export default function Url(props) {
             <div className="text-gray-600 ml-3 flex items-center justify-between w-full">
                 <div className=" w-full">{props.heading}</div>
                 <a
-                    href="http://127.0.0.1:8000/a/N1vDyr/xP0w18"
+                    href={props.link}
                     className="ml-2 text-right text-blue-600 hover:underline"
                     target="_blank"
                 >
