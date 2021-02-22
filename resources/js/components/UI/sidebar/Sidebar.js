@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Logo from "../logo/logo";
 // import "./sidebar.css";
 
 function Sidebar(props) {
@@ -20,15 +21,10 @@ function Sidebar(props) {
         "ml-6 border-l-4 border-transparent pl-4 py-2 text-gray-500 hover:text-gray-300";
 
     return (
-        <div className="h-full w-1/5 border-t-4 border-teal-400">
+        <div className="h-full w-1/5 border-t-4 border-teal-400 max-w-min-content">
             <div className={toggle}>
-                <div
-                    className="h-full py-4 text-lg font-semibold flex flex-col bg-gray-900"
-                    // style={{ width: "240px" }}
-                >
-                    <div className="font-semibold mb-2 pb-4 pt-2 px-5 text-2xl text-white">
-                        Psychdar
-                    </div>
+                <div className="h-full py-4 text-lg font-semibold flex flex-col bg-gray-900">
+                    <Logo />
                     <div
                         className={
                             props.tab === "dashboard" ? tabActive : tabInActive

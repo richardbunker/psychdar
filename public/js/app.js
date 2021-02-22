@@ -94607,6 +94607,46 @@ function TextInput(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/UI/logo/logo.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/UI/logo/logo.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Logo; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _logo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logo.png */ "./resources/js/components/UI/logo/logo.png");
+/* harmony import */ var _logo_png__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_logo_png__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function Logo() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/dashboard",
+    className: "w-48 px-6 mb-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _logo_png__WEBPACK_IMPORTED_MODULE_1___default.a,
+    alt: "Psychdar Logo",
+    className: "transform -rotate-2"
+  }));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/UI/logo/logo.png":
+/*!**************************************************!*\
+  !*** ./resources/js/components/UI/logo/logo.png ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/logo.png?0ad53086b9dc1aae13b1b07dc7215d68";
+
+/***/ }),
+
 /***/ "./resources/js/components/UI/modals/Centered.js":
 /*!*******************************************************!*\
   !*** ./resources/js/components/UI/modals/Centered.js ***!
@@ -94651,6 +94691,7 @@ function ModalCentered(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _logo_logo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../logo/logo */ "./resources/js/components/UI/logo/logo.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -94662,6 +94703,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
  // import "./sidebar.css";
 
@@ -94688,15 +94730,12 @@ function Sidebar(props) {
   var tabActive = "ml-6 border-l-4 border-teal-400 pl-4 py-2 text-gray-200";
   var tabInActive = "ml-6 border-l-4 border-transparent pl-4 py-2 text-gray-500 hover:text-gray-300";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-full w-1/5 border-t-4 border-teal-400"
+    className: "h-full w-1/5 border-t-4 border-teal-400 max-w-min-content"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: toggle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-full py-4 text-lg font-semibold flex flex-col bg-gray-900" // style={{ width: "240px" }}
-
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "font-semibold mb-2 pb-4 pt-2 px-5 text-2xl text-white"
-  }, "Psychdar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "h-full py-4 text-lg font-semibold flex flex-col bg-gray-900"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_logo_logo__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: props.tab === "dashboard" ? tabActive : tabInActive
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/dashboard"
