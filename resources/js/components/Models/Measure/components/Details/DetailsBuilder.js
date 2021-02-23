@@ -4,7 +4,6 @@ import {
     validateChronbachsAlpha,
     validateString
 } from "../../../../../utilities/HelperFunctions";
-import TealButton from "../../../../UI/buttons/TealButton";
 import CancelableContainer from "../../../../UI/containers/CancelableContainer";
 import ErrorInput from "../../../../UI/inputs/ErrorInput";
 import StringCounter from "../../../../UI/inputs/StringCounter";
@@ -173,13 +172,13 @@ export default function DetailsBuilder(props) {
                 <div className="w-full flex items-center justify-end space-x-2">
                     <button
                         onClick={() => props.toggleModal()}
-                        className="bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
+                        className="bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase hover:shadow hover:text-gray-200"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={updateDetails}
-                        className="bg-gradient-to-tl font-semibold from-blue-500 px-3 py-2 rounded text-white to-blue-400 uppercase"
+                        className="bg-gradient-to-tl font-semibold from-blue-500 px-3 py-2 rounded text-white to-blue-400 uppercase hover:shadow hover:text-gray-200"
                     >
                         Update
                     </button>

@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import GrayFadedBanner from "../../../UI/GrayFadedBanner";
-import TealButton from "../../../UI/buttons/TealButton";
 import RenderMeasure from "../../Measure/components/Render/Measure";
 import { truncateString } from "../../../../utilities/HelperFunctions";
 import { formatNameAndAbbr } from "../utilities/MeasureFunctions";
 import DetailsBuilder from "../components/Details/DetailsBuilder";
 import ScaleScorer from "./Scoring/ScaleScorer";
 import WhiteMenuBanner from "../../../UI/WhiteMenuBanner";
-import WhiteBanner from "../../../UI/WhiteBanner";
 import ModalScrollable from "../../../UI/modals/Scrollable";
+import ToggleButton from "../../../UI/buttons/ToggleButton";
 
 export default function MeasureContainer({ measure }) {
-    const [responses, setResponses] = useState({});
+    const [responses, setResponses] = useState([]);
+
+    useEffect(() => {
+        let prepareResponses = measure.structure.items.map(item => {
+            return "...";
+        });
+        setResponses(prepareResponses);
+    }, []);
 
     const [showDetailsBuilder, setShowDetailsBuilder] = useState(false);
 
@@ -72,9 +78,12 @@ export default function MeasureContainer({ measure }) {
                 />
                 <div className="bg-white w-full">
                     <WhiteMenuBanner title="Details">
-                        <TealButton onHandleClick={toggleModal} text="Edit" />
+                        <ToggleButton
+                            onHandleClick={toggleModal}
+                            text="Update"
+                        />
                     </WhiteMenuBanner>
-                    <div className="px-6 py-4 space-y-4 text-lg text-gray-600">
+                    <div className="px-6 pt-2 pb-4 space-y-4 text-lg text-gray-600">
                         <div className="flex items-center justify-between">
                             <div>Cronbach's Alpha</div>
                             <div>
@@ -96,8 +105,8 @@ export default function MeasureContainer({ measure }) {
                     </div>
                 </div>
                 <div className="">
-                    <WhiteBanner title="Scoring" />
-                    <div className="py-4 px-6 bg-white text-lg text-gray-600 space-y-4">
+                    <GrayFadedBanner title="Metrics" />
+                    <div className="py-4 px-6 bg-gray-700 text-lg space-y-4">
                         <div className="space-y-2">
                             {measure.structure.items.map((item, index) => {
                                 return (
@@ -105,10 +114,10 @@ export default function MeasureContainer({ measure }) {
                                         key={index}
                                         className="flex items-center justify-between"
                                     >
-                                        <div className="text-gray-600">
-                                            {truncateString(item.title, 30)}
+                                        <div className="text-green-400">
+                                            {truncateString(item.title, 50)}
                                         </div>
-                                        <div className="text-gray-600">
+                                        <div className="text-blue-400">
                                             {item.type === "Qualitative"
                                                 ? truncateString(
                                                       String(
@@ -126,10 +135,12 @@ export default function MeasureContainer({ measure }) {
                         </div>
                         <div>
                             {measure.details && (
-                                <div className="bg-gray-700 rounded p-4 font-mono leading-normal">
-                                    <div className="font-bold pb-2 text-pink-400 uppercase">
-                                        Scales
-                                    </div>
+                                <div className="leading-normal">
+                                    {measure.details.scales.length > 0 && (
+                                        <div className="pb-2 text-blue-400 uppercase">
+                                            Scales
+                                        </div>
+                                    )}
                                     {measure.details.scales.map(
                                         (scale, index) => {
                                             return (

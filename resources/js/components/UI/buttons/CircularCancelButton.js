@@ -4,7 +4,7 @@ export default function CircularCancelButton(props) {
     return (
         <button
             onClick={() => props.handleOnClick()}
-            className="bg-red-400 hover:bg-red-500 rounded-full"
+            className="bg-gray-400 hover:bg-gray-500 rounded-md"
         >
             <svg
                 className="w-5 h-5 p-0.5 text-white"

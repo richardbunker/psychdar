@@ -203,13 +203,13 @@ export default function ScaleBuilder(props) {
                 <div className="flex items-center justify-end space-x-2 pt-2">
                     <div
                         onClick={() => props.toggleSelf(false)}
-                        className="bg-gray-200 font-bold px-3 py-2 rounded text-gray-700 text-sm uppercase cursor-pointer"
+                        className="bg-gray-200 px-3 py-2 rounded text-gray-500 uppercase cursor-pointer"
                     >
                         Cancel
                     </div>
                     <button
                         onClick={submitScale}
-                        className="bg-teal-400 font-bold px-3 py-2 rounded text-sm text-white uppercase"
+                        className="bg-blue-400 px-3 py-2 rounded text-white uppercase"
                     >
                         Add Scale
                     </button>
