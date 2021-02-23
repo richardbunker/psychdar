@@ -90218,8 +90218,13 @@ function DetailsBuilder(props) {
     onSubmitScale: onSubmitScale,
     items: props.measure.structure.items
   })), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full flex items-center justify-end"
+    className: "w-full flex items-center justify-end space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return props.toggleModal();
+    },
+    className: "bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
+  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: updateDetails,
     className: "bg-gradient-to-tl font-semibold from-blue-500 px-3 py-2 rounded text-white to-blue-400 uppercase"
   }, "Update")));
@@ -90649,7 +90654,13 @@ function ScaleBuilder(props) {
     title: "Operation",
     defaultText: "Please Select...",
     defaultValue: scale.operation,
-    options: ["Sum", "Mean"].sort()
+    options: [{
+      title: "Mean",
+      value: "Mean"
+    }, {
+      title: "Sum",
+      value: "Sum"
+    }]
   }), scale.cuttOffs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-start space-x-2 w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -91014,12 +91025,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Measure_components_Render_Measure__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Measure/components/Render/Measure */ "./resources/js/components/Models/Measure/components/Render/Measure.js");
 /* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
 /* harmony import */ var _utilities_MeasureFunctions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utilities/MeasureFunctions */ "./resources/js/components/Models/Measure/utilities/MeasureFunctions.js");
-/* harmony import */ var _UI_modals_Centered__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../UI/modals/Centered */ "./resources/js/components/UI/modals/Centered.js");
-/* harmony import */ var _components_Details_DetailsBuilder__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Details/DetailsBuilder */ "./resources/js/components/Models/Measure/components/Details/DetailsBuilder.js");
-/* harmony import */ var _UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../UI/GrayFadedMenuBanner */ "./resources/js/components/UI/GrayFadedMenuBanner.js");
-/* harmony import */ var _Scoring_ScaleScorer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Scoring/ScaleScorer */ "./resources/js/components/Models/Measure/components/Scoring/ScaleScorer.js");
-/* harmony import */ var _UI_WhiteMenuBanner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../UI/WhiteMenuBanner */ "./resources/js/components/UI/WhiteMenuBanner.js");
-/* harmony import */ var _UI_WhiteBanner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../UI/WhiteBanner */ "./resources/js/components/UI/WhiteBanner.js");
+/* harmony import */ var _components_Details_DetailsBuilder__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Details/DetailsBuilder */ "./resources/js/components/Models/Measure/components/Details/DetailsBuilder.js");
+/* harmony import */ var _Scoring_ScaleScorer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Scoring/ScaleScorer */ "./resources/js/components/Models/Measure/components/Scoring/ScaleScorer.js");
+/* harmony import */ var _UI_WhiteMenuBanner__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../UI/WhiteMenuBanner */ "./resources/js/components/UI/WhiteMenuBanner.js");
+/* harmony import */ var _UI_WhiteBanner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../UI/WhiteBanner */ "./resources/js/components/UI/WhiteBanner.js");
+/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -91037,7 +91047,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -91099,19 +91108,20 @@ function MeasureContainer(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
     className: "w-full"
-  }, showDetailsBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Centered__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, showDetailsBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_11__["default"], {
     heading: "Measure Details",
     toggleModal: toggleModal
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Details_DetailsBuilder__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Details_DetailsBuilder__WEBPACK_IMPORTED_MODULE_7__["default"], {
     onDetailsSubmit: onDetailsSubmit,
-    measure: measure
+    measure: measure,
+    toggleModal: toggleModal
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_2__["default"], {
     title: Object(_utilities_MeasureFunctions__WEBPACK_IMPORTED_MODULE_6__["formatNameAndAbbr"])(measure.name, measure.abbreviation)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_WhiteMenuBanner__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_WhiteMenuBanner__WEBPACK_IMPORTED_MODULE_9__["default"], {
     title: "Details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_TealButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onHandleClick: toggleModal,
@@ -91126,7 +91136,7 @@ function MeasureContainer(_ref) {
     className: "flex items-center justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Scales"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, measure.details ? displayScales() : "...")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: ""
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_WhiteBanner__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_WhiteBanner__WEBPACK_IMPORTED_MODULE_10__["default"], {
     title: "Scoring"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "py-4 px-6 bg-white text-lg text-gray-600 space-y-4"
@@ -91142,9 +91152,11 @@ function MeasureContainer(_ref) {
       className: "text-gray-600"
     }, item.type === "Qualitative" ? Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_5__["truncateString"])(String(responses[String(index)]), 10) : responses[String(index)]));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, measure.details && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2"
-  }, measure.details.scales.map(function (scale, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scoring_ScaleScorer__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: "bg-gray-700 rounded p-4 font-mono leading-normal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "font-bold pb-2 text-pink-400 uppercase"
+  }, "Scales"), measure.details.scales.map(function (scale, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scoring_ScaleScorer__WEBPACK_IMPORTED_MODULE_8__["default"], {
       key: index,
       scale: scale,
       responses: responses
@@ -91353,11 +91365,11 @@ function ScaleScorer(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between"
+    className: "flex items-center justify-between text-base font-bold"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-teal-300"
+    className: "text-green-400"
   }, props.scale.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-teal-100"
+    className: "text-blue-400"
   }, isNaN(calculateScaleScore()) ? 0 : calculateScaleScore()));
 }
 
@@ -94007,27 +94019,6 @@ function GrayFadedBanner(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UI/GrayFadedMenuBanner.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/components/UI/GrayFadedMenuBanner.js ***!
-  \***********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GrayFadedMenuBanner; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function GrayFadedMenuBanner(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between w-full text-lg font-bold text-white h-10 px-2 bg-gradient-to-r from-gray-400 to-gray-300 uppercase"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.title), props.children);
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/UI/HorizontalScroller.js":
 /*!**********************************************************!*\
   !*** ./resources/js/components/UI/HorizontalScroller.js ***!
@@ -94668,7 +94659,7 @@ function ModalCentered(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-center w-full h-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white rounded shadow w-full max-w-xl p-4 relative " + props.maxWidth
+    className: "bg-white rounded shadow w-full max-w-xl p-4 relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "absolute m-2 right-0 top-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_CircularCancelButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -94676,6 +94667,35 @@ function ModalCentered(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-3xl text-gray-700 font-bold pb-2"
   }, props.heading), props.children)));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/UI/modals/Scrollable.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/UI/modals/Scrollable.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ModalScrollable; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
+
+
+function ModalScrollable(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "absolute bg-black bg-opacity-75 h-screen left-0 min-h-screen overflow-auto to-teal-400 top-0 w-full z-10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white w-full relative h-auto  max-w-2xl mx-auto mt-10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    title: props.heading
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "p-4"
+  }, props.children)));
 }
 
 /***/ }),

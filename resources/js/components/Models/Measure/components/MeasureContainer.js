@@ -5,12 +5,11 @@ import TealButton from "../../../UI/buttons/TealButton";
 import RenderMeasure from "../../Measure/components/Render/Measure";
 import { truncateString } from "../../../../utilities/HelperFunctions";
 import { formatNameAndAbbr } from "../utilities/MeasureFunctions";
-import ModalCentered from "../../../UI/modals/Centered";
 import DetailsBuilder from "../components/Details/DetailsBuilder";
-import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
 import ScaleScorer from "./Scoring/ScaleScorer";
 import WhiteMenuBanner from "../../../UI/WhiteMenuBanner";
 import WhiteBanner from "../../../UI/WhiteBanner";
+import ModalScrollable from "../../../UI/modals/Scrollable";
 
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState({});
@@ -53,15 +52,16 @@ export default function MeasureContainer({ measure }) {
     return (
         <main className="w-full">
             {showDetailsBuilder && (
-                <ModalCentered
+                <ModalScrollable
                     heading="Measure Details"
                     toggleModal={toggleModal}
                 >
                     <DetailsBuilder
                         onDetailsSubmit={onDetailsSubmit}
                         measure={measure}
+                        toggleModal={toggleModal}
                     />
-                </ModalCentered>
+                </ModalScrollable>
             )}
             <div className="space-y-2">
                 <GrayFadedBanner
@@ -126,7 +126,10 @@ export default function MeasureContainer({ measure }) {
                         </div>
                         <div>
                             {measure.details && (
-                                <div className="space-y-2">
+                                <div className="bg-gray-700 rounded p-4 font-mono leading-normal">
+                                    <div className="font-bold pb-2 text-pink-400 uppercase">
+                                        Scales
+                                    </div>
                                     {measure.details.scales.map(
                                         (scale, index) => {
                                             return (

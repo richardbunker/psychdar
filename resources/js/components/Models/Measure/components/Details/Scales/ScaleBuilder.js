@@ -153,7 +153,10 @@ export default function ScaleBuilder(props) {
                 title="Operation"
                 defaultText="Please Select..."
                 defaultValue={scale.operation}
-                options={["Sum", "Mean"].sort()}
+                options={[
+                    { title: "Mean", value: "Mean" },
+                    { title: "Sum", value: "Sum" }
+                ]}
             />
             {scale.cuttOffs.length > 0 && (
                 <div className="flex items-start space-x-2 w-full">

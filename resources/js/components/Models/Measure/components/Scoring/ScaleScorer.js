@@ -18,9 +18,9 @@ export default function ScaleScorer(props) {
     };
 
     return (
-        <div className="flex items-center justify-between">
-            <div className="text-teal-300">{props.scale.title}</div>
-            <div className="text-teal-100">
+        <div className="flex items-center justify-between text-base font-bold">
+            <div className="text-green-400">{props.scale.title}</div>
+            <div className="text-blue-400">
                 {isNaN(calculateScaleScore()) ? 0 : calculateScaleScore()}
             </div>
         </div>

@@ -170,7 +170,13 @@ export default function DetailsBuilder(props) {
                 </CancelableContainer>
             )}
             {inputFields.validate() && (
-                <div className="w-full flex items-center justify-end">
+                <div className="w-full flex items-center justify-end space-x-2">
+                    <button
+                        onClick={() => props.toggleModal()}
+                        className="bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
+                    >
+                        Cancel
+                    </button>
                     <button
                         onClick={updateDetails}
                         className="bg-gradient-to-tl font-semibold from-blue-500 px-3 py-2 rounded text-white to-blue-400 uppercase"
