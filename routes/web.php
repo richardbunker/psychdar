@@ -92,9 +92,8 @@ Route::group(['middleware' => ['auth:web']], function () {
     // Measures
     Route::get('/measures', [App\Http\Controllers\UserMeasuresController::class, 'index']);
     Route::post('/measures', [App\Http\Controllers\UserMeasuresController::class, 'store']);
-    Route::get('/measures/create', [App\Http\Controllers\UserMeasuresController::class, 'create']);
-    Route::get('/measures/{hashed_measure_id}', [App\Http\Controllers\UserMeasuresController::class, 'show'])->name('showMeasure');
-    Route::get('/api/organisation/{hashed_organisation_id}/measures', [App\Http\Controllers\OrganisationMeasuresController::class, 'index']);
+    Route::get('/measure/create', [App\Http\Controllers\UserMeasuresController::class, 'create']);
+    Route::get('/measure/{hashed_measure_id}', [App\Http\Controllers\UserMeasuresController::class, 'show'])->name('showMeasure');
     Route::post('/measures/details', [App\Http\Controllers\UserMeasuresController::class, 'updateDetails']);
 
 

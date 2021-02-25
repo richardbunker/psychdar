@@ -10,7 +10,7 @@ export default function TextInput(props) {
                 value={props.value}
                 onChange={e => props.handleOnTextChange(e)}
                 placeholder={props.placeholder}
-                className="font-semibold p-2 rounded shadow text-gray-600 w-full"
+                className="p-2 rounded shadow text-gray-600 w-full"
                 rows="5"
             ></textarea>
         </div>

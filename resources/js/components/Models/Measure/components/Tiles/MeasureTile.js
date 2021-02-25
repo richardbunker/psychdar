@@ -4,7 +4,7 @@ export default function MeasureTile(props) {
     return (
         <div className={props.isLoading ? "hidden" : "w-full"}>
             <a
-                href={"/measures/" + props.measure.hashed_id}
+                href={"/measure/" + props.measure.hashed_id}
                 style={{ height: 190 }}
                 className="w-full p-6 bg-white flex flex-col space-y-4 items-center justify-center"
             >

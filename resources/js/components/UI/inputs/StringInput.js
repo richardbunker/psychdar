@@ -11,7 +11,7 @@ export default function StringInput(props) {
                 onChange={e => props.handleOnStringChange(e)}
                 name={props.name}
                 type="text"
-                className="py-1 px-2 rounded bg-white shadow text-gray-600 w-full font-semibold"
+                className="py-1 px-2 rounded bg-white shadow text-gray-600 w-full"
                 placeholder={props.placeholder}
                 required
             />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { truncateString } from "../../../../../../utilities/HelperFunctions";
 import Option from "../../../../Measure/components/Item/Option/Option";
 import Qualitative from "../../../../Measure/components/Item/Qualitative";
 import Slider from "../../../../Measure/components/Item/Slider/Slider";
@@ -7,7 +8,7 @@ import ItemEditor from "./Editor";
 
 export default function ItemPreview(props) {
     const [item, setItem] = useState();
-    const [value, setValue] = useState();
+    const [value, setValue] = useState("...");
     const [displayItemEdit, setDisplayItemEdit] = useState(false);
 
     const handleOnChange = value => {
@@ -43,6 +44,7 @@ export default function ItemPreview(props) {
             case "Qualitative":
                 setItem(
                     <Qualitative
+                        handleOnChange={handleOnChange}
                         item={props.item}
                         index={props.index}
                         id="edit"
@@ -63,9 +65,6 @@ export default function ItemPreview(props) {
 
     return (
         <div className="space-y-2">
-            <div className="font-mono font-semibold text-base text-green-500 w-full">
-                Value: <span className="text-blue-500">{value}</span>
-            </div>
             <div className="flex items-center justify-between space-x-2">
                 {displayItemEdit ? (
                     <ItemEditor
@@ -148,6 +147,12 @@ export default function ItemPreview(props) {
                         </div>
                     </>
                 )}
+            </div>
+            <div className="font-semibold text-green-500 text-right text-sm w-full">
+                Value:{" "}
+                <span className="text-blue-500">
+                    {truncateString(String(value), 6)}
+                </span>
             </div>
             <div className="w-full border-b mb-6"></div>
         </div>

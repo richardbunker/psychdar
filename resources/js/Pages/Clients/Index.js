@@ -4,6 +4,7 @@ import Sidebar from "../../components/UI/sidebar/Sidebar";
 import ClientsContainer from "../../components/Models/Client/components/ClientsContainer";
 import LargeSpinner from "../../components/UI/spinners/LargeSpinner";
 import AdsContainer from "../../components/UI/ads/AdsContainer";
+import ScrollableScreenContainer from "../../components/UI/containers/ScrollableScreenContainer";
 
 export default function UserClients(props) {
     const showSpinner = () => {
@@ -18,9 +19,9 @@ export default function UserClients(props) {
         <MainContainer>
             <div className="flex w-full">
                 <Sidebar tab="clients" />
-                <main className="h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400">
+                <ScrollableScreenContainer>
                     <ClientsContainer clients={props.userClients} />
-                </main>
+                </ScrollableScreenContainer>
                 <AdsContainer />
             </div>
         </MainContainer>

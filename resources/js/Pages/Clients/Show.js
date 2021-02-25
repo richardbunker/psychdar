@@ -4,6 +4,7 @@ import ClientContainer from "../../components/Models/Client/components/ClientCon
 import Sidebar from "../../components/UI/sidebar/Sidebar";
 import MainContainer from "../../components/UI/containers/MainContainer";
 import AdsContainer from "../../components/UI/ads/AdsContainer";
+import ScrollableScreenContainer from "../../components/UI/containers/ScrollableScreenContainer";
 
 export default function UserClient(props) {
     const [savedAt, setSavedAt] = useState();
@@ -32,14 +33,14 @@ export default function UserClient(props) {
         <MainContainer>
             <div className="flex w-full">
                 <Sidebar tab="clients" />
-                <main className="h-screen min-h-screen overflow-auto w-full border-t-4 border-teal-400">
+                <ScrollableScreenContainer>
                     <ClientContainer
                         savedAt={savedAt}
                         onStatusUpdate={onStatusUpdate}
                         client={props.client}
                         userMeasures={props.userMeasures}
                     />
-                </main>
+                </ScrollableScreenContainer>
                 <AdsContainer />
             </div>
         </MainContainer>

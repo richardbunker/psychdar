@@ -4,7 +4,7 @@ export default function MeasureTile(props) {
     return (
         <div className="w-full">
             <a
-                href={"/measures/create"}
+                href={"/measure/create"}
                 style={{ height: 190 }}
                 className="p-6 bg-teal-500 flex flex-col space-y-4 items-center justify-center"
             >

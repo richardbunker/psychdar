@@ -127,7 +127,7 @@ export default function ItemEditor(props) {
     };
 
     return (
-        <div className="space-y-2 w-full p-4 rounded shadow bg-teal-100">
+        <div className="space-y-2 w-full p-4 rounded bg-gray-100">
             <div className="font-semibold pb-2 text-center text-gray-600 text-xl uppercase">
                 Edit Item
             </div>

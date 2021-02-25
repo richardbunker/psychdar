@@ -200,13 +200,11 @@ export default function ItemBuilder(props) {
                             )}
                         </div>
                         {anchors.length < maxNumberOfAnchors && (
-                            <div className="space-y-2 py-2">
-                                <div className="text-gray-500">
-                                    Create Custom
+                            <div className="bg-gray-50 border p-4 rounded">
+                                <div className="font-semibold pb-2 text-base text-gray-400 uppercase">
+                                    Custom Anchor
                                 </div>
-                                <div className="bg-white p-4 rounded shadow">
-                                    <AnchorBuilder onNewAnchor={onNewAnchor} />
-                                </div>
+                                <AnchorBuilder onNewAnchor={onNewAnchor} />
                             </div>
                         )}
                     </div>

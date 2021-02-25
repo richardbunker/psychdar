@@ -11,8 +11,10 @@ import StringCounter from "../../../../UI/inputs/StringCounter";
 import StringInput from "../../../../UI/inputs/StringInput";
 import TextInput from "../../../../UI/inputs/TextInput";
 import CancelableContainer from "../../../../UI/containers/CancelableContainer";
+import GrayFadedMenuBanner from "../../../../UI/GrayFadedMenuBanner";
+import GrayFadedBanner from "../../../../UI/GrayFadedBanner";
 
-export default function MeasureBuilder(props) {
+export default function StructureBuilder(props) {
     const [confirmCreateModal, setConfirmCreateModal] = useState(false);
     const [name, setName] = useState("");
     const [abbr, setAbbr] = useState("");
@@ -137,7 +139,7 @@ export default function MeasureBuilder(props) {
     };
 
     return (
-        <main className="w-full">
+        <main className="w-full space-y-2">
             {confirmCreateModal && (
                 <ModalCentered
                     maxWidth="max-w-sm"
@@ -155,51 +157,31 @@ export default function MeasureBuilder(props) {
                     </div>
                 </ModalCentered>
             )}
-            <div className="flex items-center justify-between h-12">
-                <div className="text-3xl font-bold text-gray-700">
-                    Measure Builder
-                </div>
+            <GrayFadedMenuBanner title="Measure Builder">
                 {inputFields.validate() && (
-                    <div className="flex space-x-2">
+                    <div className="flex items-center space-x-2">
                         <button
                             onClick={togglePreview}
-                            className="flex items-center bg-gradient-to-tl font-semibold from-teal-500 px-3 py-2 rounded text-white to-teal-400 uppercase w-full"
+                            className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
                         >
-                            <svg
-                                className="w-6 h-6 text-white mr-1"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                            </svg>
                             Preview
                         </button>
                         <button
                             onClick={() => toggleConfirmCreate()}
-                            className="flex items-center bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase w-full"
+                            className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
                         >
-                            <svg
-                                className="w-6 h-6 text-white mr-1"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
-                            </svg>
                             Save
                         </button>
                     </div>
                 )}
-            </div>
-            <div className="mt-4 p-4 w-full text-lg space-y-6 bg-white shadow-md rounded">
+            </GrayFadedMenuBanner>
+            <div className="mt-2 p-4 w-full text-lg space-y-6 bg-white">
                 <div className="space-y-1">
                     <StringInput
                         value={name}
                         handleOnStringChange={e => updateName(e.target.value)}
                         title="Name"
-                        placeholder="Depression, Anxiety, Stress Scale 21"
+                        placeholder="Depression, Anxiety and Stress Scale 21"
                     />
                     {name.length > 0 && (
                         <StringCounter
@@ -241,8 +223,10 @@ export default function MeasureBuilder(props) {
                         />
                     )}
                 </div>
-                <div className="space-y-4">
-                    <div className="text-gray-600 font-semibold">Items</div>
+            </div>
+            <div>
+                <GrayFadedBanner title="Items" />
+                <div className="p-4 bg-white space-y-4">
                     {items.map((item, index) => {
                         return (
                             <ItemPreview
@@ -261,7 +245,7 @@ export default function MeasureBuilder(props) {
                         <div className="w-full">
                             <button
                                 onClick={() => toggleItemBuilder()}
-                                className="bg-gradient-to-tl font-semibold from-green-500 px-3 py-4 rounded text-white to-green-400 uppercase w-full"
+                                className="border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
                             >
                                 Add Item
                             </button>

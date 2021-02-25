@@ -9,6 +9,7 @@ import ScaleScorer from "./Scoring/ScaleScorer";
 import WhiteMenuBanner from "../../../UI/WhiteMenuBanner";
 import ModalScrollable from "../../../UI/modals/Scrollable";
 import ToggleButton from "../../../UI/buttons/ToggleButton";
+import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
 
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState([]);
@@ -70,12 +71,31 @@ export default function MeasureContainer({ measure }) {
                 </ModalScrollable>
             )}
             <div className="space-y-2">
-                <GrayFadedBanner
+                <GrayFadedMenuBanner
                     title={formatNameAndAbbr(
                         measure.name,
                         measure.abbreviation
                     )}
-                />
+                >
+                    <div className="flex items-center space-x-2">
+                        <button
+                            onClick={() =>
+                                console.log("Edit has been clicked!")
+                            }
+                            className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
+                        >
+                            Edit
+                        </button>
+                        <button
+                            onClick={() =>
+                                console.log("Publish has been clicked!")
+                            }
+                            className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
+                        >
+                            Publish
+                        </button>
+                    </div>
+                </GrayFadedMenuBanner>
                 <div className="bg-white w-full">
                     <WhiteMenuBanner title="Details">
                         <ToggleButton

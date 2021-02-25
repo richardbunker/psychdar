@@ -4,7 +4,9 @@ import { truncateString } from "../../../utilities/HelperFunctions";
 export default function SelectInput(props) {
     return (
         <div className="flex items-center space-x-2 w-full">
-            <div className="text-gray-600 w-1/3">{props.title}</div>
+            <div className="text-gray-600 font-semibold w-1/3">
+                {props.title}
+            </div>
             <select
                 onChange={props.onSelect}
                 defaultValue={props.defaultValue}

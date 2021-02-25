@@ -1,16 +1,17 @@
 import React from "react";
 import Sidebar from "../../components/UI/sidebar/Sidebar";
 import MainContainer from "../../components/UI/containers/MainContainer";
-import MeasureBuilder from "../../components/Models/Measure/components/Structure/StructureBuilder";
+import StructureBuilder from "../../components/Models/Measure/components/Structure/StructureBuilder";
+import ScrollableScreenContainer from "../../components/UI/containers/ScrollableScreenContainer";
 
 export default function CreateMeasure(props) {
     return (
         <MainContainer>
             <div className="flex w-full">
-                <Sidebar owner={"admin"} tab="measures" />
-                <div className="h-screen min-h-screen overflow-auto p-4 w-full -mt-2">
-                    <MeasureBuilder organisations={props.organisations} />
-                </div>
+                <Sidebar tab="measures" />
+                <ScrollableScreenContainer>
+                    <StructureBuilder />
+                </ScrollableScreenContainer>
             </div>
         </MainContainer>
     );
