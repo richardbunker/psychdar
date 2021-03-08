@@ -27,8 +27,16 @@ class UserMeasuresController extends Controller
 
     public function show($hashed_measure_id)
     {         
-        $measure = Measure::find(Hasher::decode($hashed_measure_id));       
+        $measure = Measure::findOrFail(Hasher::decode($hashed_measure_id));       
         return Inertia::render('Measures/Show', [
+            'measure' => $measure
+        ]);
+    }
+
+    public function edit($hashed_measure_id)
+    {         
+        $measure = Measure::findOrFail(Hasher::decode($hashed_measure_id));    
+        return Inertia::render('Measures/Edit', [
             'measure' => $measure
         ]);
     }
@@ -46,6 +54,18 @@ class UserMeasuresController extends Controller
         $user->measures()->attach($newMeasure->id);
         
         return Redirect::route('showMeasure', $newMeasure->hashed_id);  
+    }
+
+    public function update(Request $request)
+    {        
+        $measureToUpdate = Measure::find(Hasher::decode($request->hashedId));
+        $measureToUpdate->name = $request->structure["name"];
+        $measureToUpdate->abbreviation = $request->structure["abbr"];
+        $measureToUpdate->structure = json_encode($request->structure);
+        $measureToUpdate->details = null;
+        $measureToUpdate->save();
+        
+        return Redirect::route('showMeasure', $measureToUpdate->hashed_id);
     }
 
     public function updateDetails(Request $request)

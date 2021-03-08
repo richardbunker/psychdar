@@ -22,3 +22,10 @@ export const validateChronbachsAlpha = string => {
         return false;
     }
 };
+
+export const returnEmptyStringIfNullValue = value => {
+    if (value === null) {
+        return "";
+    }
+    return value;
+};

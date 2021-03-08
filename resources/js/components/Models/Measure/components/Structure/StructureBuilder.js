@@ -139,7 +139,7 @@ export default function StructureBuilder(props) {
     };
 
     return (
-        <main className="w-full space-y-2">
+        <div className="w-full">
             {confirmCreateModal && (
                 <ModalCentered
                     maxWidth="max-w-sm"
@@ -175,7 +175,7 @@ export default function StructureBuilder(props) {
                     </div>
                 )}
             </GrayFadedMenuBanner>
-            <div className="mt-2 p-4 w-full text-lg space-y-6 bg-white">
+            <div className="p-4 w-full text-lg space-y-6 bg-white">
                 <div className="space-y-1">
                     <StringInput
                         value={name}
@@ -224,7 +224,7 @@ export default function StructureBuilder(props) {
                     )}
                 </div>
             </div>
-            <div>
+            <div className="mt-2">
                 <GrayFadedBanner title="Items" />
                 <div className="p-4 bg-white space-y-4">
                     {items.map((item, index) => {
@@ -264,6 +264,6 @@ export default function StructureBuilder(props) {
                     measure={{ name, abbr, instructions, items }}
                 />
             )}
-        </main>
+        </div>
     );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
+import { InertiaLink } from "@inertiajs/inertia-react";
 import GrayFadedBanner from "../../../UI/GrayFadedBanner";
 import RenderMeasure from "../../Measure/components/Render/Measure";
 import { truncateString } from "../../../../utilities/HelperFunctions";
@@ -71,62 +72,62 @@ export default function MeasureContainer({ measure }) {
                 </ModalScrollable>
             )}
             <div className="space-y-2">
-                <GrayFadedMenuBanner
-                    title={formatNameAndAbbr(
-                        measure.name,
-                        measure.abbreviation
-                    )}
-                >
-                    <div className="flex items-center space-x-2">
-                        <button
-                            onClick={() =>
-                                console.log("Edit has been clicked!")
-                            }
-                            className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
-                        >
-                            Edit
-                        </button>
-                        <button
-                            onClick={() =>
-                                console.log("Publish has been clicked!")
-                            }
-                            className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
-                        >
-                            Publish
-                        </button>
-                    </div>
-                </GrayFadedMenuBanner>
-                <div className="bg-white w-full">
-                    <WhiteMenuBanner title="Details">
-                        <ToggleButton
-                            onHandleClick={toggleModal}
-                            text="Update"
-                        />
-                    </WhiteMenuBanner>
-                    <div className="px-6 pt-2 pb-4 space-y-4 text-lg text-gray-600">
-                        <div className="flex items-center justify-between">
-                            <div>Cronbach's Alpha</div>
-                            <div>
-                                {measure.details ? displayAlpha() : "..."}
-                            </div>
+                <div>
+                    <GrayFadedMenuBanner
+                        title={formatNameAndAbbr(
+                            measure.name,
+                            measure.abbreviation
+                        )}
+                    >
+                        <div className="flex items-center space-x-2">
+                            <InertiaLink
+                                className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
+                                href={"/measure/" + measure.hashed_id + "/edit"}
+                            >
+                                Edit
+                            </InertiaLink>
+                            <button
+                                onClick={() =>
+                                    console.log("Publish has been clicked!")
+                                }
+                                className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
+                            >
+                                Publish
+                            </button>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <div>Author/Reference</div>
-                            <div>
-                                {measure.details ? displayAuthor() : "..."}
+                    </GrayFadedMenuBanner>
+                    <div className="bg-white w-full">
+                        <WhiteMenuBanner title="Details">
+                            <ToggleButton
+                                onHandleClick={toggleModal}
+                                text="Update"
+                            />
+                        </WhiteMenuBanner>
+                        <div className="px-6 pt-2 pb-4 space-y-4 text-lg text-gray-600">
+                            <div className="flex items-center justify-between">
+                                <div>Cronbach's Alpha</div>
+                                <div>
+                                    {measure.details ? displayAlpha() : "..."}
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex items-center justify-between">
-                            <div>Scales</div>
-                            <div>
-                                {measure.details ? displayScales() : "..."}
+                            <div className="flex items-center justify-between">
+                                <div>Author/Reference</div>
+                                <div>
+                                    {measure.details ? displayAuthor() : "..."}
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div>Scales</div>
+                                <div>
+                                    {measure.details ? displayScales() : "..."}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="">
                     <GrayFadedBanner title="Metrics" />
-                    <div className="py-4 px-6 bg-gray-700 text-lg space-y-4">
+                    <div className="py-4 px-6 bg-gray-700 text-lg space-y-4 leading-normal">
                         <div className="space-y-2">
                             {measure.structure.items.map((item, index) => {
                                 return (
@@ -157,7 +158,7 @@ export default function MeasureContainer({ measure }) {
                             {measure.details && (
                                 <div className="leading-normal">
                                     {measure.details.scales.length > 0 && (
-                                        <div className="pb-2 text-blue-400 uppercase">
+                                        <div className="font-bold pb-2 text-gray-200 uppercase">
                                             Scales
                                         </div>
                                     )}

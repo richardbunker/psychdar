@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import AnchorBuilder from "../Anchor/Builder";
 import SelectInput from "../../../../../UI/inputs/SelectInput";
@@ -9,6 +9,12 @@ import SaveCustomAnchorGroup from "./SaveCustomAnchorGroup";
 import RenderCustomAnchorGroups from "./RenderCustomAnchorGroups";
 
 export default function ItemBuilder(props) {
+    const divRef = useRef(null);
+
+    useEffect(() => {
+        divRef.current.scrollIntoView({ behavior: "smooth" });
+    });
+
     const [type, setType] = useState("");
     const [title, setTitle] = useState("");
     const [subTitle, setSubTitle] = useState("");
@@ -220,6 +226,7 @@ export default function ItemBuilder(props) {
                     </button>
                 </div>
             )}
+            <div ref={divRef} />
         </div>
     );
 }

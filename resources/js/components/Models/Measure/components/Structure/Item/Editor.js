@@ -7,13 +7,34 @@ import StringInput from "../../../../../UI/inputs/StringInput";
 import AnchorPreview from "../Item/AnchorPreview";
 import SaveCustomAnchorGroup from "./SaveCustomAnchorGroup";
 import RenderCustomAnchorGroups from "./RenderCustomAnchorGroups";
+import { returnEmptyStringIfNullValue } from "../../../../../../utilities/HelperFunctions";
 
 export default function ItemEditor(props) {
     const [type, setType] = useState(props.item.type);
     const [title, setTitle] = useState(props.item.title);
-    const [subTitle, setSubTitle] = useState(props.item.subtitle);
+    const [subTitle, setSubTitle] = useState(
+        returnEmptyStringIfNullValue(props.item.subtitle)
+    );
     const [anchors, setAnchors] = useState(props.item.anchors);
-    const [maxNumberOfAnchors, setMaxNumberOfAnchors] = useState();
+    const numberOfAnchors = value => {
+        switch (value) {
+            case "Slider":
+                return 2;
+                break;
+
+            case "Options":
+                return 10;
+                break;
+
+            default:
+                return 0;
+                break;
+        }
+    };
+    const [maxNumberOfAnchors, setMaxNumberOfAnchors] = useState(
+        numberOfAnchors(props.item.type)
+    );
+
     const [canDisplayAnchorBuilder, setCanDisplayAnchorBuilder] = useState(
         true
     );
