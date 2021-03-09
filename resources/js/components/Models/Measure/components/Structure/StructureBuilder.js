@@ -148,7 +148,10 @@ export default function StructureBuilder(props) {
                         >
                             Cancel
                         </button>
-                        <SaveSubmitButton onHandleClick={submitMeasure} />
+                        <SaveSubmitButton
+                            label="Save & Continue"
+                            onHandleClick={submitMeasure}
+                        />
                     </div>
                 </ModalScrollable>
             )}

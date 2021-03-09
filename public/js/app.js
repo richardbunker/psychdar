@@ -93034,6 +93034,7 @@ function StructureBuilder(props) {
       return toggleConfirmCreate();
     }
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    label: "Save & Continue",
     onHandleClick: submitMeasure
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_11__["default"], {
     title: "Measure Builder"
