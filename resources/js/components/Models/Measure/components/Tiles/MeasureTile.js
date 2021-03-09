@@ -2,12 +2,22 @@ import React from "react";
 
 export default function MeasureTile(props) {
     return (
-        <div className={props.isLoading ? "hidden" : "w-full"}>
+        <div className="w-full">
             <a
                 href={"/measure/" + props.measure.hashed_id}
                 style={{ height: 190 }}
-                className="w-full p-6 bg-white flex flex-col space-y-4 items-center justify-center"
+                className="w-full p-6 bg-white flex flex-col space-y-4 items-center justify-center relative"
             >
+                {props.measure.is_published ? (
+                    <div className="absolute bg-green-400 m-2 p-2 right-0 rounded text-white top-0 uppercase">
+                        Published
+                    </div>
+                ) : (
+                    <div className="absolute border m-2 p-2 right-0 rounded text-gray-500 top-0 uppercase">
+                        Unpublished
+                    </div>
+                )}
+
                 <div className="bg-gray-50 rounded-full hover:bg-gray-100 border-2 border-gray-200">
                     <svg
                         className="p-4 w-20 h-20 text-teal-400"

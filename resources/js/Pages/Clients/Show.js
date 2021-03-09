@@ -38,7 +38,7 @@ export default function UserClient(props) {
                         savedAt={savedAt}
                         onStatusUpdate={onStatusUpdate}
                         client={props.client}
-                        userMeasures={props.userMeasures}
+                        userPublishedMeasures={props.userPublishedMeasures}
                     />
                 </ScrollableScreenContainer>
                 <AdsContainer />

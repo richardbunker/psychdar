@@ -149,8 +149,9 @@ export default function StructureEditor({ measure }) {
                     toggleModal={toggleConfirmEditModal}
                 >
                     <div className="text-xl text-gray-700 p-4 leading-normal">
-                        PLEASE NOTE: Any details (e.g., scales) associated with
-                        this measure will be deleted upon saving.
+                        <strong>PLEASE NOTE:</strong> Any of the measure's
+                        details (i.e., alpha, author, scales) will be deleted
+                        upon saving. Would you like to proceed?
                     </div>
                     <div className="flex items-center justify-end space-x-2">
                         <button
@@ -160,6 +161,7 @@ export default function StructureEditor({ measure }) {
                             Cancel
                         </button>
                         <SaveSubmitButton
+                            label="Confirm & Save"
                             onHandleClick={submitUpdatedMeasure}
                         />
                     </div>

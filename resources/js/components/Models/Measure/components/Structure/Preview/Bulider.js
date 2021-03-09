@@ -2,6 +2,9 @@ import React from "react";
 import RenderMeasure from "../../../../Measure/components/Render/Measure";
 
 export default function PreviewBuilder(props) {
+    const handleOnItemChange = value => {
+        return;
+    };
     return (
         <div className="absolute bg-gray-50 left-0 top-0 w-full z-10 h-screen overflow-auto">
             <div className="fixed p-6 right-0 top-0">
@@ -24,7 +27,10 @@ export default function PreviewBuilder(props) {
                 </button>
             </div>
             <div className="h-screen max-w-5xl mx-auto p-10">
-                <RenderMeasure measure={props.measure} />
+                <RenderMeasure
+                    handleOnItemChange={handleOnItemChange}
+                    measure={props.measure}
+                />
             </div>
         </div>
     );

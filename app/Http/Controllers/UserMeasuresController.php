@@ -76,4 +76,13 @@ class UserMeasuresController extends Controller
                 
         return Redirect::route('showMeasure', $measureToUpdate->hashed_id);  
     }
+
+    public function publishMeasure(Request $request)
+    {
+        $measureToUpdate = Measure::find(Hasher::decode($request->hashedId));
+        $measureToUpdate->is_published = true;
+        $measureToUpdate->save();
+                
+        return Redirect::route('showMeasure', $measureToUpdate->hashed_id); 
+    }
 }

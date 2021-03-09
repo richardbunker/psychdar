@@ -30,7 +30,7 @@ class UserClientsController extends Controller
                                 ->with('measures')
                                 ->with('clinic')
                                 ->first(),
-                'userMeasures' => Auth::user()->measures,
+                'userPublishedMeasures' => Auth::user()->publishedMeasures,
             ]);            
         }
         return abort(403);            

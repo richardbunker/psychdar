@@ -13,7 +13,7 @@ import SelectInput from "../../../UI/inputs/SelectInput";
 export default function ClientContainer(props) {
     const [selectedMeasure, setSelectedMeasure] = useState("");
 
-    const userMeasures = props.userMeasures.map(measure => {
+    const userMeasures = props.userPublishedMeasures.map(measure => {
         return { title: measure.name, value: measure.hashed_id };
     });
 

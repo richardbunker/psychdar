@@ -10,7 +10,7 @@
 
 ## Measuers
 
--   Add 'Edit' & 'Publish' functionality
+-   Add 'Publish' functionality
     -   Display Draft themeing on Measure.Index to alert user to unpublished measures
 -   Fix Item type:scale edit 'not displaying add custom anchor component' bug
 -   Create a published measure view that displays URL measure

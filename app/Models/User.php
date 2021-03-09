@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Client::class)->orderBy('identifier');
     }
+
+    public function publishedMeasures()
+    {
+        return $this->measures()->where('is_published', 1);
+    }
 }

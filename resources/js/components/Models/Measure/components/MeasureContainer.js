@@ -11,6 +11,7 @@ import WhiteMenuBanner from "../../../UI/WhiteMenuBanner";
 import ModalScrollable from "../../../UI/modals/Scrollable";
 import ToggleButton from "../../../UI/buttons/ToggleButton";
 import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
+import SaveSubmitButton from "../../../UI/forms/SaveSubmitButton";
 
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState([]);
@@ -23,6 +24,7 @@ export default function MeasureContainer({ measure }) {
     }, []);
 
     const [showDetailsBuilder, setShowDetailsBuilder] = useState(false);
+    const [showConfirmPublish, setShowConfirmPublish] = useState(false);
 
     const handleOnItemChange = itemValue => {
         setResponses(prevState => {
@@ -34,6 +36,10 @@ export default function MeasureContainer({ measure }) {
         setShowDetailsBuilder(prevState => !prevState);
     };
 
+    const toggleConfirmPublish = () => {
+        setShowConfirmPublish(prevState => !prevState);
+    };
+
     const onDetailsSubmit = details => {
         const values = {
             hashedId: measure.hashed_id,
@@ -41,6 +47,14 @@ export default function MeasureContainer({ measure }) {
         };
         Inertia.post("/measures/details", values);
         toggleModal();
+    };
+
+    const publishMeasure = () => {
+        const values = {
+            hashedId: measure.hashed_id
+        };
+        Inertia.post("/measure/publish", values);
+        toggleConfirmPublish();
     };
 
     const displayAlpha = () => {
@@ -71,6 +85,27 @@ export default function MeasureContainer({ measure }) {
                     />
                 </ModalScrollable>
             )}
+            {showConfirmPublish && (
+                <ModalScrollable heading="Confirm Publish">
+                    <div className="text-xl text-gray-700 p-4 leading-normal">
+                        <strong>PLEASE NOTE:</strong> Once published, you will
+                        be unable to edit the measure nor update its details.
+                        Would you like to proceed?
+                    </div>
+                    <div className="flex items-center justify-end space-x-2">
+                        <button
+                            className="w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
+                            onClick={() => toggleConfirmPublish()}
+                        >
+                            Cancel
+                        </button>
+                        <SaveSubmitButton
+                            label="Confirm & Publish"
+                            onHandleClick={publishMeasure}
+                        />
+                    </div>
+                </ModalScrollable>
+            )}
             <div className="space-y-2">
                 <div>
                     <GrayFadedMenuBanner
@@ -79,29 +114,35 @@ export default function MeasureContainer({ measure }) {
                             measure.abbreviation
                         )}
                     >
-                        <div className="flex items-center space-x-2">
-                            <InertiaLink
-                                className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
-                                href={"/measure/" + measure.hashed_id + "/edit"}
-                            >
-                                Edit
-                            </InertiaLink>
-                            <button
-                                onClick={() =>
-                                    console.log("Publish has been clicked!")
-                                }
-                                className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
-                            >
-                                Publish
-                            </button>
-                        </div>
+                        {!measure.is_published && (
+                            <div className="flex items-center space-x-2">
+                                <InertiaLink
+                                    className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
+                                    href={
+                                        "/measure/" +
+                                        measure.hashed_id +
+                                        "/edit"
+                                    }
+                                >
+                                    Edit
+                                </InertiaLink>
+                                <button
+                                    onClick={() => toggleConfirmPublish()}
+                                    className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
+                                >
+                                    Publish
+                                </button>
+                            </div>
+                        )}
                     </GrayFadedMenuBanner>
                     <div className="bg-white w-full">
                         <WhiteMenuBanner title="Details">
-                            <ToggleButton
-                                onHandleClick={toggleModal}
-                                text="Update"
-                            />
+                            {!measure.is_published && (
+                                <ToggleButton
+                                    onHandleClick={toggleModal}
+                                    text="Update"
+                                />
+                            )}
                         </WhiteMenuBanner>
                         <div className="px-6 pt-2 pb-4 space-y-4 text-lg text-gray-600">
                             <div className="flex items-center justify-between">

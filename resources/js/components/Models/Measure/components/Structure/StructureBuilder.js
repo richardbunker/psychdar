@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { v4 as uuidv4 } from "uuid";
 import SaveSubmitButton from "../../../../UI/forms/SaveSubmitButton";
-import ModalCentered from "../../../../UI/modals/Centered";
-import Checkbox from "../../../../UI/inputs/Checkbox";
 import ItemBuilder from "../../../Measure/components/Structure/Item/Builder";
 import ItemPreview from "../../../Measure/components/Structure/Item/Preview";
 import PreviewBuilder from "../../../Measure/components/Structure/Preview/Bulider";
@@ -13,6 +11,7 @@ import TextInput from "../../../../UI/inputs/TextInput";
 import CancelableContainer from "../../../../UI/containers/CancelableContainer";
 import GrayFadedMenuBanner from "../../../../UI/GrayFadedMenuBanner";
 import GrayFadedBanner from "../../../../UI/GrayFadedBanner";
+import ModalScrollable from "../../../../UI/modals/Scrollable";
 
 export default function StructureBuilder(props) {
     const [confirmCreateModal, setConfirmCreateModal] = useState(false);
@@ -141,11 +140,7 @@ export default function StructureBuilder(props) {
     return (
         <div className="w-full">
             {confirmCreateModal && (
-                <ModalCentered
-                    maxWidth="max-w-sm"
-                    heading="Confirm"
-                    toggleModal={toggleConfirmCreate}
-                >
+                <ModalScrollable heading="Please Confirm">
                     <div className="flex items-center justify-end space-x-2">
                         <button
                             className="w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
@@ -155,20 +150,20 @@ export default function StructureBuilder(props) {
                         </button>
                         <SaveSubmitButton onHandleClick={submitMeasure} />
                     </div>
-                </ModalCentered>
+                </ModalScrollable>
             )}
             <GrayFadedMenuBanner title="Measure Builder">
                 {inputFields.validate() && (
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-2 text-sm">
                         <button
                             onClick={togglePreview}
-                            className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
+                            className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-white to-gray-400 w-full uppercase py-2"
                         >
                             Preview
                         </button>
                         <button
                             onClick={() => toggleConfirmCreate()}
-                            className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
+                            className="bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase"
                         >
                             Save
                         </button>
