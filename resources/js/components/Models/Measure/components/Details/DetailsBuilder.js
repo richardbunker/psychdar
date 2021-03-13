@@ -96,7 +96,7 @@ export default function DetailsBuilder(props) {
             <div className="space-y-1">
                 <div className="flex items-center space-x-2 w-full justify-between">
                     <div className="text-gray-600 font-semibold w-1/3">
-                        Chronbach's Alpha
+                        Chronbach's Alpha*
                     </div>
                     <input
                         value={details.alpha === null ? "" : details.alpha}
@@ -107,9 +107,14 @@ export default function DetailsBuilder(props) {
                         required
                     />
                 </div>
-                {!inputFields.alpha && (
-                    <ErrorInput error="Must be a number between 0 and 1." />
-                )}
+                <div className="flex items-center justify-between py-1">
+                    <label className="w-full text-sm relative text-gray-500">
+                        * required for effect size calculation.
+                    </label>
+                    {!inputFields.alpha && (
+                        <ErrorInput error="Must be a number between 0 and 1." />
+                    )}
+                </div>
             </div>
             <div className="space-y-1">
                 <TextInput

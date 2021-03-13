@@ -28,7 +28,6 @@ class UserClientsController extends Controller
                 'client' => Client::where('id', Hasher::decode($hashed_client_id))
                                 ->with('treatments.assessments')
                                 ->with('measures')
-                                ->with('clinic')
                                 ->first(),
                 'userPublishedMeasures' => Auth::user()->publishedMeasures,
             ]);            

@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Clinic;
+use App\Models\User;
 use App\Helpers\Hasher;
 use App\Models\Measure;
-use App\Models\Clinician;
 use App\Models\Treatment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -50,14 +49,14 @@ class Client extends Model
         return json_decode($value);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function treatments()
     {
         return $this->hasMany(Treatment::class);
-    }
-
-    public function clinic()
-    {
-        return $this->belongsTo(Clinic::class);
     }
     
     public function measures()

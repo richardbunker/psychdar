@@ -54,11 +54,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Measure::class);
     }
-
-    public function clinics()
-    {
-        return $this->hasMany(Clinic::class);
-    }
     
     public function clients()
     {

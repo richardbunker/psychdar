@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import GrayFadedBanner from "../../../UI/GrayFadedBanner";
 import TreatmentEpisodesRow from "../../../Stats/row/TreatmentEpisodes";
-import TotalConsultationsRow from "../../../Stats/row/TotalConsultations";
 import TotalAssessmentsRow from "../../../Stats/row/TotalAssessments";
 import { sum } from "../../../Stats/Stats";
 import UrlRow from "../../../Stats/row/Url";
@@ -53,15 +52,6 @@ export default function ClientContainer(props) {
                         iconColour="text-pink-400"
                         number={props.client.treatments.length}
                     />
-                    <TotalConsultationsRow
-                        iconSize="10"
-                        iconColour="text-indigo-400"
-                        number={props.client.treatments
-                            .map(treatment => {
-                                return treatment.consultation_count;
-                            })
-                            .reduce(sum, 0)}
-                    />
                     <TotalAssessmentsRow
                         iconSize="10"
                         iconColour="text-green-400"
@@ -81,7 +71,7 @@ export default function ClientContainer(props) {
                     <div className="flex items-center justify-between w-full">
                         {selectedMeasure.length === 0 && (
                             <SelectInput
-                                title="Add Measure URL"
+                                title="Add Measure"
                                 onSelect={onSelect}
                                 defaultText="Please Select..."
                                 defaultValue="Please Select..."

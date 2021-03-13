@@ -19,6 +19,7 @@ class CreateMeasuresTable extends Migration
             $table->string('abbreviation')->nullable();
             $table->json('structure');
             $table->json('details')->nullable();
+            $table->string('alpha')->nullable();
             $table->boolean('is_published')->default(false);
             $table->softDeletes();
             $table->timestamps();

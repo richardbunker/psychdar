@@ -156,22 +156,32 @@ export default function StructureBuilder(props) {
                 </ModalScrollable>
             )}
             <GrayFadedMenuBanner title="Measure Builder">
-                {inputFields.validate() && (
-                    <div className="flex items-center space-x-2 text-sm">
-                        <button
-                            onClick={togglePreview}
-                            className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-white to-gray-400 w-full uppercase py-2"
-                        >
-                            Preview
-                        </button>
-                        <button
-                            onClick={() => toggleConfirmCreate()}
-                            className="bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase"
-                        >
-                            Save
-                        </button>
-                    </div>
-                )}
+                <div className="flex items-center space-x-2 text-sm">
+                    <button
+                        disabled={!inputFields.validate()}
+                        onClick={togglePreview}
+                        className={
+                            "bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-white to-gray-400 w-full uppercase py-2" +
+                            (inputFields.validate()
+                                ? ""
+                                : " cursor-not-allowed opacity-50")
+                        }
+                    >
+                        Preview
+                    </button>
+                    <button
+                        disabled={!inputFields.validate()}
+                        onClick={() => toggleConfirmCreate()}
+                        className={
+                            "bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase" +
+                            (inputFields.validate()
+                                ? ""
+                                : " cursor-not-allowed opacity-50")
+                        }
+                    >
+                        Save
+                    </button>
+                </div>
             </GrayFadedMenuBanner>
             <div className="p-4 w-full text-lg space-y-6 bg-white">
                 <div className="space-y-1">

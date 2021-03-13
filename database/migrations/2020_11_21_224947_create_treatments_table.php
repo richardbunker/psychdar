@@ -16,9 +16,7 @@ class CreateTreatmentsTable extends Migration
         Schema::create('treatments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('clinic_id');
             $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('consultation_count')->default(0);
             $table->timestamp('ended_at')->nullable();
             $table->timestamps();
         });

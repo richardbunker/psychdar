@@ -1,21 +1,20 @@
 import React, { useState } from "react";
-import Sidebar from "../../components/UI/sidebar/Sidebar";
+import Sidebar from "../../components/UI/navs/Sidebar";
 import MainContainer from "../../components/UI/containers/MainContainer";
 import UserStats from "../../components/Models/User/UserStats";
 import AdsContainer from "../../components/UI/ads/AdsContainer";
 import ScrollableScreenContainer from "../../components/UI/containers/ScrollableScreenContainer";
+import MobileNav from "../../components/UI/navs/MobileNav";
 
 export default function UserDashboard(props) {
-    // console.log(props.user);
     return (
         <MainContainer>
-            <div className="flex w-full">
-                <Sidebar tab="dashboard" />
-                <ScrollableScreenContainer>
-                    <UserStats user={props.user} />
-                </ScrollableScreenContainer>
-                <AdsContainer />
-            </div>
+            <Sidebar tab="dashboard" />
+            <MobileNav tab="dashboard" />
+            <ScrollableScreenContainer>
+                <UserStats user={props.user} />
+            </ScrollableScreenContainer>
+            <AdsContainer />
         </MainContainer>
     );
 }
