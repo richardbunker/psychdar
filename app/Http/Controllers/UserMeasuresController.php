@@ -62,7 +62,7 @@ class UserMeasuresController extends Controller
         $measureToUpdate->name = $request->structure["name"];
         $measureToUpdate->structure = json_encode($request->structure);
         if ($request->itemsEdited) {
-            $measureToUpdate->details = null;         
+            $measureToUpdate->scales = null;         
         }
         $measureToUpdate->is_private = $request->isPrivate;
         $measureToUpdate->save();
