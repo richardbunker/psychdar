@@ -76202,7 +76202,7 @@ function StructureEditor(_ref) {
     checked: isPrivate
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "leading-normal max-w-sm py-2 text-gray-500 text-sm"
-  }, "Uncheck to make this measure public. Public measures can be viewed and accessed by other members of the Psychdar community."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Uncheck to make this measure public. Public measures can be viewed and implemented by other Psychdar users. Sharing is caring! \u2764\uFE0F"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__["default"], {
     title: "Items"
