@@ -10,7 +10,6 @@ use App\Helpers\ApiError;
 use App\Models\Clinician;
 use App\Models\Treatment;
 use App\Models\Assessment;
-use App\Models\Consultation;
 use App\Helpers\CanUserAccess;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
