@@ -9,13 +9,13 @@ export default function SaveSubmitButton(props) {
     return (
         <>
             {isClicked ? (
-                <div className="bg-gradient-to-tl font-semibold from-teal-500 px-3 py-2 rounded text-white to-teal-400 uppercase animate-pulse cursor-wait">
+                <div className="font-semibold hover:bg-teal-500 px-3 py-2 rounded text-white bg-teal-400 uppercase animate-pulse cursor-wait">
                     Saving...
                 </div>
             ) : (
                 <button
                     onClick={handleClick}
-                    className="bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase"
+                    className="font-semibold hover:bg-teal-500 px-3 py-2 rounded text-white bg-teal-400 uppercase"
                 >
                     {props.label}
                 </button>

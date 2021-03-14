@@ -70,7 +70,7 @@ export default function DetailsBuilder(props) {
                         <span>Alpha Score</span>
                         <QuestionMark
                             position=" top-0 left-0 w-96"
-                            text="A Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant."
+                            text="Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant."
                             size={8}
                         />
                     </div>
@@ -104,13 +104,13 @@ export default function DetailsBuilder(props) {
                 <div className="w-full flex items-center justify-end space-x-2">
                     <button
                         onClick={() => props.toggleModal()}
-                        className="bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase hover:shadow hover:text-gray-200"
+                        className="font-semibold bg-gray-400 px-3 py-2 rounded text-white hover:bg-gray-500 uppercase hover:shadow"
                     >
                         Cancel
                     </button>
                     <button
                         onClick={updateDetails}
-                        className="bg-gradient-to-tl font-semibold from-blue-500 px-3 py-2 rounded text-white to-blue-400 uppercase hover:shadow hover:text-gray-200"
+                        className="font-semibold bg-blue-400 px-3 py-2 rounded text-white hover:bg-blue-500 uppercase hover:shadow hover:text-gray-200"
                     >
                         Update
                     </button>

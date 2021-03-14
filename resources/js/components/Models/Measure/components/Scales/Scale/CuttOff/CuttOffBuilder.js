@@ -38,17 +38,23 @@ export default function CuttOffBuilder(props) {
             setInputFields(prevState => {
                 return { ...prevState, [field]: true };
             });
+            setValues(prevState => {
+                return {
+                    ...prevState,
+                    [field]: Number(string)
+                };
+            });
         } else {
             setInputFields(prevState => {
                 return { ...prevState, [field]: false };
             });
+            setValues(prevState => {
+                return {
+                    ...prevState,
+                    [field]: string
+                };
+            });
         }
-        setValues(prevState => {
-            return {
-                ...prevState,
-                [field]: Number(string)
-            };
-        });
     };
 
     const validate = field => {

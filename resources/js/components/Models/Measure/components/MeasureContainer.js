@@ -121,7 +121,7 @@ export default function MeasureContainer({ measure }) {
                     </div>
                     <div className="flex items-center justify-end space-x-2">
                         <button
-                            className="w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
+                            className="w-24 font-semibold hover:bg-gray-500 px-3 py-2 rounded text-white bg-gray-400 uppercase"
                             onClick={() => toggleConfirmPublish()}
                         >
                             Cancel
@@ -143,14 +143,14 @@ export default function MeasureContainer({ measure }) {
                     {!measure.is_published && (
                         <div className="flex items-center space-x-2">
                             <InertiaLink
-                                className="bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2"
+                                className="flex font-semibold bg-gray-400 items-center px-3 rounded text-sm text-white hover:bg-gray-500 w-full uppercase py-2"
                                 href={"/measure/" + measure.hashed_id + "/edit"}
                             >
                                 Edit
                             </InertiaLink>
                             <button
                                 onClick={() => toggleConfirmPublish()}
-                                className="bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
+                                className="flex font-semibold bg-teal-400 items-center px-3 rounded text-sm text-white hover:bg-teal-500 w-full uppercase py-2"
                             >
                                 Publish
                             </button>
@@ -159,12 +159,10 @@ export default function MeasureContainer({ measure }) {
                 </GrayFadedMenuBanner>
                 <div>
                     <GrayFadedMenuBanner title="Details">
-                        {!measure.is_published && (
-                            <ToggleButton
-                                onHandleClick={toggleDetailsModal}
-                                text="Update"
-                            />
-                        )}
+                        <ToggleButton
+                            onHandleClick={toggleDetailsModal}
+                            text="Update"
+                        />
                     </GrayFadedMenuBanner>
                     <div className="py-4 px-6 bg-gray-700 text-lg space-y-4 leading-normal text-gray-200">
                         <div className="flex items-center justify-between">

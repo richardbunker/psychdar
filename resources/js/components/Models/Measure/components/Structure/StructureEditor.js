@@ -14,6 +14,7 @@ import GrayFadedBanner from "../../../../UI/GrayFadedBanner";
 import { returnEmptyStringIfNullValue } from "../../../../../utilities/HelperFunctions";
 import ModalScrollable from "../../../../UI/modals/Scrollable";
 import Checkbox from "../../../../UI/inputs/Checkbox";
+import PreviewBuilder from "./Preview/Bulider";
 
 export default function StructureEditor({ measure }) {
     const { structure } = measure;
@@ -26,6 +27,7 @@ export default function StructureEditor({ measure }) {
     const [items, setItems] = useState(structure.items);
     const [itemsEdited, setItemsEdited] = useState(false);
     const [displayItemBuilder, setDisplayItemBuilder] = useState(false);
+    const [displayPreview, setDisplayPreview] = useState(false);
     const [inputFields, setInputFields] = useState({
         name: true,
         instructions: true,
@@ -130,6 +132,10 @@ export default function StructureEditor({ measure }) {
         setConfirmEditModal(prevState => !prevState);
     };
 
+    const togglePreview = () => {
+        setDisplayPreview(prevState => !prevState);
+    };
+
     const submitUpdatedMeasure = () => {
         const updatedMeasure = {
             hashedId: measure.hashed_id,
@@ -173,19 +179,31 @@ export default function StructureEditor({ measure }) {
                     </div>
                 </ModalScrollable>
             )}
+            {displayPreview && (
+                <PreviewBuilder
+                    toggle={togglePreview}
+                    measure={{ structure: { name, instructions, items } }}
+                />
+            )}
             <div>
                 <GrayFadedMenuBanner title="Measure Builder">
                     {inputFields.validate() && (
                         <div className="flex items-center space-x-2 text-sm">
+                            <button
+                                onClick={() => togglePreview()}
+                                className="font-semibold bg-gray-400 px-3 py-2 rounded text-white hover:bg-gray-500 uppercase"
+                            >
+                                Preview
+                            </button>
                             <InertiaLink
-                                className="bg-gradient-to-tl flex font-semibold from-red-500 items-center px-3 rounded text-white to-red-400 w-full uppercase py-2"
+                                className="flex font-semibold bg-red-400 items-center px-3 rounded text-white hover:bg-red-500 w-full uppercase py-2"
                                 href={"/measure/" + measure.hashed_id}
                             >
                                 Cancel
                             </InertiaLink>
                             <button
                                 onClick={() => toggleConfirmEditModal()}
-                                className="bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase"
+                                className="font-semibold bg-green-400 px-3 py-2 rounded text-white hover:bg-green-500 uppercase"
                             >
                                 Save
                             </button>

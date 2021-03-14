@@ -4,9 +4,9 @@
 
 -   User uploaded/created questionnaires
     -   gets out of the copyright issues and accepting payment for said questionnaires
--   Perhaps flag if a questionnaire is to be used as an outcome measure upon questionnaire creation
 -   Can only calculate clinician effect size per 1 measure (e.g., CORE10 or ORS)
     -   will need to be able to set the clinician's outcome measure to then go ahead and filter the results
+    -
 
 ## Measuers
 

@@ -72791,7 +72791,7 @@ function DetailsBuilder(props) {
     className: "flex font-semibold items-center space-x-1 text-gray-600 w-1/3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_2__["default"], {
     position: " top-0 left-0 w-96",
-    text: "A Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
+    text: "Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
     size: 8
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: details.alpha === null ? "" : details.alpha,
@@ -72823,10 +72823,10 @@ function DetailsBuilder(props) {
     onClick: function onClick() {
       return props.toggleModal();
     },
-    className: "bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase hover:shadow hover:text-gray-200"
+    className: "font-semibold bg-gray-400 px-3 py-2 rounded text-white hover:bg-gray-500 uppercase hover:shadow"
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: updateDetails,
-    className: "bg-gradient-to-tl font-semibold from-blue-500 px-3 py-2 rounded text-white to-blue-400 uppercase hover:shadow hover:text-gray-200"
+    className: "font-semibold bg-blue-400 px-3 py-2 rounded text-white hover:bg-blue-500 uppercase hover:shadow hover:text-gray-200"
   }, "Update")));
 }
 
@@ -73020,7 +73020,7 @@ function Slider(props) {
   }, props.item.subtitle), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-between py-4 space-x-2 text-base"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pr-2 text-gray-500 text-center w-1/4"
+    className: "pr-2 text-gray-500 text-center w-1/4 font-semibold"
   }, left.label), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onChange: function onChange(e) {
       return props.handleOnChange(Number(e.target.value));
@@ -73031,7 +73031,7 @@ function Slider(props) {
     min: left.value,
     max: right.value
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pl-2 text-gray-500 text-center w-1/4"
+    className: "pl-2 text-gray-500 text-center w-1/4 font-semibold"
   }, right.label)));
 }
 
@@ -73238,7 +73238,7 @@ function MeasureContainer(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "PLEASE NOTE:"), " Once published, you will be unable to edit the measure nor update its details. Would you like to proceed?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase",
+    className: "w-24 font-semibold hover:bg-gray-500 px-3 py-2 rounded text-white bg-gray-400 uppercase",
     onClick: function onClick() {
       return toggleConfirmPublish();
     }
@@ -73252,16 +73252,16 @@ function MeasureContainer(_ref) {
   }, !measure.is_published && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    className: "bg-gradient-to-tl flex font-semibold from-gray-500 items-center px-3 rounded text-sm text-white to-gray-400 w-full uppercase py-2",
+    className: "flex font-semibold bg-gray-400 items-center px-3 rounded text-sm text-white hover:bg-gray-500 w-full uppercase py-2",
     href: "/measure/" + measure.hashed_id + "/edit"
   }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return toggleConfirmPublish();
     },
-    className: "bg-gradient-to-tl flex font-semibold from-teal-500 items-center px-3 rounded text-sm text-white to-teal-400 w-full uppercase py-2"
+    className: "flex font-semibold bg-teal-400 items-center px-3 rounded text-sm text-white hover:bg-teal-500 w-full uppercase py-2"
   }, "Publish"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_13__["default"], {
     title: "Details"
-  }, !measure.is_published && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ToggleButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ToggleButton__WEBPACK_IMPORTED_MODULE_12__["default"], {
     onHandleClick: toggleDetailsModal,
     text: "Update"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73569,15 +73569,17 @@ function CuttOffBuilder(props) {
       setInputFields(function (prevState) {
         return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, true));
       });
+      setValues(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, Number(string)));
+      });
     } else {
       setInputFields(function (prevState) {
         return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, false));
       });
+      setValues(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, string));
+      });
     }
-
-    setValues(function (prevState) {
-      return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, Number(string)));
-    });
   };
 
   var validate = function validate(field) {
@@ -74188,13 +74190,29 @@ function ScaleScorer(props) {
     }
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between"
+  var calculateCuttOff = function calculateCuttOff(scaleScore) {
+    return props.scale.cuttOffs.map(function (cuttOff) {
+      if (scaleScore >= cuttOff.min && scaleScore <= cuttOff.max) {
+        return '"' + cuttOff.label + '"';
+      }
+    });
+  };
+
+  var calculate = function calculate() {
+    return isNaN(calculateScaleScore()) ? 0 : calculateScaleScore();
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between font-semibold"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-teal-300"
   }, props.scale.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center space-x-2"
+  }, props.scale.cuttOffs && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-300 italic"
+  }, calculateCuttOff(calculate())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-blue-400"
-  }, isNaN(calculateScaleScore()) ? 0 : calculateScaleScore()));
+  }, calculate()))));
 }
 
 /***/ }),
@@ -75910,6 +75928,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
 /* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
 /* harmony import */ var _UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../UI/inputs/Checkbox */ "./resources/js/components/UI/inputs/Checkbox.js");
+/* harmony import */ var _Preview_Bulider__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Preview/Bulider */ "./resources/js/components/Models/Measure/components/Structure/Preview/Bulider.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -75935,6 +75954,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -75991,7 +76011,12 @@ function StructureEditor(_ref) {
       displayItemBuilder = _useState14[0],
       setDisplayItemBuilder = _useState14[1];
 
-  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState16 = _slicedToArray(_useState15, 2),
+      displayPreview = _useState16[0],
+      setDisplayPreview = _useState16[1];
+
+  var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     name: true,
     instructions: true,
     items: true,
@@ -75999,9 +76024,9 @@ function StructureEditor(_ref) {
       return this.name && this.instructions && this.items;
     }
   }),
-      _useState16 = _slicedToArray(_useState15, 2),
-      inputFields = _useState16[0],
-      setInputFields = _useState16[1];
+      _useState18 = _slicedToArray(_useState17, 2),
+      inputFields = _useState18[0],
+      setInputFields = _useState18[1];
 
   var validateString = function validateString(string, minLength, field) {
     if (string.length >= minLength) {
@@ -76113,6 +76138,12 @@ function StructureEditor(_ref) {
     });
   };
 
+  var togglePreview = function togglePreview() {
+    setDisplayPreview(function (prevState) {
+      return !prevState;
+    });
+  };
+
   var submitUpdatedMeasure = function submitUpdatedMeasure() {
     var updatedMeasure = {
       hashedId: measure.hashed_id,
@@ -76144,18 +76175,32 @@ function StructureEditor(_ref) {
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Confirm & Save",
     onHandleClick: submitUpdatedMeasure
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }))), displayPreview && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Preview_Bulider__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    toggle: togglePreview,
+    measure: {
+      structure: {
+        name: name,
+        instructions: instructions,
+        items: items
+      }
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_11__["default"], {
     title: "Measure Builder"
   }, inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-2 text-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
-    className: "bg-gradient-to-tl flex font-semibold from-red-500 items-center px-3 rounded text-white to-red-400 w-full uppercase py-2",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return togglePreview();
+    },
+    className: "font-semibold bg-gray-400 px-3 py-2 rounded text-white hover:bg-gray-500 uppercase"
+  }, "Preview"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
+    className: "flex font-semibold bg-red-400 items-center px-3 rounded text-white hover:bg-red-500 w-full uppercase py-2",
     href: "/measure/" + measure.hashed_id
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return toggleConfirmEditModal();
     },
-    className: "bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase"
+    className: "font-semibold bg-green-400 px-3 py-2 rounded text-white hover:bg-green-500 uppercase"
   }, "Save"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "p-4 w-full text-lg space-y-6 bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -77089,7 +77134,7 @@ function ToggleButton(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleClick,
-    className: "bg-green-400 hover:bg-green-500 hover:shadow px-2 py-1 rounded text-white text-sm uppercase font-semibold"
+    className: "bg-blue-400 hover:bg-blue-500 hover:shadow px-2 py-1 rounded text-white text-sm uppercase font-semibold"
   }, props.text);
 }
 
@@ -77267,10 +77312,10 @@ function SaveSubmitButton(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, isClicked ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-gradient-to-tl font-semibold from-teal-500 px-3 py-2 rounded text-white to-teal-400 uppercase animate-pulse cursor-wait"
+    className: "font-semibold hover:bg-teal-500 px-3 py-2 rounded text-white bg-teal-400 uppercase animate-pulse cursor-wait"
   }, "Saving...") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: handleClick,
-    className: "bg-gradient-to-tl font-semibold from-green-500 px-3 py-2 rounded text-white to-green-400 uppercase"
+    className: "font-semibold hover:bg-teal-500 px-3 py-2 rounded text-white bg-teal-400 uppercase"
   }, props.label));
 }
 

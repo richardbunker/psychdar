@@ -56,8 +56,6 @@ Route::get('/query/client', function () {
 Auth::routes();
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
-Route::post('/c/login', [\App\Http\Controllers\Auth\LoginController::class, 'clinicianLogin'])->name('clinicianLogin');
-Route::get('/c/login', [App\Http\Controllers\Auth\LoginController::class, 'showClinicianLoginForm'])->name('clinicianLogin');
 
 
 // USER ROUTES
@@ -65,17 +63,6 @@ Route::group(['middleware' => ['auth:web']], function () {
     
     //Dashboard
     Route::get('/dashboard', [App\Http\Controllers\UserDashboardController::class, 'index'])->name('userDashboard');
-    Route::get('/api/dashboard/organisation/{hashed_organisation_id}/clinics', [App\Http\Controllers\UserDashboardController::class, 'clinics']);
-    Route::get('/api/dashboard/organisation/{hashed_organisation_id}/clinicians', [App\Http\Controllers\UserDashboardController::class, 'clinicians']);
-    Route::get('/api/dashboard/organisation/{hashed_organisation_id}/clients', [App\Http\Controllers\UserDashboardController::class, 'clients']);
-    Route::get('/api/dashboard/organisation/{hashed_organisation_id}/treatments', [App\Http\Controllers\UserDashboardController::class, 'treatments']);
-    Route::get('/api/dashboard/organisation/{hashed_organisation_id}/consultations', [App\Http\Controllers\UserDashboardController::class, 'consultations']);
-    Route::get('/api/dashboard/organisation/{hashed_organisation_id}/assessments', [App\Http\Controllers\UserDashboardController::class, 'assessments']);
-
-    // Clinics
-    Route::get('/clinics', [App\Http\Controllers\UserClinicsController::class, 'index']);
-    Route::get('/api/organisation/{hashed_organisation_id}/clinics', [App\Http\Controllers\UserClinicsController::class, 'clinics']);
-    Route::get('/clinic/{hashed_clinic_id}', [App\Http\Controllers\UserClinicsController::class, 'show']);
     
     
     // Clients
@@ -104,33 +91,10 @@ Route::group(['middleware' => ['auth:web']], function () {
     // AnchorsGroups
     Route::get('/api/anchor-groups/{type}', [App\Http\Controllers\AnchorGroupController::class, 'index']);
     Route::post('/api/anchor-group/create', [App\Http\Controllers\AnchorGroupController::class, 'store']);
-});
 
-
-// SHARED AUTH ROUTES
-Route::group(['middleware' => ['auth:web,clinician']], function () {
-
-    // Check User Type
-    Route::get('/api/role', [App\Http\Controllers\RoleCheckController::class, 'index']);
 
     // Effect Sizes
     Route::get('/api/pre_post/{hashed_clinician_id}/{questionnaire_name}', [App\Http\Controllers\ClinicianEffectSizeController::class, 'show']);
-
-});
-
-// CLINICIAN ROUTES
-Route::group(['middleware' => ['auth:clinician']], function () {
-
-    // Dashboard
-    Route::get('/c/dashboard', [\App\Http\Controllers\ClinicianDashboardController::class, 'index'])->name('clinicianDashboard');
-
-    // Clients
-    Route::get('/c/clients', [App\Http\Controllers\ClinicianClientsController::class, 'index']);
-    Route::get('/c/client/{hashed_client_id}', [App\Http\Controllers\ClinicianClientsController::class, 'show']);
-    Route::post('/api/c/client-active-status/{hashed_client_id}', [App\Http\Controllers\ClinicianClientsController::class, 'updateActiveStatusAPI']);
-    Route::post('/api/c/client-url-status/{hashed_client_id}', [App\Http\Controllers\ClinicianClientsController::class, 'updateUrlStatusAPI']);
-    Route::post('/api/c/client-stats-status/{hashed_client_id}', [App\Http\Controllers\ClinicianClientsController::class, 'updateStatsStatusAPI']);
-
 });
 
 

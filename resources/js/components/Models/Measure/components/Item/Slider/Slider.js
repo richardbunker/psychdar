@@ -16,7 +16,7 @@ export default function Slider(props) {
                 {props.item.subtitle}
             </div>
             <div className="flex items-center justify-between py-4 space-x-2 text-base">
-                <div className="pr-2 text-gray-500 text-center w-1/4">
+                <div className="pr-2 text-gray-500 text-center w-1/4 font-semibold">
                     {left.label}
                 </div>
                 <input
@@ -27,7 +27,7 @@ export default function Slider(props) {
                     min={left.value}
                     max={right.value}
                 />
-                <div className="pl-2 text-gray-500 text-center w-1/4">
+                <div className="pl-2 text-gray-500 text-center w-1/4 font-semibold">
                     {right.label}
                 </div>
             </div>
