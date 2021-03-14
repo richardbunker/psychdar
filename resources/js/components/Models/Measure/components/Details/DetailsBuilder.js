@@ -1,24 +1,17 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import {
-    validateChronbachsAlpha,
-    validateString
-} from "../../../../../utilities/HelperFunctions";
-import CancelableContainer from "../../../../UI/containers/CancelableContainer";
+import React, { useEffect, useState } from "react";
+import { validateChronbachsAlpha } from "../../../../../utilities/HelperFunctions";
+import QuestionMark from "../../../../UI/dropdowns/QuestionMark";
 import ErrorInput from "../../../../UI/inputs/ErrorInput";
 import StringCounter from "../../../../UI/inputs/StringCounter";
 import TextInput from "../../../../UI/inputs/TextInput";
-import ScaleBuilder from "../../../Measure/components/Details/Scales/ScaleBuilder";
-import ScalePreview from "./Scales/ScalePreview";
 
 export default function DetailsBuilder(props) {
     const [details, setDetails] = useState({
         alpha: "",
-        author: "",
-        scales: []
+        author: ""
     });
 
-    useState(() => {
+    useEffect(() => {
         if (props.measure.details) {
             setDetails(props.measure.details);
         }
@@ -27,13 +20,10 @@ export default function DetailsBuilder(props) {
     const [inputFields, setInputFields] = useState({
         alpha: true,
         author: true,
-        scales: true,
         validate() {
-            return this.alpha && this.author && this.scales;
+            return this.alpha && this.author;
         }
     });
-
-    const [displayScaleBuilder, setDisplayScaleBuilder] = useState(false);
 
     const updateAlpha = string => {
         if (string.length <= 4) {
@@ -50,7 +40,7 @@ export default function DetailsBuilder(props) {
     };
 
     const updateAuthor = string => {
-        if (string.length <= 100) {
+        if (string.length <= 200) {
             setDetails(prevState => {
                 return {
                     ...prevState,
@@ -58,25 +48,6 @@ export default function DetailsBuilder(props) {
                 };
             });
         }
-    };
-
-    const toggleScaleBuilder = () => {
-        setDisplayScaleBuilder(prevState => !prevState);
-    };
-
-    const onSubmitScale = scaleObject => {
-        setDetails(prevState => {
-            return { ...prevState, scales: [...prevState.scales, scaleObject] };
-        });
-        setDisplayScaleBuilder(false);
-    };
-
-    const onDeleteScale = index => {
-        let updatedScales = [...details.scales];
-        updatedScales.splice(index, 1);
-        setDetails(prevState => {
-            return { ...prevState, scales: updatedScales };
-        });
     };
 
     const updateDetails = () => {
@@ -94,9 +65,14 @@ export default function DetailsBuilder(props) {
     return (
         <div className="space-y-4">
             <div className="space-y-1">
-                <div className="flex items-center space-x-2 w-full justify-between">
-                    <div className="text-gray-600 font-semibold w-1/3">
-                        Chronbach's Alpha*
+                <div className="flex items-center space-x-2 w-full justify-between leading-normal">
+                    <div className="flex font-semibold items-center space-x-1 text-gray-600 w-1/3">
+                        <span>Alpha Score</span>
+                        <QuestionMark
+                            position=" top-0 left-0 w-96"
+                            text="A Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant."
+                            size={8}
+                        />
                     </div>
                     <input
                         value={details.alpha === null ? "" : details.alpha}
@@ -107,72 +83,23 @@ export default function DetailsBuilder(props) {
                         required
                     />
                 </div>
-                <div className="flex items-center justify-between py-1">
-                    <label className="w-full text-sm relative text-gray-500">
-                        * required for effect size calculation.
-                    </label>
-                    {!inputFields.alpha && (
-                        <ErrorInput error="Must be a number between 0 and 1." />
-                    )}
-                </div>
+                {!inputFields.alpha && (
+                    <ErrorInput error="Must be a number between 0 and 1." />
+                )}
             </div>
             <div className="space-y-1">
                 <TextInput
                     value={details.author === null ? "" : details.author}
-                    title="Author/Reference"
+                    title="Author & Reference"
+                    placeholder="Lovibond, S.H. & Lovibond, P.F. (1995).  Manual for the Depression Anxiety Stress Scales. (2nd. Ed.)  Sydney: Psychology Foundation."
                     handleOnTextChange={e => updateAuthor(e.target.value)}
                 />
                 <StringCounter
                     number={details.author === null ? 0 : details.author.length}
-                    max="100"
+                    max="200"
                     isValid={true}
                 />
             </div>
-            {details.scales.length > 0 && (
-                <div className="flex items-start space-x-2 w-full">
-                    <div className="text-gray-600 font-semibold w-1/3">
-                        Scales
-                    </div>
-                    <div className="space-y-3 w-full">
-                        <div className="flex items-start justify-between">
-                            <div className="text-gray-500 w-full font-semibold flex flex-col space-y-1">
-                                {details.scales.map((scale, index) => {
-                                    return (
-                                        <ScalePreview
-                                            index={index}
-                                            deleteScaleItem={onDeleteScale}
-                                            key={uuidv4()}
-                                            scale={scale}
-                                        />
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {!displayScaleBuilder && (
-                <div className="w-full">
-                    <button
-                        onClick={() => toggleScaleBuilder()}
-                        className="border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-                    >
-                        Add Scale
-                    </button>
-                </div>
-            )}
-            {displayScaleBuilder && (
-                <CancelableContainer
-                    heading="Scale Details"
-                    toggleSelf={toggleScaleBuilder}
-                >
-                    <ScaleBuilder
-                        toggleSelf={setDisplayScaleBuilder}
-                        onSubmitScale={onSubmitScale}
-                        items={props.measure.structure.items}
-                    />
-                </CancelableContainer>
-            )}
             {inputFields.validate() && (
                 <div className="w-full flex items-center justify-end space-x-2">
                     <button

@@ -61,7 +61,9 @@ class UserMeasuresController extends Controller
         $measureToUpdate = Measure::find(Hasher::decode($request->hashedId));
         $measureToUpdate->name = $request->structure["name"];
         $measureToUpdate->structure = json_encode($request->structure);
-        $measureToUpdate->details = null;
+        if ($request->itemsEdited) {
+            $measureToUpdate->details = null;         
+        }
         $measureToUpdate->is_private = $request->isPrivate;
         $measureToUpdate->save();
         
@@ -72,6 +74,15 @@ class UserMeasuresController extends Controller
     {
         $measureToUpdate = Measure::find(Hasher::decode($request->hashedId));
         $measureToUpdate->details = json_encode($request->details);
+        $measureToUpdate->save();
+                
+        return Redirect::route('showMeasure', $measureToUpdate->hashed_id);  
+    }
+
+    public function updateScales(Request $request)
+    {
+        $measureToUpdate = Measure::find(Hasher::decode($request->hashedId));
+        $measureToUpdate->scales = json_encode($request->scales);
         $measureToUpdate->save();
                 
         return Redirect::route('showMeasure', $measureToUpdate->hashed_id);  

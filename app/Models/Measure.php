@@ -37,6 +37,11 @@ class Measure extends Model
         return json_decode($value);
     }
 
+    public function getScalesAttribute($value)
+    {
+        return json_decode($value);
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class);

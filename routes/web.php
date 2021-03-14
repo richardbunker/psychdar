@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/measure/{hashed_measure_id}/edit', [App\Http\Controllers\UserMeasuresController::class, 'edit'])->name('editMeasure');
     Route::post('/measure/edit', [App\Http\Controllers\UserMeasuresController::class, 'update'])->name('updateMeasure');
     Route::post('/measures/details', [App\Http\Controllers\UserMeasuresController::class, 'updateDetails']);
+    Route::post('/measure/scales', [App\Http\Controllers\UserMeasuresController::class, 'updateScales']);
     Route::post('/measure/publish', [App\Http\Controllers\UserMeasuresController::class, 'publishMeasure']);
 
 

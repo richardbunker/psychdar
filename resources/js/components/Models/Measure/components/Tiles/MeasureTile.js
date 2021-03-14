@@ -8,15 +8,28 @@ export default function MeasureTile(props) {
                 style={{ height: 190 }}
                 className="w-full p-6 bg-white flex flex-col space-y-4 items-center justify-center relative"
             >
-                {props.measure.is_published ? (
-                    <div className="absolute bg-green-400 m-2 p-2 right-0 rounded text-white top-0 uppercase">
-                        Published
+                <div className="absolute m-2 p-2 right-0 top-0 space-y-1 text-center">
+                    <div
+                        className={
+                            "p-2 rounded-full text-white uppercase text-sm font-semibold" +
+                            (props.measure.is_published
+                                ? " bg-green-400"
+                                : " bg-gray-400")
+                        }
+                    >
+                        {props.measure.is_published ? "Published" : "Draft"}
                     </div>
-                ) : (
-                    <div className="absolute border m-2 p-2 right-0 rounded text-gray-500 top-0 uppercase">
-                        Unpublished
+                    <div
+                        className={
+                            "p-2 rounded-full text-white uppercase text-sm font-semibold" +
+                            (props.measure.is_private
+                                ? " bg-purple-500"
+                                : " bg-blue-400")
+                        }
+                    >
+                        {props.measure.is_private ? "Private" : "Public"}
                     </div>
-                )}
+                </div>
 
                 <div className="bg-gray-50 rounded-full hover:bg-gray-100 border-2 border-gray-200">
                     <svg
@@ -36,11 +49,6 @@ export default function MeasureTile(props) {
                 <div className="space-y-1">
                     <div className="text-lg font-semibold text-gray-500 text-center hover:text-gray-600">
                         {props.measure.name}
-                    </div>
-                    <div className="text-sm text-gray-500 text-center hover:text-gray-600">
-                        {props.measure.is_private
-                            ? "Private Measure"
-                            : "Public Measure"}
                     </div>
                 </div>
             </a>

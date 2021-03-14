@@ -24,6 +24,7 @@ export default function StructureEditor({ measure }) {
         returnEmptyStringIfNullValue(structure.instructions)
     );
     const [items, setItems] = useState(structure.items);
+    const [itemsEdited, setItemsEdited] = useState(false);
     const [displayItemBuilder, setDisplayItemBuilder] = useState(false);
     const [inputFields, setInputFields] = useState({
         name: true,
@@ -86,6 +87,7 @@ export default function StructureEditor({ measure }) {
             validateItems(newItems);
             return newItems;
         });
+        setItemsEdited(true);
     };
 
     const onEditItem = array => {
@@ -93,6 +95,7 @@ export default function StructureEditor({ measure }) {
         let updatedItems = [...items];
         updatedItems.splice(index, 1, item);
         setItems(updatedItems);
+        setItemsEdited(true);
     };
 
     const onDeleteItem = index => {
@@ -100,6 +103,7 @@ export default function StructureEditor({ measure }) {
         updatedItems.splice(index, 1);
         setItems(updatedItems);
         validateItems(updatedItems);
+        setItemsEdited(true);
     };
 
     const onMoveItemUp = indexOfItem => {
@@ -109,6 +113,7 @@ export default function StructureEditor({ measure }) {
             updatedItems[indexOfItem - 1]
         ];
         setItems(updatedItems);
+        setItemsEdited(true);
     };
 
     const onMoveItemDown = indexOfItem => {
@@ -118,6 +123,7 @@ export default function StructureEditor({ measure }) {
             updatedItems[indexOfItem + 1]
         ];
         setItems(updatedItems);
+        setItemsEdited(true);
     };
 
     const toggleConfirmEditModal = () => {
@@ -128,6 +134,7 @@ export default function StructureEditor({ measure }) {
         const updatedMeasure = {
             hashedId: measure.hashed_id,
             isPrivate: isPrivate,
+            itemsEdited: itemsEdited,
             structure: {
                 name: name,
                 instructions: instructions,
@@ -144,11 +151,14 @@ export default function StructureEditor({ measure }) {
                     heading="Confirm Edit"
                     toggleModal={toggleConfirmEditModal}
                 >
-                    <div className="text-xl text-gray-700 p-4 leading-normal">
-                        <strong>PLEASE NOTE:</strong> Any of the measure's
-                        details (i.e., alpha, author, scales) will be deleted
-                        upon saving. Would you like to proceed?
-                    </div>
+                    {itemsEdited && (
+                        <div className="text-xl text-gray-700 p-4 leading-normal">
+                            <strong>PLEASE NOTE:</strong> Changing the measure's
+                            items invalidates any associated scales. Any
+                            existing scales will be deleted and need reinstating
+                            manually. Would you like to continue?
+                        </div>
+                    )}
                     <div className="flex items-center justify-end space-x-2">
                         <button
                             className="w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"

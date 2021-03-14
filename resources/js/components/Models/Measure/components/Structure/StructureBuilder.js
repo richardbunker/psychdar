@@ -234,8 +234,8 @@ export default function StructureBuilder(props) {
                             />
                             <label className="leading-normal max-w-sm py-2 text-gray-500 text-sm">
                                 Uncheck to make this measure public. Public
-                                measures can be viewed and accessed by other
-                                members of the Psychdar community.
+                                measures can be viewed and implemented by other
+                                Psychdar users. Sharing is caring! ❤️
                             </label>
                         </div>
                     </div>
@@ -278,7 +278,7 @@ export default function StructureBuilder(props) {
             {displayPreview && (
                 <PreviewBuilder
                     toggle={togglePreview}
-                    measure={{ name, instructions, items }}
+                    measure={{ structure: { name, instructions, items } }}
                 />
             )}
         </div>

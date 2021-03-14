@@ -18,6 +18,7 @@ class CreateMeasuresTable extends Migration
             $table->string('name');
             $table->json('structure');
             $table->json('details')->nullable();
+            $table->json('scales')->nullable();
             $table->boolean('is_private');
             $table->boolean('is_published')->default(false);
             $table->softDeletes();
