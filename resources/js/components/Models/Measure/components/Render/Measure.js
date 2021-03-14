@@ -1,9 +1,8 @@
 import React from "react";
-import { formatNameAndAbbr } from "../../utilities/MeasureFunctions";
 import RenderItem from "./Items";
 
 export default function RenderMeasure(props) {
-    const { name, abbr, instructions, items } = props.measure;
+    const { name, instructions, items } = props.measure;
 
     const onItemChange = itemValue => {
         props.handleOnItemChange(itemValue);
@@ -13,7 +12,7 @@ export default function RenderMeasure(props) {
         <div className="leading-normal p-6 bg-white border-2 rounded space-y-6">
             <div className="space-y-2">
                 <div className="font-semibold text-3xl text-gray-700">
-                    {formatNameAndAbbr(name, abbr)}
+                    {name}
                 </div>
                 {instructions && (
                     <div className="space-y-1 text-xl">

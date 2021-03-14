@@ -74027,15 +74027,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return RenderMeasure; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utilities_MeasureFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utilities/MeasureFunctions */ "./resources/js/components/Models/Measure/utilities/MeasureFunctions.js");
-/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Items */ "./resources/js/components/Models/Measure/components/Render/Items.js");
-
+/* harmony import */ var _Items__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Items */ "./resources/js/components/Models/Measure/components/Render/Items.js");
 
 
 function RenderMeasure(props) {
   var _props$measure = props.measure,
       name = _props$measure.name,
-      abbr = _props$measure.abbr,
       instructions = _props$measure.instructions,
       items = _props$measure.items;
 
@@ -74049,14 +74046,14 @@ function RenderMeasure(props) {
     className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "font-semibold text-3xl text-gray-700"
-  }, Object(_utilities_MeasureFunctions__WEBPACK_IMPORTED_MODULE_1__["formatNameAndAbbr"])(name, abbr)), instructions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, name), instructions && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1 text-xl"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "font-semibold text-gray-500"
   }, "Instructions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600"
   }, instructions))), items.map(function (item, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Items__WEBPACK_IMPORTED_MODULE_1__["default"], {
       onItemChange: onItemChange,
       key: "item_" + String(index + 1),
       item: item,
@@ -75459,6 +75456,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../UI/GrayFadedMenuBanner */ "./resources/js/components/UI/GrayFadedMenuBanner.js");
 /* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
 /* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../UI/inputs/Checkbox */ "./resources/js/components/UI/inputs/Checkbox.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -75499,6 +75497,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function StructureBuilder(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -75512,13 +75511,13 @@ function StructureBuilder(props) {
 
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
       _useState6 = _slicedToArray(_useState5, 2),
-      abbr = _useState6[0],
-      setAbbr = _useState6[1];
+      instructions = _useState6[0],
+      setInstructions = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState8 = _slicedToArray(_useState7, 2),
-      instructions = _useState8[0],
-      setInstructions = _useState8[1];
+      isPrivate = _useState8[0],
+      setIsPrivate = _useState8[1];
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState10 = _slicedToArray(_useState9, 2),
@@ -75537,11 +75536,10 @@ function StructureBuilder(props) {
 
   var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     name: false,
-    abbr: true,
     instructions: true,
     items: false,
     validate: function validate() {
-      return this.name && this.abbr && this.instructions && this.items;
+      return this.name && this.instructions && this.items;
     }
   }),
       _useState16 = _slicedToArray(_useState15, 2),
@@ -75583,16 +75581,16 @@ function StructureBuilder(props) {
     }
   };
 
-  var updateAbbr = function updateAbbr(string) {
-    if (string.length <= 15) {
-      setAbbr(string);
-    }
-  };
-
   var updateInstructions = function updateInstructions(string) {
     if (string.length <= 500) {
       setInstructions(string);
     }
+  };
+
+  var updateAccessLevel = function updateAccessLevel(bool) {
+    setIsPrivate(function (prevState) {
+      return !prevState;
+    });
   };
 
   var toggleItemBuilder = function toggleItemBuilder() {
@@ -75660,13 +75658,16 @@ function StructureBuilder(props) {
   };
 
   var submitMeasure = function submitMeasure() {
-    var measure = {
+    var values = {
       name: name,
-      abbr: abbr,
-      instructions: instructions,
-      items: items
+      isPrivate: isPrivate,
+      structure: {
+        name: name,
+        instructions: instructions,
+        items: items
+      }
     };
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/measures", measure);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/measures", values);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -75714,19 +75715,6 @@ function StructureBuilder(props) {
     max: "100"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    value: abbr,
-    handleOnStringChange: function handleOnStringChange(e) {
-      return updateAbbr(e.target.value);
-    },
-    title: "Abbreviation",
-    placeholder: "DASS21"
-  }), abbr.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    isValid: inputFields.abbr,
-    number: abbr.length,
-    max: "15"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_9__["default"], {
     value: instructions,
     title: "Instructions",
@@ -75738,7 +75726,25 @@ function StructureBuilder(props) {
     isValid: inputFields.instructions,
     number: instructions.length,
     max: "500"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-start space-x-2 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600 font-semibold w-1/3"
+  }, "Access Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full flex flex-col items-start justify-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    onCheckboxChange: function onCheckboxChange(bool) {
+      return updateAccessLevel(bool);
+    },
+    label: "Private Measure",
+    value: isPrivate,
+    disabled: false,
+    checked: isPrivate
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "leading-normal max-w-sm py-2 text-gray-500 text-sm"
+  }, "Uncheck to make this measure public. Public measures can be viewed and accessed by other members of the Psychdar community."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__["default"], {
     title: "Items"
@@ -75770,7 +75776,6 @@ function StructureBuilder(props) {
     toggle: togglePreview,
     measure: {
       name: name,
-      abbr: abbr,
       instructions: instructions,
       items: items
     }
@@ -75807,6 +75812,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
 /* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
 /* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../UI/inputs/Checkbox */ "./resources/js/components/UI/inputs/Checkbox.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -75848,6 +75854,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function StructureEditor(_ref) {
   var measure = _ref.measure;
   var structure = measure.structure;
@@ -75862,10 +75869,10 @@ function StructureEditor(_ref) {
       name = _useState4[0],
       setName = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_13__["returnEmptyStringIfNullValue"])(structure.abbr)),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(measure.is_private),
       _useState6 = _slicedToArray(_useState5, 2),
-      abbr = _useState6[0],
-      setAbbr = _useState6[1];
+      isPrivate = _useState6[0],
+      setIsPrivate = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_13__["returnEmptyStringIfNullValue"])(structure.instructions)),
       _useState8 = _slicedToArray(_useState7, 2),
@@ -75884,11 +75891,10 @@ function StructureEditor(_ref) {
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     name: true,
-    abbr: true,
     instructions: true,
     items: true,
     validate: function validate() {
-      return this.name && this.abbr && this.instructions && this.items;
+      return this.name && this.instructions && this.items;
     }
   }),
       _useState14 = _slicedToArray(_useState13, 2),
@@ -75930,16 +75936,16 @@ function StructureEditor(_ref) {
     }
   };
 
-  var updateAbbr = function updateAbbr(string) {
-    if (string.length <= 15) {
-      setAbbr(string);
-    }
-  };
-
   var updateInstructions = function updateInstructions(string) {
     if (string.length <= 500) {
       setInstructions(string);
     }
+  };
+
+  var updateAccessLevel = function updateAccessLevel(bool) {
+    setIsPrivate(function (prevState) {
+      return !prevState;
+    });
   };
 
   var toggleItemBuilder = function toggleItemBuilder() {
@@ -76003,9 +76009,9 @@ function StructureEditor(_ref) {
   var submitUpdatedMeasure = function submitUpdatedMeasure() {
     var updatedMeasure = {
       hashedId: measure.hashed_id,
+      isPrivate: isPrivate,
       structure: {
         name: name,
-        abbr: abbr,
         instructions: instructions,
         items: items
       }
@@ -76059,19 +76065,6 @@ function StructureEditor(_ref) {
     max: "100"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    value: abbr,
-    handleOnStringChange: function handleOnStringChange(e) {
-      return updateAbbr(e.target.value);
-    },
-    title: "Abbreviation",
-    placeholder: "DASS21"
-  }), abbr.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    isValid: inputFields.abbr,
-    number: abbr.length,
-    max: "15"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_9__["default"], {
     value: instructions,
     title: "Instructions",
@@ -76083,7 +76076,25 @@ function StructureEditor(_ref) {
     isValid: inputFields.instructions,
     number: instructions.length,
     max: "500"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-start space-x-2 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600 font-semibold w-1/3"
+  }, "Access Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full flex flex-col items-start justify-start"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    onCheckboxChange: function onCheckboxChange(bool) {
+      return updateAccessLevel(bool);
+    },
+    label: "Private Measure",
+    value: isPrivate,
+    disabled: false,
+    checked: isPrivate
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    className: "leading-normal max-w-sm py-2 text-gray-500 text-sm"
+  }, "Uncheck to make this measure public. Public measures can be viewed and accessed by other members of the Psychdar community."))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__["default"], {
     title: "Items"
@@ -76198,10 +76209,12 @@ function MeasureTile(props) {
     d: "M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z",
     clipRule: "evenodd"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-lg font-semibold text-gray-500 text-center hover:text-gray-600"
-  }, props.measure.name, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "uppercase"
-  }, props.measure.abbreviation !== null ? "(" + props.measure.abbreviation + ")" : ""))));
+  }, props.measure.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-sm text-gray-500 text-center hover:text-gray-600"
+  }, props.measure.is_private ? "Private Measure" : "Public Measure"))));
 }
 
 /***/ }),

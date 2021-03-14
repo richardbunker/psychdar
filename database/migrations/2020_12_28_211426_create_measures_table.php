@@ -16,10 +16,9 @@ class CreateMeasuresTable extends Migration
         Schema::create('measures', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('abbreviation')->nullable();
             $table->json('structure');
             $table->json('details')->nullable();
-            $table->string('alpha')->nullable();
+            $table->boolean('is_private');
             $table->boolean('is_published')->default(false);
             $table->softDeletes();
             $table->timestamps();

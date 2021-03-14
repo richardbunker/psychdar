@@ -12,22 +12,22 @@ import CancelableContainer from "../../../../UI/containers/CancelableContainer";
 import GrayFadedMenuBanner from "../../../../UI/GrayFadedMenuBanner";
 import GrayFadedBanner from "../../../../UI/GrayFadedBanner";
 import ModalScrollable from "../../../../UI/modals/Scrollable";
+import Checkbox from "../../../../UI/inputs/Checkbox";
 
 export default function StructureBuilder(props) {
     const [confirmCreateModal, setConfirmCreateModal] = useState(false);
     const [name, setName] = useState("");
-    const [abbr, setAbbr] = useState("");
     const [instructions, setInstructions] = useState("");
+    const [isPrivate, setIsPrivate] = useState(true);
     const [items, setItems] = useState([]);
     const [displayItemBuilder, setDisplayItemBuilder] = useState(false);
     const [displayPreview, setDisplayPreview] = useState(false);
     const [inputFields, setInputFields] = useState({
         name: false,
-        abbr: true,
         instructions: true,
         items: false,
         validate() {
-            return this.name && this.abbr && this.instructions && this.items;
+            return this.name && this.instructions && this.items;
         }
     });
 
@@ -62,16 +62,14 @@ export default function StructureBuilder(props) {
         }
     };
 
-    const updateAbbr = string => {
-        if (string.length <= 15) {
-            setAbbr(string);
-        }
-    };
-
     const updateInstructions = string => {
         if (string.length <= 500) {
             setInstructions(string);
         }
+    };
+
+    const updateAccessLevel = bool => {
+        setIsPrivate(prevState => !prevState);
     };
 
     const toggleItemBuilder = () => {
@@ -128,13 +126,16 @@ export default function StructureBuilder(props) {
     };
 
     const submitMeasure = () => {
-        const measure = {
+        const values = {
             name: name,
-            abbr: abbr,
-            instructions: instructions,
-            items: items
+            isPrivate: isPrivate,
+            structure: {
+                name: name,
+                instructions: instructions,
+                items: items
+            }
         };
-        Inertia.post("/measures", measure);
+        Inertia.post("/measures", values);
     };
 
     return (
@@ -200,21 +201,6 @@ export default function StructureBuilder(props) {
                     )}
                 </div>
                 <div className="space-y-1">
-                    <StringInput
-                        value={abbr}
-                        handleOnStringChange={e => updateAbbr(e.target.value)}
-                        title="Abbreviation"
-                        placeholder="DASS21"
-                    />
-                    {abbr.length > 0 && (
-                        <StringCounter
-                            isValid={inputFields.abbr}
-                            number={abbr.length}
-                            max="15"
-                        />
-                    )}
-                </div>
-                <div className="space-y-1">
                     <TextInput
                         value={instructions}
                         title="Instructions"
@@ -230,6 +216,29 @@ export default function StructureBuilder(props) {
                             max="500"
                         />
                     )}
+                </div>
+                <div className="space-y-1">
+                    <div className="flex items-start space-x-2 w-full">
+                        <div className="text-gray-600 font-semibold w-1/3">
+                            Access Level
+                        </div>
+                        <div className="w-full flex flex-col items-start justify-start">
+                            <Checkbox
+                                onCheckboxChange={bool =>
+                                    updateAccessLevel(bool)
+                                }
+                                label="Private Measure"
+                                value={isPrivate}
+                                disabled={false}
+                                checked={isPrivate}
+                            />
+                            <label className="leading-normal max-w-sm py-2 text-gray-500 text-sm">
+                                Uncheck to make this measure public. Public
+                                measures can be viewed and accessed by other
+                                members of the Psychdar community.
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="mt-2">
@@ -269,7 +278,7 @@ export default function StructureBuilder(props) {
             {displayPreview && (
                 <PreviewBuilder
                     toggle={togglePreview}
-                    measure={{ name, abbr, instructions, items }}
+                    measure={{ name, instructions, items }}
                 />
             )}
         </div>

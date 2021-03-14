@@ -33,13 +33,15 @@ export default function MeasureTile(props) {
                         />
                     </svg>
                 </div>
-                <div className="text-lg font-semibold text-gray-500 text-center hover:text-gray-600">
-                    {props.measure.name}{" "}
-                    <span className="uppercase">
-                        {props.measure.abbreviation !== null
-                            ? "(" + props.measure.abbreviation + ")"
-                            : ""}
-                    </span>
+                <div className="space-y-1">
+                    <div className="text-lg font-semibold text-gray-500 text-center hover:text-gray-600">
+                        {props.measure.name}
+                    </div>
+                    <div className="text-sm text-gray-500 text-center hover:text-gray-600">
+                        {props.measure.is_private
+                            ? "Private Measure"
+                            : "Public Measure"}
+                    </div>
                 </div>
             </a>
         </div>

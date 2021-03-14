@@ -45,8 +45,8 @@ class UserMeasuresController extends Controller
     {
         $newMeasure = new Measure;
         $newMeasure->name = $request->name;
-        $newMeasure->abbreviation = $request->abbr;
-        $newMeasure->structure = json_encode($request->all());
+        $newMeasure->is_private = $request->isPrivate;
+        $newMeasure->structure = json_encode($request->structure);
         $newMeasure->save();
 
         $user = User::find(Auth::user()->id);
@@ -60,9 +60,9 @@ class UserMeasuresController extends Controller
     {        
         $measureToUpdate = Measure::find(Hasher::decode($request->hashedId));
         $measureToUpdate->name = $request->structure["name"];
-        $measureToUpdate->abbreviation = $request->structure["abbr"];
         $measureToUpdate->structure = json_encode($request->structure);
         $measureToUpdate->details = null;
+        $measureToUpdate->is_private = $request->isPrivate;
         $measureToUpdate->save();
         
         return Redirect::route('showMeasure', $measureToUpdate->hashed_id);
