@@ -73679,6 +73679,200 @@ function CuttOffBuilder(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffEditor.js":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffEditor.js ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CuttOffEditor; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
+/* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
+/* harmony import */ var _UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../UI/inputs/ErrorInput */ "./resources/js/components/UI/inputs/ErrorInput.js");
+/* harmony import */ var _UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../UI/inputs/StringCounter */ "./resources/js/components/UI/inputs/StringCounter.js");
+/* harmony import */ var _UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../../UI/inputs/StringInput */ "./resources/js/components/UI/inputs/StringInput.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+function CuttOffEditor(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.editing.cuttOff),
+      _useState2 = _slicedToArray(_useState, 2),
+      values = _useState2[0],
+      setValues = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    label: true,
+    min: true,
+    max: true,
+    validate: function validate() {
+      return this.label && this.min && this.max;
+    }
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      inputFields = _useState4[0],
+      setInputFields = _useState4[1];
+
+  var updateLabel = function updateLabel(string) {
+    if (string.length <= 25) {
+      setValues(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          label: string
+        });
+      });
+    }
+
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        label: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__["validateString"])(string, 2)
+      });
+    });
+  };
+
+  var updateAccessLevel = function updateAccessLevel(bool) {
+    setValues(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        alert: !prevState.alert
+      });
+    });
+  };
+
+  var updateNumericField = function updateNumericField(string, field) {
+    var reg = new RegExp("^[0-9]+$");
+
+    if (reg.test(string)) {
+      setInputFields(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, true));
+      });
+      setValues(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, Number(string)));
+      });
+    } else {
+      setInputFields(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, false));
+      });
+      setValues(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, _defineProperty({}, field, string));
+      });
+    }
+  };
+
+  var validate = function validate(field) {
+    if (values[field] === "") {
+      return false;
+    } else {
+      return !inputFields[field];
+    }
+  };
+
+  var submitCuttOff = function submitCuttOff() {
+    props.onEditCuttOff({
+      cuttOff: values,
+      index: props.editing.index
+    });
+  };
+
+  var resetCuttOff = function resetCuttOff() {
+    setValues({
+      label: "",
+      min: "",
+      max: ""
+    });
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        label: false,
+        min: false,
+        max: false
+      });
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: values.label,
+    title: "Label",
+    handleOnStringChange: function handleOnStringChange(e) {
+      return updateLabel(e.target.value);
+    },
+    placeholder: "Mild"
+  }), values.label.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    isValid: inputFields.label,
+    number: values.label.length,
+    max: "25"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: values.min,
+    title: "Min",
+    handleOnStringChange: function handleOnStringChange(e) {
+      return updateNumericField(e.target.value, "min");
+    },
+    placeholder: "4"
+  }), validate("min") && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    error: "Must be numeric."
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    value: values.max,
+    title: "Max",
+    handleOnStringChange: function handleOnStringChange(e) {
+      return updateNumericField(e.target.value, "max");
+    },
+    placeholder: "8"
+  }), validate("max") && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    error: "Must be numeric."
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    onCheckedInput: function onCheckedInput(bool) {
+      return updateAccessLevel(bool);
+    },
+    value: values.alert,
+    checked: values.alert,
+    label: "Send Email",
+    title: "Notification",
+    text: "Check to send email alerts for this cuttoff. An email will be sent if a given score falls within this cuttoff range. This feature can be useful for outcome monitoring."
+  }), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-end space-x-2 pt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.toggleSelf();
+    },
+    className: "bg-gray-200 font-bold px-3 py-2 rounded text-gray-700 text-sm uppercase cursor-pointer"
+  }, "Clear"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: submitCuttOff,
+    className: "bg-teal-400 font-bold px-3 py-2 rounded text-sm text-white uppercase"
+  }, "Update CuttOff")));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffPreview.js":
 /*!**************************************************************************************************!*\
   !*** ./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffPreview.js ***!
@@ -73703,14 +73897,29 @@ function CuttOffPreview(props) {
     className: "text-blue-500"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, props.min, "-", props.max)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-yellow-200"
-  }, props.alert ? "Email Alerts" : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, props.alert ? "Email Alerts" : "")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-x-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    value: props.index,
+    onClick: function onClick() {
+      return props.editCuttOff(props.index);
+    },
+    className: "p-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "w-5 h-5 text-gray-400 hover:text-gray-300",
+    fill: "currentColor",
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     value: props.index,
     onClick: function onClick() {
       return props.deleteCuttOff(props.index);
     },
     className: "p-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "w-5 h-5 text-gray-400",
+    className: "w-5 h-5 text-gray-400 hover:text-gray-300",
     fill: "none",
     stroke: "currentColor",
     viewBox: "0 0 24 24",
@@ -73720,7 +73929,7 @@ function CuttOffPreview(props) {
     strokeLinejoin: "round",
     strokeWidth: 2,
     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-  }))));
+  })))));
 }
 
 /***/ }),
@@ -73985,6 +74194,310 @@ function ScaleBuilder(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Models/Measure/components/Scales/Scale/ScaleEditor.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Models/Measure/components/Scales/Scale/ScaleEditor.js ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ScaleEditor; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../UI/inputs/StringInput */ "./resources/js/components/UI/inputs/StringInput.js");
+/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
+/* harmony import */ var _UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../UI/inputs/StringCounter */ "./resources/js/components/UI/inputs/StringCounter.js");
+/* harmony import */ var _UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../UI/inputs/Checkbox */ "./resources/js/components/UI/inputs/Checkbox.js");
+/* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
+/* harmony import */ var _CuttOff_CuttOffBuilder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CuttOff/CuttOffBuilder */ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffBuilder.js");
+/* harmony import */ var _CuttOff_CuttOffPreview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CuttOff/CuttOffPreview */ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffPreview.js");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
+/* harmony import */ var _UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../UI/containers/CancelableContainer */ "./resources/js/components/UI/containers/CancelableContainer.js");
+/* harmony import */ var _CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CuttOff/CuttOffEditor */ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffEditor.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+function ScaleEditor(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.editing.scale),
+      _useState2 = _slicedToArray(_useState, 2),
+      scale = _useState2[0],
+      setScale = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      cuttOffEditing = _useState4[0],
+      setCuttOffEditing = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      displayCuttOffBuilder = _useState6[0],
+      setDisplayCuttOffBuilder = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      displayCuttOffEditor = _useState8[0],
+      setDisplayCuttOffEditor = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    title: true,
+    operation: true,
+    scaleItems: true,
+    validate: function validate() {
+      return this.title && this.operation && this.scaleItems;
+    }
+  }),
+      _useState10 = _slicedToArray(_useState9, 2),
+      inputFields = _useState10[0],
+      setInputFields = _useState10[1];
+
+  var handleOnCheckboxChange = function handleOnCheckboxChange(stringVal) {
+    var value = Number(stringVal);
+    setScale(function (prevState) {
+      var updatedScaleItemsArray = [];
+
+      if (prevState.items.includes(value)) {
+        updatedScaleItemsArray = _toConsumableArray(prevState.items).filter(function (el) {
+          return el !== value;
+        });
+      } else {
+        updatedScaleItemsArray = [].concat(_toConsumableArray(prevState.items), [value]);
+      }
+
+      setInputFields(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          scaleItems: updatedScaleItemsArray.length >= 1 ? true : false
+        });
+      });
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        items: updatedScaleItemsArray.sort()
+      });
+    });
+  };
+
+  var handleOnSelect = function handleOnSelect(value) {
+    setScale(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        operation: value
+      });
+    });
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        operation: true
+      });
+    });
+  };
+
+  var updateTitle = function updateTitle(string) {
+    if (string.length <= 25) {
+      setScale(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          title: string
+        });
+      });
+      setInputFields(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          title: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateString"])(string, 2)
+        });
+      });
+    }
+  };
+
+  var toggleCuttOffBuilder = function toggleCuttOffBuilder() {
+    setDisplayCuttOffBuilder(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  var toggleCuttOffEditor = function toggleCuttOffEditor() {
+    setDisplayCuttOffEditor(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  var onNewCuttOff = function onNewCuttOff(newCuttOff) {
+    setScale(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        cuttOffs: [].concat(_toConsumableArray(prevState.cuttOffs), [newCuttOff])
+      });
+    });
+    setDisplayCuttOffBuilder(false);
+  };
+
+  var onDeleteCuttOff = function onDeleteCuttOff(index) {
+    var updatedCuttOffs = _toConsumableArray(scale.cuttOffs);
+
+    updatedCuttOffs.splice(index, 1);
+    setScale(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        cuttOffs: updatedCuttOffs
+      });
+    });
+  };
+
+  var onSubmitEditedCuttOff = function onSubmitEditedCuttOff(editingObject) {
+    var updatedCuttOffs = _toConsumableArray(scale.cuttOffs);
+
+    updatedCuttOffs.splice(editingObject.index, 1, editingObject.cuttOff);
+    setScale(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        cuttOffs: updatedCuttOffs
+      });
+    });
+    toggleCuttOffEditor();
+  };
+
+  var onEditCuttOff = function onEditCuttOff(index) {
+    setCuttOffEditing({
+      cuttOff: scale.cuttOffs[index],
+      index: index
+    });
+    toggleCuttOffEditor();
+  };
+
+  var submitScale = function submitScale() {
+    props.onSubmitScale({
+      scale: scale,
+      index: props.editing.index
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    value: scale.title,
+    handleOnStringChange: function handleOnStringChange(e) {
+      return updateTitle(e.target.value);
+    },
+    title: "Title",
+    placeholder: "Total Score"
+  }), scale.title.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    isValid: inputFields.title,
+    number: scale.title.length,
+    max: "25"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-start space-x-2 w-full font-normal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600 w-1/3 font-semibold"
+  }, "Items"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2 text-base w-full font-medium"
+  }, props.items.map(function (item, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      onCheckboxChange: function onCheckboxChange(e) {
+        return handleOnCheckboxChange(e);
+      },
+      key: index,
+      disabled: ["Text", "Qualitative"].indexOf(item.type) !== -1 ? true : false,
+      checked: scale.items.indexOf(index) !== -1 ? true : false,
+      value: index,
+      label: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["truncateString"])(item.title, 25) + " (item_" + String(index) + ")"
+    });
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    onSelect: function onSelect(e) {
+      return handleOnSelect(e.target.value);
+    },
+    title: "Operation",
+    defaultText: "Please Select...",
+    defaultValue: scale.operation,
+    options: [{
+      title: "Mean",
+      value: "Mean"
+    }, {
+      title: "Sum",
+      value: "Sum"
+    }]
+  }), displayCuttOffEditor ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    heading: "Edit Cuttoff",
+    toggleSelf: toggleCuttOffEditor
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    toggleSelf: toggleCuttOffEditor,
+    editing: cuttOffEditing,
+    onEditCuttOff: onSubmitEditedCuttOff
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, scale.cuttOffs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-start space-x-2 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600 font-semibold w-1/3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-3 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-start justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500 w-full font-semibold flex flex-col space-y-1"
+  }, scale.cuttOffs.map(function (cuttOff, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffPreview__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      index: index,
+      deleteCuttOff: onDeleteCuttOff,
+      editCuttOff: onEditCuttOff,
+      key: Object(uuid__WEBPACK_IMPORTED_MODULE_8__["v4"])(),
+      alert: cuttOff.alert,
+      label: cuttOff.label,
+      min: cuttOff.min,
+      max: cuttOff.max
+    });
+  }))))), !displayCuttOffBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return toggleCuttOffBuilder();
+    },
+    className: "border-2 bg-white border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
+  }, "Add CuttOff")), displayCuttOffBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    heading: "Cuttoff Details",
+    toggleSelf: toggleCuttOffBuilder
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffBuilder__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    onNewCuttOff: onNewCuttOff
+  }))), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-end space-x-2 pt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return props.toggleSelf();
+    },
+    className: "bg-gray-200 px-3 py-2 rounded text-gray-500 uppercase cursor-pointer"
+  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: submitScale,
+    className: "bg-blue-400 px-3 py-2 rounded text-white uppercase"
+  }, "Update Scale")));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Models/Measure/components/Scales/Scale/ScalePreview.js":
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/Models/Measure/components/Scales/Scale/ScalePreview.js ***!
@@ -74043,14 +74556,29 @@ function ScalePreview(props) {
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-yellow-200"
     }, cuttOff.alert ? "Email Alert" : "")));
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-x-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    value: props.index,
+    onClick: function onClick() {
+      return props.editScaleItem(props.index);
+    },
+    className: "p-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "w-5 h-5 text-gray-400 hover:text-gray-300",
+    fill: "currentColor",
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     value: props.index,
     onClick: function onClick() {
       return props.deleteScaleItem(props.index);
     },
     className: "p-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-    className: "w-5 h-5 text-gray-400",
+    className: "w-5 h-5 text-gray-400 hover:text-gray-300",
     fill: "none",
     stroke: "currentColor",
     viewBox: "0 0 24 24",
@@ -74060,7 +74588,7 @@ function ScalePreview(props) {
     strokeLinejoin: "round",
     strokeWidth: 2,
     d: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-  }))));
+  })))));
 }
 
 /***/ }),
@@ -74080,7 +74608,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
 /* harmony import */ var _UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../UI/containers/CancelableContainer */ "./resources/js/components/UI/containers/CancelableContainer.js");
 /* harmony import */ var _Scale_ScaleBuilder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Scale/ScaleBuilder */ "./resources/js/components/Models/Measure/components/Scales/Scale/ScaleBuilder.js");
-/* harmony import */ var _Scale_ScalePreview__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Scale/ScalePreview */ "./resources/js/components/Models/Measure/components/Scales/Scale/ScalePreview.js");
+/* harmony import */ var _Scale_ScaleEditor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Scale/ScaleEditor */ "./resources/js/components/Models/Measure/components/Scales/Scale/ScaleEditor.js");
+/* harmony import */ var _Scale_ScalePreview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Scale/ScalePreview */ "./resources/js/components/Models/Measure/components/Scales/Scale/ScalePreview.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -74106,11 +74635,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function ScalesBuilder(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       scales = _useState2[0],
       setScales = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState4 = _slicedToArray(_useState3, 2),
+      scaleEditing = _useState4[0],
+      setScaleEditing = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (props.measure.scales) {
@@ -74118,13 +74653,24 @@ function ScalesBuilder(props) {
     }
   }, []);
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      displayScaleBuilder = _useState4[0],
-      setDisplayScaleBuilder = _useState4[1];
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      displayScaleBuilder = _useState6[0],
+      setDisplayScaleBuilder = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      displayScaleEditor = _useState8[0],
+      setDisplayScaleEditor = _useState8[1];
 
   var toggleScaleBuilder = function toggleScaleBuilder() {
     setDisplayScaleBuilder(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  var toggleScaleEditor = function toggleScaleEditor() {
+    setDisplayScaleEditor(function (prevState) {
       return !prevState;
     });
   };
@@ -74143,13 +74689,37 @@ function ScalesBuilder(props) {
     setScales(updatedScales);
   };
 
+  var onSubmitEditedScale = function onSubmitEditedScale(editingObject) {
+    var updatedScales = _toConsumableArray(scales);
+
+    updatedScales.splice(editingObject.index, 1, editingObject.scale);
+    setScales(updatedScales);
+    toggleScaleEditor();
+  };
+
+  var onEditScale = function onEditScale(index) {
+    setScaleEditing({
+      scale: scales[index],
+      index: index
+    });
+    toggleScaleEditor();
+  };
+
   var updateScales = function updateScales() {
     props.onScalesSubmit(scales);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-4"
-  }, scales.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, displayScaleEditor ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    heading: "Edit Scale",
+    toggleSelf: toggleScaleEditor
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scale_ScaleEditor__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    editing: scaleEditing,
+    toggleSelf: toggleScaleEditor,
+    onSubmitScale: onSubmitEditedScale,
+    items: props.measure.structure.items
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, scales.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-start space-x-2 w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 font-semibold w-1/3"
@@ -74160,13 +74730,14 @@ function ScalesBuilder(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-500 w-full font-semibold flex flex-col space-y-1"
   }, scales.map(function (scale, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scale_ScalePreview__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scale_ScalePreview__WEBPACK_IMPORTED_MODULE_5__["default"], {
       index: index,
       deleteScaleItem: onDeleteScale,
+      editScaleItem: onEditScale,
       key: Object(uuid__WEBPACK_IMPORTED_MODULE_1__["v4"])(),
       scale: scale
     });
-  }))))), !displayScaleBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })))))), !displayScaleEditor && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !displayScaleBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
@@ -74190,7 +74761,7 @@ function ScalesBuilder(props) {
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: updateScales,
     className: "font-semibold bg-blue-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-blue-500"
-  }, "Update")));
+  }, "Update"))));
 }
 
 /***/ }),
