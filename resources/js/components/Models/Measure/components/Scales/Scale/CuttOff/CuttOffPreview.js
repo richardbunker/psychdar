@@ -2,10 +2,18 @@ import React from "react";
 
 export default function CuttOffPreview(props) {
     return (
-        <div className="flex items-center w-full space-x-2 text-base">
-            <div className="text-green-400">"{props.label}"</div>
-            <div className="text-blue-500">{props.min} -</div>
-            <div className="text-blue-500">{props.max}</div>
+        <div className="bg-gray-700 flex items-center justify-between px-2 py-1 rounded space-x-2 text-base w-full">
+            <div className="flex space-x-2">
+                <div className="text-green-400">"{props.label}"</div>
+                <div className="text-blue-500">
+                    <span>
+                        {props.min}-{props.max}
+                    </span>
+                </div>
+                <div className="text-yellow-200">
+                    {props.alert ? "Email Alerts" : ""}
+                </div>
+            </div>
             <button
                 value={props.index}
                 onClick={() => props.deleteCuttOff(props.index)}

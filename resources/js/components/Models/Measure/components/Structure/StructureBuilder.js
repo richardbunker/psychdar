@@ -13,6 +13,7 @@ import GrayFadedMenuBanner from "../../../../UI/GrayFadedMenuBanner";
 import GrayFadedBanner from "../../../../UI/GrayFadedBanner";
 import ModalScrollable from "../../../../UI/modals/Scrollable";
 import Checkbox from "../../../../UI/inputs/Checkbox";
+import CheckboxInput from "../../../../UI/inputs/CheckboxInput";
 
 export default function StructureBuilder(props) {
     const [confirmCreateModal, setConfirmCreateModal] = useState(false);
@@ -218,27 +219,16 @@ export default function StructureBuilder(props) {
                     )}
                 </div>
                 <div className="space-y-1">
-                    <div className="flex items-start space-x-2 w-full">
-                        <div className="text-gray-600 font-semibold w-1/3">
-                            Access Level
-                        </div>
-                        <div className="w-full flex flex-col items-start justify-start">
-                            <Checkbox
-                                onCheckboxChange={bool =>
-                                    updateAccessLevel(bool)
-                                }
-                                label="Private Measure"
-                                value={isPrivate}
-                                disabled={false}
-                                checked={isPrivate}
-                            />
-                            <label className="leading-normal max-w-sm py-2 text-gray-500 text-sm">
-                                Uncheck to make this measure public. Public
-                                measures can be viewed and implemented by other
-                                Psychdar users. Sharing is caring! ❤️
-                            </label>
-                        </div>
-                    </div>
+                    <CheckboxInput
+                        onCheckedInput={bool => updateAccessLevel(bool)}
+                        value={isPrivate}
+                        checked={isPrivate}
+                        title="Access Level"
+                        label="Private Measure"
+                        text="Uncheck to make this measure public. Public
+                                    measures can be viewed and implemented by
+                                    other Psychdar users. Sharing is caring! ❤️"
+                    />
                 </div>
             </div>
             <div className="mt-2">

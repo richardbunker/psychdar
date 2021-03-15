@@ -170,6 +170,7 @@ export default function ScaleBuilder(props) {
                                             index={index}
                                             deleteCuttOff={onDeleteCuttOff}
                                             key={uuidv4()}
+                                            alert={cuttOff.alert}
                                             label={cuttOff.label}
                                             min={cuttOff.min}
                                             max={cuttOff.max}

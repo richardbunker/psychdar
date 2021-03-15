@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { validateString } from "../../../../../../../utilities/HelperFunctions";
+import CheckboxInput from "../../../../../../UI/inputs/CheckboxInput";
 import ErrorInput from "../../../../../../UI/inputs/ErrorInput";
 import StringCounter from "../../../../../../UI/inputs/StringCounter";
 import StringInput from "../../../../../../UI/inputs/StringInput";
@@ -8,7 +9,8 @@ export default function CuttOffBuilder(props) {
     const [values, setValues] = useState({
         label: "",
         min: "",
-        max: ""
+        max: "",
+        alert: false
     });
     const [inputFields, setInputFields] = useState({
         label: false,
@@ -30,6 +32,14 @@ export default function CuttOffBuilder(props) {
         }
         setInputFields(prevState => {
             return { ...prevState, label: validateString(string, 2) };
+        });
+    };
+    const updateAccessLevel = bool => {
+        setValues(prevState => {
+            return {
+                ...prevState,
+                alert: !prevState.alert
+            };
         });
     };
     const updateNumericField = (string, field) => {
@@ -80,7 +90,7 @@ export default function CuttOffBuilder(props) {
         });
     };
     return (
-        <div className="space-y-2">
+        <div className="space-y-4">
             <div className="space-y-1">
                 <StringInput
                     value={values.label}
@@ -118,6 +128,14 @@ export default function CuttOffBuilder(props) {
                 />
                 {validate("max") && <ErrorInput error="Must be numeric." />}
             </div>
+            <CheckboxInput
+                onCheckedInput={bool => updateAccessLevel(bool)}
+                value={values.alert}
+                checked={values.alert}
+                label="Send Email"
+                title="Notification"
+                text="Check to send email alerts for this cuttoff. An email will be sent if a given score falls within this cuttoff range. This feature can be useful for outcome monitoring."
+            />
             {inputFields.validate() && (
                 <div className="flex items-center justify-end space-x-2 pt-2">
                     <div
