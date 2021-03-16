@@ -138,12 +138,6 @@ export default function CuttOffBuilder(props) {
             />
             {inputFields.validate() && (
                 <div className="flex items-center justify-end space-x-2 pt-2">
-                    <div
-                        onClick={resetCuttOff}
-                        className="bg-gray-200 font-bold px-3 py-2 rounded text-gray-700 text-sm uppercase cursor-pointer"
-                    >
-                        Clear
-                    </div>
                     <button
                         onClick={submitCuttOff}
                         className="bg-teal-400 font-bold px-3 py-2 rounded text-sm text-white uppercase"

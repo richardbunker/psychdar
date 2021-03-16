@@ -11,6 +11,7 @@ import CuttOffBuilder from "./CuttOff/CuttOffBuilder";
 import CuttOffPreview from "./CuttOff/CuttOffPreview";
 import { v4 as uuidv4 } from "uuid";
 import CancelableContainer from "../../../../../UI/containers/CancelableContainer";
+import CuttOffEditor from "./CuttOff/CuttOffEditor";
 
 export default function ScaleBuilder(props) {
     const [scale, setScale] = useState({
@@ -19,7 +20,9 @@ export default function ScaleBuilder(props) {
         items: [],
         cuttOffs: []
     });
+    const [cuttOffEditing, setCuttOffEditing] = useState({});
     const [displayCuttOffBuilder, setDisplayCuttOffBuilder] = useState(false);
+    const [displayCuttOffEditor, setDisplayCuttOffEditor] = useState(false);
     const [inputFields, setInputFields] = useState({
         title: false,
         operation: false,
@@ -75,6 +78,10 @@ export default function ScaleBuilder(props) {
         setDisplayCuttOffBuilder(prevState => !prevState);
     };
 
+    const toggleCuttOffEditor = () => {
+        setDisplayCuttOffEditor(prevState => !prevState);
+    };
+
     const onNewCuttOff = newCuttOff => {
         setScale(prevState => {
             return {
@@ -91,6 +98,23 @@ export default function ScaleBuilder(props) {
         setScale(prevState => {
             return { ...prevState, cuttOffs: updatedCuttOffs };
         });
+    };
+
+    const onEditCuttOff = index => {
+        setCuttOffEditing({ cuttOff: scale.cuttOffs[index], index: index });
+        toggleCuttOffEditor();
+    };
+
+    const onSubmitEditedCuttOff = editingObject => {
+        let updatedCuttOffs = [...scale.cuttOffs];
+        updatedCuttOffs.splice(editingObject.index, 1, editingObject.cuttOff);
+        setScale(prevState => {
+            return {
+                ...prevState,
+                cuttOffs: updatedCuttOffs
+            };
+        });
+        toggleCuttOffEditor();
     };
 
     const submitScale = () => {
@@ -158,47 +182,69 @@ export default function ScaleBuilder(props) {
                     { title: "Sum", value: "Sum" }
                 ]}
             />
-            {scale.cuttOffs.length > 0 && (
-                <div className="flex items-start space-x-2 w-full">
-                    <div className="text-gray-600 font-semibold w-1/3"></div>
-                    <div className="space-y-3 w-full">
-                        <div className="flex items-start justify-between">
-                            <div className="text-gray-500 w-full font-semibold flex flex-col space-y-1">
-                                {scale.cuttOffs.map((cuttOff, index) => {
-                                    return (
-                                        <CuttOffPreview
-                                            index={index}
-                                            deleteCuttOff={onDeleteCuttOff}
-                                            key={uuidv4()}
-                                            alert={cuttOff.alert}
-                                            label={cuttOff.label}
-                                            min={cuttOff.min}
-                                            max={cuttOff.max}
-                                        />
-                                    );
-                                })}
+            {displayCuttOffEditor ? (
+                <CancelableContainer
+                    heading="Edit Cuttoff"
+                    toggleSelf={toggleCuttOffEditor}
+                >
+                    <CuttOffEditor
+                        toggleSelf={toggleCuttOffEditor}
+                        editing={cuttOffEditing}
+                        onEditCuttOff={onSubmitEditedCuttOff}
+                    />
+                </CancelableContainer>
+            ) : (
+                <>
+                    {scale.cuttOffs.length > 0 && (
+                        <div className="flex items-start space-x-2 w-full">
+                            <div className="text-gray-600 font-semibold w-1/3"></div>
+                            <div className="space-y-3 w-full">
+                                <div className="flex items-start justify-between">
+                                    <div className="text-gray-500 w-full font-semibold flex flex-col space-y-1">
+                                        {scale.cuttOffs.map(
+                                            (cuttOff, index) => {
+                                                return (
+                                                    <CuttOffPreview
+                                                        index={index}
+                                                        deleteCuttOff={
+                                                            onDeleteCuttOff
+                                                        }
+                                                        editCuttOff={
+                                                            onEditCuttOff
+                                                        }
+                                                        key={uuidv4()}
+                                                        alert={cuttOff.alert}
+                                                        label={cuttOff.label}
+                                                        min={cuttOff.min}
+                                                        max={cuttOff.max}
+                                                    />
+                                                );
+                                            }
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            )}
-            {!displayCuttOffBuilder && (
-                <div className="w-full">
-                    <button
-                        onClick={() => toggleCuttOffBuilder()}
-                        className="border-2 bg-white border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-                    >
-                        Add CuttOff
-                    </button>
-                </div>
-            )}
-            {displayCuttOffBuilder && (
-                <CancelableContainer
-                    heading="Cuttoff Details"
-                    toggleSelf={toggleCuttOffBuilder}
-                >
-                    <CuttOffBuilder onNewCuttOff={onNewCuttOff} />
-                </CancelableContainer>
+                    )}
+                    {!displayCuttOffBuilder && (
+                        <div className="w-full">
+                            <button
+                                onClick={() => toggleCuttOffBuilder()}
+                                className="border-2 bg-white border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
+                            >
+                                Add CuttOff
+                            </button>
+                        </div>
+                    )}
+                    {displayCuttOffBuilder && (
+                        <CancelableContainer
+                            heading="Cuttoff Details"
+                            toggleSelf={toggleCuttOffBuilder}
+                        >
+                            <CuttOffBuilder onNewCuttOff={onNewCuttOff} />
+                        </CancelableContainer>
+                    )}
+                </>
             )}
             {inputFields.validate() && (
                 <div className="flex items-center justify-end space-x-2 pt-2">

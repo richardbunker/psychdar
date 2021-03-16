@@ -183,7 +183,6 @@ export default function ScaleEditor(props) {
                     toggleSelf={toggleCuttOffEditor}
                 >
                     <CuttOffEditor
-                        toggleSelf={toggleCuttOffEditor}
                         editing={cuttOffEditing}
                         onEditCuttOff={onSubmitEditedCuttOff}
                     />

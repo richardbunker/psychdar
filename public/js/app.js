@@ -73668,10 +73668,7 @@ function CuttOffBuilder(props) {
     text: "Check to send email alerts for this cuttoff. An email will be sent if a given score falls within this cuttoff range. This feature can be useful for outcome monitoring."
   }), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 pt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: resetCuttOff,
-    className: "bg-gray-200 font-bold px-3 py-2 rounded text-gray-700 text-sm uppercase cursor-pointer"
-  }, "Clear"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: submitCuttOff,
     className: "bg-teal-400 font-bold px-3 py-2 rounded text-sm text-white uppercase"
   }, "Add CuttOff")));
@@ -73860,12 +73857,7 @@ function CuttOffEditor(props) {
     text: "Check to send email alerts for this cuttoff. An email will be sent if a given score falls within this cuttoff range. This feature can be useful for outcome monitoring."
   }), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 pt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return props.toggleSelf();
-    },
-    className: "bg-gray-200 font-bold px-3 py-2 rounded text-gray-700 text-sm uppercase cursor-pointer"
-  }, "Clear"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: submitCuttOff,
     className: "bg-teal-400 font-bold px-3 py-2 rounded text-sm text-white uppercase"
   }, "Update CuttOff")));
@@ -73955,6 +73947,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CuttOff_CuttOffPreview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CuttOff/CuttOffPreview */ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffPreview.js");
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
 /* harmony import */ var _UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../UI/containers/CancelableContainer */ "./resources/js/components/UI/containers/CancelableContainer.js");
+/* harmony import */ var _CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CuttOff/CuttOffEditor */ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffEditor.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -73991,6 +73984,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function ScaleBuilder(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: "",
@@ -74002,12 +73996,22 @@ function ScaleBuilder(props) {
       scale = _useState2[0],
       setScale = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState4 = _slicedToArray(_useState3, 2),
-      displayCuttOffBuilder = _useState4[0],
-      setDisplayCuttOffBuilder = _useState4[1];
+      cuttOffEditing = _useState4[0],
+      setCuttOffEditing = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      displayCuttOffBuilder = _useState6[0],
+      setDisplayCuttOffBuilder = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      displayCuttOffEditor = _useState8[0],
+      setDisplayCuttOffEditor = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: false,
     operation: false,
     scaleItems: false,
@@ -74015,9 +74019,9 @@ function ScaleBuilder(props) {
       return this.title && this.operation && this.scaleItems;
     }
   }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      inputFields = _useState6[0],
-      setInputFields = _useState6[1];
+      _useState10 = _slicedToArray(_useState9, 2),
+      inputFields = _useState10[0],
+      setInputFields = _useState10[1];
 
   var handleOnCheckboxChange = function handleOnCheckboxChange(stringVal) {
     var value = Number(stringVal);
@@ -74077,6 +74081,12 @@ function ScaleBuilder(props) {
     });
   };
 
+  var toggleCuttOffEditor = function toggleCuttOffEditor() {
+    setDisplayCuttOffEditor(function (prevState) {
+      return !prevState;
+    });
+  };
+
   var onNewCuttOff = function onNewCuttOff(newCuttOff) {
     setScale(function (prevState) {
       return _objectSpread(_objectSpread({}, prevState), {}, {
@@ -74095,6 +74105,26 @@ function ScaleBuilder(props) {
         cuttOffs: updatedCuttOffs
       });
     });
+  };
+
+  var onEditCuttOff = function onEditCuttOff(index) {
+    setCuttOffEditing({
+      cuttOff: scale.cuttOffs[index],
+      index: index
+    });
+    toggleCuttOffEditor();
+  };
+
+  var onSubmitEditedCuttOff = function onSubmitEditedCuttOff(editingObject) {
+    var updatedCuttOffs = _toConsumableArray(scale.cuttOffs);
+
+    updatedCuttOffs.splice(editingObject.index, 1, editingObject.cuttOff);
+    setScale(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        cuttOffs: updatedCuttOffs
+      });
+    });
+    toggleCuttOffEditor();
   };
 
   var submitScale = function submitScale() {
@@ -74147,7 +74177,14 @@ function ScaleBuilder(props) {
       title: "Sum",
       value: "Sum"
     }]
-  }), scale.cuttOffs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), displayCuttOffEditor ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    heading: "Edit Cuttoff",
+    toggleSelf: toggleCuttOffEditor
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    toggleSelf: toggleCuttOffEditor,
+    editing: cuttOffEditing,
+    onEditCuttOff: onSubmitEditedCuttOff
+  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, scale.cuttOffs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-start space-x-2 w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-gray-600 font-semibold w-1/3"
@@ -74161,6 +74198,7 @@ function ScaleBuilder(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffPreview__WEBPACK_IMPORTED_MODULE_7__["default"], {
       index: index,
       deleteCuttOff: onDeleteCuttOff,
+      editCuttOff: onEditCuttOff,
       key: Object(uuid__WEBPACK_IMPORTED_MODULE_8__["v4"])(),
       alert: cuttOff.alert,
       label: cuttOff.label,
@@ -74179,7 +74217,7 @@ function ScaleBuilder(props) {
     toggleSelf: toggleCuttOffBuilder
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffBuilder__WEBPACK_IMPORTED_MODULE_6__["default"], {
     onNewCuttOff: onNewCuttOff
-  })), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 pt-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     onClick: function onClick() {
@@ -74447,7 +74485,6 @@ function ScaleEditor(props) {
     heading: "Edit Cuttoff",
     toggleSelf: toggleCuttOffEditor
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    toggleSelf: toggleCuttOffEditor,
     editing: cuttOffEditing,
     onEditCuttOff: onSubmitEditedCuttOff
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, scale.cuttOffs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
