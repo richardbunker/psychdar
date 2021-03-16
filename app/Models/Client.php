@@ -27,16 +27,11 @@ class Client extends Model
         'updated_at',
     ];
 
-    protected $appends = ['hashed_id', 'name', 'url'];
+    protected $appends = ['hashed_id', 'url'];
 
     public function getHashedIdAttribute()
     {
         return Hasher::encode($this->attributes['id']);
-    }
-
-    public function getNameAttribute()
-    {
-        return $this->first_name.' '.$this->last_name;
     }
 
     public function getUrlAttribute()

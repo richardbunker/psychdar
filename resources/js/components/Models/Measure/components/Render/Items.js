@@ -8,7 +8,7 @@ export default function RenderItem(props) {
     const [item, setItem] = useState();
 
     const itemNumber = index => {
-        return String(index);
+        return "item_" + String(index);
     };
     const [itemResponse, setItemResponse] = useState("");
 

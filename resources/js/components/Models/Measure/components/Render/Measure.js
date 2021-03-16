@@ -9,7 +9,7 @@ export default function RenderMeasure(props) {
     };
 
     return (
-        <div className="leading-normal p-6 bg-white border-2 rounded space-y-6">
+        <div className="leading-normal p-10 bg-white border-2 rounded space-y-10">
             <div className="space-y-4">
                 <div className="font-semibold text-3xl text-gray-700 w-full text-center">
                     {name}
@@ -22,17 +22,16 @@ export default function RenderMeasure(props) {
                         <div className="text-gray-600">{instructions}</div>
                     </div>
                 )}
-                {props.measure.details &&
-                    props.measure.details.author && (
-                        <div className="space-y-1 text-base">
-                            <div className="font-semibold text-gray-500">
-                                Reference
-                            </div>
-                            <div className="text-gray-600 text-sm">
-                                {props.measure.details.author}
-                            </div>
+                {props.measure.details && props.measure.details.author && (
+                    <div className="space-y-1 text-base">
+                        <div className="font-semibold text-gray-500">
+                            Reference
                         </div>
-                    )}
+                        <div className="text-gray-600 text-sm">
+                            {props.measure.details.author}
+                        </div>
+                    </div>
+                )}
             </div>
             {items.map((item, index) => {
                 return (

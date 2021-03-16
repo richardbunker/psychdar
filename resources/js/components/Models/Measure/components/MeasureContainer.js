@@ -8,7 +8,6 @@ import { formatNameAndAbbr } from "../utilities/MeasureFunctions";
 import DetailsBuilder from "../components/Details/DetailsBuilder";
 import ScalesBuilder from "../components/Scales/ScalesBuilder";
 import ScaleScorer from "./Scoring/ScaleScorer";
-import WhiteMenuBanner from "../../../UI/WhiteMenuBanner";
 import ModalScrollable from "../../../UI/modals/Scrollable";
 import ToggleButton from "../../../UI/buttons/ToggleButton";
 import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
@@ -18,8 +17,12 @@ export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState([]);
 
     useEffect(() => {
-        let prepareResponses = measure.structure.items.map(item => {
-            return "...";
+        let prepareResponses = {};
+        measure.structure.items.map((item, index) => {
+            prepareResponses = {
+                ...prepareResponses,
+                ["item_" + String(index)]: "..."
+            };
         });
         setResponses(prepareResponses);
     }, []);
@@ -53,7 +56,7 @@ export default function MeasureContainer({ measure }) {
             hashedId: measure.hashed_id,
             details: details
         };
-        Inertia.post("/measures/details", values);
+        Inertia.post("/measure/details", values);
         toggleDetailsModal();
     };
 
@@ -115,9 +118,21 @@ export default function MeasureContainer({ measure }) {
             {showConfirmPublish && (
                 <ModalScrollable heading="Confirm Publish">
                     <div className="text-xl text-gray-700 p-4 leading-normal">
-                        <strong>PLEASE NOTE:</strong> Once published, you will
-                        be unable to edit the measure nor update its details.
-                        Would you like to proceed?
+                        <div>
+                            <strong>PLEASE NOTE:</strong> Once published, you
+                            will be <strong>unable</strong> to edit the
+                            following features:
+                        </div>
+                        <ul className="list-disc pl-10 py-2">
+                            <li>Name</li>
+                            <li>Intructions</li>
+                            <li>Access Level</li>
+                            <li>Items</li>
+                        </ul>
+                        <div>
+                            All other features can be edited (i.e., Details &
+                            Scoring information).
+                        </div>
                     </div>
                     <div className="flex items-center justify-end space-x-2">
                         <button
@@ -187,26 +202,35 @@ export default function MeasureContainer({ measure }) {
                         <div className="space-y-2">
                             {measure.structure.items.map((item, index) => {
                                 return (
-                                    <div
-                                        key={index}
-                                        className="flex items-center justify-between font-semibold"
-                                    >
-                                        <div className="text-green-400">
-                                            {truncateString(item.title, 50)}
-                                        </div>
-                                        <div className="text-blue-400">
-                                            {item.type === "Qualitative"
-                                                ? truncateString(
-                                                      String(
-                                                          responses[
+                                    console.log(responses[index]),
+                                    (
+                                        <div
+                                            key={index}
+                                            className="flex items-center justify-between font-semibold"
+                                        >
+                                            <div className="text-green-400">
+                                                {truncateString(item.title, 50)}
+                                            </div>
+                                            <div className="text-blue-400">
+                                                {item.type === "Qualitative"
+                                                    ? truncateString(
+                                                          String(
+                                                              responses[
+                                                                  "item_" +
+                                                                      String(
+                                                                          index
+                                                                      )
+                                                              ]
+                                                          ),
+                                                          10
+                                                      )
+                                                    : responses[
+                                                          "item_" +
                                                               String(index)
-                                                          ]
-                                                      ),
-                                                      10
-                                                  )
-                                                : responses[String(index)]}
+                                                      ]}
+                                            </div>
                                         </div>
-                                    </div>
+                                    )
                                 );
                             })}
                         </div>
@@ -224,16 +248,15 @@ export default function MeasureContainer({ measure }) {
                             <div>Scales</div>
                             <div>{measure.scales ? displayScales() : "0"}</div>
                         </div>
-                        {measure.scales &&
-                            measure.scales.map((scale, index) => {
-                                return (
-                                    <ScaleScorer
-                                        key={index}
-                                        scale={scale}
-                                        responses={responses}
-                                    />
-                                );
-                            })}
+                        {measure.scales.map((scale, index) => {
+                            return (
+                                <ScaleScorer
+                                    key={index}
+                                    scale={scale}
+                                    responses={responses}
+                                />
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="bg-white rounded-b">

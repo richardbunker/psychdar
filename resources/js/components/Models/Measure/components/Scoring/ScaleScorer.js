@@ -1,11 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 export default function ScaleScorer(props) {
     const calculateScaleScore = () => {
         let totalScore = 0;
         props.scale.items.map(scaleItem => {
-            if (Object.keys(props.responses).includes(String(scaleItem))) {
-                totalScore += props.responses[scaleItem];
+            if (
+                Object.keys(props.responses).includes(
+                    "item_" + String(scaleItem)
+                )
+            ) {
+                totalScore += props.responses["item_" + String(scaleItem)];
             }
         });
         if (props.scale.operation === "Mean") {

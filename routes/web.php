@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/measure/{hashed_measure_id}', [App\Http\Controllers\UserMeasuresController::class, 'show'])->name('showMeasure');
     Route::get('/measure/{hashed_measure_id}/edit', [App\Http\Controllers\UserMeasuresController::class, 'edit'])->name('editMeasure');
     Route::post('/measure/edit', [App\Http\Controllers\UserMeasuresController::class, 'update'])->name('updateMeasure');
-    Route::post('/measures/details', [App\Http\Controllers\UserMeasuresController::class, 'updateDetails']);
+    Route::post('/measure/details', [App\Http\Controllers\UserMeasuresController::class, 'updateDetails']);
     Route::post('/measure/scales', [App\Http\Controllers\UserMeasuresController::class, 'updateScales']);
     Route::post('/measure/publish', [App\Http\Controllers\UserMeasuresController::class, 'publishMeasure']);
 
@@ -97,4 +97,9 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/api/pre_post/{hashed_clinician_id}/{questionnaire_name}', [App\Http\Controllers\ClinicianEffectSizeController::class, 'show']);
 });
 
+
+// Client Assessments
+Route::get('/a/{hashed_client_id}/{hashed_measure_id}', [App\Http\Controllers\ClientAssessmentController::class, 'show']);
+Route::post('/a/client', [App\Http\Controllers\ClientAssessmentController::class, 'store'])->name('saveClientAssessment');
+Route::get('/a/thankyou', [App\Http\Controllers\ClientAssessmentController::class, 'thankyou'])->name('thankyou');
 
