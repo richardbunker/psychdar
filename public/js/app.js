@@ -72021,18 +72021,20 @@ __webpack_require__.r(__webpack_exports__);
 
 function AssessmentComplete() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "h-screen min-h-screen w-full max-w-6xl mx-auto xl:pt-10"
+    className: "h-screen min-h-screen w-full max-w-6xl mx-auto xl:pt-10 bg-gradient-to-tr from-pink-500 to-purple-500"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "h-full min-h-full flex items-center justify-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "p-10 rounded bg-white shadow flex items-center justify-center space-y-2"
+    className: "p-10 m-10 rounded-md bg-white shadow-md flex items-center justify-center space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "font-semibold text-3xl text-gray-700"
+    className: "text-6xl"
+  }, "\uD83C\uDF89\uD83C\uDF89\uD83C\uDF89"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "font-semibold text-4xl text-gray-700"
   }, "Thank you"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-500"
-  }, "Please close this window.")))));
+    className: "text-gray-500 text-xl py-2"
+  }, "You may now close this window.")))));
 }
 
 /***/ }),
