@@ -188,7 +188,6 @@ export default function ScaleBuilder(props) {
                     toggleSelf={toggleCuttOffEditor}
                 >
                     <CuttOffEditor
-                        toggleSelf={toggleCuttOffEditor}
                         editing={cuttOffEditing}
                         onEditCuttOff={onSubmitEditedCuttOff}
                     />
@@ -232,13 +231,13 @@ export default function ScaleBuilder(props) {
                                 onClick={() => toggleCuttOffBuilder()}
                                 className="border-2 bg-white border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
                             >
-                                Add CuttOff
+                                Create Cutoff
                             </button>
                         </div>
                     )}
                     {displayCuttOffBuilder && (
                         <CancelableContainer
-                            heading="Cuttoff Details"
+                            heading="Cutoff Details"
                             toggleSelf={toggleCuttOffBuilder}
                         >
                             <CuttOffBuilder onNewCuttOff={onNewCuttOff} />

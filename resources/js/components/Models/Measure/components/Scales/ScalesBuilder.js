@@ -7,6 +7,7 @@ import ScalePreview from "./Scale/ScalePreview";
 
 export default function ScalesBuilder(props) {
     const [scales, setScales] = useState([]);
+    const [isBuilding, setIsBuilding] = useState(false);
     const [scaleEditing, setScaleEditing] = useState({});
 
     useEffect(() => {
@@ -21,17 +22,19 @@ export default function ScalesBuilder(props) {
 
     const toggleScaleBuilder = () => {
         setDisplayScaleBuilder(prevState => !prevState);
+        setIsBuilding(prevState => !prevState);
     };
 
     const toggleScaleEditor = () => {
         setDisplayScaleEditor(prevState => !prevState);
+        setIsBuilding(prevState => !prevState);
     };
 
     const onSubmitScale = scaleObject => {
         setScales(prevState => {
             return [...prevState, scaleObject];
         });
-        setDisplayScaleBuilder(false);
+        toggleScaleBuilder();
     };
 
     const onDeleteScale = index => {
@@ -57,63 +60,11 @@ export default function ScalesBuilder(props) {
     };
     return (
         <div className="space-y-4">
-            {displayScaleEditor ? (
-                <CancelableContainer
-                    heading="Edit Scale"
-                    toggleSelf={toggleScaleEditor}
-                >
-                    <ScaleEditor
-                        editing={scaleEditing}
-                        toggleSelf={toggleScaleEditor}
-                        onSubmitScale={onSubmitEditedScale}
-                        items={props.measure.structure.items}
-                    />
-                </CancelableContainer>
-            ) : (
+            {isBuilding ? (
                 <>
-                    {scales.length > 0 && (
-                        <div className="flex items-start space-x-2 w-full">
-                            <div className="text-gray-600 font-semibold w-1/3">
-                                Scales
-                            </div>
-                            <div className="space-y-3 w-full">
-                                <div className="flex items-start justify-between">
-                                    <div className="text-gray-500 w-full font-semibold flex flex-col space-y-1">
-                                        {scales.map((scale, index) => {
-                                            return (
-                                                <ScalePreview
-                                                    index={index}
-                                                    deleteScaleItem={
-                                                        onDeleteScale
-                                                    }
-                                                    editScaleItem={onEditScale}
-                                                    key={uuidv4()}
-                                                    scale={scale}
-                                                />
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </>
-            )}
-            {!displayScaleEditor && (
-                <>
-                    {!displayScaleBuilder && (
-                        <div className="w-full">
-                            <button
-                                onClick={() => toggleScaleBuilder()}
-                                className="border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-                            >
-                                Add Scale
-                            </button>
-                        </div>
-                    )}
                     {displayScaleBuilder && (
                         <CancelableContainer
-                            heading="Scale Details"
+                            heading="Create Scale"
                             toggleSelf={toggleScaleBuilder}
                         >
                             <ScaleBuilder
@@ -123,9 +74,52 @@ export default function ScalesBuilder(props) {
                             />
                         </CancelableContainer>
                     )}
+                    {displayScaleEditor && (
+                        <CancelableContainer
+                            heading="Edit Scale"
+                            toggleSelf={toggleScaleEditor}
+                        >
+                            <ScaleEditor
+                                editing={scaleEditing}
+                                toggleSelf={toggleScaleEditor}
+                                onSubmitScale={onSubmitEditedScale}
+                                items={props.measure.structure.items}
+                            />
+                        </CancelableContainer>
+                    )}
+                </>
+            ) : (
+                <>
+                    {scales.length > 0 && (
+                        <div className="space-y-2 w-full">
+                            <div className="flex items-start justify-between">
+                                <div className="text-gray-500 w-full font-semibold flex flex-col space-y-1">
+                                    {scales.map((scale, index) => {
+                                        return (
+                                            <ScalePreview
+                                                index={index}
+                                                deleteScaleItem={onDeleteScale}
+                                                editScaleItem={onEditScale}
+                                                key={uuidv4()}
+                                                scale={scale}
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    <div className="w-full">
+                        <button
+                            onClick={() => toggleScaleBuilder()}
+                            className="border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
+                        >
+                            Create Scale
+                        </button>
+                    </div>
                     <div className="w-full flex items-center justify-end space-x-2">
                         <button
-                            onClick={() => props.toggleModal()}
+                            onClick={props.toggleModal}
                             className="font-semibold bg-gray-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-gray-500"
                         >
                             Cancel
@@ -134,7 +128,7 @@ export default function ScalesBuilder(props) {
                             onClick={updateScales}
                             className="font-semibold bg-blue-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-blue-500"
                         >
-                            Update
+                            Update Scoring
                         </button>
                     </div>
                 </>

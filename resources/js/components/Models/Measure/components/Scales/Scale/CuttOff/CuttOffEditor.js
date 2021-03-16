@@ -74,16 +74,6 @@ export default function CuttOffEditor(props) {
         props.onEditCuttOff({ cuttOff: values, index: props.editing.index });
     };
 
-    const resetCuttOff = () => {
-        setValues({
-            label: "",
-            min: "",
-            max: ""
-        });
-        setInputFields(prevState => {
-            return { ...prevState, label: false, min: false, max: false };
-        });
-    };
     return (
         <div className="space-y-4">
             <div className="space-y-1">

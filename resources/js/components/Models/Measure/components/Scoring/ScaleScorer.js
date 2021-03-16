@@ -35,7 +35,7 @@ export default function ScaleScorer(props) {
                 <div className="text-teal-300">{props.scale.title}</div>
                 <div className="flex items-center space-x-2">
                     {props.scale.cuttOffs && (
-                        <div className="text-gray-300 italic">
+                        <div className="text-gray-300">
                             {calculateCuttOff(calculate())}
                         </div>
                     )}

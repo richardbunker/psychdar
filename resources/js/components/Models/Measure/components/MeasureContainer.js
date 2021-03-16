@@ -164,7 +164,7 @@ export default function MeasureContainer({ measure }) {
                             text="Update"
                         />
                     </GrayFadedMenuBanner>
-                    <div className="py-4 px-6 bg-gray-700 text-lg space-y-4 leading-normal text-gray-200">
+                    <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal text-gray-200">
                         <div className="flex items-center justify-between">
                             <div className="font-semibold">
                                 Cronbach's Alpha
@@ -183,7 +183,7 @@ export default function MeasureContainer({ measure }) {
                 </div>
                 <div className="">
                     <GrayFadedBanner title="Items" />
-                    <div className="py-4 px-6 bg-gray-700 text-lg space-y-4 leading-normal">
+                    <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal">
                         <div className="space-y-2">
                             {measure.structure.items.map((item, index) => {
                                 return (
@@ -219,7 +219,7 @@ export default function MeasureContainer({ measure }) {
                             text="Update"
                         />
                     </GrayFadedMenuBanner>
-                    <div className="py-4 px-6 bg-gray-700 text-lg space-y-4">
+                    <div className="py-4 px-6 bg-gray-800 text-lg space-y-4">
                         <div className="flex font-semibold items-center justify-between text-gray-200">
                             <div>Scales</div>
                             <div>{measure.scales ? displayScales() : "0"}</div>

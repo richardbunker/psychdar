@@ -54,7 +54,7 @@ export default function ScalePreview(props) {
                                         />
                                     </svg>
                                 </div>
-                                <div className="italic">"{cuttOff.label}"</div>
+                                <div>"{cuttOff.label}"</div>
                                 {cuttOff.alert && (
                                     <>
                                         <div>

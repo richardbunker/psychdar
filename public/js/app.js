@@ -73265,7 +73265,7 @@ function MeasureContainer(_ref) {
     onHandleClick: toggleDetailsModal,
     text: "Update"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-4 px-6 bg-gray-700 text-lg space-y-4 leading-normal text-gray-200"
+    className: "py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal text-gray-200"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -73279,7 +73279,7 @@ function MeasureContainer(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: "Items"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-4 px-6 bg-gray-700 text-lg space-y-4 leading-normal"
+    className: "py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
   }, measure.structure.items.map(function (item, index) {
@@ -73299,7 +73299,7 @@ function MeasureContainer(_ref) {
     onHandleClick: toggleScoringModal,
     text: "Update"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "py-4 px-6 bg-gray-700 text-lg space-y-4"
+    className: "py-4 px-6 bg-gray-800 text-lg space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex font-semibold items-center justify-between text-gray-200"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Scales"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, measure.scales ? displayScales() : "0")), measure.scales && measure.scales.map(function (scale, index) {
@@ -73794,21 +73794,6 @@ function CuttOffEditor(props) {
     });
   };
 
-  var resetCuttOff = function resetCuttOff() {
-    setValues({
-      label: "",
-      min: "",
-      max: ""
-    });
-    setInputFields(function (prevState) {
-      return _objectSpread(_objectSpread({}, prevState), {}, {
-        label: false,
-        min: false,
-        max: false
-      });
-    });
-  };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74181,7 +74166,6 @@ function ScaleBuilder(props) {
     heading: "Edit Cuttoff",
     toggleSelf: toggleCuttOffEditor
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    toggleSelf: toggleCuttOffEditor,
     editing: cuttOffEditing,
     onEditCuttOff: onSubmitEditedCuttOff
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, scale.cuttOffs.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74212,8 +74196,8 @@ function ScaleBuilder(props) {
       return toggleCuttOffBuilder();
     },
     className: "border-2 bg-white border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-  }, "Add CuttOff")), displayCuttOffBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    heading: "Cuttoff Details",
+  }, "Create Cutoff")), displayCuttOffBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    heading: "Cutoff Details",
     toggleSelf: toggleCuttOffBuilder
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffBuilder__WEBPACK_IMPORTED_MODULE_6__["default"], {
     onNewCuttOff: onNewCuttOff
@@ -74482,7 +74466,7 @@ function ScaleEditor(props) {
       value: "Sum"
     }]
   }), displayCuttOffEditor ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    heading: "Edit Cuttoff",
+    heading: "Edit Cutoff",
     toggleSelf: toggleCuttOffEditor
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__["default"], {
     editing: cuttOffEditing,
@@ -74515,8 +74499,8 @@ function ScaleEditor(props) {
       return toggleCuttOffBuilder();
     },
     className: "border-2 bg-white border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-  }, "Add CuttOff")), displayCuttOffBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    heading: "Cuttoff Details",
+  }, "Create CutOff")), displayCuttOffBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    heading: "Create Cutoff",
     toggleSelf: toggleCuttOffBuilder
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CuttOff_CuttOffBuilder__WEBPACK_IMPORTED_MODULE_6__["default"], {
     onNewCuttOff: onNewCuttOff
@@ -74579,9 +74563,7 @@ function ScalePreview(props) {
       fillRule: "evenodd",
       d: "M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z",
       clipRule: "evenodd"
-    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "italic"
-    }, "\"", cuttOff.label, "\""), cuttOff.alert && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "\"", cuttOff.label, "\""), cuttOff.alert && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
       className: "w-4 h-4 text-gray-200",
       fill: "currentColor",
       viewBox: "0 0 20 20",
@@ -74679,10 +74661,15 @@ function ScalesBuilder(props) {
       scales = _useState2[0],
       setScales = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      scaleEditing = _useState4[0],
-      setScaleEditing = _useState4[1];
+      isBuilding = _useState4[0],
+      setIsBuilding = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState6 = _slicedToArray(_useState5, 2),
+      scaleEditing = _useState6[0],
+      setScaleEditing = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (props.measure.scales) {
@@ -74690,18 +74677,21 @@ function ScalesBuilder(props) {
     }
   }, []);
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      displayScaleBuilder = _useState6[0],
-      setDisplayScaleBuilder = _useState6[1];
-
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      displayScaleEditor = _useState8[0],
-      setDisplayScaleEditor = _useState8[1];
+      displayScaleBuilder = _useState8[0],
+      setDisplayScaleBuilder = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      displayScaleEditor = _useState10[0],
+      setDisplayScaleEditor = _useState10[1];
 
   var toggleScaleBuilder = function toggleScaleBuilder() {
     setDisplayScaleBuilder(function (prevState) {
+      return !prevState;
+    });
+    setIsBuilding(function (prevState) {
       return !prevState;
     });
   };
@@ -74710,13 +74700,16 @@ function ScalesBuilder(props) {
     setDisplayScaleEditor(function (prevState) {
       return !prevState;
     });
+    setIsBuilding(function (prevState) {
+      return !prevState;
+    });
   };
 
   var onSubmitScale = function onSubmitScale(scaleObject) {
     setScales(function (prevState) {
       return [].concat(_toConsumableArray(prevState), [scaleObject]);
     });
-    setDisplayScaleBuilder(false);
+    toggleScaleBuilder();
   };
 
   var onDeleteScale = function onDeleteScale(index) {
@@ -74748,7 +74741,14 @@ function ScalesBuilder(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-4"
-  }, displayScaleEditor ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, isBuilding ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, displayScaleBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    heading: "Create Scale",
+    toggleSelf: toggleScaleBuilder
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scale_ScaleBuilder__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    toggleSelf: setDisplayScaleBuilder,
+    onSubmitScale: onSubmitScale,
+    items: props.measure.structure.items
+  })), displayScaleEditor && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
     heading: "Edit Scale",
     toggleSelf: toggleScaleEditor
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scale_ScaleEditor__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -74756,12 +74756,8 @@ function ScalesBuilder(props) {
     toggleSelf: toggleScaleEditor,
     onSubmitScale: onSubmitEditedScale,
     items: props.measure.structure.items
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, scales.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-start space-x-2 w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-600 font-semibold w-1/3"
-  }, "Scales"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-3 w-full"
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, scales.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2 w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-start justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -74774,31 +74770,22 @@ function ScalesBuilder(props) {
       key: Object(uuid__WEBPACK_IMPORTED_MODULE_1__["v4"])(),
       scale: scale
     });
-  })))))), !displayScaleEditor && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, !displayScaleBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return toggleScaleBuilder();
     },
     className: "border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-  }, "Add Scale")), displayScaleBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    heading: "Scale Details",
-    toggleSelf: toggleScaleBuilder
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scale_ScaleBuilder__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    toggleSelf: setDisplayScaleBuilder,
-    onSubmitScale: onSubmitScale,
-    items: props.measure.structure.items
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Create Scale")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex items-center justify-end space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return props.toggleModal();
-    },
+    onClick: props.toggleModal,
     className: "font-semibold bg-gray-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-gray-500"
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: updateScales,
     className: "font-semibold bg-blue-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-blue-500"
-  }, "Update"))));
+  }, "Update Scoring"))));
 }
 
 /***/ }),
@@ -74851,7 +74838,7 @@ function ScaleScorer(props) {
   }, props.scale.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-2"
   }, props.scale.cuttOffs && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-300 italic"
+    className: "text-gray-300"
   }, calculateCuttOff(calculate())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-blue-400"
   }, calculate()))));
