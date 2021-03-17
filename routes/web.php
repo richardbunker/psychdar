@@ -69,9 +69,10 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/clients', [App\Http\Controllers\UserClientsController::class, 'index']);
     Route::get('/client/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'show'])->name('showClient');
     Route::get('/api/organisation/{hashed_organisation_id}/clients', [App\Http\Controllers\OrganisationClientsController::class, 'index']);
-    Route::post('/api/client-active-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateActiveStatus']);
-    Route::post('/api/client-url-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateUrlStatus']);
-    Route::post('/api/client-stats-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateStatsStatus']);
+    Route::post('/client-settings', [App\Http\Controllers\UserClientsController::class, 'updateSettings']);
+    // Route::post('/api/client-active-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateActiveStatus']);
+    // Route::post('/api/client-url-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateUrlStatus']);
+    // Route::post('/api/client-stats-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateStatsStatus']);
 
     // ClientMeasure
     Route::post('/client-measure', [App\Http\Controllers\ClientMeasureController::class, 'store']);

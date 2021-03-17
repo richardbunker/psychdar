@@ -17,21 +17,26 @@ class Assessment extends Model
      */
     protected $hidden = [
         'id',
+        'user_id',
         'clinic_id',
         'clinician_id',
         'client_id',
         'treatment_id',
-        'organisation_id',
         'measure_id',
         'created_at',
         'updated_at',
     ];
 
-    protected $appends = ['hashed_id'];
+    protected $appends = ['hashed_id', 'hashed_measure_id'];
 
     public function getHashedIdAttribute()
     {
         return Hasher::encode($this->attributes['id']);
+    }
+
+    public function getHashedMeasureIdAttribute()
+    {
+        return Hasher::encode($this->attributes['measure_id']);
     }
 
     public function getDataAttribute($value)

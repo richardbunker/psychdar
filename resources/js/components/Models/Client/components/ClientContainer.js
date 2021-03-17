@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import GrayFadedBanner from "../../../UI/GrayFadedBanner";
 import TreatmentEpisodesRow from "../../../Stats/row/TreatmentEpisodes";
 import TotalAssessmentsRow from "../../../Stats/row/TotalAssessments";
 import { sum } from "../../../Stats/Stats";
 import UrlRow from "../../../Stats/row/Url";
-import SaveableBanner from "../../../UI/SaveableBanner";
 import UpdateStatusForm from "../../../UI/forms/UpdateStatusForm";
 import SelectInput from "../../../UI/inputs/SelectInput";
+import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
+import ButtonBlue from "../../../UI/buttons/ButtonBlue";
+import ModalScrollable from "../../../UI/modals/Scrollable";
+import ButtonGray from "../../../UI/buttons/ButtonGray";
+import ButtonTeal from "../../../UI/buttons/ButtonTeal";
+import GrayFadedBanner from "../../../UI/GrayFadedBanner";
 
 export default function ClientContainer(props) {
     const [selectedMeasure, setSelectedMeasure] = useState("");
+    const [clientSettings, setClientSettings] = useState({
+        active: props.client.is_active,
+        url: props.client.preferences.create_own_resources,
+        stats: props.client.preferences.include_in_analyses
+    });
+    const [displayClientSettings, setDisplayClientSettings] = useState(false);
 
     const userMeasures = props.userPublishedMeasures.map(measure => {
         return { title: measure.name, value: measure.hashed_id };
@@ -27,8 +37,31 @@ export default function ClientContainer(props) {
         );
     });
 
+    const toggleDisplayClientSettings = () => {
+        setDisplayClientSettings(prevState => !prevState);
+    };
+
     const onSelect = event => {
         setSelectedMeasure(event.target.value);
+    };
+
+    const onStatusUpdate = statusObject => {
+        setClientSettings(prevState => {
+            return {
+                ...prevState,
+                [statusObject.identifier]: statusObject.value
+            };
+        });
+    };
+
+    const submitClientSettings = () => {
+        const values = {
+            ...clientSettings,
+            clientHashedId: props.client.hashed_id
+        };
+        console.log(values);
+        Inertia.post("/client-settings", values);
+        toggleDisplayClientSettings();
     };
 
     const submitAddMeasure = () => {
@@ -41,11 +74,54 @@ export default function ClientContainer(props) {
     };
 
     return (
-        <div className="space-y-2">
+        <div className="">
+            {displayClientSettings && (
+                <ModalScrollable heading="Client Settings">
+                    <div className="text-lg pt-2 pb-6 px-6 space-y-4">
+                        <UpdateStatusForm
+                            title="Client Status"
+                            onStatusUpdate={onStatusUpdate}
+                            currentStatus={clientSettings.active}
+                            identifier="active"
+                            truthyLabel="Active"
+                            falseyLabel="Archived"
+                        />
+                        <UpdateStatusForm
+                            title="Public URL Access"
+                            onStatusUpdate={onStatusUpdate}
+                            currentStatus={clientSettings.url}
+                            identifier="url"
+                            truthyLabel="Allowed"
+                            falseyLabel="Disabled"
+                        />
+                        <UpdateStatusForm
+                            title="Statistical Analyses"
+                            onStatusUpdate={onStatusUpdate}
+                            currentStatus={clientSettings.stats}
+                            identifier="stats"
+                            truthyLabel="Included"
+                            falseyLabel="Excluded"
+                        />
+                    </div>
+                    <div className="flex items-center justify-end space-x-2 w-80 ml-auto">
+                        <ButtonGray
+                            label="Close"
+                            handleClick={toggleDisplayClientSettings}
+                        />
+                        <ButtonTeal
+                            label="Update"
+                            handleClick={submitClientSettings}
+                        />
+                    </div>
+                </ModalScrollable>
+            )}
             <div className="bg-white">
-                <GrayFadedBanner
-                    title={props.client.identifier || "Loading..."}
-                />
+                <GrayFadedMenuBanner title={props.client.identifier}>
+                    <ButtonBlue
+                        handleClick={toggleDisplayClientSettings}
+                        label="Settings"
+                    />
+                </GrayFadedMenuBanner>
                 <div className="text-lg py-4 px-6 space-y-4">
                     <TreatmentEpisodesRow
                         iconSize="10"
@@ -63,96 +139,72 @@ export default function ClientContainer(props) {
                     />
                 </div>
             </div>
-            <div className="bg-white">
-                <div className="w-full text-lg text-gray-400 p-2 bg-white uppercase text-left">
-                    Measures
-                </div>
-                <div className="text-lg pt-2 pb-6 px-6 space-y-4">
-                    <div className="flex items-center justify-between w-full">
-                        {selectedMeasure.length === 0 && (
-                            <SelectInput
-                                title="Add Measure"
-                                onSelect={onSelect}
-                                defaultText="Please Select..."
-                                defaultValue="Please Select..."
-                                options={addableMeasures}
-                            />
-                        )}
-                        {selectedMeasure.length > 0 && (
-                            <div className="flex items-center justify-between w-full">
-                                <div className="text-gray-600">
-                                    {"Add " +
-                                        userMeasures.find(
-                                            x => x.value === selectedMeasure
-                                        ).title +
-                                        "?"}
+            <div className="space-y-2 mt-2">
+                <div className="bg-white">
+                    <GrayFadedBanner title="Measures" />
+                    <div className="text-lg py-4 px-6 space-y-4">
+                        <div className="flex items-center justify-between w-full">
+                            {selectedMeasure.length === 0 && (
+                                <SelectInput
+                                    title="Add Measure"
+                                    onSelect={onSelect}
+                                    defaultText="Please Select..."
+                                    defaultValue="Please Select..."
+                                    options={addableMeasures}
+                                />
+                            )}
+                            {selectedMeasure.length > 0 && (
+                                <div className="flex items-center justify-between w-full">
+                                    <div className="text-gray-600">
+                                        {"Add " +
+                                            userMeasures.find(
+                                                x => x.value === selectedMeasure
+                                            ).title +
+                                            "?"}
+                                    </div>
+                                    <div>
+                                        <button
+                                            onClick={() =>
+                                                setSelectedMeasure("")
+                                            }
+                                            className="bg-gray-400 hover:bg-gray-500 ml-2 px-3 py-2 rounded text-base text-white"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            onClick={() => submitAddMeasure()}
+                                            className="bg-green-400 hover:bg-green-500 ml-2 px-3 py-2 rounded text-base text-white"
+                                        >
+                                            Confirm
+                                        </button>
+                                    </div>
                                 </div>
-                                <div>
-                                    <button
-                                        onClick={() => setSelectedMeasure("")}
-                                        className="bg-gray-400 hover:bg-gray-500 ml-2 px-3 py-2 rounded text-base text-white"
-                                    >
-                                        Cancel
-                                    </button>
-                                    <button
-                                        onClick={() => submitAddMeasure()}
-                                        className="bg-green-400 hover:bg-green-500 ml-2 px-3 py-2 rounded text-base text-white"
-                                    >
-                                        Confirm
-                                    </button>
-                                </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
+                        {props.client.measures.map((measure, index) => {
+                            return (
+                                <UrlRow
+                                    key={index}
+                                    heading={measure.name}
+                                    iconSize="6"
+                                    iconColour="text-gray-500"
+                                    link={
+                                        props.client.url +
+                                        "/" +
+                                        measure.hashed_id
+                                    }
+                                />
+                            );
+                        })}
                     </div>
-                    {props.client.measures.map((measure, index) => {
-                        return (
-                            <UrlRow
-                                key={index}
-                                heading={measure.name}
-                                iconSize="6"
-                                iconColour="text-gray-500"
-                                link={
-                                    props.client.url + "/" + measure.hashed_id
-                                }
-                            />
-                        );
-                    })}
                 </div>
-            </div>
-            <div className="bg-white">
-                <SaveableBanner
-                    title="Client Settings"
-                    savedAt={props.savedAt}
-                />
-                <div className="text-lg pt-2 pb-6 px-6 space-y-4">
-                    <UpdateStatusForm
-                        title="Client Status"
-                        onStatusUpdate={props.onStatusUpdate}
-                        currentStatus={props.client.is_active}
-                        identifier="active"
-                        truthyLabel="Active"
-                        falseyLabel="Archived"
-                    />
-                    <UpdateStatusForm
-                        title="Public URL Access"
-                        onStatusUpdate={props.onStatusUpdate}
-                        currentStatus={
-                            props.client.preferences.create_own_resources
-                        }
-                        identifier="url"
-                        truthyLabel="Allowed"
-                        falseyLabel="Disabled"
-                    />
-                    <UpdateStatusForm
-                        title="Statistical Analyses"
-                        onStatusUpdate={props.onStatusUpdate}
-                        currentStatus={
-                            props.client.preferences.include_in_analyses
-                        }
-                        identifier="stats"
-                        truthyLabel="Included"
-                        falseyLabel="Excluded"
-                    />
+                <div className="bg-white">
+                    <GrayFadedMenuBanner title="Treatment Episodes">
+                        <ButtonBlue
+                            handleClick={() => console.log("clicked")}
+                            label="Settings"
+                        />
+                    </GrayFadedMenuBanner>
                 </div>
             </div>
         </div>

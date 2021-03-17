@@ -9,9 +9,10 @@ import DetailsBuilder from "../components/Details/DetailsBuilder";
 import ScalesBuilder from "../components/Scales/ScalesBuilder";
 import ScaleScorer from "./Scoring/ScaleScorer";
 import ModalScrollable from "../../../UI/modals/Scrollable";
-import ToggleButton from "../../../UI/buttons/ToggleButton";
 import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
 import SaveSubmitButton from "../../../UI/forms/SaveSubmitButton";
+import ButtonTeal from "../../../UI/buttons/ButtonTeal";
+import ButtonBlue from "../../../UI/buttons/ButtonBlue";
 
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState([]);
@@ -163,20 +164,18 @@ export default function MeasureContainer({ measure }) {
                             >
                                 Edit
                             </InertiaLink>
-                            <button
-                                onClick={() => toggleConfirmPublish()}
-                                className="flex font-semibold bg-teal-400 items-center px-3 rounded text-sm text-white hover:bg-teal-500 w-full uppercase py-2"
-                            >
-                                Publish
-                            </button>
+                            <ButtonTeal
+                                label="Publish"
+                                handleClick={toggleConfirmPublish}
+                            />
                         </div>
                     )}
                 </GrayFadedMenuBanner>
                 <div>
                     <GrayFadedMenuBanner title="Details">
-                        <ToggleButton
-                            onHandleClick={toggleDetailsModal}
-                            text="Update"
+                        <ButtonBlue
+                            handleClick={toggleDetailsModal}
+                            label="Update"
                         />
                     </GrayFadedMenuBanner>
                     <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal text-gray-200">
@@ -238,9 +237,9 @@ export default function MeasureContainer({ measure }) {
                 </div>
                 <div className="">
                     <GrayFadedMenuBanner title="Scoring">
-                        <ToggleButton
-                            onHandleClick={toggleScoringModal}
-                            text="Update"
+                        <ButtonBlue
+                            handleClick={toggleScoringModal}
+                            label="Update"
                         />
                     </GrayFadedMenuBanner>
                     <div className="py-4 px-6 bg-gray-800 text-lg space-y-4">

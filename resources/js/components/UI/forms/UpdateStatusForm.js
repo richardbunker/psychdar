@@ -2,15 +2,11 @@ import React, { useState, useEffect } from "react";
 import RadioPair from "../inputs/RadioPair";
 
 export default function UpdateStatusForm(props) {
-    const [status, setStatus] = useState();
-
-    useEffect(() => {
-        setStatus(props.currentStatus);
-    }, [props.currentStatus]);
-
     const handleChange = e => {
-        setStatus(e.target.value);
-        props.onStatusUpdate(props.identifier, e.target.value);
+        props.onStatusUpdate({
+            identifier: props.identifier,
+            value: e.target.value
+        });
     };
 
     return (
@@ -21,7 +17,7 @@ export default function UpdateStatusForm(props) {
                 </div>
                 <RadioPair
                     handleChange={handleChange}
-                    status={status}
+                    status={props.currentStatus}
                     truthyLabel={props.truthyLabel}
                     falseyLabel={props.falseyLabel}
                 />
