@@ -29,11 +29,23 @@ class UserClientsController extends Controller
                 'client' => Client::where('id', Hasher::decode($hashed_client_id))
                                 ->with('treatments.assessments')
                                 ->with('measures')
+                                ->with('activeTreatments')
                                 ->first(),
                 'userPublishedMeasures' => Auth::user()->publishedMeasures,
             ]);            
         }
         return abort(403);            
+    }
+    
+    public function store(Request $request)
+    {
+        $client = new Client;
+        $client->user_id = Auth::user()->id;
+        $client->identifier = $request->name;
+        $client->is_active = true;
+        $client->preferences = json_encode($request->preferences);
+        $client->save();
+        return Redirect::route('showClient', $client->hashed_id);  
     }
     
     public function updateSettings(Request $request)

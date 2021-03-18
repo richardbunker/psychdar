@@ -54,6 +54,11 @@ class Client extends Model
     {
         return $this->hasMany(Treatment::class)->orderBy('created_at', 'desc');
     }
+
+    public function activetreatments()
+    {
+        return $this->hasMany(Treatment::class)->where('ended_at', null);
+    }
     
     public function measures()
     {

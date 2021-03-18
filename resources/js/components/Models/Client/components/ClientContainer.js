@@ -23,6 +23,9 @@ export default function ClientContainer(props) {
         stats: props.client.preferences.include_in_analyses
     });
     const [displayClientSettings, setDisplayClientSettings] = useState(false);
+    const [displayTreatmentSettings, setDisplayTreatmentSettings] = useState(
+        false
+    );
 
     const userMeasures = props.userPublishedMeasures.map(measure => {
         return { title: measure.name, value: measure.hashed_id };
@@ -41,6 +44,10 @@ export default function ClientContainer(props) {
 
     const toggleDisplayClientSettings = () => {
         setDisplayClientSettings(prevState => !prevState);
+    };
+
+    const toggleDisplayTreatmentSettings = () => {
+        setDisplayTreatmentSettings(prevState => !prevState);
     };
 
     const onSelect = event => {
@@ -77,6 +84,30 @@ export default function ClientContainer(props) {
 
     return (
         <div className="">
+            {displayTreatmentSettings && (
+                <ModalScrollable heading="Active Treatment Episodes">
+                    {props.client.active_treatments.length === 0 && (
+                        <div className="leading-normal p-4 text-gray-700 text-lg">
+                            There are currently no active treatement episodes to
+                            manage. A new treatment episode will automatically
+                            be created when a client submits an assessment via
+                            their unique public URL.
+                        </div>
+                    )}
+                    <div className="flex items-center justify-end space-x-2 ml-auto">
+                        <ButtonGray
+                            label="Close"
+                            handleClick={toggleDisplayTreatmentSettings}
+                        />
+                        {props.client.active_treatments.length > 0 && (
+                            <ButtonTeal
+                                label="Update"
+                                handleClick={toggleDisplayTreatmentSettings}
+                            />
+                        )}
+                    </div>
+                </ModalScrollable>
+            )}
             {displayClientSettings && (
                 <ModalScrollable heading="Client Settings">
                     <div className="text-lg pt-2 pb-6 px-6 space-y-4">
@@ -203,8 +234,8 @@ export default function ClientContainer(props) {
                 <div className="bg-white">
                     <GrayFadedMenuBanner title="Treatment Episodes">
                         <ButtonBlue
-                            handleClick={() => console.log("clicked")}
-                            label="Settings"
+                            handleClick={toggleDisplayTreatmentSettings}
+                            label="Manage Active"
                         />
                     </GrayFadedMenuBanner>
                     <div className="bg-gray-100 space-y-2">

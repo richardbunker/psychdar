@@ -12,7 +12,6 @@ import CancelableContainer from "../../../../UI/containers/CancelableContainer";
 import GrayFadedMenuBanner from "../../../../UI/GrayFadedMenuBanner";
 import GrayFadedBanner from "../../../../UI/GrayFadedBanner";
 import ModalScrollable from "../../../../UI/modals/Scrollable";
-import Checkbox from "../../../../UI/inputs/Checkbox";
 import CheckboxInput from "../../../../UI/inputs/CheckboxInput";
 
 export default function StructureBuilder(props) {

@@ -66,7 +66,8 @@ Route::group(['middleware' => ['auth:web']], function () {
     
     
     // Clients
-    Route::get('/clients', [App\Http\Controllers\UserClientsController::class, 'index']);
+    Route::get('/clients', [App\Http\Controllers\UserClientsController::class, 'index'])->name('showClients');
+    Route::post('/clients', [App\Http\Controllers\UserClientsController::class, 'store']);
     Route::get('/client/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'show'])->name('showClient');
     Route::get('/api/organisation/{hashed_organisation_id}/clients', [App\Http\Controllers\OrganisationClientsController::class, 'index']);
     Route::post('/client-settings', [App\Http\Controllers\UserClientsController::class, 'updateSettings']);

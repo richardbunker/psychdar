@@ -1,14 +1,61 @@
 import React, { useEffect, useState } from "react";
-import GrayFadedBanner from "../../../UI/GrayFadedBanner";
+import { Inertia } from "@inertiajs/inertia";
+import ButtonBlue from "../../../UI/buttons/ButtonBlue";
+import ButtonGray from "../../../UI/buttons/ButtonGray";
+import ButtonTeal from "../../../UI/buttons/ButtonTeal";
+import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
+import StringInput from "../../../UI/inputs/StringInput";
+import ModalScrollable from "../../../UI/modals/Scrollable";
+import { validateString } from "../../../../utilities/HelperFunctions";
+import StringCounter from "../../../UI/inputs/StringCounter";
 
 export default function ClientsContainer(props) {
     const [clients, setClients] = useState([]);
     const [filtered, setfiltered] = useState([]);
+    const [displayCreateClientModal, setDisplayCreateClientModal] = useState(
+        false
+    );
+    const [newClient, setNewClient] = useState("");
+    const [inputFields, setInputFields] = useState({
+        name: false
+    });
 
     useEffect(() => {
         setClients(props.clients);
         setfiltered(props.clients);
     }, [props.clients]);
+
+    const toggleCreateClientModal = () => {
+        setDisplayCreateClientModal(prevState => !prevState);
+    };
+
+    const updateName = value => {
+        if (value.length <= 25) {
+            setNewClient(value);
+        }
+        if (validateString(value, 3)) {
+            setInputFields(prevState => {
+                return { ...prevState, name: true };
+            });
+        } else {
+            setInputFields(prevState => {
+                return { ...prevState, name: false };
+            });
+        }
+    };
+
+    const submitCreateClient = () => {
+        const values = {
+            name: newClient,
+            preferences: {
+                create_own_resources: true,
+                include_in_analyses: true,
+                outcome_measure: ""
+            }
+        };
+        Inertia.post("/clients", values);
+        toggleCreateClientModal();
+    };
 
     const filterClientsBySearch = searchTerm => {
         const filteredClients = clients.filter(client => {
@@ -22,7 +69,7 @@ export default function ClientsContainer(props) {
     const row = "p-2 flex items-center justify-between w-full rounded-b";
 
     const bubble =
-        "text-white rounded py-2 px-3 flex items-center justify-center";
+        "text-white rounded py-1 px-3 flex items-center justify-center text-sm uppercase";
 
     const handleKeyUp = e => {
         filterClientsBySearch(e.target.value);
@@ -30,9 +77,7 @@ export default function ClientsContainer(props) {
 
     const noResults = () => {
         return (
-            <div className={row + " bg-white uppercase font-semibold"}>
-                No results
-            </div>
+            <div className={row + " bg-white uppercase py-2"}>No results</div>
         );
     };
 
@@ -47,7 +92,7 @@ export default function ClientsContainer(props) {
                 >
                     <a
                         href={"client/" + client.hashed_id}
-                        className="min-w-max-content pr-4 hover:text-teal-500 hover:underline font-semibold"
+                        className="min-w-max-content pr-4 hover:text-teal-500 hover:underline py-1"
                     >
                         {client.identifier}
                     </a>
@@ -69,14 +114,52 @@ export default function ClientsContainer(props) {
 
     return (
         <div>
+            {displayCreateClientModal && (
+                <ModalScrollable heading="Create Client">
+                    <div className="pb-4">
+                        <StringInput
+                            value={newClient}
+                            handleOnStringChange={e =>
+                                updateName(e.target.value)
+                            }
+                            title="Name"
+                            placeholder="Smith, Jane | ID420 | Jane, Smith"
+                        />
+                        {newClient.length > 0 && (
+                            <StringCounter
+                                isValid={inputFields.name}
+                                number={newClient.length}
+                                max="25"
+                            />
+                        )}
+                    </div>
+                    <div className="flex items-center justify-end space-x-2 w-80 ml-auto">
+                        <ButtonGray
+                            label="Cancel"
+                            handleClick={toggleCreateClientModal}
+                        />
+                        {inputFields.name && (
+                            <ButtonTeal
+                                label="Create"
+                                handleClick={submitCreateClient}
+                            />
+                        )}
+                    </div>
+                </ModalScrollable>
+            )}
             <input
                 onKeyUp={handleKeyUp}
                 type="text"
-                placeholder="Search Clients"
-                className="border-b-4 border-gray-300 focus:outline-none font-medium px-3 py-2 rounded-none text-2xl text-gray-700 w-full"
+                placeholder="Search..."
+                className="focus:outline-none p-2 text-lg text-gray-700 w-full"
             />
             <div className="bg-white">
-                <GrayFadedBanner title="identifier" />
+                <GrayFadedMenuBanner title="Identifier">
+                    <ButtonBlue
+                        handleClick={toggleCreateClientModal}
+                        label="Create"
+                    />
+                </GrayFadedMenuBanner>
                 <div className="w-full bg-white rounded overflow-auto">
                     <div className="min-w-min-content overflow-auto text-gray-600 text-lg w-full">
                         {filtered.length > 0 ? filterResults() : noResults()}
