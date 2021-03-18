@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Helpers\Hasher;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,7 +28,7 @@ class Assessment extends Model
         'updated_at',
     ];
 
-    protected $appends = ['hashed_id', 'hashed_measure_id'];
+    protected $appends = ['hashed_id', 'hashed_measure_id', 'assessed_at'];
 
     public function getHashedIdAttribute()
     {
@@ -39,8 +40,18 @@ class Assessment extends Model
         return Hasher::encode($this->attributes['measure_id']);
     }
 
+    public function getAssessedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
+    }
+
     public function getDataAttribute($value)
     {
         return json_decode($value);
+    }
+
+    public function measure()
+    {
+        return $this->belongsTo(Measure::class);
     }
 }

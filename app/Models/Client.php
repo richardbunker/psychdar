@@ -20,6 +20,7 @@ class Client extends Model
      */
     protected $hidden = [
         'id',
+        'user_id',
         'clinic_id',
         'clinician_id',
         'organisation_id',
@@ -51,7 +52,7 @@ class Client extends Model
 
     public function treatments()
     {
-        return $this->hasMany(Treatment::class);
+        return $this->hasMany(Treatment::class)->orderBy('created_at', 'desc');
     }
     
     public function measures()

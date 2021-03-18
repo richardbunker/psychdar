@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import TreatmentEpisodesRow from "../../../Stats/row/TreatmentEpisodes";
 import TotalAssessmentsRow from "../../../Stats/row/TotalAssessments";
@@ -12,6 +12,8 @@ import ModalScrollable from "../../../UI/modals/Scrollable";
 import ButtonGray from "../../../UI/buttons/ButtonGray";
 import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import GrayFadedBanner from "../../../UI/GrayFadedBanner";
+import OpenCloseContainer from "../../../UI/dropdowns/OpenCloseContainer";
+import AssessmentContainer from "../../Assessment/components/AssessmentContainer";
 
 export default function ClientContainer(props) {
     const [selectedMeasure, setSelectedMeasure] = useState("");
@@ -205,6 +207,24 @@ export default function ClientContainer(props) {
                             label="Settings"
                         />
                     </GrayFadedMenuBanner>
+                    <div className="bg-gray-100 space-y-2">
+                        {props.client.treatments.map((treatment, index) => {
+                            return (
+                                <OpenCloseContainer
+                                    key={index}
+                                    title={
+                                        treatment.started +
+                                        " - " +
+                                        treatment.ended
+                                    }
+                                >
+                                    <AssessmentContainer
+                                        treatmentHashedId={treatment.hashed_id}
+                                    />
+                                </OpenCloseContainer>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Helpers\Hasher;
 use App\Models\Assessment;
 use App\Models\Consultation;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,6 +20,7 @@ class Treatment extends Model
      */
     protected $hidden = [
         'id',
+        'user_id',
         'clinic_id',
         'clinician_id',
         'client_id',
@@ -27,11 +29,24 @@ class Treatment extends Model
         'updated_at',
     ];
 
-    protected $appends = ['hashed_id'];
+    protected $appends = ['hashed_id', 'started', 'ended'];
 
     public function getHashedIdAttribute()
     {
         return Hasher::encode($this->attributes['id']);
+    }
+
+    public function getStartedAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
+    }
+
+    public function getEndedAttribute()
+    {
+        if (is_null($this->attributes['ended_at']) ) {
+            return 'Present';
+        }
+        return Carbon::parse($this->attributes['ended_at'])->format('d/m/Y');
     }
 
     // public function consultations()

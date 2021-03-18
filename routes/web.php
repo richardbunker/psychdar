@@ -70,9 +70,6 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::get('/client/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'show'])->name('showClient');
     Route::get('/api/organisation/{hashed_organisation_id}/clients', [App\Http\Controllers\OrganisationClientsController::class, 'index']);
     Route::post('/client-settings', [App\Http\Controllers\UserClientsController::class, 'updateSettings']);
-    // Route::post('/api/client-active-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateActiveStatus']);
-    // Route::post('/api/client-url-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateUrlStatus']);
-    // Route::post('/api/client-stats-status/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'updateStatsStatus']);
 
     // ClientMeasure
     Route::post('/client-measure', [App\Http\Controllers\ClientMeasureController::class, 'store']);
@@ -92,6 +89,9 @@ Route::group(['middleware' => ['auth:web']], function () {
     // AnchorsGroups
     Route::get('/api/anchor-groups/{type}', [App\Http\Controllers\AnchorGroupController::class, 'index']);
     Route::post('/api/anchor-group/create', [App\Http\Controllers\AnchorGroupController::class, 'store']);
+
+    // Assessments
+    Route::get('/treatment-assessments/{hashed_treatment_id}', [App\Http\Controllers\TreatmentAssessmentsController::class, 'index']);
 
 
     // Effect Sizes
