@@ -14,7 +14,11 @@ export default function OpenCloseContainer(props) {
                 <div className="text-base text-gray-500">
                     <span>{props.title}</span>
                 </div>
-                <DropdownButton handleClick={toggleContainer} />
+                <DropdownButton
+                    toggle={toggleContainer}
+                    isOpen={isOpen}
+                    handleClick={toggleContainer}
+                />
             </div>
             {isOpen && props.children}
         </div>

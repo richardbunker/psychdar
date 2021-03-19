@@ -13,7 +13,8 @@ import ButtonGray from "../../../UI/buttons/ButtonGray";
 import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import GrayFadedBanner from "../../../UI/GrayFadedBanner";
 import OpenCloseContainer from "../../../UI/dropdowns/OpenCloseContainer";
-import AssessmentContainer from "../../Assessment/components/AssessmentContainer";
+import TreatmentContainer from "../../Treatment/components/TreatmentContainer";
+import ManageActiveTreatments from "../../Treatment/components/ManageActiveTreatments";
 
 export default function ClientContainer(props) {
     const [selectedMeasure, setSelectedMeasure] = useState("");
@@ -86,26 +87,27 @@ export default function ClientContainer(props) {
         <div className="">
             {displayTreatmentSettings && (
                 <ModalScrollable heading="Active Treatment Episodes">
-                    {props.client.active_treatments.length === 0 && (
-                        <div className="leading-normal p-4 text-gray-700 text-lg">
-                            There are currently no active treatement episodes to
-                            manage. A new treatment episode will automatically
-                            be created when a client submits an assessment via
-                            their unique public URL.
-                        </div>
-                    )}
-                    <div className="flex items-center justify-end space-x-2 ml-auto">
-                        <ButtonGray
-                            label="Close"
-                            handleClick={toggleDisplayTreatmentSettings}
+                    {props.client.active_treatments.length === 0 ? (
+                        <>
+                            <div className="leading-normal p-2 text-gray-700 text-lg">
+                                There are currently no active treatement
+                                episodes to manage. A new treatment episode will
+                                automatically be created when a client submits
+                                an assessment via their unique public URL.
+                            </div>
+                            <div className="flex items-center justify-end">
+                                <ButtonGray
+                                    handleClick={toggleDisplayTreatmentSettings}
+                                    label="Cancel"
+                                />
+                            </div>
+                        </>
+                    ) : (
+                        <ManageActiveTreatments
+                            toggle={toggleDisplayTreatmentSettings}
+                            treatments={props.client.treatments}
                         />
-                        {props.client.active_treatments.length > 0 && (
-                            <ButtonTeal
-                                label="Update"
-                                handleClick={toggleDisplayTreatmentSettings}
-                            />
-                        )}
-                    </div>
+                    )}
                 </ModalScrollable>
             )}
             {displayClientSettings && (
@@ -249,7 +251,7 @@ export default function ClientContainer(props) {
                                         treatment.ended
                                     }
                                 >
-                                    <AssessmentContainer
+                                    <TreatmentContainer
                                         treatmentHashedId={treatment.hashed_id}
                                     />
                                 </OpenCloseContainer>

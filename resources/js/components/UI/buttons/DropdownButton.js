@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 export default function DropdownButton(props) {
-    const [isOpened, setIsOpened] = useState(true);
-    const toggleIsOpened = () => {
-        setIsOpened(prevState => !prevState);
-        props.handleClick();
-    };
+    // const [isOpened, setIsOpened] = useState(true);
+    // const toggleIsOpened = () => {
+    //     setIsOpened(prevState => !prevState);
+    //     props.handleClick();
+    // };
     return (
-        <button onClick={toggleIsOpened}>
-            {isOpened ? (
+        <button onClick={props.toggle}>
+            {props.isOpen ? (
                 <svg
                     className="w-6 h-6 text-gray-700"
                     fill="currentColor"
@@ -17,7 +17,7 @@ export default function DropdownButton(props) {
                 >
                     <path
                         fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
                         clipRule="evenodd"
                     />
                 </svg>
@@ -30,7 +30,7 @@ export default function DropdownButton(props) {
                 >
                     <path
                         fillRule="evenodd"
-                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                         clipRule="evenodd"
                     />
                 </svg>

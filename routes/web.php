@@ -86,6 +86,9 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('/measure/scales', [App\Http\Controllers\UserMeasuresController::class, 'updateScales']);
     Route::post('/measure/publish', [App\Http\Controllers\UserMeasuresController::class, 'publishMeasure']);
 
+    // Treatments
+    Route::post('/end-treatment', [App\Http\Controllers\ClientTreatmentController::class, 'ended']);
+
 
     // AnchorsGroups
     Route::get('/api/anchor-groups/{type}', [App\Http\Controllers\AnchorGroupController::class, 'index']);

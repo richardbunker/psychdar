@@ -50935,84 +50935,6 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Models/Assessment/components/AssessmentContainer.js":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/Models/Assessment/components/AssessmentContainer.js ***!
-  \*************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return AssessmentContainer; });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _PresentMeasureAssessment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PresentMeasureAssessment */ "./resources/js/components/Models/Assessment/components/PresentMeasureAssessment.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-function AssessmentContainer(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
-      _useState2 = _slicedToArray(_useState, 2),
-      assessmentsGroupedByMeasure = _useState2[0],
-      setAssessmentsGroupedByMeasure = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
-      _useState4 = _slicedToArray(_useState3, 2),
-      loading = _useState4[0],
-      setIsLoading = _useState4[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    fetchAssessmentsGroupedByMeasure();
-  }, []);
-
-  var toggleIsLoading = function toggleIsLoading() {
-    setIsLoading(function (prevState) {
-      return !prevState;
-    });
-  };
-
-  var fetchAssessmentsGroupedByMeasure = function fetchAssessmentsGroupedByMeasure() {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/treatment-assessments/" + props.treatmentHashedId).then(function (res) {
-      setAssessmentsGroupedByMeasure(res.data);
-      toggleIsLoading();
-    });
-  };
-
-  var keys = Object.keys(assessmentsGroupedByMeasure);
-  var measureAssessments = keys.map(function (key) {
-    return _objectSpread({}, assessmentsGroupedByMeasure[key]);
-  });
-  return measureAssessments.map(function (measureAssessment, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_PresentMeasureAssessment__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      key: index,
-      measureAssessment: measureAssessment
-    });
-  });
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/Models/Assessment/components/PresentMeasureAssessment.js":
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/Models/Assessment/components/PresentMeasureAssessment.js ***!
@@ -51084,7 +51006,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
 /* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
 /* harmony import */ var _UI_dropdowns_OpenCloseContainer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../UI/dropdowns/OpenCloseContainer */ "./resources/js/components/UI/dropdowns/OpenCloseContainer.js");
-/* harmony import */ var _Assessment_components_AssessmentContainer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../Assessment/components/AssessmentContainer */ "./resources/js/components/Models/Assessment/components/AssessmentContainer.js");
+/* harmony import */ var _Treatment_components_TreatmentContainer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../Treatment/components/TreatmentContainer */ "./resources/js/components/Models/Treatment/components/TreatmentContainer.js");
+/* harmony import */ var _Treatment_components_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../Treatment/components/ManageActiveTreatments */ "./resources/js/components/Models/Treatment/components/ManageActiveTreatments.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -51102,6 +51025,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -51208,17 +51132,17 @@ function ClientContainer(props) {
     className: ""
   }, displayTreatmentSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__["default"], {
     heading: "Active Treatment Episodes"
-  }, props.client.active_treatments.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "leading-normal p-4 text-gray-700 text-lg"
+  }, props.client.active_treatments.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "leading-normal p-2 text-gray-700 text-lg"
   }, "There are currently no active treatement episodes to manage. A new treatment episode will automatically be created when a client submits an assessment via their unique public URL."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-end space-x-2 ml-auto"
+    className: "flex items-center justify-end"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    label: "Close",
-    handleClick: toggleDisplayTreatmentSettings
-  }), props.client.active_treatments.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    label: "Update",
-    handleClick: toggleDisplayTreatmentSettings
-  }))), displayClientSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    handleClick: toggleDisplayTreatmentSettings,
+    label: "Cancel"
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    toggle: toggleDisplayTreatmentSettings,
+    treatments: props.client.treatments
+  })), displayClientSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__["default"], {
     heading: "Client Settings"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-lg pt-2 pb-6 px-6 space-y-4"
@@ -51323,7 +51247,7 @@ function ClientContainer(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_OpenCloseContainer__WEBPACK_IMPORTED_MODULE_14__["default"], {
       key: index,
       title: treatment.started + " - " + treatment.ended
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Assessment_components_AssessmentContainer__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_TreatmentContainer__WEBPACK_IMPORTED_MODULE_15__["default"], {
       treatmentHashedId: treatment.hashed_id
     }));
   })))));
@@ -55899,6 +55823,178 @@ var formatNameAndAbbr = function formatNameAndAbbr(name, abbr) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Models/Treatment/components/ManageActiveTreatments.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/Models/Treatment/components/ManageActiveTreatments.js ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ManageActiveTreatments; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
+/* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function ManageActiveTreatments(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      checked = _useState2[0],
+      setIsChecked = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    treatmentHashedId: ""
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      treatmentHashedId = _useState4[0],
+      setTreatmentHashedId = _useState4[1];
+
+  var toggleChecked = function toggleChecked(hashedTreatmentId) {
+    setIsChecked(function (prevState) {
+      return !prevState;
+    });
+    setTreatmentHashedId(function (prevState) {
+      return {
+        treatmentHashedId: hashedTreatmentId
+      };
+    });
+  };
+
+  var submitEndTreatment = function submitEndTreatment() {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/end-treatment", treatmentHashedId);
+    props.toggle();
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2"
+  }, props.treatments.map(function (treatement, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: index,
+      className: "border flex items-start p-4 rounded space-x-2 w-full"
+    }, treatement.ended === "Present" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      key: index,
+      onCheckedInput: function onCheckedInput() {
+        return toggleChecked(treatement.hashed_id);
+      },
+      title: treatement.started,
+      label: "Completed",
+      value: checked,
+      text: "Check to mark this treatment episode as completed."
+    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-gray-600 font-semibold w-1/3"
+    }, treatement.started + " - " + treatement.ended));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-end space-x-2 ml-auto pt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    label: "Cancel",
+    handleClick: props.toggle
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    label: "Update",
+    handleClick: submitEndTreatment
+  })));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Treatment/components/TreatmentContainer.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/Models/Treatment/components/TreatmentContainer.js ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TreatmentContainer; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Assessment_components_PresentMeasureAssessment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Assessment/components/PresentMeasureAssessment */ "./resources/js/components/Models/Assessment/components/PresentMeasureAssessment.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+function TreatmentContainer(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      assessmentsGroupedByMeasure = _useState2[0],
+      setAssessmentsGroupedByMeasure = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setIsLoading = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    fetchAssessmentsGroupedByMeasure();
+  }, []);
+
+  var toggleIsLoading = function toggleIsLoading() {
+    setIsLoading(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  var fetchAssessmentsGroupedByMeasure = function fetchAssessmentsGroupedByMeasure() {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/treatment-assessments/" + props.treatmentHashedId).then(function (res) {
+      setAssessmentsGroupedByMeasure(res.data);
+      toggleIsLoading();
+    });
+  };
+
+  var keys = Object.keys(assessmentsGroupedByMeasure);
+  var measureAssessments = keys.map(function (key) {
+    return _objectSpread({}, assessmentsGroupedByMeasure[key]);
+  });
+  return measureAssessments.map(function (measureAssessment, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Assessment_components_PresentMeasureAssessment__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: index,
+      measureAssessment: measureAssessment
+    });
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Models/User/UserStats.js":
 /*!**********************************************************!*\
   !*** ./resources/js/components/Models/User/UserStats.js ***!
@@ -56645,42 +56741,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DropdownButton; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 function DropdownButton(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
-      _useState2 = _slicedToArray(_useState, 2),
-      isOpened = _useState2[0],
-      setIsOpened = _useState2[1];
-
-  var toggleIsOpened = function toggleIsOpened() {
-    setIsOpened(function (prevState) {
-      return !prevState;
-    });
-    props.handleClick();
-  };
-
+  // const [isOpened, setIsOpened] = useState(true);
+  // const toggleIsOpened = () => {
+  //     setIsOpened(prevState => !prevState);
+  //     props.handleClick();
+  // };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: toggleIsOpened
-  }, isOpened ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    onClick: props.toggle
+  }, props.isOpen ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "w-6 h-6 text-gray-700",
     fill: "currentColor",
     viewBox: "0 0 20 20",
     xmlns: "http://www.w3.org/2000/svg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     fillRule: "evenodd",
-    d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+    d: "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z",
     clipRule: "evenodd"
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "w-6 h-6 text-gray-700",
@@ -56689,7 +56766,7 @@ function DropdownButton(props) {
     xmlns: "http://www.w3.org/2000/svg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     fillRule: "evenodd",
-    d: "M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z",
+    d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
     clipRule: "evenodd"
   })));
 }
@@ -56817,6 +56894,8 @@ function OpenCloseContainer(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-base text-gray-500"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, props.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_DropdownButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    toggle: toggleContainer,
+    isOpen: isOpen,
     handleClick: toggleContainer
   })), isOpen && props.children);
 }
@@ -56869,6 +56948,8 @@ function OpenCloseContainerRounded(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-sm text-gray-500"
   }, props.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_DropdownButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    toggle: toggleContainer,
+    isOpen: isOpen,
     handleClick: toggleContainer
   })), isOpen && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "p-1"

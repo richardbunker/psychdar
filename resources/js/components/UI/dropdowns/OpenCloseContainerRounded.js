@@ -21,7 +21,11 @@ export default function OpenCloseContainerRounded(props) {
                 }
             >
                 <div className="text-sm text-gray-500">{props.title}</div>
-                <DropdownButton handleClick={toggleContainer} />
+                <DropdownButton
+                    toggle={toggleContainer}
+                    isOpen={isOpen}
+                    handleClick={toggleContainer}
+                />
             </div>
             {isOpen && <div className="p-1">props.children</div>}
         </div>

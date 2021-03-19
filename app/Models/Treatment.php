@@ -21,8 +21,6 @@ class Treatment extends Model
     protected $hidden = [
         'id',
         'user_id',
-        'clinic_id',
-        'clinician_id',
         'client_id',
         'organisation_id',
         'created_at',

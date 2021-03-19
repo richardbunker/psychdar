@@ -1,8 +1,8 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import PresentMeasureAssessment from "./PresentMeasureAssessment";
+import PresentMeasureAssessment from "../../Assessment/components/PresentMeasureAssessment";
 
-export default function AssessmentContainer(props) {
+export default function TreatmentContainer(props) {
     const [
         assessmentsGroupedByMeasure,
         setAssessmentsGroupedByMeasure
