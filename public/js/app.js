@@ -50991,23 +50991,258 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClientContainer; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
+/* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../UI/GrayFadedMenuBanner */ "./resources/js/components/UI/GrayFadedMenuBanner.js");
+/* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
+/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
+/* harmony import */ var _Treatment_components_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Treatment/components/ManageActiveTreatments */ "./resources/js/components/Models/Treatment/components/ManageActiveTreatments.js");
+/* harmony import */ var _ClientSettings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ClientSettings */ "./resources/js/components/Models/Client/components/ClientSettings.js");
+/* harmony import */ var _ClientMeasures__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ClientMeasures */ "./resources/js/components/Models/Client/components/ClientMeasures.js");
+/* harmony import */ var _Treatment_components_TreatmentsContainer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Treatment/components/TreatmentsContainer */ "./resources/js/components/Models/Treatment/components/TreatmentsContainer.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function ClientContainer(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      displayClientSettings = _useState2[0],
+      setDisplayClientSettings = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      displayTreatmentSettings = _useState4[0],
+      setDisplayTreatmentSettings = _useState4[1];
+
+  var toggleDisplayClientSettings = function toggleDisplayClientSettings() {
+    setDisplayClientSettings(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  var toggleDisplayTreatmentSettings = function toggleDisplayTreatmentSettings() {
+    setDisplayTreatmentSettings(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: ""
+  }, displayTreatmentSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    heading: "Active Treatment Episodes"
+  }, props.client.active_treatments.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "leading-normal p-2 text-gray-700 text-lg"
+  }, "There are currently no active treatement episodes to manage. A new treatment episode will automatically be created when a client submits an assessment via their unique public URL."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-end"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    handleClick: toggleDisplayTreatmentSettings,
+    label: "Cancel"
+  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    toggle: toggleDisplayTreatmentSettings,
+    treatments: props.client.treatments
+  })), displayClientSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    heading: "Client Settings"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClientSettings__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    client: props.client,
+    toggleModal: toggleDisplayClientSettings
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    title: props.client.identifier
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    handleClick: toggleDisplayClientSettings,
+    label: "Settings"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-lg py-4 px-6 space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    iconSize: "10",
+    iconColour: "text-pink-400",
+    number: props.client.treatments.length
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    iconSize: "10",
+    iconColour: "text-green-400",
+    number: props.client.treatments.map(function (treatment) {
+      return treatment.assessments.length;
+    }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_3__["sum"], 0)
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2 mt-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    title: "Measures"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClientMeasures__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    userPublishedMeasures: props.userPublishedMeasures,
+    client: props.client
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    title: "Treatment Episodes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    handleClick: toggleDisplayTreatmentSettings,
+    label: "Manage Active"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_TreatmentsContainer__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    treatments: props.client.treatments
+  }))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Client/components/ClientMeasures.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Models/Client/components/ClientMeasures.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClientMeasures; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
-/* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-/* harmony import */ var _Stats_row_Url__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Stats/row/Url */ "./resources/js/components/Stats/row/Url.js");
-/* harmony import */ var _UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../UI/forms/UpdateStatusForm */ "./resources/js/components/UI/forms/UpdateStatusForm.js");
-/* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
-/* harmony import */ var _UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../UI/GrayFadedMenuBanner */ "./resources/js/components/UI/GrayFadedMenuBanner.js");
-/* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
-/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
-/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
-/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
-/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
-/* harmony import */ var _UI_dropdowns_OpenCloseContainer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../UI/dropdowns/OpenCloseContainer */ "./resources/js/components/UI/dropdowns/OpenCloseContainer.js");
-/* harmony import */ var _Treatment_components_TreatmentContainer__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../Treatment/components/TreatmentContainer */ "./resources/js/components/Models/Treatment/components/TreatmentContainer.js");
-/* harmony import */ var _Treatment_components_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../Treatment/components/ManageActiveTreatments */ "./resources/js/components/Models/Treatment/components/ManageActiveTreatments.js");
+/* harmony import */ var _Stats_row_Url__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/row/Url */ "./resources/js/components/Stats/row/Url.js");
+/* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+function ClientMeasures(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedMeasure = _useState2[0],
+      setSelectedMeasure = _useState2[1];
+
+  var userMeasures = props.userPublishedMeasures.map(function (measure) {
+    return {
+      title: measure.name,
+      value: measure.hashed_id
+    };
+  });
+  var clientMeasures = props.client.measures.map(function (measure) {
+    return {
+      title: measure.name,
+      value: measure.hashed_id
+    };
+  });
+  var addableMeasures = userMeasures;
+  clientMeasures.forEach(function (clientMeasure) {
+    addableMeasures = addableMeasures.filter(function (userMeasure) {
+      return userMeasure.value !== clientMeasure.value;
+    });
+  });
+
+  var onSelect = function onSelect(event) {
+    setSelectedMeasure(event.target.value);
+  };
+
+  var submitAddMeasure = function submitAddMeasure() {
+    var values = {
+      measureHashedId: selectedMeasure,
+      clientHashedId: props.client.hashed_id
+    };
+    setSelectedMeasure("");
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/client-measure", values);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-lg py-4 px-6 space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between w-full"
+  }, selectedMeasure.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: "Add Measure",
+    onSelect: onSelect,
+    defaultText: "Please Select...",
+    defaultValue: "Please Select...",
+    options: addableMeasures
+  }), selectedMeasure.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600"
+  }, "Add " + userMeasures.find(function (x) {
+    return x.value === selectedMeasure;
+  }).title + "?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setSelectedMeasure("");
+    },
+    className: "bg-gray-400 hover:bg-gray-500 ml-2 px-3 py-2 rounded text-base text-white"
+  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return submitAddMeasure();
+    },
+    className: "bg-green-400 hover:bg-green-500 ml-2 px-3 py-2 rounded text-base text-white"
+  }, "Confirm")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-3 py-1"
+  }, props.client.measures.map(function (measure, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Url__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      key: index,
+      heading: measure.name,
+      iconSize: "6",
+      iconColour: "text-gray-500",
+      link: props.client.url + "/" + measure.hashed_id
+    });
+  })));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Client/components/ClientSettings.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Models/Client/components/ClientSettings.js ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ClientSettings; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
+/* harmony import */ var _UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../UI/inputs/StringInput */ "./resources/js/components/UI/inputs/StringInput.js");
+/* harmony import */ var _UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../UI/inputs/StringCounter */ "./resources/js/components/UI/inputs/StringCounter.js");
+/* harmony import */ var _UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../UI/forms/UpdateStatusForm */ "./resources/js/components/UI/forms/UpdateStatusForm.js");
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -51034,73 +51269,46 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
-
-
-
-
-
-
-function ClientContainer(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
-      _useState2 = _slicedToArray(_useState, 2),
-      selectedMeasure = _useState2[0],
-      setSelectedMeasure = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+function ClientSettings(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    identifier: props.client.identifier,
     active: props.client.is_active,
     url: props.client.preferences.create_own_resources,
     stats: props.client.preferences.include_in_analyses
   }),
+      _useState2 = _slicedToArray(_useState, 2),
+      clientSettings = _useState2[0],
+      setClientSettings = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    name: true
+  }),
       _useState4 = _slicedToArray(_useState3, 2),
-      clientSettings = _useState4[0],
-      setClientSettings = _useState4[1];
+      inputFields = _useState4[0],
+      setInputFields = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      displayClientSettings = _useState6[0],
-      setDisplayClientSettings = _useState6[1];
+  var updateName = function updateName(value) {
+    if (value.length <= 25) {
+      setClientSettings(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          identifier: value
+        });
+      });
+    }
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      displayTreatmentSettings = _useState8[0],
-      setDisplayTreatmentSettings = _useState8[1];
-
-  var userMeasures = props.userPublishedMeasures.map(function (measure) {
-    return {
-      title: measure.name,
-      value: measure.hashed_id
-    };
-  });
-  var clientMeasures = props.client.measures.map(function (measure) {
-    return {
-      title: measure.name,
-      value: measure.hashed_id
-    };
-  });
-  var addableMeasures = userMeasures;
-  clientMeasures.forEach(function (clientMeasure) {
-    addableMeasures = addableMeasures.filter(function (userMeasure) {
-      return userMeasure.value !== clientMeasure.value;
-    });
-  });
-
-  var toggleDisplayClientSettings = function toggleDisplayClientSettings() {
-    setDisplayClientSettings(function (prevState) {
-      return !prevState;
-    });
-  };
-
-  var toggleDisplayTreatmentSettings = function toggleDisplayTreatmentSettings() {
-    setDisplayTreatmentSettings(function (prevState) {
-      return !prevState;
-    });
-  };
-
-  var onSelect = function onSelect(event) {
-    setSelectedMeasure(event.target.value);
+    if (Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateString"])(value, 3)) {
+      setInputFields(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          name: true
+        });
+      });
+    } else {
+      setInputFields(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          name: false
+        });
+      });
+    }
   };
 
   var onStatusUpdate = function onStatusUpdate(statusObject) {
@@ -51114,53 +51322,40 @@ function ClientContainer(props) {
       clientHashedId: props.client.hashed_id
     });
 
-    console.log(values);
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/client-settings", values);
-    toggleDisplayClientSettings();
-  };
-
-  var submitAddMeasure = function submitAddMeasure() {
-    var values = {
-      measureHashedId: selectedMeasure,
-      clientHashedId: props.client.hashed_id
-    };
-    setSelectedMeasure("");
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/client-measure", values);
+    props.toggleModal();
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: ""
-  }, displayTreatmentSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    heading: "Active Treatment Episodes"
-  }, props.client.active_treatments.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "leading-normal p-2 text-gray-700 text-lg"
-  }, "There are currently no active treatement episodes to manage. A new treatment episode will automatically be created when a client submits an assessment via their unique public URL."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-end"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    handleClick: toggleDisplayTreatmentSettings,
-    label: "Cancel"
-  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_16__["default"], {
-    toggle: toggleDisplayTreatmentSettings,
-    treatments: props.client.treatments
-  })), displayClientSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    heading: "Client Settings"
+    className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg pt-2 pb-6 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "p-2 space-y-3 text-lg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    value: clientSettings.identifier,
+    handleOnStringChange: function handleOnStringChange(e) {
+      return updateName(e.target.value);
+    },
+    title: "Name",
+    placeholder: "Smith, Jane | ID420 | Jane, Smith"
+  }), clientSettings.identifier.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    isValid: inputFields.name,
+    number: clientSettings.identifier.length,
+    max: "25"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
     title: "Client Status",
     onStatusUpdate: onStatusUpdate,
     currentStatus: clientSettings.active,
     identifier: "active",
     truthyLabel: "Active",
     falseyLabel: "Archived"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    title: "Public URL Access",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: "URL Access",
     onStatusUpdate: onStatusUpdate,
     currentStatus: clientSettings.url,
     identifier: "url",
     truthyLabel: "Allowed",
     falseyLabel: "Disabled"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
     title: "Statistical Analyses",
     onStatusUpdate: onStatusUpdate,
     currentStatus: clientSettings.stats,
@@ -51169,88 +51364,13 @@ function ClientContainer(props) {
     falseyLabel: "Excluded"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 w-80 ml-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_6__["default"], {
     label: "Close",
-    handleClick: toggleDisplayClientSettings
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    handleClick: props.toggleModal
+  }), inputFields.name && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_7__["default"], {
     label: "Update",
     handleClick: submitClientSettings
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    title: props.client.identifier
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    handleClick: toggleDisplayClientSettings,
-    label: "Settings"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg py-4 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    iconSize: "10",
-    iconColour: "text-pink-400",
-    number: props.client.treatments.length
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    iconSize: "10",
-    iconColour: "text-green-400",
-    number: props.client.treatments.map(function (treatment) {
-      return treatment.assessments.length;
-    }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_4__["sum"], 0)
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2 mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    title: "Measures"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg py-4 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between w-full"
-  }, selectedMeasure.length === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    title: "Add Measure",
-    onSelect: onSelect,
-    defaultText: "Please Select...",
-    defaultValue: "Please Select...",
-    options: addableMeasures
-  }), selectedMeasure.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between w-full"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-600"
-  }, "Add " + userMeasures.find(function (x) {
-    return x.value === selectedMeasure;
-  }).title + "?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return setSelectedMeasure("");
-    },
-    className: "bg-gray-400 hover:bg-gray-500 ml-2 px-3 py-2 rounded text-base text-white"
-  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick() {
-      return submitAddMeasure();
-    },
-    className: "bg-green-400 hover:bg-green-500 ml-2 px-3 py-2 rounded text-base text-white"
-  }, "Confirm")))), props.client.measures.map(function (measure, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Url__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      key: index,
-      heading: measure.name,
-      iconSize: "6",
-      iconColour: "text-gray-500",
-      link: props.client.url + "/" + measure.hashed_id
-    });
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-white"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    title: "Treatment Episodes"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    handleClick: toggleDisplayTreatmentSettings,
-    label: "Manage Active"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "bg-gray-100 space-y-2"
-  }, props.client.treatments.map(function (treatment, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_OpenCloseContainer__WEBPACK_IMPORTED_MODULE_14__["default"], {
-      key: index,
-      title: treatment.started + " - " + treatment.ended
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_TreatmentContainer__WEBPACK_IMPORTED_MODULE_15__["default"], {
-      treatmentHashedId: treatment.hashed_id
-    }));
-  })))));
+  })));
 }
 
 /***/ }),
@@ -55995,6 +56115,38 @@ function TreatmentContainer(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Models/Treatment/components/TreatmentsContainer.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/Models/Treatment/components/TreatmentsContainer.js ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TreatmentsContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_dropdowns_OpenCloseContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/dropdowns/OpenCloseContainer */ "./resources/js/components/UI/dropdowns/OpenCloseContainer.js");
+/* harmony import */ var _TreatmentContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TreatmentContainer */ "./resources/js/components/Models/Treatment/components/TreatmentContainer.js");
+
+
+
+function TreatmentsContainer(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-gray-100 space-y-2"
+  }, props.treatments.map(function (treatment, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_OpenCloseContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: index,
+      title: treatment.started + " - " + treatment.ended
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TreatmentContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      treatmentHashedId: treatment.hashed_id
+    }));
+  }));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Models/User/UserStats.js":
 /*!**********************************************************!*\
   !*** ./resources/js/components/Models/User/UserStats.js ***!
@@ -56491,7 +56643,7 @@ function Url(props) {
   var size = props.iconSize;
   var colour = props.iconColour;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between w-full pt-4"
+    className: "flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "w-" + size + " " + "h-" + size + " " + colour,
     fill: "currentColor",

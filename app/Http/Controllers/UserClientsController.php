@@ -52,6 +52,7 @@ class UserClientsController extends Controller
     {
         if (CanUserAccess::client($request->clientHashedId)) {           
             $client = Client::findOrFail(Hasher::decode($request->clientHashedId));
+            $client->identifier  = $request->identifier;
             $client->is_active = (int)$request->active;
             $preferences = $client->preferences;
             $preferences->create_own_resources = (int)$request->url;

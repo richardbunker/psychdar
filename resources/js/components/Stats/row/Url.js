@@ -4,7 +4,7 @@ export default function Url(props) {
     const size = props.iconSize;
     const colour = props.iconColour;
     return (
-        <div className="flex items-center justify-between w-full pt-4">
+        <div className="flex items-center justify-between w-full">
             <svg
                 className={"w-" + size + " " + "h-" + size + " " + colour}
                 fill="currentColor"
