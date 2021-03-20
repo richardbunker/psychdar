@@ -10,7 +10,7 @@ export default function PresentMeasureAssessment(props) {
                 <div className="font-semibold text-lg text-gray-500">
                     {measure.name}
                 </div>
-                {measure.scales.length > 0 && (
+                {measure.scales && measure.scales.length > 0 && (
                     <div className="h-96 bg-gray-400"></div>
                 )}
             </div>

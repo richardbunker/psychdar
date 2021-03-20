@@ -57,7 +57,7 @@ class Client extends Model
 
     public function activetreatments()
     {
-        return $this->hasMany(Treatment::class)->where('ended_at', null);
+        return $this->treatments()->where('ended_at', null);
     }
     
     public function measures()

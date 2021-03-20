@@ -11,9 +11,11 @@ export default function TreatmentsContainer(props) {
                         key={index}
                         title={treatment.started + " - " + treatment.ended}
                     >
-                        <TreatmentContainer
-                            treatmentHashedId={treatment.hashed_id}
-                        />
+                        <div className="space-y-2">
+                            <TreatmentContainer
+                                treatmentHashedId={treatment.hashed_id}
+                            />
+                        </div>
                     </OpenCloseContainer>
                 );
             })}

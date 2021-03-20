@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonBlue from "../../../../UI/buttons/ButtonBlue";
+import ButtonBlueLarge from "../../../../UI/buttons/ButtonBlueLarge";
 import RenderItem from "./Items";
 
 export default function RenderMeasure(props) {
@@ -10,7 +10,7 @@ export default function RenderMeasure(props) {
     };
 
     return (
-        <div className="leading-normal p-10 bg-white space-y-10">
+        <div className="leading-normal lg:p-20 sm:p-10 p-2 bg-white space-y-10">
             <div className="space-y-4">
                 <div className="font-semibold text-3xl text-gray-700 w-full text-center">
                     {name}
@@ -45,7 +45,10 @@ export default function RenderMeasure(props) {
                 );
             })}
             <div className="flex items-center justify-center">
-                <ButtonBlue handleClick={props.handleSubmit} label="Submit" />
+                <ButtonBlueLarge
+                    handleClick={props.handleSubmit}
+                    label="Submit"
+                />
             </div>
         </div>
     );

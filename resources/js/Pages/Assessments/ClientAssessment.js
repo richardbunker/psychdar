@@ -9,14 +9,6 @@ export default function ClientAssessment(props) {
     const [invalidItems, setInvalidItems] = useState([]);
     const [displayInvalidItems, setDisplayInvalidItems] = useState(false);
 
-    // const itemType = type => {
-    //     if (type === "Qualitative" || type === "Text") {
-    //         return "";
-    //     } else {
-    //         return null;
-    //     }
-    // };
-
     useEffect(() => {
         let prepareResponses = {};
         props.measure.structure.items.map((item, index) => {
@@ -64,28 +56,45 @@ export default function ClientAssessment(props) {
 
     const validateInput = () => {
         const keys = Object.keys(responses);
-        const badItems = keys.filter(key => {
+        const unansweredItems = keys.filter(key => {
             return responses[key] === null;
         });
-        console.log(badItems);
-        setInvalidItems(badItems);
-        badItems.length > 0 ? promptInvalidItems() : submitClientAssessment();
+        setInvalidItems(unansweredItems);
+        unansweredItems.length > 0
+            ? promptInvalidItems()
+            : submitClientAssessment();
     };
 
     return (
-        <div className="h-screen min-h-screen w-full max-w-6xl mx-auto">
+        <div className="h-screen min-h-screen w-full max-w-6xl mx-auto overflow-auto">
             {displayInvalidItems && (
-                <ModalScrollable heading="Error">
-                    <div className="text-xl text-gray-700 p-4 leading-normal">
+                <ModalScrollable heading="Incomplete Items">
+                    <div className="text-xl text-gray-700 p-4 leading-normal space-y-2">
                         <div>
                             The following items need to be completed before you
                             can submit your assessment:
                         </div>
-                        <ul className="list-disc pl-10 py-2">
-                            {invalidItems.map((item, index) => {
-                                return <li key={index}>{itemsArray[item]}</li>;
-                            })}
-                        </ul>
+                        {invalidItems.map((item, index) => {
+                            return (
+                                <div key={index} className="flex items-center">
+                                    <svg
+                                        className="w-6 h-6 text-gray-500 mr-2"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                    <div className="text-gray-500 font-semibold">
+                                        {itemsArray[item]}
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                     <div className="flex items-center justify-end space-x-2">
                         <button
