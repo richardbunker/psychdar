@@ -45,7 +45,7 @@ class Assessment extends Model
         return Carbon::parse($this->attributes['created_at'])->format('d/m/Y');
     }
 
-    public function getDataAttribute($value)
+    public function getResponsesAttribute($value)
     {
         return json_decode($value);
     }

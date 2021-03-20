@@ -1,6 +1,7 @@
 import React from "react";
-import OpenCloseContainer from "../../../UI/dropdowns/OpenCloseContainer";
 import OpenCloseContainerRounded from "../../../UI/dropdowns/OpenCloseContainerRounded";
+import GraphMeasureAssessment from "./GraphMeasureAssessment";
+import PresentAssessmentResponses from "./PresentAssessmentResponses";
 
 export default function PresentMeasureAssessment(props) {
     const { measure, assessments } = props.measureAssessment;
@@ -10,8 +11,11 @@ export default function PresentMeasureAssessment(props) {
                 <div className="font-semibold text-lg text-gray-500">
                     {measure.name}
                 </div>
-                {measure.scales && measure.scales.length > 0 && (
-                    <div className="h-96 bg-gray-400"></div>
+                {measure.scales && (
+                    <GraphMeasureAssessment
+                        measure={measure}
+                        assessments={assessments}
+                    />
                 )}
             </div>
             <div className="space-y-2">
@@ -23,7 +27,10 @@ export default function PresentMeasureAssessment(props) {
                             title={assessment.assessed_at}
                             isOpen={false}
                         >
-                            Bloody hell.
+                            <PresentAssessmentResponses
+                                measure={measure}
+                                responses={assessment.responses}
+                            />
                         </OpenCloseContainerRounded>
                     );
                 })}

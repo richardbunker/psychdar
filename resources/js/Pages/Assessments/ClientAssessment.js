@@ -9,12 +9,19 @@ export default function ClientAssessment(props) {
     const [invalidItems, setInvalidItems] = useState([]);
     const [displayInvalidItems, setDisplayInvalidItems] = useState(false);
 
+    const setItemOfTextAValue = type => {
+        if (type === "Text") {
+            return "item.type=Text";
+        }
+        return null;
+    };
+
     useEffect(() => {
         let prepareResponses = {};
         props.measure.structure.items.map((item, index) => {
             prepareResponses = {
                 ...prepareResponses,
-                ["item_" + String(index)]: null
+                ["item_" + String(index)]: setItemOfTextAValue(item.type)
             };
         });
         setResponses(prepareResponses);

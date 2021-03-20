@@ -14,17 +14,7 @@ export default function LineChart(props) {
             type: "line",
             data: {
                 labels: props.labels,
-                datasets: [
-                    {
-                        label: props.label,
-                        data: props.data,
-                        fill: true,
-                        borderWidth: 1,
-                        borderColor: "#718096",
-                        backgroundColor: props.colours[1],
-                        lineTension: .4
-                    }
-                ]
+                datasets: [...props.scaleScores]
             },
             options: {
                 animation: {
@@ -64,7 +54,7 @@ export default function LineChart(props) {
                     }
                 },
                 legend: {
-                    display: false,
+                    display: true,
                     position: "bottom",
                     labels: {
                         padding: 10,
@@ -77,7 +67,5 @@ export default function LineChart(props) {
         });
     });
 
-    return (
-        <canvas ref={chartRef} />
-    );
+    return <canvas ref={chartRef} />;
 }

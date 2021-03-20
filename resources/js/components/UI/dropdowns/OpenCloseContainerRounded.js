@@ -27,7 +27,7 @@ export default function OpenCloseContainerRounded(props) {
                     handleClick={toggleContainer}
                 />
             </div>
-            {isOpen && <div className="p-1">props.children</div>}
+            {isOpen && props.children}
         </div>
     );
 }

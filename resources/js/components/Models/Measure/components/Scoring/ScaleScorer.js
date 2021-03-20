@@ -1,26 +1,7 @@
 import React from "react";
+import { calculateScaleScore } from "../../../Assessment/utilities/ScaleScoring";
 
 export default function ScaleScorer(props) {
-    const calculateScaleScore = () => {
-        let totalScore = 0;
-        props.scale.items.map(scaleItem => {
-            if (
-                Object.keys(props.responses).includes(
-                    "item_" + String(scaleItem)
-                )
-            ) {
-                totalScore += props.responses["item_" + String(scaleItem)];
-            }
-        });
-        if (props.scale.operation === "Mean") {
-            return (totalScore / Object.keys(props.responses).length).toFixed(
-                2
-            );
-        } else {
-            return totalScore;
-        }
-    };
-
     const calculateCuttOff = scaleScore => {
         return props.scale.cuttOffs.map(cuttOff => {
             if (scaleScore >= cuttOff.min && scaleScore <= cuttOff.max) {
@@ -30,7 +11,9 @@ export default function ScaleScorer(props) {
     };
 
     const calculate = () => {
-        return isNaN(calculateScaleScore()) ? 0 : calculateScaleScore();
+        return isNaN(calculateScaleScore(props.scale, props.responses))
+            ? 0
+            : calculateScaleScore(props.scale, props.responses);
     };
 
     return (

@@ -239,6 +239,11 @@ export default function MeasureContainer({ measure }) {
                     <GrayFadedBanner title="Preview" />
                     <div className="p-6">
                         <RenderMeasure
+                            handleSubmit={() =>
+                                console.log(
+                                    "Well then, aren't you a stickybeak?"
+                                )
+                            }
                             handleOnItemChange={handleOnItemChange}
                             measure={measure}
                         />

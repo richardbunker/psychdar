@@ -1,13 +1,14 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import PresentMeasureAssessment from "../../Assessment/components/PresentMeasureAssessment";
+import LargeSpinner from "../../../UI/spinners/LargeSpinner";
 
 export default function TreatmentContainer(props) {
     const [
         assessmentsGroupedByMeasure,
         setAssessmentsGroupedByMeasure
     ] = useState({});
-    const [loading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetchAssessmentsGroupedByMeasure();
@@ -34,12 +35,18 @@ export default function TreatmentContainer(props) {
         };
     });
 
-    return measureAssessments.map((measureAssessment, index) => {
-        return (
-            <PresentMeasureAssessment
-                key={index}
-                measureAssessment={measureAssessment}
-            />
-        );
-    });
+    return isLoading ? (
+        <div className="flex items-center justify-center py-20">
+            <LargeSpinner size="80px" />
+        </div>
+    ) : (
+        measureAssessments.map((measureAssessment, index) => {
+            return (
+                <PresentMeasureAssessment
+                    key={index}
+                    measureAssessment={measureAssessment}
+                />
+            );
+        })
+    );
 }
