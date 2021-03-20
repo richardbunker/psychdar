@@ -24,31 +24,31 @@ class DatabaseSeeder extends Seeder
             }
         });
         
-        \App\Models\Client::all()->each(function ($client) {
-            $randomTreatmentNumber = rand(1,3);
-            for ($i=0; $i < $randomTreatmentNumber; $i++) {             
-                $client->treatments()->save(
-                    \App\Models\Treatment::factory()->create([
-                        'user_id' => $client->user_id,
-                        'client_id' => $client->id,
-                    ])
-                );
-            }
-        });
+        // \App\Models\Client::all()->each(function ($client) {
+        //     $randomTreatmentNumber = rand(1,3);
+        //     for ($i=0; $i < $randomTreatmentNumber; $i++) {             
+        //         $client->treatments()->save(
+        //             \App\Models\Treatment::factory()->create([
+        //                 'user_id' => $client->user_id,
+        //                 'client_id' => $client->id,
+        //             ])
+        //         );
+        //     }
+        // });
 
-        \App\Models\Treatment::all()->each(function ($treatment) {
-            $randomAssessmentNumber = rand(1,16);
-            for ($i=0; $i < $randomAssessmentNumber; $i++) {               
-                $treatment->assessments()->save(
-                    \App\Models\Assessment::factory()->create([
-                        'user_id' => $treatment->user_id,
-                        'client_id' => $treatment->client_id,
-                        'treatment_id' => $treatment->id,
-                        'measure_id' => 1,
-                    ])
-                );
-            }
-        });
+        // \App\Models\Treatment::all()->each(function ($treatment) {
+        //     $randomAssessmentNumber = rand(1,16);
+        //     for ($i=0; $i < $randomAssessmentNumber; $i++) {               
+        //         $treatment->assessments()->save(
+        //             \App\Models\Assessment::factory()->create([
+        //                 'user_id' => $treatment->user_id,
+        //                 'client_id' => $treatment->client_id,
+        //                 'treatment_id' => $treatment->id,
+        //                 'measure_id' => 1,
+        //             ])
+        //         );
+        //     }
+        // });
 
     }
 }

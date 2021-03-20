@@ -37,7 +37,7 @@ export default function ClientMeasures(props) {
 
     return (
         <div className="text-lg py-4 px-6 space-y-4">
-            <div className="flex items-center justify-between w-full">
+            <div className="flex items-center justify-between w-full py-2">
                 {selectedMeasure.length === 0 && (
                     <SelectInput
                         title="Add Measure"

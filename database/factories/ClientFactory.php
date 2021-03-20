@@ -25,8 +25,8 @@ class ClientFactory extends Factory
             'identifier' => ($this->faker->lastName.", ".$this->faker->firstName),
             'is_active' => true,
             'preferences' => json_encode([
-                'create_own_resources' => true,
-                'include_in_analyses' => true,
+                'create_own_resources' => 1,
+                'include_in_analyses' => 1,
                 'outcome_measure' => '',
             ]),
         ];

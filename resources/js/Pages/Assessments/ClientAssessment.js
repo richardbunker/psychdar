@@ -1,11 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import RenderMeasure from "../../components/Models/Measure/components/Render/Measure";
-import SaveSubmitButton from "../../components/UI/forms/SaveSubmitButton";
+import ModalScrollable from "../../components/UI/modals/Scrollable";
 
 export default function ClientAssessment(props) {
     const [responses, setResponses] = useState({});
-    const [displayAssessment, setDisplayAssessment] = useState(true);
+    const [itemsArray, setItemsArray] = useState([]);
+    const [invalidItems, setInvalidItems] = useState([]);
+    const [displayInvalidItems, setDisplayInvalidItems] = useState(false);
+
+    // const itemType = type => {
+    //     if (type === "Qualitative" || type === "Text") {
+    //         return "";
+    //     } else {
+    //         return null;
+    //     }
+    // };
+
+    useEffect(() => {
+        let prepareResponses = {};
+        props.measure.structure.items.map((item, index) => {
+            prepareResponses = {
+                ...prepareResponses,
+                ["item_" + String(index)]: null
+            };
+        });
+        setResponses(prepareResponses);
+    }, []);
+
+    useEffect(() => {
+        let prepareItemsArray = [];
+        props.measure.structure.items.map((item, index) => {
+            prepareItemsArray = {
+                ...prepareItemsArray,
+                ["item_" + String(index)]: item.title
+            };
+        });
+        setItemsArray(prepareItemsArray);
+    }, []);
 
     const handleOnItemChange = itemValue => {
         setResponses(prevState => {
@@ -13,8 +45,8 @@ export default function ClientAssessment(props) {
         });
     };
 
-    const toggleDisplayAssessment = () => {
-        setDisplayAssessment(prevState => !prevState);
+    const toggleDisplayInvalidItems = () => {
+        setDisplayInvalidItems(prevState => !prevState);
     };
 
     const submitClientAssessment = () => {
@@ -24,38 +56,52 @@ export default function ClientAssessment(props) {
             responses: responses
         };
         Inertia.post("/a/client", values);
-        toggleDisplayAssessment();
+    };
+
+    const promptInvalidItems = () => {
+        toggleDisplayInvalidItems();
+    };
+
+    const validateInput = () => {
+        const keys = Object.keys(responses);
+        const badItems = keys.filter(key => {
+            return responses[key] === null;
+        });
+        console.log(badItems);
+        setInvalidItems(badItems);
+        badItems.length > 0 ? promptInvalidItems() : submitClientAssessment();
     };
 
     return (
-        <div className="h-screen min-h-screen w-full max-w-6xl mx-auto xl:pt-10">
-            {displayAssessment ? (
-                <div className="bg-white">
-                    <RenderMeasure
-                        handleOnItemChange={handleOnItemChange}
-                        measure={props.measure}
-                    />
-                    <div className="w-72 mx-auto py-10">
-                        <SaveSubmitButton
-                            onHandleClick={submitClientAssessment}
-                            label="Submit"
-                        />
-                    </div>
-                </div>
-            ) : (
-                <div className="h-full min-h-full flex items-center justify-center">
-                    <div className="p-10 rounded bg-white shadow flex items-center justify-center space-y-2">
-                        <div className="text-center">
-                            <div className="font-semibold text-3xl text-gray-700">
-                                Thank you
-                            </div>
-                            <div className="text-gray-500">
-                                Please close this window.
-                            </div>
+        <div className="h-screen min-h-screen w-full max-w-6xl mx-auto">
+            {displayInvalidItems && (
+                <ModalScrollable heading="Error">
+                    <div className="text-xl text-gray-700 p-4 leading-normal">
+                        <div>
+                            The following items need to be completed before you
+                            can submit your assessment:
                         </div>
+                        <ul className="list-disc pl-10 py-2">
+                            {invalidItems.map((item, index) => {
+                                return <li key={index}>{itemsArray[item]}</li>;
+                            })}
+                        </ul>
                     </div>
-                </div>
+                    <div className="flex items-center justify-end space-x-2">
+                        <button
+                            className="font-semibold hover:bg-gray-500 px-3 py-2 rounded text-white bg-gray-400 uppercase"
+                            onClick={() => toggleDisplayInvalidItems()}
+                        >
+                            I understand
+                        </button>
+                    </div>
+                </ModalScrollable>
             )}
+            <RenderMeasure
+                handleOnItemChange={handleOnItemChange}
+                measure={props.measure}
+                handleSubmit={validateInput}
+            />
         </div>
     );
 }

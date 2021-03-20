@@ -19,7 +19,7 @@ class CreateAssessmentsTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->unsignedBigInteger('treatment_id');
             $table->unsignedBigInteger('measure_id');
-            $table->json('data');
+            $table->json('responses');
             $table->timestamps();
         });
     }

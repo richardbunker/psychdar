@@ -7,12 +7,12 @@ import { truncateString } from "../../../../utilities/HelperFunctions";
 import { formatNameAndAbbr } from "../utilities/MeasureFunctions";
 import DetailsBuilder from "../components/Details/DetailsBuilder";
 import ScalesBuilder from "../components/Scales/ScalesBuilder";
-import ScaleScorer from "./Scoring/ScaleScorer";
 import ModalScrollable from "../../../UI/modals/Scrollable";
 import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
 import SaveSubmitButton from "../../../UI/forms/SaveSubmitButton";
 import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import ButtonBlue from "../../../UI/buttons/ButtonBlue";
+import ScalesContainer from "./Scales/ScalesContainer";
 
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState([]);
@@ -85,9 +85,6 @@ export default function MeasureContainer({ measure }) {
         return measure.details.author === null
             ? "..."
             : truncateString(measure.details.author, 15);
-    };
-    const displayScales = () => {
-        return measure.scales.length === 0 ? "0" : measure.scales.length;
     };
 
     return (
@@ -201,35 +198,29 @@ export default function MeasureContainer({ measure }) {
                         <div className="space-y-2">
                             {measure.structure.items.map((item, index) => {
                                 return (
-                                    console.log(responses[index]),
-                                    (
-                                        <div
-                                            key={index}
-                                            className="flex items-center justify-between font-semibold"
-                                        >
-                                            <div className="text-green-400">
-                                                {truncateString(item.title, 50)}
-                                            </div>
-                                            <div className="text-blue-400">
-                                                {item.type === "Qualitative"
-                                                    ? truncateString(
-                                                          String(
-                                                              responses[
-                                                                  "item_" +
-                                                                      String(
-                                                                          index
-                                                                      )
-                                                              ]
-                                                          ),
-                                                          10
-                                                      )
-                                                    : responses[
-                                                          "item_" +
-                                                              String(index)
-                                                      ]}
-                                            </div>
+                                    <div
+                                        key={index}
+                                        className="flex items-center justify-between font-semibold"
+                                    >
+                                        <div className="text-green-400">
+                                            {truncateString(item.title, 50)}
                                         </div>
-                                    )
+                                        <div className="text-blue-400">
+                                            {item.type === "Qualitative"
+                                                ? truncateString(
+                                                      String(
+                                                          responses[
+                                                              "item_" +
+                                                                  String(index)
+                                                          ]
+                                                      ),
+                                                      10
+                                                  )
+                                                : responses[
+                                                      "item_" + String(index)
+                                                  ]}
+                                        </div>
+                                    </div>
                                 );
                             })}
                         </div>
@@ -242,21 +233,7 @@ export default function MeasureContainer({ measure }) {
                             label="Update"
                         />
                     </GrayFadedMenuBanner>
-                    <div className="py-4 px-6 bg-gray-800 text-lg space-y-4">
-                        <div className="flex font-semibold items-center justify-between text-gray-200">
-                            <div>Scales</div>
-                            <div>{measure.scales ? displayScales() : "0"}</div>
-                        </div>
-                        {measure.scales.map((scale, index) => {
-                            return (
-                                <ScaleScorer
-                                    key={index}
-                                    scale={scale}
-                                    responses={responses}
-                                />
-                            );
-                        })}
-                    </div>
+                    <ScalesContainer responses={responses} measure={measure} />
                 </div>
                 <div className="bg-white rounded-b">
                     <GrayFadedBanner title="Preview" />
