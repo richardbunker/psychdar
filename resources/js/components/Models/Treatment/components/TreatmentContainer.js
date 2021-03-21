@@ -19,7 +19,7 @@ export default function TreatmentContainer(props) {
     };
 
     const fetchAssessmentsGroupedByMeasure = () => {
-        Axios.get(`/treatment-assessments/` + props.treatmentHashedId).then(
+        Axios.get("/treatment-assessments/" + props.treatmentHashedId).then(
             res => {
                 setAssessmentsGroupedByMeasure(res.data);
                 toggleIsLoading();

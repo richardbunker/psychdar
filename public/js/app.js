@@ -88623,6 +88623,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
 /* harmony import */ var _components_UI_containers_ScrollableScreenContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/UI/containers/ScrollableScreenContainer */ "./resources/js/components/UI/containers/ScrollableScreenContainer.js");
 /* harmony import */ var _components_UI_navs_MobileNav__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/UI/navs/MobileNav */ "./resources/js/components/UI/navs/MobileNav.js");
+/* harmony import */ var _components_Models_Measure_components_Public_SearchPublicMeasures__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/Models/Measure/components/Public/SearchPublicMeasures */ "./resources/js/components/Models/Measure/components/Public/SearchPublicMeasures.js");
+
 
 
 
@@ -88638,8 +88640,8 @@ function UserMeasures(props) {
     tab: "measures"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_navs_MobileNav__WEBPACK_IMPORTED_MODULE_7__["default"], {
     tab: "measures"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_ScrollableScreenContainer__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    title: "Measures"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_ScrollableScreenContainer__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Measure_components_Public_SearchPublicMeasures__WEBPACK_IMPORTED_MODULE_8__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    title: "My Measures"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Measure_components_Tiles_MeasureTileContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
     measures: props.measures
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
@@ -90323,6 +90325,137 @@ function MeasureContainer(_ref) {
     handleOnItemChange: handleOnItemChange,
     measure: measure
   })))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Measure/components/Public/SearchPublicMeasures.js":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Models/Measure/components/Public/SearchPublicMeasures.js ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SearchPublicMeasuers; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function SearchPublicMeasuers(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      measures = _useState2[0],
+      setMeasures = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      filtered = _useState4[0],
+      setFiltered = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      displayPublicMeasures = _useState6[0],
+      setDisplayPublicMeasures = _useState6[1];
+
+  var removeUserMeasures = function removeUserMeasures(_ref) {
+    var publicMeasures = _ref.publicMeasures,
+        authUserMeasures = _ref.authUserMeasures;
+    var addableMeasures = [];
+    authUserMeasures.forEach(function (authUserMeasure) {
+      addableMeasures = publicMeasures.filter(function (publicMeasure) {
+        return publicMeasure.hashed_id !== authUserMeasure.hashed_id;
+      });
+    });
+    setMeasures(addableMeasures);
+  };
+
+  var displayAndFetchPublicMeasures = function displayAndFetchPublicMeasures() {
+    toggleDisplayPublicMeasures();
+    fetchPublicMeasures();
+  };
+
+  var toggleDisplayPublicMeasures = function toggleDisplayPublicMeasures() {
+    setDisplayPublicMeasures(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  var fetchPublicMeasures = function fetchPublicMeasures() {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/public-measures/").then(function (res) {
+      removeUserMeasures(res.data);
+    });
+  };
+
+  var filterMeasuresBySearch = function filterMeasuresBySearch(searchTerm) {
+    var filteredMeasures = measures.filter(function (measure) {
+      return measure.name.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setFiltered(filteredMeasures);
+  };
+
+  var handleKeyUp = function handleKeyUp(e) {
+    filterMeasuresBySearch(e.target.value);
+  };
+
+  var row = "flex items-center justify-between p-2 border rounded";
+
+  var filterResults = function filterResults() {
+    return filtered.map(function (measure, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        key: measure.hashed_id,
+        className: index % 2 ? row + " bg-teal-50" : row + " bg-white"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "text-gray-500 text-base font-semibold"
+      }, measure.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handleClick: console.log("aoeu"),
+        label: "Add Measure"
+      }));
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "flex w-full"
+  }, displayPublicMeasures && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    heading: "Community Measures"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    autoFocus: true,
+    onKeyUp: handleKeyUp,
+    type: "text",
+    placeholder: "Search community measures...",
+    className: "focus:outline-none p-2 text-lg text-gray-700 w-full border-b"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "py-2 space-y-2"
+  }, filtered.length > 0 ? filterResults() : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "flex items-center justify-end"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    handleClick: toggleDisplayPublicMeasures,
+    label: "Cancel"
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    onClick: displayAndFetchPublicMeasures,
+    className: "px-2 py-3 text-lg text-gray-500 w-full cursor-text"
+  }, "Search community measures..."));
 }
 
 /***/ }),

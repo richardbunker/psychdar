@@ -85,6 +85,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('/measure/details', [App\Http\Controllers\UserMeasuresController::class, 'updateDetails']);
     Route::post('/measure/scales', [App\Http\Controllers\UserMeasuresController::class, 'updateScales']);
     Route::post('/measure/publish', [App\Http\Controllers\UserMeasuresController::class, 'publishMeasure']);
+    Route::get('/public-measures', [App\Http\Controllers\UserMeasuresController::class, 'indexPublic']);
 
     // Treatments
     Route::post('/end-treatment', [App\Http\Controllers\ClientTreatmentController::class, 'ended']);

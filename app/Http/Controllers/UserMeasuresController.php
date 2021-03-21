@@ -96,4 +96,15 @@ class UserMeasuresController extends Controller
                 
         return Redirect::route('showMeasure', $measureToUpdate->hashed_id); 
     }
+
+    public function indexPublic()
+    {
+        $publicMeasures = Measure::where('is_private', 0)->get();
+        $authUserMeasures = Auth::user()->measures;
+        
+        return [
+            "publicMeasures" => $publicMeasures,
+            "authUserMeasures" => $authUserMeasures
+        ];
+    }
 }

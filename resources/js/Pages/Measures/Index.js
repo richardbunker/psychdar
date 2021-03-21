@@ -6,6 +6,7 @@ import AdsContainer from "../../components/UI/ads/AdsContainer";
 import GrayFadedBanner from "../../components/UI/GrayFadedBanner";
 import ScrollableScreenContainer from "../../components/UI/containers/ScrollableScreenContainer";
 import MobileNav from "../../components/UI/navs/MobileNav";
+import SearchPublicMeasures from "../../components/Models/Measure/components/Public/SearchPublicMeasures";
 
 export default function UserMeasures(props) {
     return (
@@ -14,7 +15,8 @@ export default function UserMeasures(props) {
                 <Sidebar tab="measures" />
                 <MobileNav tab="measures" />
                 <ScrollableScreenContainer>
-                    <GrayFadedBanner title="Measures" />
+                    <SearchPublicMeasures />
+                    <GrayFadedBanner title="My Measures" />
                     <MeasureTileContainer measures={props.measures} />
                 </ScrollableScreenContainer>
                 <AdsContainer />

@@ -1,7 +1,5 @@
 **TODOS**
 
--   PHP checks for when a client hits a URL
-
 ### Dynamic Questionnaires
 
 -   User uploaded/created questionnaires
@@ -11,9 +9,6 @@
     -
 
 ## Measuers
-
--   Create a published measure view that displays URL measure
--   Add to Client.Show assessment results with graphs
 
 ### Statistical Analyses
 
