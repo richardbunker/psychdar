@@ -33,6 +33,14 @@ class UserMeasuresController extends Controller
         ]);
     }
 
+    public function preview($hashed_measure_id)
+    {         
+        $measure = Measure::findOrFail(Hasher::decode($hashed_measure_id));       
+        return Inertia::render('Measures/Preview', [
+            'measure' => $measure
+        ]);
+    }
+
     public function edit($hashed_measure_id)
     {         
         $measure = Measure::findOrFail(Hasher::decode($hashed_measure_id));    
