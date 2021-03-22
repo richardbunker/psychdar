@@ -99,12 +99,21 @@ class UserMeasuresController extends Controller
 
     public function indexPublic()
     {
-        $publicMeasures = Measure::where('is_private', 0)->get();
-        $authUserMeasures = Auth::user()->measures;
+        $publicMeasures = Measure::public()->orderBy('name')->get();
+        $userMeasures = Auth::user()->measures;
         
         return [
             "publicMeasures" => $publicMeasures,
-            "authUserMeasures" => $authUserMeasures
+            "userMeasures" => $userMeasures
         ];
+    }
+
+    public function addMeasure(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+
+        $user->measures()->attach(Hasher::decode($request->hashedMeasureId));
+        
+        return Redirect::route('indexMeasures'); 
     }
 }

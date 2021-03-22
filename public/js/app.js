@@ -90329,6 +90329,71 @@ function MeasureContainer(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Models/Measure/components/Public/PublicMeasureContainer.js":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/Models/Measure/components/Public/PublicMeasureContainer.js ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PublicMeasureContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
+
+
+
+function PublicMeasureContainer(props) {
+  var submitAddMeasure = function submitAddMeasure(hashedMeasureId) {
+    var values = {
+      hashedMeasureId: hashedMeasureId
+    };
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/add-measure", values);
+    props.toggleModal();
+  };
+
+  var row = "flex items-center justify-between p-2";
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    key: props.publicMeasure.hashed_id,
+    className: props.index % 2 ? row + " bg-teal-50" : row + " bg-white"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500 text-base font-semibold"
+  }, props.publicMeasure.name), props.userMeasureHashedIds.includes(props.publicMeasure.hashed_id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center bg-teal-400 px-3 rounded  min-w-max-content py-2 space-x-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "w-6 h-6 text-white",
+    fill: "currentColor",
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    fillRule: "evenodd",
+    d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+    clipRule: "evenodd"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "uppercase font-semibold text-sm text-white"
+  }, "Added")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    handleClick: function handleClick() {
+      return submitAddMeasure(props.publicMeasure.hashed_id);
+    },
+    label: "Add Measure"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "w-6 h-6 text-white",
+    fill: "currentColor",
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    fillRule: "evenodd",
+    d: "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+    clipRule: "evenodd"
+  }))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Models/Measure/components/Public/SearchPublicMeasures.js":
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/Models/Measure/components/Public/SearchPublicMeasures.js ***!
@@ -90343,9 +90408,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
-/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
-/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _PublicMeasureContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./PublicMeasureContainer */ "./resources/js/components/Models/Measure/components/Public/PublicMeasureContainer.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -90366,30 +90431,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function SearchPublicMeasuers(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
-      measures = _useState2[0],
-      setMeasures = _useState2[1];
+      publicMeasures = _useState2[0],
+      setPublicMeasures = _useState2[1];
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      filtered = _useState4[0],
-      setFiltered = _useState4[1];
+      userMeasures = _useState4[0],
+      setUserMeasures = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      displayPublicMeasures = _useState6[0],
-      setDisplayPublicMeasures = _useState6[1];
+      filtered = _useState6[0],
+      setFiltered = _useState6[1];
 
-  var removeUserMeasures = function removeUserMeasures(_ref) {
-    var publicMeasures = _ref.publicMeasures,
-        authUserMeasures = _ref.authUserMeasures;
-    var addableMeasures = [];
-    authUserMeasures.forEach(function (authUserMeasure) {
-      addableMeasures = publicMeasures.filter(function (publicMeasure) {
-        return publicMeasure.hashed_id !== authUserMeasure.hashed_id;
-      });
-    });
-    setMeasures(addableMeasures);
-  };
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      displayPublicMeasures = _useState8[0],
+      setDisplayPublicMeasures = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      displayPublicMeasuresContainer = _useState10[0],
+      setDisplayPublicMeasuresContainer = _useState10[1];
 
   var displayAndFetchPublicMeasures = function displayAndFetchPublicMeasures() {
     toggleDisplayPublicMeasures();
@@ -90404,40 +90467,48 @@ function SearchPublicMeasuers(props) {
 
   var fetchPublicMeasures = function fetchPublicMeasures() {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/public-measures/").then(function (res) {
-      removeUserMeasures(res.data);
+      var _res$data = res.data,
+          publicMeasures = _res$data.publicMeasures,
+          userMeasures = _res$data.userMeasures;
+      setPublicMeasures(publicMeasures);
+      setUserMeasures(userMeasures);
     });
   };
 
   var filterMeasuresBySearch = function filterMeasuresBySearch(searchTerm) {
-    var filteredMeasures = measures.filter(function (measure) {
+    var filteredMeasures = publicMeasures.filter(function (measure) {
       return measure.name.toLowerCase().includes(searchTerm.toLowerCase());
     });
     setFiltered(filteredMeasures);
   };
 
   var handleKeyUp = function handleKeyUp(e) {
+    if (e.target.value.length > 0) {
+      setDisplayPublicMeasuresContainer(true);
+    } else {
+      setDisplayPublicMeasuresContainer(false);
+    }
+
     filterMeasuresBySearch(e.target.value);
   };
 
-  var row = "flex items-center justify-between p-2 border rounded";
-
   var filterResults = function filterResults() {
-    return filtered.map(function (measure, index) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        key: measure.hashed_id,
-        className: index % 2 ? row + " bg-teal-50" : row + " bg-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "text-gray-500 text-base font-semibold"
-      }, measure.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        handleClick: console.log("aoeu"),
-        label: "Add Measure"
-      }));
+    return filtered.map(function (publicMeasure, index) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_PublicMeasureContainer__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        toggleModal: toggleDisplayPublicMeasures,
+        key: index,
+        index: index,
+        publicMeasure: publicMeasure,
+        userMeasureHashedIds: userMeasures.map(function (userMeasure) {
+          return userMeasure.hashed_id;
+        })
+      });
     });
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex w-full"
-  }, displayPublicMeasures && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, displayPublicMeasures && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_3__["default"], {
     heading: "Community Measures"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     autoFocus: true,
@@ -90446,10 +90517,14 @@ function SearchPublicMeasuers(props) {
     placeholder: "Search community measures...",
     className: "focus:outline-none p-2 text-lg text-gray-700 w-full border-b"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "py-2 space-y-2"
-  }, filtered.length > 0 ? filterResults() : ""), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "my-2"
+  }, displayPublicMeasuresContainer && (filtered.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "border border-teal-100"
+  }, filterResults()) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "font-semibold px-2 text-gray-400 text-lg"
+  }, "No results."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex items-center justify-end"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__["default"], {
     handleClick: toggleDisplayPublicMeasures,
     label: "Cancel"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -95068,8 +95143,8 @@ __webpack_require__.r(__webpack_exports__);
 function ButtonBlue(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: props.handleClick,
-    className: "flex font-semibold bg-blue-400 items-center px-3 rounded text-sm text-white hover:bg-blue-500 min-w-max-content uppercase py-2 justify-center"
-  }, props.label);
+    className: "flex font-semibold bg-blue-400 items-center px-3 rounded text-sm text-white hover:bg-blue-500 min-w-max-content uppercase py-2 space-x-2"
+  }, props.children, props.label);
 }
 
 /***/ }),

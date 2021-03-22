@@ -1,24 +1,18 @@
 import Axios from "axios";
 import React, { useState } from "react";
-import ButtonBlue from "../../../../UI/buttons/ButtonBlue";
 import ButtonGray from "../../../../UI/buttons/ButtonGray";
 import ModalScrollable from "../../../../UI/modals/Scrollable";
+import PublicMeasureContainer from "./PublicMeasureContainer";
 
 export default function SearchPublicMeasuers(props) {
-    const [measures, setMeasures] = useState([]);
+    const [publicMeasures, setPublicMeasures] = useState([]);
+    const [userMeasures, setUserMeasures] = useState([]);
     const [filtered, setFiltered] = useState([]);
     const [displayPublicMeasures, setDisplayPublicMeasures] = useState(false);
-
-    const removeUserMeasures = ({ publicMeasures, authUserMeasures }) => {
-        let addableMeasures = [];
-        authUserMeasures.forEach(authUserMeasure => {
-            addableMeasures = publicMeasures.filter(
-                publicMeasure =>
-                    publicMeasure.hashed_id !== authUserMeasure.hashed_id
-            );
-        });
-        setMeasures(addableMeasures);
-    };
+    const [
+        displayPublicMeasuresContainer,
+        setDisplayPublicMeasuresContainer
+    ] = useState(false);
 
     const displayAndFetchPublicMeasures = () => {
         toggleDisplayPublicMeasures();
@@ -31,12 +25,14 @@ export default function SearchPublicMeasuers(props) {
 
     const fetchPublicMeasures = () => {
         Axios.get("/public-measures/").then(res => {
-            removeUserMeasures(res.data);
+            const { publicMeasures, userMeasures } = res.data;
+            setPublicMeasures(publicMeasures);
+            setUserMeasures(userMeasures);
         });
     };
 
     const filterMeasuresBySearch = searchTerm => {
-        const filteredMeasures = measures.filter(measure => {
+        const filteredMeasures = publicMeasures.filter(measure => {
             return measure.name
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase());
@@ -45,28 +41,26 @@ export default function SearchPublicMeasuers(props) {
     };
 
     const handleKeyUp = e => {
+        if (e.target.value.length > 0) {
+            setDisplayPublicMeasuresContainer(true);
+        } else {
+            setDisplayPublicMeasuresContainer(false);
+        }
         filterMeasuresBySearch(e.target.value);
     };
 
-    const row = "flex items-center justify-between p-2 border rounded";
-
     const filterResults = () => {
-        return filtered.map((measure, index) => {
+        return filtered.map((publicMeasure, index) => {
             return (
-                <div
-                    key={measure.hashed_id}
-                    className={
-                        index % 2 ? row + " bg-teal-50" : row + " bg-white"
-                    }
-                >
-                    <div className="text-gray-500 text-base font-semibold">
-                        {measure.name}
-                    </div>
-                    <ButtonBlue
-                        handleClick={console.log("aoeu")}
-                        label="Add Measure"
-                    />
-                </div>
+                <PublicMeasureContainer
+                    toggleModal={toggleDisplayPublicMeasures}
+                    key={index}
+                    index={index}
+                    publicMeasure={publicMeasure}
+                    userMeasureHashedIds={userMeasures.map(userMeasure => {
+                        return userMeasure.hashed_id;
+                    })}
+                />
             );
         });
     };
@@ -82,8 +76,17 @@ export default function SearchPublicMeasuers(props) {
                             placeholder="Search community measures..."
                             className="focus:outline-none p-2 text-lg text-gray-700 w-full border-b"
                         />
-                        <div className="py-2 space-y-2">
-                            {filtered.length > 0 ? filterResults() : ""}
+                        <div className="my-2">
+                            {displayPublicMeasuresContainer &&
+                                (filtered.length > 0 ? (
+                                    <div className="border border-teal-100">
+                                        {filterResults()}
+                                    </div>
+                                ) : (
+                                    <div className="font-semibold px-2 text-gray-400 text-lg">
+                                        No results.
+                                    </div>
+                                ))}
                         </div>
                         <div className="flex items-center justify-end">
                             <ButtonGray

@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('/client-measure', [App\Http\Controllers\ClientMeasureController::class, 'store']);
 
     // Measures
-    Route::get('/measures', [App\Http\Controllers\UserMeasuresController::class, 'index']);
+    Route::get('/measures', [App\Http\Controllers\UserMeasuresController::class, 'index'])->name('indexMeasures');
     Route::post('/measures', [App\Http\Controllers\UserMeasuresController::class, 'store']);
     Route::get('/measure/create', [App\Http\Controllers\UserMeasuresController::class, 'create']);
     Route::get('/measure/{hashed_measure_id}', [App\Http\Controllers\UserMeasuresController::class, 'show'])->name('showMeasure');
@@ -86,6 +86,8 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('/measure/scales', [App\Http\Controllers\UserMeasuresController::class, 'updateScales']);
     Route::post('/measure/publish', [App\Http\Controllers\UserMeasuresController::class, 'publishMeasure']);
     Route::get('/public-measures', [App\Http\Controllers\UserMeasuresController::class, 'indexPublic']);
+    Route::post('/add-measure', [App\Http\Controllers\UserMeasuresController::class, 'addMeasure']);
+
 
     // Treatments
     Route::post('/end-treatment', [App\Http\Controllers\ClientTreatmentController::class, 'ended']);

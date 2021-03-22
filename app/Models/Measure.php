@@ -51,5 +51,10 @@ class Measure extends Model
     {
         return $this->belongsToMany(Client::class);
     }
+
+    public function scopePublic($query)
+    {
+        return $query->where('is_private', false);
+    }
     
 }
