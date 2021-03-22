@@ -17,12 +17,30 @@ import ScalesContainer from "./Scales/ScalesContainer";
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState([]);
 
+    const prepareDefaultResponseByItemType = type => {
+        switch (type) {
+            case "Text":
+                return "...";
+                break;
+
+            case "Qualitative":
+                return "...";
+                break;
+
+            default:
+                return 0;
+                break;
+        }
+    };
+
     useEffect(() => {
         let prepareResponses = {};
         measure.structure.items.map((item, index) => {
             prepareResponses = {
                 ...prepareResponses,
-                ["item_" + String(index)]: "..."
+                ["item_" + String(index)]: prepareDefaultResponseByItemType(
+                    item.type
+                )
             };
         });
         setResponses(prepareResponses);
@@ -170,20 +188,16 @@ export default function MeasureContainer({ measure }) {
                 </GrayFadedMenuBanner>
                 <div>
                     <GrayFadedMenuBanner title="Details">
-                        <ButtonBlue
-                            handleClick={toggleDetailsModal}
-                            label="Update"
-                        />
+                        {measure.is_private ? (
+                            <ButtonBlue
+                                handleClick={toggleDetailsModal}
+                                label="Update"
+                            />
+                        ) : (
+                            <div></div>
+                        )}
                     </GrayFadedMenuBanner>
                     <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal text-gray-200">
-                        <div className="flex items-center justify-between">
-                            <div className="font-semibold">
-                                Cronbach's Alpha
-                            </div>
-                            <div>
-                                {measure.details ? displayAlpha() : "..."}
-                            </div>
-                        </div>
                         <div className="flex items-center justify-between">
                             <div className="font-semibold">Reference</div>
                             <div>
@@ -197,7 +211,9 @@ export default function MeasureContainer({ measure }) {
                     <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal">
                         <div className="space-y-2">
                             {measure.structure.items.map((item, index) => {
-                                return (
+                                return item.type === "Text" ? (
+                                    <div key={index}></div>
+                                ) : (
                                     <div
                                         key={index}
                                         className="flex items-center justify-between font-semibold"
@@ -228,10 +244,14 @@ export default function MeasureContainer({ measure }) {
                 </div>
                 <div className="">
                     <GrayFadedMenuBanner title="Scoring">
-                        <ButtonBlue
-                            handleClick={toggleScoringModal}
-                            label="Update"
-                        />
+                        {measure.is_private ? (
+                            <ButtonBlue
+                                handleClick={toggleScoringModal}
+                                label="Update"
+                            />
+                        ) : (
+                            <div></div>
+                        )}
                     </GrayFadedMenuBanner>
                     <ScalesContainer responses={responses} measure={measure} />
                 </div>

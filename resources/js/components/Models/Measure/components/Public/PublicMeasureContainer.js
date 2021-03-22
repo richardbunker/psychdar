@@ -20,13 +20,13 @@ export default function PublicMeasureContainer(props) {
                 props.index % 2 ? row + " bg-teal-50" : row + " bg-white"
             }
         >
-            <div className="text-gray-500 text-base font-semibold">
+            <div className="text-gray-500 text-sm font-semibold">
                 {props.publicMeasure.name}
             </div>
             {props.userMeasureHashedIds.includes(
                 props.publicMeasure.hashed_id
             ) ? (
-                <div className="flex items-center bg-teal-400 px-3 rounded  min-w-max-content py-2 space-x-2">
+                <div className="flex items-center bg-teal-400 px-2 rounded  min-w-max-content py-1 space-x-2">
                     <svg
                         className="w-6 h-6 text-white"
                         fill="currentColor"

@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import RenderMeasure from "../../components/Models/Measure/components/Render/Measure";
 import ModalScrollable from "../../components/UI/modals/Scrollable";
+import {
+    calculateScaleScore,
+    detectAlertableScaleScore
+} from "../../components/Models/Assessment/utilities/ScaleScoring";
+import LargeSpinner from "../../components/UI/spinners/LargeSpinner";
 
 export default function ClientAssessment(props) {
     const [responses, setResponses] = useState({});
     const [itemsArray, setItemsArray] = useState([]);
     const [invalidItems, setInvalidItems] = useState([]);
     const [displayInvalidItems, setDisplayInvalidItems] = useState(false);
+    const [displayIsSubmitting, setDisplayIsSubmitting] = useState(false);
 
     const setItemOfTextAValue = type => {
         if (type === "Text") {
@@ -48,13 +54,38 @@ export default function ClientAssessment(props) {
         setDisplayInvalidItems(prevState => !prevState);
     };
 
+    const toggleDisplayIsSubmitting = () => {
+        setDisplayIsSubmitting(prevState => !prevState);
+    };
+
+    const checkForAlerts = () => {
+        if (props.measure.scales) {
+            return props.measure.scales
+                .map((scale, index) => {
+                    if (scale.cuttOffs) {
+                        return detectAlertableScaleScore(
+                            scale,
+                            calculateScaleScore(scale, responses),
+                            props.measure
+                        );
+                    }
+                })
+                .filter(array => array.length > 0)
+                .flat();
+        } else {
+            return [];
+        }
+    };
+
     const submitClientAssessment = () => {
         const values = {
             clientHashedId: props.clientHashedId,
             measureHashedId: props.measure.hashed_id,
-            responses: responses
+            responses: responses,
+            alerts: checkForAlerts()
         };
         Inertia.post("/a/client", values);
+        toggleDisplayIsSubmitting();
     };
 
     const promptInvalidItems = () => {
@@ -83,22 +114,11 @@ export default function ClientAssessment(props) {
                         </div>
                         {invalidItems.map((item, index) => {
                             return (
-                                <div key={index} className="flex items-center">
-                                    <svg
-                                        className="w-6 h-6 text-gray-500 mr-2"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <path
-                                            fillRule="evenodd"
-                                            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                            clipRule="evenodd"
-                                        />
-                                    </svg>
-                                    <div className="text-gray-500 font-semibold">
-                                        {itemsArray[item]}
-                                    </div>
+                                <div
+                                    key={index}
+                                    className="text-gray-500 font-semibold"
+                                >
+                                    {itemsArray[item]}
                                 </div>
                             );
                         })}
@@ -112,6 +132,13 @@ export default function ClientAssessment(props) {
                         </button>
                     </div>
                 </ModalScrollable>
+            )}
+            {displayIsSubmitting && (
+                <div className="absolute bg-black bg-opacity-75 h-screen left-0 min-h-screen overflow-auto to-teal-400 top-0 w-full z-10">
+                    <div className="flex items-center justify-center w-full min-h-screen h-screen">
+                        <LargeSpinner size="120px" />
+                    </div>
+                </div>
             )}
             <RenderMeasure
                 handleOnItemChange={handleOnItemChange}

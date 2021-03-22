@@ -27,6 +27,15 @@ export default function ScalePreview(props) {
                         })}
                         {")"}
                     </div>
+                    {props.scale.alpha && (
+                        <div className="flex items-center space-x-1">
+                            <span className="text-pink-400">Alpha</span>
+                            <span className="text-gray-200">=</span>
+                            <span className="text-gray-200">
+                                {props.scale.alpha}
+                            </span>
+                        </div>
+                    )}
                 </div>
                 {props.scale.cuttOffs.length > 0 &&
                     props.scale.cuttOffs.map(cuttOff => {

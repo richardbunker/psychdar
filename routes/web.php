@@ -25,9 +25,8 @@ Route::get('/', function () {
 //         ->get();
 // });
 
-Route::get('/for-testing', function ()
-{
-    return Redirect::route('showMeasure', '45b1gLPMaD');  
+Route::get('/for-testing', function () {
+    return Redirect::route('showMeasure', '45b1gLPMaD');
 });
 
 Route::get('/query', function () {
@@ -60,11 +59,11 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 // USER ROUTES
 Route::group(['middleware' => ['auth:web']], function () {
-    
+
     //Dashboard
     Route::get('/dashboard', [App\Http\Controllers\UserDashboardController::class, 'index'])->name('userDashboard');
-    
-    
+
+
     // Clients
     Route::get('/clients', [App\Http\Controllers\UserClientsController::class, 'index'])->name('showClients');
     Route::post('/clients', [App\Http\Controllers\UserClientsController::class, 'store']);
@@ -80,6 +79,7 @@ Route::group(['middleware' => ['auth:web']], function () {
     Route::post('/measures', [App\Http\Controllers\UserMeasuresController::class, 'store']);
     Route::get('/measure/create', [App\Http\Controllers\UserMeasuresController::class, 'create']);
     Route::get('/measure/{hashed_measure_id}', [App\Http\Controllers\UserMeasuresController::class, 'show'])->name('showMeasure');
+    Route::get('/measure-json/{hashed_measure_id}', [App\Http\Controllers\UserMeasuresController::class, 'showJSON']);
     Route::get('/preview-measure/{hashed_measure_id}', [App\Http\Controllers\UserMeasuresController::class, 'preview']);
     Route::get('/measure/{hashed_measure_id}/edit', [App\Http\Controllers\UserMeasuresController::class, 'edit'])->name('editMeasure');
     Route::post('/measure/edit', [App\Http\Controllers\UserMeasuresController::class, 'update'])->name('updateMeasure');
@@ -111,4 +111,3 @@ Route::group(['middleware' => ['auth:web']], function () {
 Route::get('/a/{hashed_client_id}/{hashed_measure_id}', [App\Http\Controllers\ClientAssessmentController::class, 'show']);
 Route::post('/a/client', [App\Http\Controllers\ClientAssessmentController::class, 'store'])->name('saveClientAssessment');
 Route::get('/thankyou', [App\Http\Controllers\ClientAssessmentController::class, 'thankyou'])->name('thankyou');
-

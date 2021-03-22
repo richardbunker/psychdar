@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { validateChronbachsAlpha } from "../../../../../utilities/HelperFunctions";
-import QuestionMark from "../../../../UI/dropdowns/QuestionMark";
-import ErrorInput from "../../../../UI/inputs/ErrorInput";
 import StringCounter from "../../../../UI/inputs/StringCounter";
 import TextInput from "../../../../UI/inputs/TextInput";
 
 export default function DetailsBuilder(props) {
     const [details, setDetails] = useState({
-        alpha: "",
         author: ""
     });
 
@@ -18,75 +14,24 @@ export default function DetailsBuilder(props) {
     }, []);
 
     const [inputFields, setInputFields] = useState({
-        alpha: true,
         author: true,
         validate() {
-            return this.alpha && this.author;
+            return this.author;
         }
     });
 
-    const updateAlpha = string => {
-        if (string.length <= 4) {
-            setDetails(prevState => {
-                return {
-                    ...prevState,
-                    alpha: string
-                };
-            });
-        }
-        setInputFields(prevState => {
-            return { ...prevState, alpha: validateChronbachsAlpha(string) };
-        });
-    };
-
     const updateAuthor = string => {
-        if (string.length <= 200) {
+        if (string.length <= 400) {
             setDetails(prevState => {
                 return {
-                    ...prevState,
                     author: string
                 };
             });
         }
     };
 
-    const updateDetails = () => {
-        let alpha;
-        if (details.alpha !== "") {
-            alpha = details.alpha === null ? "" : Number(details.alpha);
-            props.onDetailsSubmit({
-                ...details,
-                alpha: alpha
-            });
-        } else {
-            props.onDetailsSubmit(details);
-        }
-    };
     return (
         <div className="space-y-4">
-            <div className="space-y-1">
-                <div className="flex items-center space-x-2 w-full justify-between leading-normal">
-                    <div className="flex font-semibold items-center space-x-1 text-gray-600 w-1/3">
-                        <span>Alpha Score</span>
-                        <QuestionMark
-                            position=" top-0 left-0 w-96"
-                            text="Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant."
-                            size={8}
-                        />
-                    </div>
-                    <input
-                        value={details.alpha === null ? "" : details.alpha}
-                        onChange={e => updateAlpha(e.target.value)}
-                        type="text"
-                        className="bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full"
-                        placeholder="0.95"
-                        required
-                    />
-                </div>
-                {!inputFields.alpha && (
-                    <ErrorInput error="Must be a number between 0 and 1." />
-                )}
-            </div>
             <div className="space-y-1">
                 <TextInput
                     value={details.author === null ? "" : details.author}
@@ -96,7 +41,7 @@ export default function DetailsBuilder(props) {
                 />
                 <StringCounter
                     number={details.author === null ? 0 : details.author.length}
-                    max="200"
+                    max="400"
                     isValid={true}
                 />
             </div>
@@ -109,7 +54,7 @@ export default function DetailsBuilder(props) {
                         Cancel
                     </button>
                     <button
-                        onClick={updateDetails}
+                        onClick={() => props.onDetailsSubmit(details)}
                         className="font-semibold bg-blue-400 px-3 py-2 rounded text-white hover:bg-blue-500 uppercase hover:shadow hover:text-gray-200"
                     >
                         Update

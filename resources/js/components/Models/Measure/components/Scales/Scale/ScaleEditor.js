@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StringInput from "../../../../../UI/inputs/StringInput";
 import {
     truncateString,
+    validateChronbachsAlpha,
     validateString
 } from "../../../../../../utilities/HelperFunctions";
 import StringCounter from "../../../../../UI/inputs/StringCounter";
@@ -12,6 +13,8 @@ import CuttOffPreview from "./CuttOff/CuttOffPreview";
 import { v4 as uuidv4 } from "uuid";
 import CancelableContainer from "../../../../../UI/containers/CancelableContainer";
 import CuttOffEditor from "./CuttOff/CuttOffEditor";
+import QuestionMark from "../../../../../UI/dropdowns/QuestionMark";
+import ErrorInput from "../../../../../UI/inputs/ErrorInput";
 
 export default function ScaleEditor(props) {
     const [scale, setScale] = useState(props.editing.scale);
@@ -20,10 +23,13 @@ export default function ScaleEditor(props) {
     const [displayCuttOffEditor, setDisplayCuttOffEditor] = useState(false);
     const [inputFields, setInputFields] = useState({
         title: true,
+        alpha: true,
         operation: true,
         scaleItems: true,
         validate() {
-            return this.title && this.operation && this.scaleItems;
+            return (
+                this.title && this.operation && this.scaleItems && this.alpha
+            );
         }
     });
 
@@ -67,6 +73,20 @@ export default function ScaleEditor(props) {
                 return { ...prevState, title: validateString(string, 2) };
             });
         }
+    };
+
+    const updateAlpha = string => {
+        if (string.length <= 4) {
+            setScale(prevState => {
+                return {
+                    ...prevState,
+                    alpha: string
+                };
+            });
+        }
+        setInputFields(prevState => {
+            return { ...prevState, alpha: validateChronbachsAlpha(string) };
+        });
     };
 
     const toggleCuttOffBuilder = () => {
@@ -167,6 +187,29 @@ export default function ScaleEditor(props) {
                     })}
                 </div>
             </div>
+            <div className="space-y-1">
+                <div className="flex items-center space-x-2 w-full justify-between leading-normal">
+                    <div className="flex font-semibold items-center space-x-1 text-gray-600 w-1/3">
+                        <span>Alpha Score</span>
+                        <QuestionMark
+                            position=" top-0 left-0 w-96"
+                            text="Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant."
+                            size={8}
+                        />
+                    </div>
+                    <input
+                        value={scale.alpha === null ? "" : scale.alpha}
+                        onChange={e => updateAlpha(e.target.value)}
+                        type="text"
+                        className="bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full"
+                        placeholder="0.95"
+                        required
+                    />
+                </div>
+                {!inputFields.alpha && (
+                    <ErrorInput error="Must be a number between 0 and 1." />
+                )}
+            </div>
             <SelectInput
                 onSelect={e => handleOnSelect(e.target.value)}
                 title="Operation"
@@ -242,12 +285,6 @@ export default function ScaleEditor(props) {
             )}
             {inputFields.validate() && (
                 <div className="flex items-center justify-end space-x-2 pt-2">
-                    <div
-                        onClick={() => props.toggleSelf()}
-                        className="bg-gray-200 px-3 py-2 rounded text-gray-500 uppercase cursor-pointer"
-                    >
-                        Cancel
-                    </div>
                     <button
                         onClick={submitScale}
                         className="bg-blue-400 px-3 py-2 rounded text-white uppercase"

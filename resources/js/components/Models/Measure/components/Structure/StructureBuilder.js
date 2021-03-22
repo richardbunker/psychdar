@@ -156,6 +156,16 @@ export default function StructureBuilder(props) {
                     </div>
                 </ModalScrollable>
             )}
+            {displayItemBuilder && (
+                <ModalScrollable
+                    heading="Add Item"
+                    toggleModal={toggleItemBuilder}
+                >
+                    <CancelableContainer toggleSelf={toggleItemBuilder}>
+                        <ItemBuilder onNewItem={onNewItem} />
+                    </CancelableContainer>
+                </ModalScrollable>
+            )}
             <GrayFadedMenuBanner title="Measure Builder">
                 <div className="flex items-center space-x-2 text-sm">
                     <button
@@ -256,11 +266,6 @@ export default function StructureBuilder(props) {
                                 Add Item
                             </button>
                         </div>
-                    )}
-                    {displayItemBuilder && (
-                        <CancelableContainer toggleSelf={toggleItemBuilder}>
-                            <ItemBuilder onNewItem={onNewItem} />
-                        </CancelableContainer>
                     )}
                 </div>
             </div>

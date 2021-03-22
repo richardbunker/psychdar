@@ -53,7 +53,12 @@ export default function ManageActiveTreatments(props) {
             })}
             <div className="flex items-center justify-end space-x-2 ml-auto pt-2">
                 <ButtonGray label="Cancel" handleClick={props.toggle} />
-                <ButtonTeal label="Update" handleClick={submitEndTreatment} />
+                {checked && (
+                    <ButtonTeal
+                        label="Update"
+                        handleClick={submitEndTreatment}
+                    />
+                )}
             </div>
         </div>
     );

@@ -88239,6 +88239,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_Models_Measure_components_Render_Measure__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Models/Measure/components/Render/Measure */ "./resources/js/components/Models/Measure/components/Render/Measure.js");
 /* harmony import */ var _components_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _components_Models_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Models/Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
+/* harmony import */ var _components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -88256,6 +88258,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -88281,6 +88285,11 @@ function ClientAssessment(props) {
       _useState8 = _slicedToArray(_useState7, 2),
       displayInvalidItems = _useState8[0],
       setDisplayInvalidItems = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      displayIsSubmitting = _useState10[0],
+      setDisplayIsSubmitting = _useState10[1];
 
   var setItemOfTextAValue = function setItemOfTextAValue(type) {
     if (type === "Text") {
@@ -88317,13 +88326,35 @@ function ClientAssessment(props) {
     });
   };
 
+  var toggleDisplayIsSubmitting = function toggleDisplayIsSubmitting() {
+    setDisplayIsSubmitting(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  var checkForAlerts = function checkForAlerts() {
+    if (props.measure.scales) {
+      return props.measure.scales.map(function (scale, index) {
+        if (scale.cuttOffs) {
+          return Object(_components_Models_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_4__["detectAlertableScaleScore"])(scale, Object(_components_Models_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_4__["calculateScaleScore"])(scale, responses), props.measure);
+        }
+      }).filter(function (array) {
+        return array.length > 0;
+      }).flat();
+    } else {
+      return [];
+    }
+  };
+
   var submitClientAssessment = function submitClientAssessment() {
     var values = {
       clientHashedId: props.clientHashedId,
       measureHashedId: props.measure.hashed_id,
-      responses: responses
+      responses: responses,
+      alerts: checkForAlerts()
     };
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/a/client", values);
+    toggleDisplayIsSubmitting();
   };
 
   var promptInvalidItems = function promptInvalidItems() {
@@ -88348,19 +88379,8 @@ function ClientAssessment(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "The following items need to be completed before you can submit your assessment:"), invalidItems.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: index,
-      className: "flex items-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-      className: "w-6 h-6 text-gray-500 mr-2",
-      fill: "currentColor",
-      viewBox: "0 0 20 20",
-      xmlns: "http://www.w3.org/2000/svg"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-      fillRule: "evenodd",
-      d: "M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z",
-      clipRule: "evenodd"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "text-gray-500 font-semibold"
-    }, itemsArray[item]));
+    }, itemsArray[item]);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -88368,7 +88388,13 @@ function ClientAssessment(props) {
     onClick: function onClick() {
       return toggleDisplayInvalidItems();
     }
-  }, "I understand"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Measure_components_Render_Measure__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, "I understand"))), displayIsSubmitting && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "absolute bg-black bg-opacity-75 h-screen left-0 min-h-screen overflow-auto to-teal-400 top-0 w-full z-10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-center w-full min-h-screen h-screen"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    size: "120px"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Measure_components_Render_Measure__WEBPACK_IMPORTED_MODULE_2__["default"], {
     handleOnItemChange: handleOnItemChange,
     measure: props.measure,
     handleSubmit: validateInput
@@ -89064,12 +89090,14 @@ function PresentMeasureAssessment(props) {
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/Models/Assessment/utilities/ScaleScoring.js ***!
   \*****************************************************************************/
-/*! exports provided: calculateScaleScore */
+/*! exports provided: calculateScaleScore, calculateCuttOff, detectAlertableScaleScore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculateScaleScore", function() { return calculateScaleScore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculateCuttOff", function() { return calculateCuttOff; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "detectAlertableScaleScore", function() { return detectAlertableScaleScore; });
 var calculateScaleScore = function calculateScaleScore(scale, responses) {
   var totalScore = 0;
   scale.items.map(function (scaleItem) {
@@ -89083,6 +89111,27 @@ var calculateScaleScore = function calculateScaleScore(scale, responses) {
   } else {
     return totalScore;
   }
+};
+var calculateCuttOff = function calculateCuttOff(scale, scaleScore) {
+  return scale.cuttOffs.map(function (cuttOff) {
+    if (scaleScore >= cuttOff.min && scaleScore <= cuttOff.max) {
+      return scaleScore;
+    }
+  });
+};
+var detectAlertableScaleScore = function detectAlertableScaleScore(scale, scaleScore, measure) {
+  return scale.cuttOffs.map(function (cuttOff) {
+    if (scaleScore >= cuttOff.min && scaleScore <= cuttOff.max && cuttOff.alert) {
+      return {
+        label: cuttOff.label,
+        score: scaleScore,
+        scale: scale.title,
+        measure: measure.name
+      };
+    }
+  }).filter(function (item) {
+    return item !== undefined;
+  });
 };
 
 /***/ }),
@@ -89697,17 +89746,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DetailsBuilder; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
-/* harmony import */ var _UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../UI/dropdowns/QuestionMark */ "./resources/js/components/UI/dropdowns/QuestionMark.js");
-/* harmony import */ var _UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../UI/inputs/ErrorInput */ "./resources/js/components/UI/inputs/ErrorInput.js");
-/* harmony import */ var _UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../UI/inputs/StringCounter */ "./resources/js/components/UI/inputs/StringCounter.js");
-/* harmony import */ var _UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../UI/inputs/TextInput */ "./resources/js/components/UI/inputs/TextInput.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var _UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../UI/inputs/StringCounter */ "./resources/js/components/UI/inputs/StringCounter.js");
+/* harmony import */ var _UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../UI/inputs/TextInput */ "./resources/js/components/UI/inputs/TextInput.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -89723,12 +89763,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
-
 function DetailsBuilder(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    alpha: "",
     author: ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
@@ -89742,52 +89778,22 @@ function DetailsBuilder(props) {
   }, []);
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    alpha: true,
     author: true,
     validate: function validate() {
-      return this.alpha && this.author;
+      return this.author;
     }
   }),
       _useState4 = _slicedToArray(_useState3, 2),
       inputFields = _useState4[0],
       setInputFields = _useState4[1];
 
-  var updateAlpha = function updateAlpha(string) {
-    if (string.length <= 4) {
-      setDetails(function (prevState) {
-        return _objectSpread(_objectSpread({}, prevState), {}, {
-          alpha: string
-        });
-      });
-    }
-
-    setInputFields(function (prevState) {
-      return _objectSpread(_objectSpread({}, prevState), {}, {
-        alpha: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__["validateChronbachsAlpha"])(string)
-      });
-    });
-  };
-
   var updateAuthor = function updateAuthor(string) {
-    if (string.length <= 200) {
+    if (string.length <= 400) {
       setDetails(function (prevState) {
-        return _objectSpread(_objectSpread({}, prevState), {}, {
+        return {
           author: string
-        });
+        };
       });
-    }
-  };
-
-  var updateDetails = function updateDetails() {
-    var alpha;
-
-    if (details.alpha !== "") {
-      alpha = details.alpha === null ? "" : Number(details.alpha);
-      props.onDetailsSubmit(_objectSpread(_objectSpread({}, details), {}, {
-        alpha: alpha
-      }));
-    } else {
-      props.onDetailsSubmit(details);
     }
   };
 
@@ -89795,37 +89801,16 @@ function DetailsBuilder(props) {
     className: "space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center space-x-2 w-full justify-between leading-normal"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex font-semibold items-center space-x-1 text-gray-600 w-1/3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    position: " top-0 left-0 w-96",
-    text: "Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
-    size: 8
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    value: details.alpha === null ? "" : details.alpha,
-    onChange: function onChange(e) {
-      return updateAlpha(e.target.value);
-    },
-    type: "text",
-    className: "bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full",
-    placeholder: "0.95",
-    required: true
-  })), !inputFields.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    error: "Must be a number between 0 and 1."
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
     value: details.author === null ? "" : details.author,
     title: "Author & Reference",
     placeholder: "Lovibond, S.H. & Lovibond, P.F. (1995).  Manual for the Depression Anxiety Stress Scales. (2nd. Ed.)  Sydney: Psychology Foundation.",
     handleOnTextChange: function handleOnTextChange(e) {
       return updateAuthor(e.target.value);
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_1__["default"], {
     number: details.author === null ? 0 : details.author.length,
-    max: "200",
+    max: "400",
     isValid: true
   })), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full flex items-center justify-end space-x-2"
@@ -89835,7 +89820,9 @@ function DetailsBuilder(props) {
     },
     className: "font-semibold bg-gray-400 px-3 py-2 rounded text-white hover:bg-gray-500 uppercase hover:shadow"
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: updateDetails,
+    onClick: function onClick() {
+      return props.onDetailsSubmit(details);
+    },
     className: "font-semibold bg-blue-400 px-3 py-2 rounded text-white hover:bg-blue-500 uppercase hover:shadow hover:text-gray-200"
   }, "Update")));
 }
@@ -90178,10 +90165,26 @@ function MeasureContainer(_ref) {
       responses = _useState2[0],
       setResponses = _useState2[1];
 
+  var prepareDefaultResponseByItemType = function prepareDefaultResponseByItemType(type) {
+    switch (type) {
+      case "Text":
+        return "...";
+        break;
+
+      case "Qualitative":
+        return "...";
+        break;
+
+      default:
+        return 0;
+        break;
+    }
+  };
+
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     var prepareResponses = {};
     measure.structure.items.map(function (item, index) {
-      prepareResponses = _objectSpread(_objectSpread({}, prepareResponses), {}, _defineProperty({}, "item_" + String(index), "..."));
+      prepareResponses = _objectSpread(_objectSpread({}, prepareResponses), {}, _defineProperty({}, "item_" + String(index), prepareDefaultResponseByItemType(item.type)));
     });
     setResponses(prepareResponses);
   }, []);
@@ -90305,16 +90308,12 @@ function MeasureContainer(_ref) {
     handleClick: toggleConfirmPublish
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__["default"], {
     title: "Details"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, measure.is_private ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_13__["default"], {
     handleClick: toggleDetailsModal,
     label: "Update"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal text-gray-200"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "font-semibold"
-  }, "Cronbach's Alpha"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, measure.details ? displayAlpha() : "...")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "font-semibold"
@@ -90327,7 +90326,9 @@ function MeasureContainer(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
   }, measure.structure.items.map(function (item, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return item.type === "Text" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: index
+    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: index,
       className: "flex items-center justify-between font-semibold"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -90339,10 +90340,10 @@ function MeasureContainer(_ref) {
     className: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__["default"], {
     title: "Scoring"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, measure.is_private ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_13__["default"], {
     handleClick: toggleScoringModal,
     label: "Update"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scales_ScalesContainer__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scales_ScalesContainer__WEBPACK_IMPORTED_MODULE_14__["default"], {
     responses: responses,
     measure: measure
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -90396,9 +90397,9 @@ function PublicMeasureContainer(props) {
     key: props.publicMeasure.hashed_id,
     className: props.index % 2 ? row + " bg-teal-50" : row + " bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-500 text-base font-semibold"
+    className: "text-gray-500 text-sm font-semibold"
   }, props.publicMeasure.name), props.userMeasureHashedIds.includes(props.publicMeasure.hashed_id) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center bg-teal-400 px-3 rounded  min-w-max-content py-2 space-x-2"
+    className: "flex items-center bg-teal-400 px-2 rounded  min-w-max-content py-1 space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     className: "w-6 h-6 text-white",
     fill: "currentColor",
@@ -91194,12 +91195,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
 /* harmony import */ var _UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../UI/containers/CancelableContainer */ "./resources/js/components/UI/containers/CancelableContainer.js");
 /* harmony import */ var _CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CuttOff/CuttOffEditor */ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffEditor.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var _UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../../UI/dropdowns/QuestionMark */ "./resources/js/components/UI/dropdowns/QuestionMark.js");
+/* harmony import */ var _UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../../UI/inputs/ErrorInput */ "./resources/js/components/UI/inputs/ErrorInput.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -91207,6 +91204,12 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -91231,9 +91234,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function ScaleBuilder(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: "",
+    alpha: "",
     operation: "Please Select...",
     items: [],
     cuttOffs: []
@@ -91259,15 +91265,32 @@ function ScaleBuilder(props) {
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: false,
+    alpha: true,
     operation: false,
     scaleItems: false,
     validate: function validate() {
-      return this.title && this.operation && this.scaleItems;
+      return this.title && this.operation && this.scaleItems && this.alpha;
     }
   }),
       _useState10 = _slicedToArray(_useState9, 2),
       inputFields = _useState10[0],
       setInputFields = _useState10[1];
+
+  var updateAlpha = function updateAlpha(string) {
+    if (string.length <= 4) {
+      setScale(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          alpha: string
+        });
+      });
+    }
+
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        alpha: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateChronbachsAlpha"])(string)
+      });
+    });
+  };
 
   var handleOnCheckboxChange = function handleOnCheckboxChange(stringVal) {
     var value = Number(stringVal);
@@ -91409,7 +91432,28 @@ function ScaleBuilder(props) {
       value: index,
       label: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["truncateString"])(item.title, 25) + " (item_" + String(index) + ")"
     });
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center space-x-2 w-full justify-between leading-normal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex font-semibold items-center space-x-1 text-gray-600 w-1/3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    position: " top-0 left-0 w-96",
+    text: "Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
+    size: 8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: scale.alpha === null ? "" : scale.alpha,
+    onChange: function onChange(e) {
+      return updateAlpha(e.target.value);
+    },
+    type: "text",
+    className: "bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full",
+    placeholder: "0.95",
+    required: true
+  })), !inputFields.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    error: "Must be a number between 0 and 1."
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSelect: function onSelect(e) {
       return handleOnSelect(e.target.value);
     },
@@ -91464,12 +91508,7 @@ function ScaleBuilder(props) {
     onNewCuttOff: onNewCuttOff
   }))), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 pt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return props.toggleSelf(false);
-    },
-    className: "bg-gray-200 px-3 py-2 rounded text-gray-500 uppercase cursor-pointer"
-  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: submitScale,
     className: "bg-blue-400 px-3 py-2 rounded text-white uppercase"
   }, "Add Scale")));
@@ -91499,6 +91538,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
 /* harmony import */ var _UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../../UI/containers/CancelableContainer */ "./resources/js/components/UI/containers/CancelableContainer.js");
 /* harmony import */ var _CuttOff_CuttOffEditor__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./CuttOff/CuttOffEditor */ "./resources/js/components/Models/Measure/components/Scales/Scale/CuttOff/CuttOffEditor.js");
+/* harmony import */ var _UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../../UI/dropdowns/QuestionMark */ "./resources/js/components/UI/dropdowns/QuestionMark.js");
+/* harmony import */ var _UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../../UI/inputs/ErrorInput */ "./resources/js/components/UI/inputs/ErrorInput.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -91536,6 +91577,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 function ScaleEditor(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.editing.scale),
       _useState2 = _slicedToArray(_useState, 2),
@@ -91559,10 +91602,11 @@ function ScaleEditor(props) {
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: true,
+    alpha: true,
     operation: true,
     scaleItems: true,
     validate: function validate() {
-      return this.title && this.operation && this.scaleItems;
+      return this.title && this.operation && this.scaleItems && this.alpha;
     }
   }),
       _useState10 = _slicedToArray(_useState9, 2),
@@ -91619,6 +91663,22 @@ function ScaleEditor(props) {
         });
       });
     }
+  };
+
+  var updateAlpha = function updateAlpha(string) {
+    if (string.length <= 4) {
+      setScale(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          alpha: string
+        });
+      });
+    }
+
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        alpha: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateChronbachsAlpha"])(string)
+      });
+    });
   };
 
   var toggleCuttOffBuilder = function toggleCuttOffBuilder() {
@@ -91712,7 +91772,28 @@ function ScaleEditor(props) {
       value: index,
       label: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["truncateString"])(item.title, 25) + " (item_" + String(index) + ")"
     });
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center space-x-2 w-full justify-between leading-normal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex font-semibold items-center space-x-1 text-gray-600 w-1/3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    position: " top-0 left-0 w-96",
+    text: "Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
+    size: 8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: scale.alpha === null ? "" : scale.alpha,
+    onChange: function onChange(e) {
+      return updateAlpha(e.target.value);
+    },
+    type: "text",
+    className: "bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full",
+    placeholder: "0.95",
+    required: true
+  })), !inputFields.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    error: "Must be a number between 0 and 1."
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSelect: function onSelect(e) {
       return handleOnSelect(e.target.value);
     },
@@ -91767,12 +91848,7 @@ function ScaleEditor(props) {
     onNewCuttOff: onNewCuttOff
   }))), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 pt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    onClick: function onClick() {
-      return props.toggleSelf();
-    },
-    className: "bg-gray-200 px-3 py-2 rounded text-gray-500 uppercase cursor-pointer"
-  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: submitScale,
     className: "bg-blue-400 px-3 py-2 rounded text-white uppercase"
   }, "Update Scale")));
@@ -91809,7 +91885,15 @@ function ScalePreview(props) {
       key: index,
       className: "text-orange-400 space-x-1"
     }, item, props.scale.items.length === index + 1 ? "" : ",");
-  }), ")")), props.scale.cuttOffs.length > 0 && props.scale.cuttOffs.map(function (cuttOff) {
+  }), ")"), props.scale.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center space-x-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-pink-400"
+  }, "Alpha"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-gray-200"
+  }, "="), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-gray-200"
+  }, props.scale.alpha))), props.scale.cuttOffs.length > 0 && props.scale.cuttOffs.map(function (cuttOff) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: cuttOff.label,
       className: "flex items-center space-x-1 pl-2 text-base"
@@ -93707,6 +93791,13 @@ function StructureBuilder(props) {
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: "Save & Continue",
     onHandleClick: submitMeasure
+  }))), displayItemBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    heading: "Add Item",
+    toggleModal: toggleItemBuilder
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    toggleSelf: toggleItemBuilder
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    onNewItem: onNewItem
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_11__["default"], {
     title: "Measure Builder"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -93784,11 +93875,7 @@ function StructureBuilder(props) {
       return toggleItemBuilder();
     },
     className: "border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-  }, "Add Item")), displayItemBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    toggleSelf: toggleItemBuilder
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    onNewItem: onNewItem
-  })))), displayPreview && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Preview_Bulider__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, "Add Item")))), displayPreview && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Preview_Bulider__WEBPACK_IMPORTED_MODULE_6__["default"], {
     toggle: togglePreview,
     measure: {
       structure: {
@@ -93830,9 +93917,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
 /* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
 /* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
-/* harmony import */ var _UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../UI/inputs/Checkbox */ "./resources/js/components/UI/inputs/Checkbox.js");
-/* harmony import */ var _Preview_Bulider__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Preview/Bulider */ "./resources/js/components/Models/Measure/components/Structure/Preview/Bulider.js");
-/* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
+/* harmony import */ var _Preview_Bulider__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Preview/Bulider */ "./resources/js/components/Models/Measure/components/Structure/Preview/Bulider.js");
+/* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -93858,7 +93944,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -94080,7 +94165,14 @@ function StructureEditor(_ref) {
   }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
     label: "Confirm & Save",
     onHandleClick: submitUpdatedMeasure
-  }))), displayPreview && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Preview_Bulider__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }))), displayItemBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    heading: "Add Item",
+    toggleModal: toggleItemBuilder
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    toggleSelf: toggleItemBuilder
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    onNewItem: onNewItem
+  }))), displayPreview && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Preview_Bulider__WEBPACK_IMPORTED_MODULE_15__["default"], {
     toggle: togglePreview,
     measure: {
       structure: {
@@ -94136,7 +94228,7 @@ function StructureEditor(_ref) {
     max: "500"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_16__["default"], {
     onCheckedInput: function onCheckedInput(bool) {
       return updateAccessLevel(bool);
     },
@@ -94169,11 +94261,7 @@ function StructureEditor(_ref) {
       return toggleItemBuilder();
     },
     className: "border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-  }, "Add Item")), displayItemBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    toggleSelf: toggleItemBuilder
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    onNewItem: onNewItem
-  }))))));
+  }, "Add Item"))))));
 }
 
 /***/ }),
@@ -94407,7 +94495,7 @@ function ManageActiveTreatments(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "Cancel",
     handleClick: props.toggle
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), checked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: "Update",
     handleClick: submitEndTreatment
   })));
@@ -95184,7 +95272,7 @@ __webpack_require__.r(__webpack_exports__);
 function ButtonBlue(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: props.handleClick,
-    className: "flex font-semibold bg-blue-400 items-center px-3 rounded text-sm text-white hover:bg-blue-500 min-w-max-content uppercase py-2 space-x-2"
+    className: "flex font-semibold bg-blue-400 items-center px-2 rounded text-sm text-white hover:bg-blue-500 min-w-max-content uppercase py-1 space-x-2"
   }, props.children, props.label);
 }
 
@@ -95934,7 +96022,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function LinkGray(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "flex bg-gray-400 items-center px-3 rounded hover:bg-gray-500 w-full py-2 space-x-2",
+    className: "flex bg-gray-400 items-center px-2 rounded hover:bg-gray-500 w-full py-1 space-x-2",
     href: props.url,
     target: props.shouldOpenInNewTab ? "_blank" : "_self"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {

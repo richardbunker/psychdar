@@ -3,7 +3,7 @@ import React from "react";
 export default function LinkGray(props) {
     return (
         <a
-            className="flex bg-gray-400 items-center px-3 rounded hover:bg-gray-500 w-full py-2 space-x-2"
+            className="flex bg-gray-400 items-center px-2 rounded hover:bg-gray-500 w-full py-1 space-x-2"
             href={props.url}
             target={props.shouldOpenInNewTab ? "_blank" : "_self"}
         >

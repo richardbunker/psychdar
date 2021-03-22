@@ -11,3 +11,30 @@ export const calculateScaleScore = (scale, responses) => {
         return totalScore;
     }
 };
+
+export const calculateCuttOff = (scale, scaleScore) => {
+    return scale.cuttOffs.map(cuttOff => {
+        if (scaleScore >= cuttOff.min && scaleScore <= cuttOff.max) {
+            return scaleScore;
+        }
+    });
+};
+
+export const detectAlertableScaleScore = (scale, scaleScore, measure) => {
+    return scale.cuttOffs
+        .map(cuttOff => {
+            if (
+                scaleScore >= cuttOff.min &&
+                scaleScore <= cuttOff.max &&
+                cuttOff.alert
+            ) {
+                return {
+                    label: cuttOff.label,
+                    score: scaleScore,
+                    scale: scale.title,
+                    measure: measure.name
+                };
+            }
+        })
+        .filter(item => item !== undefined);
+};

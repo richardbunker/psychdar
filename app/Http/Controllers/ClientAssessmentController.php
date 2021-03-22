@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\CanClientAccess;
-use App\Helpers\GetOrCreate;
-use App\Helpers\Hasher;
-use App\Models\Assessment;
-use App\Models\Client;
-use App\Models\Measure;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use App\Models\Client;
+use App\Helpers\Hasher;
+use App\Models\Measure;
+use App\Models\Assessment;
+use App\Helpers\GetOrCreate;
+use Illuminate\Http\Request;
+use App\Helpers\CanClientAccess;
+use App\Mail\ScaleScoreAlert;
+use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Mail;
 use function PHPUnit\Framework\isEmpty;
+use Illuminate\Support\Facades\Redirect;
 
 class ClientAssessmentController extends Controller
 {
@@ -43,6 +46,14 @@ class ClientAssessmentController extends Controller
         $assessment->measure_id = Hasher::decode($request->measureHashedId);
         $assessment->responses = json_encode($request->responses);
         $assessment->save();
+
+        $alerts = collect($request->alerts);
+
+        if ($alerts->count() > 0) {
+            foreach ($alerts as $alertInfo) {
+                Mail::to(Auth::user()->email)->queue(new ScaleScoreAlert($client, $alertInfo, Auth::user()->name));
+            }
+        }
         
         return Redirect::route('thankyou');  
     }

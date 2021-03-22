@@ -1,14 +1,17 @@
 **TODOS**
 
+- setup email alerts and sending email
+- implement effect size feature
+- implement RCI feature
+
+For later:
+- Snapshots
+-  
+
 ### Dynamic Questionnaires
 
--   User uploaded/created questionnaires
-    -   gets out of the copyright issues and accepting payment for said questionnaires
 -   Can only calculate clinician effect size per 1 measure (e.g., CORE10 or ORS)
     -   will need to be able to set the clinician's outcome measure to then go ahead and filter the results
-    -
-
-## Measuers
 
 ### Statistical Analyses
 

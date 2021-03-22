@@ -13,7 +13,6 @@ import GrayFadedMenuBanner from "../../../../UI/GrayFadedMenuBanner";
 import GrayFadedBanner from "../../../../UI/GrayFadedBanner";
 import { returnEmptyStringIfNullValue } from "../../../../../utilities/HelperFunctions";
 import ModalScrollable from "../../../../UI/modals/Scrollable";
-import Checkbox from "../../../../UI/inputs/Checkbox";
 import PreviewBuilder from "./Preview/Bulider";
 import CheckboxInput from "../../../../UI/inputs/CheckboxInput";
 
@@ -180,6 +179,16 @@ export default function StructureEditor({ measure }) {
                     </div>
                 </ModalScrollable>
             )}
+            {displayItemBuilder && (
+                <ModalScrollable
+                    heading="Add Item"
+                    toggleModal={toggleItemBuilder}
+                >
+                    <CancelableContainer toggleSelf={toggleItemBuilder}>
+                        <ItemBuilder onNewItem={onNewItem} />
+                    </CancelableContainer>
+                </ModalScrollable>
+            )}
             {displayPreview && (
                 <PreviewBuilder
                     toggle={togglePreview}
@@ -285,11 +294,6 @@ export default function StructureEditor({ measure }) {
                                     Add Item
                                 </button>
                             </div>
-                        )}
-                        {displayItemBuilder && (
-                            <CancelableContainer toggleSelf={toggleItemBuilder}>
-                                <ItemBuilder onNewItem={onNewItem} />
-                            </CancelableContainer>
                         )}
                     </div>
                 </div>
