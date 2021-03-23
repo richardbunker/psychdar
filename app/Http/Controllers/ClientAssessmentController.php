@@ -10,11 +10,12 @@ use App\Models\Assessment;
 use App\Helpers\GetOrCreate;
 use Illuminate\Http\Request;
 use App\Helpers\CanClientAccess;
+use App\Jobs\SendEmail;
 use App\Mail\ScaleScoreAlert;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Mail;
-use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Redirect;
 
 class ClientAssessmentController extends Controller
@@ -50,8 +51,9 @@ class ClientAssessmentController extends Controller
         $alerts = collect($request->alerts);
 
         if ($alerts->count() > 0) {
+            $user = User::findOrFail($client->user_id);
             foreach ($alerts as $alertInfo) {
-                Mail::to(Auth::user()->email)->queue(new ScaleScoreAlert($client, $alertInfo, Auth::user()->name));
+                SendEmail::dispatch($client, $user, $alertInfo);
             }
         }
         

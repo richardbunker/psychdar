@@ -14,19 +14,19 @@ class ScaleScoreAlert extends Mailable
 
 
     public $client;
-    public $alertInfo;
     public $userName;
+    public $alertInfo;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Client $client, $alertInfo, $userName)
+    public function __construct(Client $client, $userName, $alertInfo)
     {
         $this->client = $client;
-        $this->alertInfo = $alertInfo;
         $this->userName = $userName;
+        $this->alertInfo = $alertInfo;
     }
 
     /**
