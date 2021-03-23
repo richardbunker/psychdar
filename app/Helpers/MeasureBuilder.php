@@ -1159,7 +1159,7 @@ class MeasureBuilder
             array (
                 0 => 
                 array (
-                    'title' => 'Clinical Score',
+                    'title' => 'Total',
                     'alpha' => '0.90',
                     'operation' => 'Sum',
                     'items' => 
@@ -1179,17 +1179,17 @@ class MeasureBuilder
                     array (
                     0 => 
                     array (
-                        'label' => 'Above Clinical Cut-off',
+                        'label' => 'Clinical',
                         'min' => 11,
                         'max' => 40,
                         'alert' => false,
                     ),
                     1 => 
                     array (
-                        'label' => 'Below Clinical Cut-off',
+                        'label' => 'Sub Clinical',
                         'min' => 0,
                         'max' => 10,
-                        'alert' => false,
+                        'alert' => true,
                     ),
                     ),
                 ),
