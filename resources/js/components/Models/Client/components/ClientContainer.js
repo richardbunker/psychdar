@@ -5,9 +5,7 @@ import { sum } from "../../../Stats/Stats";
 import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
 import ButtonBlue from "../../../UI/buttons/ButtonBlue";
 import ModalScrollable from "../../../UI/modals/Scrollable";
-import ButtonGray from "../../../UI/buttons/ButtonGray";
 import GrayFadedBanner from "../../../UI/GrayFadedBanner";
-import ManageActiveTreatments from "../../Treatment/components/ManageActiveTreatments";
 import ClientSettings from "./ClientSettings";
 import ClientMeasures from "./ClientMeasures";
 import TreatmentsContainer from "../../Treatment/components/TreatmentsContainer";
@@ -30,36 +28,26 @@ export default function ClientContainer(props) {
     return (
         <div className="">
             {displayTreatmentSettings && (
-                <ModalScrollable heading="Manage Treatment Episodes">
+                <ModalScrollable
+                    toggle={toggleDisplayTreatmentSettings}
+                    heading="Manage Treatment Episodes"
+                >
                     <ManageTreatmentsContainer
+                        activeTreatments={
+                            props.client.active_treatments.length > 0
+                                ? true
+                                : false
+                        }
                         treatments={props.client.treatments}
                         toggle={toggleDisplayTreatmentSettings}
                     />
-                    {/* {props.client.active_treatments.length === 0 ? (
-                        <>
-                            <div className="leading-normal p-2 text-gray-700 text-lg">
-                                There are currently no active treatement
-                                episodes to manage. A new treatment episode will
-                                automatically be created when a client submits
-                                an assessment via their unique public URL.
-                            </div>
-                            <div className="flex items-center justify-end">
-                                <ButtonGray
-                                    handleClick={toggleDisplayTreatmentSettings}
-                                    label="Cancel"
-                                />
-                            </div>
-                        </>
-                    ) : (
-                        <ManageActiveTreatments
-                            toggle={toggleDisplayTreatmentSettings}
-                            treatments={props.client.treatments}
-                        />
-                    )} */}
                 </ModalScrollable>
             )}
             {displayClientSettings && (
-                <ModalScrollable heading="Client Settings">
+                <ModalScrollable
+                    toggle={toggleDisplayClientSettings}
+                    heading="Client Settings"
+                >
                     <ClientSettings
                         client={props.client}
                         toggleModal={toggleDisplayClientSettings}

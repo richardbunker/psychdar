@@ -9,10 +9,12 @@ export default function OpenCloseContainer(props) {
     };
 
     return (
-        <div className="bg-white">
+        <div className="bg-white relative">
             <div className="flex items-center justify-between p-2">
-                <div className="text-base text-gray-500">
-                    <span>{props.title}</span>
+                <div>
+                    <span className="text-base text-gray-500">
+                        {props.title}
+                    </span>
                 </div>
                 <DropdownButton
                     toggle={toggleContainer}

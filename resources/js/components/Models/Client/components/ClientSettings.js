@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { validateString } from "../../../../utilities/HelperFunctions";
 import StringInput from "../../../UI/inputs/StringInput";
@@ -68,30 +68,24 @@ export default function ClientSettings(props) {
                         max="25"
                     />
                 )}
-                <UpdateStatusForm
-                    title="Client Status"
-                    onStatusUpdate={onStatusUpdate}
-                    currentStatus={clientSettings.active}
-                    identifier="active"
-                    truthyLabel="Active"
-                    falseyLabel="Archived"
-                />
-                <UpdateStatusForm
-                    title="URL Access"
-                    onStatusUpdate={onStatusUpdate}
-                    currentStatus={clientSettings.url}
-                    identifier="url"
-                    truthyLabel="Allowed"
-                    falseyLabel="Disabled"
-                />
-                {/* <UpdateStatusForm
-                    title="Statistical Analyses"
-                    onStatusUpdate={onStatusUpdate}
-                    currentStatus={clientSettings.stats}
-                    identifier="stats"
-                    truthyLabel="Included"
-                    falseyLabel="Excluded"
-                /> */}
+                <div className="p-4 bg-gray-50 border rounded space-y-4">
+                    <UpdateStatusForm
+                        title="Client Status"
+                        onStatusUpdate={onStatusUpdate}
+                        currentStatus={clientSettings.active}
+                        identifier="active"
+                        truthyLabel="Active"
+                        falseyLabel="Archived"
+                    />
+                    <UpdateStatusForm
+                        title="URL Access"
+                        onStatusUpdate={onStatusUpdate}
+                        currentStatus={clientSettings.url}
+                        identifier="url"
+                        truthyLabel="Allowed"
+                        falseyLabel="Disabled"
+                    />
+                </div>
             </div>
             <div className="flex items-center justify-end space-x-2 w-80 ml-auto">
                 <ButtonGray label="Close" handleClick={props.toggleModal} />

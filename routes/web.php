@@ -91,7 +91,9 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
     // Treatments
-    Route::post('/end-treatment', [App\Http\Controllers\ClientTreatmentController::class, 'ended']);
+    Route::post('/end-treatment', [App\Http\Controllers\ClientTreatmentController::class, 'end']);
+    Route::post('/update-ended-treatment', [App\Http\Controllers\ClientTreatmentController::class, 'update']);
+    Route::post('/activate-ended-treatment', [App\Http\Controllers\ClientTreatmentController::class, 'reactivate']);
 
 
     // AnchorsGroups

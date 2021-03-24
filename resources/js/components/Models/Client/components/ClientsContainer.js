@@ -115,7 +115,10 @@ export default function ClientsContainer(props) {
     return (
         <div>
             {displayCreateClientModal && (
-                <ModalScrollable heading="Create Client">
+                <ModalScrollable
+                    toggle={toggleCreateClientModal}
+                    heading="Create Client"
+                >
                     <div className="pb-4">
                         <StringInput
                             value={newClient}

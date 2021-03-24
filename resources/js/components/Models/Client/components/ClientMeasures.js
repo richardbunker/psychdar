@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import UrlRow from "../../../Stats/row/Url";
 import SelectInput from "../../../UI/inputs/SelectInput";
+import ButtonGray from "../../../UI/buttons/ButtonGray";
+import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 
 export default function ClientMeasures(props) {
     const [selectedMeasure, setSelectedMeasure] = useState("");
@@ -37,7 +39,7 @@ export default function ClientMeasures(props) {
 
     return (
         <div className="text-lg py-4 px-6 space-y-4">
-            <div className="flex items-center justify-between w-full py-2">
+            <div className="flex items-center justify-between w-full py-2 h-12">
                 {selectedMeasure.length === 0 && (
                     <SelectInput
                         title="Add Measure"
@@ -49,26 +51,22 @@ export default function ClientMeasures(props) {
                 )}
                 {selectedMeasure.length > 0 && (
                     <div className="flex items-center justify-between w-full">
-                        <div className="text-gray-600">
+                        <div className="text-gray-600 font-semibold">
                             {"Add " +
                                 userMeasures.find(
                                     x => x.value === selectedMeasure
                                 ).title +
                                 "?"}
                         </div>
-                        <div>
-                            <button
-                                onClick={() => setSelectedMeasure("")}
-                                className="bg-gray-400 hover:bg-gray-500 ml-2 px-3 py-2 rounded text-base text-white"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                onClick={() => submitAddMeasure()}
-                                className="bg-green-400 hover:bg-green-500 ml-2 px-3 py-2 rounded text-base text-white"
-                            >
-                                Confirm
-                            </button>
+                        <div className="flex items-center space-x-2">
+                            <ButtonGray
+                                handleClick={() => setSelectedMeasure("")}
+                                label="Cancel"
+                            />
+                            <ButtonTeal
+                                handleClick={submitAddMeasure}
+                                label="Confirm"
+                            />
                         </div>
                     </div>
                 )}

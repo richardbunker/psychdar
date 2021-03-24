@@ -6,7 +6,7 @@ On the Client
 
 -   User::clientsAssociatedWithMeasure(\$measure->id)->with('treatments.assessments')->get();
 
--   Treatment::ownedByUser($user->id)->canBeAnalysed(true)->withAssessmentsByMeasure($measure->id)->get();
+-   Treatment::ownedByUser($user->id)->canBeAnalysed(true)->withAssessmentsByMeasure($measure->id)->get()
 
 *   implement RCI feature
 
