@@ -52,12 +52,17 @@ class User extends Authenticatable
     
     public function measures()
     {
-        return $this->belongsToMany(Measure::class);
+        return $this->belongsToMany(Measure::class)->orderBy('name');
     }
     
     public function clients()
     {
         return $this->hasMany(Client::class)->orderBy('identifier');
+    }
+    
+    public function data()
+    {
+        return $this->hasOne(UserData::class);
     }
 
     public function activeClients()

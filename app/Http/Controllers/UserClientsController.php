@@ -54,10 +54,7 @@ class UserClientsController extends Controller
             $client = Client::findOrFail(Hasher::decode($request->clientHashedId));
             $client->identifier  = $request->identifier;
             $client->is_active = (int)$request->active;
-            $preferences = $client->preferences;
-            $preferences->create_own_resources = (int)$request->url;
-            $preferences->include_in_analyses = (int)$request->stats;
-            $client->preferences = json_encode($preferences);
+            $client->url_access = (int)$request->url;
             $client->save();
             return Redirect::route('showClient', $request->clientHashedId);  
         }

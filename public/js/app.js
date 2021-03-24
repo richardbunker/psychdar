@@ -89160,6 +89160,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ClientSettings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ClientSettings */ "./resources/js/components/Models/Client/components/ClientSettings.js");
 /* harmony import */ var _ClientMeasures__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ClientMeasures */ "./resources/js/components/Models/Client/components/ClientMeasures.js");
 /* harmony import */ var _Treatment_components_TreatmentsContainer__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../Treatment/components/TreatmentsContainer */ "./resources/js/components/Models/Treatment/components/TreatmentsContainer.js");
+/* harmony import */ var _Treatment_components_ManageTreatmentsContainer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../Treatment/components/ManageTreatmentsContainer */ "./resources/js/components/Models/Treatment/components/ManageTreatmentsContainer.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -89171,6 +89172,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -89211,17 +89213,10 @@ function ClientContainer(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: ""
   }, displayTreatmentSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    heading: "Active Treatment Episodes"
-  }, props.client.active_treatments.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "leading-normal p-2 text-gray-700 text-lg"
-  }, "There are currently no active treatement episodes to manage. A new treatment episode will automatically be created when a client submits an assessment via their unique public URL."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-end"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    handleClick: toggleDisplayTreatmentSettings,
-    label: "Cancel"
-  }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    toggle: toggleDisplayTreatmentSettings,
-    treatments: props.client.treatments
+    heading: "Manage Treatment Episodes"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_ManageTreatmentsContainer__WEBPACK_IMPORTED_MODULE_13__["default"], {
+    treatments: props.client.treatments,
+    toggle: toggleDisplayTreatmentSettings
   })), displayClientSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_6__["default"], {
     heading: "Client Settings"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ClientSettings__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -89261,7 +89256,7 @@ function ClientContainer(props) {
     title: "Treatment Episodes"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_5__["default"], {
     handleClick: toggleDisplayTreatmentSettings,
-    label: "Manage Active"
+    label: "Manage"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Treatment_components_TreatmentsContainer__WEBPACK_IMPORTED_MODULE_12__["default"], {
     treatments: props.client.treatments
   }))));
@@ -89430,8 +89425,7 @@ function ClientSettings(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     identifier: props.client.identifier,
     active: props.client.is_active,
-    url: props.client.preferences.create_own_resources,
-    stats: props.client.preferences.include_in_analyses
+    url: props.client.url_access
   }),
       _useState2 = _slicedToArray(_useState, 2),
       clientSettings = _useState2[0],
@@ -89512,13 +89506,6 @@ function ClientSettings(props) {
     identifier: "url",
     truthyLabel: "Allowed",
     falseyLabel: "Disabled"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_UpdateStatusForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    title: "Statistical Analyses",
-    onStatusUpdate: onStatusUpdate,
-    currentStatus: clientSettings.stats,
-    identifier: "stats",
-    truthyLabel: "Included",
-    falseyLabel: "Excluded"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 w-80 ml-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -90120,10 +90107,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Scales_ScalesBuilder__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/Scales/ScalesBuilder */ "./resources/js/components/Models/Measure/components/Scales/ScalesBuilder.js");
 /* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
 /* harmony import */ var _UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../UI/GrayFadedMenuBanner */ "./resources/js/components/UI/GrayFadedMenuBanner.js");
-/* harmony import */ var _UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../UI/forms/SaveSubmitButton */ "./resources/js/components/UI/forms/SaveSubmitButton.js");
-/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
-/* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
-/* harmony import */ var _Scales_ScalesContainer__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Scales/ScalesContainer */ "./resources/js/components/Models/Measure/components/Scales/ScalesContainer.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
+/* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
+/* harmony import */ var _Scales_ScalesContainer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Scales/ScalesContainer */ "./resources/js/components/Models/Measure/components/Scales/ScalesContainer.js");
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -90284,16 +90271,14 @@ function MeasureContainer(_ref) {
     className: "text-xl text-gray-700 p-4 leading-normal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "PLEASE NOTE:"), " Once published, you will be ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "unable"), " to edit the following features:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "list-disc pl-10 py-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Intructions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Access Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Items")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "All other features can be edited (i.e., Details & Scoring information).")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Intructions"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Access Level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Items"), measure.is_private === 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Details"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Scoring"))), measure.is_private === 1 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "All other features can be edited (i.e., Details & Scoring information).")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "w-24 font-semibold hover:bg-gray-500 px-3 py-2 rounded text-white bg-gray-400 uppercase",
-    onClick: function onClick() {
-      return toggleConfirmPublish();
-    }
-  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    label: "Confirm & Publish",
-    onHandleClick: publishMeasure
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_14__["default"], {
+    handleClick: toggleConfirmPublish,
+    label: "Cancel"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    handleClick: publishMeasure,
+    label: "Confirm & Publish"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__["default"], {
@@ -90303,12 +90288,12 @@ function MeasureContainer(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__["InertiaLink"], {
     className: "flex font-semibold bg-gray-400 items-center px-3 rounded text-sm text-white hover:bg-gray-500 w-full uppercase py-2",
     href: "/measure/" + measure.hashed_id + "/edit"
-  }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, "Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_11__["default"], {
     label: "Publish",
     handleClick: toggleConfirmPublish
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__["default"], {
     title: "Details"
-  }, measure.is_private ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, measure.is_private ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_12__["default"], {
     handleClick: toggleDetailsModal,
     label: "Update"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -90340,10 +90325,10 @@ function MeasureContainer(_ref) {
     className: ""
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__["default"], {
     title: "Scoring"
-  }, measure.is_private ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, measure.is_private ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_12__["default"], {
     handleClick: toggleScoringModal,
     label: "Update"
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scales_ScalesContainer__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Scales_ScalesContainer__WEBPACK_IMPORTED_MODULE_13__["default"], {
     responses: responses,
     measure: measure
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -93906,19 +93891,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! uuid */ "./node_modules/uuid/dist/esm-browser/index.js");
-/* harmony import */ var _UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../UI/forms/SaveSubmitButton */ "./resources/js/components/UI/forms/SaveSubmitButton.js");
-/* harmony import */ var _Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Measure/components/Structure/Item/Builder */ "./resources/js/components/Models/Measure/components/Structure/Item/Builder.js");
-/* harmony import */ var _Measure_components_Structure_Item_Preview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Measure/components/Structure/Item/Preview */ "./resources/js/components/Models/Measure/components/Structure/Item/Preview.js");
-/* harmony import */ var _UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../UI/inputs/StringCounter */ "./resources/js/components/UI/inputs/StringCounter.js");
-/* harmony import */ var _UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../UI/inputs/StringInput */ "./resources/js/components/UI/inputs/StringInput.js");
-/* harmony import */ var _UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../UI/inputs/TextInput */ "./resources/js/components/UI/inputs/TextInput.js");
-/* harmony import */ var _UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../UI/containers/CancelableContainer */ "./resources/js/components/UI/containers/CancelableContainer.js");
-/* harmony import */ var _UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../UI/GrayFadedMenuBanner */ "./resources/js/components/UI/GrayFadedMenuBanner.js");
-/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
-/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
-/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
-/* harmony import */ var _Preview_Bulider__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Preview/Bulider */ "./resources/js/components/Models/Measure/components/Structure/Preview/Bulider.js");
-/* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
+/* harmony import */ var _Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Measure/components/Structure/Item/Builder */ "./resources/js/components/Models/Measure/components/Structure/Item/Builder.js");
+/* harmony import */ var _Measure_components_Structure_Item_Preview__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Measure/components/Structure/Item/Preview */ "./resources/js/components/Models/Measure/components/Structure/Item/Preview.js");
+/* harmony import */ var _UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../UI/inputs/StringCounter */ "./resources/js/components/UI/inputs/StringCounter.js");
+/* harmony import */ var _UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../UI/inputs/StringInput */ "./resources/js/components/UI/inputs/StringInput.js");
+/* harmony import */ var _UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../UI/inputs/TextInput */ "./resources/js/components/UI/inputs/TextInput.js");
+/* harmony import */ var _UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../UI/containers/CancelableContainer */ "./resources/js/components/UI/containers/CancelableContainer.js");
+/* harmony import */ var _UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../../UI/GrayFadedMenuBanner */ "./resources/js/components/UI/GrayFadedMenuBanner.js");
+/* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
+/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
+/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _Preview_Bulider__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Preview/Bulider */ "./resources/js/components/Models/Measure/components/Structure/Preview/Bulider.js");
+/* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -93962,6 +93948,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function StructureEditor(_ref) {
   var measure = _ref.measure;
   var structure = measure.structure;
@@ -93981,7 +93968,7 @@ function StructureEditor(_ref) {
       isPrivate = _useState6[0],
       setIsPrivate = _useState6[1];
 
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_13__["returnEmptyStringIfNullValue"])(structure.instructions)),
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_12__["returnEmptyStringIfNullValue"])(structure.instructions)),
       _useState8 = _slicedToArray(_useState7, 2),
       instructions = _useState8[0],
       setInstructions = _useState8[1];
@@ -94150,29 +94137,27 @@ function StructureEditor(_ref) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full"
-  }, confirmEditModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, confirmEditModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__["default"], {
     heading: "Confirm Edit",
     toggleModal: toggleConfirmEditModal
   }, itemsEdited && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "text-xl text-gray-700 p-4 leading-normal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "PLEASE NOTE:"), " Changing the measure's items invalidates any associated scales. Any existing scales will be deleted and need reinstating manually. Would you like to continue?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase",
-    onClick: function onClick() {
-      return toggleConfirmEditModal();
-    }
-  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    label: "Confirm & Save",
-    onHandleClick: submitUpdatedMeasure
-  }))), displayItemBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    handleClick: toggleConfirmEditModal,
+    label: "Cancel"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_17__["default"], {
+    handleClick: submitUpdatedMeasure,
+    label: "Confirm & Update"
+  }))), displayItemBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__["default"], {
     heading: "Add Item",
     toggleModal: toggleItemBuilder
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     toggleSelf: toggleItemBuilder
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_4__["default"], {
     onNewItem: onNewItem
-  }))), displayPreview && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Preview_Bulider__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }))), displayPreview && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Preview_Bulider__WEBPACK_IMPORTED_MODULE_14__["default"], {
     toggle: togglePreview,
     measure: {
       structure: {
@@ -94181,7 +94166,7 @@ function StructureEditor(_ref) {
         items: items
       }
     }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedMenuBanner__WEBPACK_IMPORTED_MODULE_10__["default"], {
     title: "Measure Builder"
   }, inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-2 text-sm"
@@ -94202,33 +94187,33 @@ function StructureEditor(_ref) {
     className: "p-4 w-full text-lg space-y-6 bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_7__["default"], {
     value: name,
     handleOnStringChange: function handleOnStringChange(e) {
       return updateName(e.target.value);
     },
     title: "Name",
     placeholder: "Depression, Anxiety and Stress Scale 21"
-  }), name.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), name.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_6__["default"], {
     isValid: inputFields.name,
     number: name.length,
     max: "100"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_TextInput__WEBPACK_IMPORTED_MODULE_8__["default"], {
     value: instructions,
     title: "Instructions",
     handleOnTextChange: function handleOnTextChange(e) {
       return updateInstructions(e.target.value);
     },
     placeholder: "Over the past week..."
-  }), instructions.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }), instructions.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringCounter__WEBPACK_IMPORTED_MODULE_6__["default"], {
     isValid: inputFields.instructions,
     number: instructions.length,
     max: "500"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_15__["default"], {
     onCheckedInput: function onCheckedInput(bool) {
       return updateAccessLevel(bool);
     },
@@ -94239,12 +94224,12 @@ function StructureEditor(_ref) {
     text: "Uncheck to make this measure public. Public measures can be viewed and implemented by other Psychdar users. Sharing is caring! \u2764\uFE0F"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "mt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_11__["default"], {
     title: "Items"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "p-4 bg-white space-y-4"
   }, items.map(function (item, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Preview__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Preview__WEBPACK_IMPORTED_MODULE_5__["default"], {
       key: Object(uuid__WEBPACK_IMPORTED_MODULE_3__["v4"])(),
       index: index,
       item: item,
@@ -94473,31 +94458,136 @@ function ManageActiveTreatments(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    key: index,
+    className: "border flex items-start p-4 rounded space-x-2 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    onCheckedInput: function onCheckedInput() {
+      return toggleChecked(treatment.hashed_id);
+    },
+    title: treatment.started,
+    label: "Completed",
+    value: checked,
+    text: "Check to mark this treatment episode as completed."
+  }));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Treatment/components/ManageEndedTreatments.js":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/Models/Treatment/components/ManageEndedTreatments.js ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ManageEndedTreatments; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
+/* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+function ManageEndedTreatments(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(props.treatment.included_in_stats),
+      _useState2 = _slicedToArray(_useState, 2),
+      checked = _useState2[0],
+      setIsChecked = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    treatmentHashedId: ""
+  }),
+      _useState4 = _slicedToArray(_useState3, 2),
+      treatmentHashedId = _useState4[0],
+      setTreatmentHashedId = _useState4[1];
+
+  var toggleChecked = function toggleChecked(hashedTreatmentId) {
+    setIsChecked(function (prevState) {
+      return !prevState;
+    });
+    setTreatmentHashedId(function (prevState) {
+      return {
+        treatmentHashedId: hashedTreatmentId
+      };
+    });
+  };
+
+  var submitEndTreatment = function submitEndTreatment() {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/update-ended-treatment", treatmentHashedId);
+    props.toggle();
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "border flex items-start p-4 rounded space-x-2 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    onCheckedInput: function onCheckedInput() {
+      return toggleChecked(props.treatment.hashed_id);
+    },
+    title: props.treatment.started + " - " + props.treatment.ended,
+    label: "Included in outcome statistics",
+    value: checked,
+    text: "Uncheck to exclude this treatment episode from statistical outcome analysis."
+  }));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Treatment/components/ManageTreatmentsContainer.js":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/Models/Treatment/components/ManageTreatmentsContainer.js ***!
+  \******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ManageTreatmentsContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
+/* harmony import */ var _ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ManageActiveTreatments */ "./resources/js/components/Models/Treatment/components/ManageActiveTreatments.js");
+/* harmony import */ var _ManageEndedTreatments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ManageEndedTreatments */ "./resources/js/components/Models/Treatment/components/ManageEndedTreatments.js");
+
+
+
+
+
+function ManageTreatmentsContainer(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
-  }, props.treatments.map(function (treatement, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.treatments.map(function (treatment, index) {
+    return treatment.ended === "Present" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: index,
-      className: "border flex items-start p-4 rounded space-x-2 w-full"
-    }, treatement.ended === "Present" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      treatment: treatment
+    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ManageEndedTreatments__WEBPACK_IMPORTED_MODULE_4__["default"], {
       key: index,
-      onCheckedInput: function onCheckedInput() {
-        return toggleChecked(treatement.hashed_id);
-      },
-      title: treatement.started,
-      label: "Completed",
-      value: checked,
-      text: "Check to mark this treatment episode as completed."
-    }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "text-gray-600 font-semibold w-1/3"
-    }, treatement.started + " - " + treatement.ended));
+      treatment: treatment
+    });
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2 ml-auto pt-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_1__["default"], {
     label: "Cancel",
     handleClick: props.toggle
-  }), checked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    label: "Update",
-    handleClick: submitEndTreatment
   })));
 }
 

@@ -9,10 +9,10 @@ import DetailsBuilder from "../components/Details/DetailsBuilder";
 import ScalesBuilder from "../components/Scales/ScalesBuilder";
 import ModalScrollable from "../../../UI/modals/Scrollable";
 import GrayFadedMenuBanner from "../../../UI/GrayFadedMenuBanner";
-import SaveSubmitButton from "../../../UI/forms/SaveSubmitButton";
 import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import ButtonBlue from "../../../UI/buttons/ButtonBlue";
 import ScalesContainer from "./Scales/ScalesContainer";
+import ButtonGray from "../../../UI/buttons/ButtonGray";
 
 export default function MeasureContainer({ measure }) {
     const [responses, setResponses] = useState([]);
@@ -144,22 +144,28 @@ export default function MeasureContainer({ measure }) {
                             <li>Intructions</li>
                             <li>Access Level</li>
                             <li>Items</li>
+                            {measure.is_private === 0 && (
+                                <>
+                                    <li>Details</li>
+                                    <li>Scoring</li>
+                                </>
+                            )}
                         </ul>
-                        <div>
-                            All other features can be edited (i.e., Details &
-                            Scoring information).
-                        </div>
+                        {measure.is_private === 1 && (
+                            <div>
+                                All other features can be edited (i.e., Details
+                                & Scoring information).
+                            </div>
+                        )}
                     </div>
                     <div className="flex items-center justify-end space-x-2">
-                        <button
-                            className="w-24 font-semibold hover:bg-gray-500 px-3 py-2 rounded text-white bg-gray-400 uppercase"
-                            onClick={() => toggleConfirmPublish()}
-                        >
-                            Cancel
-                        </button>
-                        <SaveSubmitButton
+                        <ButtonGray
+                            handleClick={toggleConfirmPublish}
+                            label="Cancel"
+                        />
+                        <ButtonTeal
+                            handleClick={publishMeasure}
                             label="Confirm & Publish"
-                            onHandleClick={publishMeasure}
                         />
                     </div>
                 </ModalScrollable>

@@ -1219,4 +1219,111 @@ class MeasureBuilder
         $core10->is_published = true;
         $core10->save();
     }
+
+    public static function therapyFeedback()
+    {        
+        $therapyFeedback = new \App\Models\Measure;
+        $therapyFeedback->name = "Therapy Feedback";
+        $therapyFeedback->structure = json_encode(
+            array (
+                'name' => 'Therapy Feedback',
+                'instructions' => 'Research suggests that collecting feedback about your therapy experiences often yields better therapy outcomes. Please think about your most recent session and answer the following.',
+                'items' => 
+                array (
+                    0 => 
+                    array (
+                    'title' => 'How helpful was you most recent session?',
+                    'subtitle' => NULL,
+                    'type' => 'Slider',
+                    'anchors' => 
+                    array (
+                        0 => 
+                        array (
+                        'label' => 'Extremely Unhelpful',
+                        'value' => 0,
+                        ),
+                        1 => 
+                        array (
+                        'label' => 'Extremely Helpful',
+                        'value' => 10,
+                        ),
+                    ),
+                    ),
+                    1 => 
+                    array (
+                    'title' => 'Rate the quality of the therapy relationship.',
+                    'subtitle' => NULL,
+                    'type' => 'Slider',
+                    'anchors' => 
+                    array (
+                        0 => 
+                        array (
+                        'label' => 'Extremely Poor',
+                        'value' => 0,
+                        ),
+                        1 => 
+                        array (
+                        'label' => 'Excellent',
+                        'value' => 10,
+                        ),
+                    ),
+                    ),
+                ),
+            )
+        );
+        $therapyFeedback->scales = json_encode(
+            array (
+                0 => 
+                array (
+                    'title' => 'Helpfulness',
+                    'alpha' => NULL,
+                    'operation' => 'Sum',
+                    'items' => 
+                    array (
+                    0 => 0,
+                    ),
+                    'cuttOffs' => 
+                    array (
+                    0 => 
+                    array (
+                        'label' => '🎉 Helpful Session 🎉',
+                        'min' => 9,
+                        'max' => 10,
+                        'alert' => true,
+                    ),
+                    1 => 
+                    array (
+                        'label' => '🚨 Therapy Issue 🚨',
+                        'min' => 0,
+                        'max' => 7,
+                        'alert' => true,
+                    ),
+                    ),
+                ),
+                1 => 
+                array (
+                    'title' => 'Relationship',
+                    'alpha' => NULL,
+                    'operation' => 'Sum',
+                    'items' => 
+                    array (
+                    0 => 1,
+                    ),
+                    'cuttOffs' => 
+                    array (
+                    0 => 
+                    array (
+                        'label' => '🚨 Relationship Issue 🚨',
+                        'min' => 0,
+                        'max' => 7,
+                        'alert' => true,
+                    ),
+                    ),
+                ),
+            )
+        );
+        $therapyFeedback->is_private = false;
+        $therapyFeedback->is_published = true;
+        $therapyFeedback->save();
+    }
 }

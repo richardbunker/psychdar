@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import { v4 as uuidv4 } from "uuid";
-import SaveSubmitButton from "../../../../UI/forms/SaveSubmitButton";
 import ItemBuilder from "../../../Measure/components/Structure/Item/Builder";
 import ItemPreview from "../../../Measure/components/Structure/Item/Preview";
 import StringCounter from "../../../../UI/inputs/StringCounter";
@@ -15,6 +14,8 @@ import { returnEmptyStringIfNullValue } from "../../../../../utilities/HelperFun
 import ModalScrollable from "../../../../UI/modals/Scrollable";
 import PreviewBuilder from "./Preview/Bulider";
 import CheckboxInput from "../../../../UI/inputs/CheckboxInput";
+import ButtonGray from "../../../../UI/buttons/ButtonGray";
+import ButtonTeal from "../../../../UI/buttons/ButtonTeal";
 
 export default function StructureEditor({ measure }) {
     const { structure } = measure;
@@ -166,15 +167,13 @@ export default function StructureEditor({ measure }) {
                         </div>
                     )}
                     <div className="flex items-center justify-end space-x-2">
-                        <button
-                            className="w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase"
-                            onClick={() => toggleConfirmEditModal()}
-                        >
-                            Cancel
-                        </button>
-                        <SaveSubmitButton
-                            label="Confirm & Save"
-                            onHandleClick={submitUpdatedMeasure}
+                        <ButtonGray
+                            handleClick={toggleConfirmEditModal}
+                            label="Cancel"
+                        />
+                        <ButtonTeal
+                            handleClick={submitUpdatedMeasure}
+                            label="Confirm & Update"
                         />
                     </div>
                 </ModalScrollable>

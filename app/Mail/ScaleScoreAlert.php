@@ -37,7 +37,7 @@ class ScaleScoreAlert extends Mailable
     public function build()
     {
         return $this->from('noreply@psychdar.com', 'Psychdar Bot')
-                    ->subject("🚨 Alert: ".$this->alertInfo["measure"]." 🚨")
+                    ->subject($this->alertInfo["label"]." - ".$this->alertInfo["measure"])
                     ->view('emails.alert');
     }
 }

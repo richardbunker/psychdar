@@ -25,8 +25,9 @@ class DatabaseSeeder extends Seeder
             }
         });
 
-        MeasureBuilder::dass21();
         MeasureBuilder::core10();
+        MeasureBuilder::dass21();
+        MeasureBuilder::therapyFeedback();
 
     }
 }

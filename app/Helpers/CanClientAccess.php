@@ -12,7 +12,7 @@ class CanClientAccess
     {
         $client = Client::findOrFail(Hasher::decode($client_hashed_id)); 
         if ($client->is_active) {
-            if ($client->preferences->create_own_resources) {
+            if ($client->url_access) {
                 return true;
             }            
         }

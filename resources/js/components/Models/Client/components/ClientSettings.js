@@ -11,8 +11,7 @@ export default function ClientSettings(props) {
     const [clientSettings, setClientSettings] = useState({
         identifier: props.client.identifier,
         active: props.client.is_active,
-        url: props.client.preferences.create_own_resources,
-        stats: props.client.preferences.include_in_analyses
+        url: props.client.url_access
     });
     const [inputFields, setInputFields] = useState({
         name: true
@@ -85,14 +84,14 @@ export default function ClientSettings(props) {
                     truthyLabel="Allowed"
                     falseyLabel="Disabled"
                 />
-                <UpdateStatusForm
+                {/* <UpdateStatusForm
                     title="Statistical Analyses"
                     onStatusUpdate={onStatusUpdate}
                     currentStatus={clientSettings.stats}
                     identifier="stats"
                     truthyLabel="Included"
                     falseyLabel="Excluded"
-                />
+                /> */}
             </div>
             <div className="flex items-center justify-end space-x-2 w-80 ml-auto">
                 <ButtonGray label="Close" handleClick={props.toggleModal} />

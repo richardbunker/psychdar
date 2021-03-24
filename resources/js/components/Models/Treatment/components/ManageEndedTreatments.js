@@ -4,8 +4,8 @@ import ButtonGray from "../../../UI/buttons/ButtonGray";
 import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import CheckboxInput from "../../../UI/inputs/CheckboxInput";
 
-export default function ManageActiveTreatments(props) {
-    const [checked, setIsChecked] = useState(false);
+export default function ManageEndedTreatments(props) {
+    const [checked, setIsChecked] = useState(props.treatment.included_in_stats);
     const [treatmentHashedId, setTreatmentHashedId] = useState({
         treatmentHashedId: ""
     });
@@ -20,21 +20,18 @@ export default function ManageActiveTreatments(props) {
     };
 
     const submitEndTreatment = () => {
-        Inertia.post("/end-treatment", treatmentHashedId);
+        Inertia.post("/update-ended-treatment", treatmentHashedId);
         props.toggle();
     };
 
     return (
-        <div
-            key={index}
-            className="border flex items-start p-4 rounded space-x-2 w-full"
-        >
+        <div className="border flex items-start p-4 rounded space-x-2 w-full">
             <CheckboxInput
-                onCheckedInput={() => toggleChecked(treatment.hashed_id)}
-                title={treatment.started}
-                label="Completed"
+                onCheckedInput={() => toggleChecked(props.treatment.hashed_id)}
+                title={props.treatment.started + " - " + props.treatment.ended}
+                label="Included in outcome statistics"
                 value={checked}
-                text="Check to mark this treatment episode as completed."
+                text="Uncheck to exclude this treatment episode from statistical outcome analysis."
             />
         </div>
     );

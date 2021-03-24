@@ -17,6 +17,7 @@ class CreateTreatmentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('client_id');
+            $table->boolean('included_in_stats')->default(true);
             $table->timestamp('ended_at')->nullable();
             $table->timestamps();
         });

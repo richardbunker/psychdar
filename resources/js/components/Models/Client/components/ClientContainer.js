@@ -11,6 +11,7 @@ import ManageActiveTreatments from "../../Treatment/components/ManageActiveTreat
 import ClientSettings from "./ClientSettings";
 import ClientMeasures from "./ClientMeasures";
 import TreatmentsContainer from "../../Treatment/components/TreatmentsContainer";
+import ManageTreatmentsContainer from "../../Treatment/components/ManageTreatmentsContainer";
 
 export default function ClientContainer(props) {
     const [displayClientSettings, setDisplayClientSettings] = useState(false);
@@ -29,8 +30,12 @@ export default function ClientContainer(props) {
     return (
         <div className="">
             {displayTreatmentSettings && (
-                <ModalScrollable heading="Active Treatment Episodes">
-                    {props.client.active_treatments.length === 0 ? (
+                <ModalScrollable heading="Manage Treatment Episodes">
+                    <ManageTreatmentsContainer
+                        treatments={props.client.treatments}
+                        toggle={toggleDisplayTreatmentSettings}
+                    />
+                    {/* {props.client.active_treatments.length === 0 ? (
                         <>
                             <div className="leading-normal p-2 text-gray-700 text-lg">
                                 There are currently no active treatement
@@ -50,7 +55,7 @@ export default function ClientContainer(props) {
                             toggle={toggleDisplayTreatmentSettings}
                             treatments={props.client.treatments}
                         />
-                    )}
+                    )} */}
                 </ModalScrollable>
             )}
             {displayClientSettings && (
@@ -97,7 +102,7 @@ export default function ClientContainer(props) {
                     <GrayFadedMenuBanner title="Treatment Episodes">
                         <ButtonBlue
                             handleClick={toggleDisplayTreatmentSettings}
-                            label="Manage Active"
+                            label="Manage"
                         />
                     </GrayFadedMenuBanner>
                     <TreatmentsContainer treatments={props.client.treatments} />
