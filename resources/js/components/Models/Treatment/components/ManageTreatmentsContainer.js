@@ -9,10 +9,12 @@ export default function ManageTreatmentsContainer(props) {
         <div className="space-y-2">
             {!props.activeTreatments && (
                 <div className="border leading-normal p-4 rounded text-base text-gray-500">
-                    There are currently no active treatement episodes to manage.
+                    There are currently no active treatment episodes to manage.
                     A new treatment episode will automatically be created when a
-                    client submits an assessment via a measure's unique URL
-                    link.
+                    client submits an assessment via a unique 'Measure URL'
+                    link. Alternatively, you can reactivate the most recently
+                    completed treatment episode should you wish to continue
+                    adding assessments.
                 </div>
             )}
             {props.treatments.map((treatment, index) => {

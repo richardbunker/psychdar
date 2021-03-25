@@ -67,7 +67,10 @@ export default function SearchPublicMeasuers(props) {
     return (
         <div className="flex w-full">
             {displayPublicMeasures && (
-                <ModalScrollable heading="Community Measures">
+                <ModalScrollable
+                    heading="Community Measures"
+                    toggle={toggleDisplayPublicMeasures}
+                >
                     <div>
                         <input
                             autoFocus={true}

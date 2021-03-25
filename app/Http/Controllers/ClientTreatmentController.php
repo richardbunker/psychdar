@@ -15,7 +15,7 @@ class ClientTreatmentController extends Controller
     {
         if (CanUserAccess::treatment($request->hashedTreatmentId)) {           
             $treatment = Treatment::findOrFail(Hasher::decode($request->hashedTreatmentId));
-            $treatment->ended_at = Carbon::now();
+            $treatment->ended_at = Carbon::createFromFormat('D M d Y H:i:s e+', $request->endedAt)->toDateTimeString();
             $treatment->save();
             return Redirect::route('showClient', Hasher::encode($treatment->client_id));  
         }

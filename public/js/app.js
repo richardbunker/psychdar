@@ -90542,7 +90542,8 @@ function SearchPublicMeasuers(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex w-full"
   }, displayPublicMeasures && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    heading: "Community Measures"
+    heading: "Community Measures",
+    toggle: toggleDisplayPublicMeasures
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     autoFocus: true,
     onKeyUp: handleKeyUp,
@@ -93555,6 +93556,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../../../UI/GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
 /* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
 /* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -93580,6 +93583,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -93771,20 +93776,19 @@ function StructureBuilder(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full"
   }, confirmCreateModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    heading: "Please Confirm"
+    heading: "Please Confirm",
+    toggle: toggleConfirmCreate
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "w-24 bg-gradient-to-tl font-semibold from-gray-500 px-3 py-2 rounded text-white to-gray-400 uppercase",
-    onClick: function onClick() {
-      return toggleConfirmCreate();
-    }
-  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_forms_SaveSubmitButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    label: "Save & Continue",
-    onHandleClick: submitMeasure
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_15__["default"], {
+    label: "Cancel",
+    handleClick: toggleConfirmCreate
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_16__["default"], {
+    label: "Save & Submit",
+    handleClick: submitMeasure
   }))), displayItemBuilder && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_13__["default"], {
     heading: "Add Item",
-    toggleModal: toggleItemBuilder
+    toggle: toggleItemBuilder
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_containers_CancelableContainer__WEBPACK_IMPORTED_MODULE_10__["default"], {
     toggleSelf: toggleItemBuilder
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Measure_components_Structure_Item_Builder__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -94419,6 +94423,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_inputs_CheckboxInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../UI/inputs/CheckboxInput */ "./resources/js/components/UI/inputs/CheckboxInput.js");
 /* harmony import */ var _UI_inputs_Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../UI/inputs/Checkbox */ "./resources/js/components/UI/inputs/Checkbox.js");
 /* harmony import */ var _UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../UI/buttons/ButtonBlue */ "./resources/js/components/UI/buttons/ButtonBlue.js");
+/* harmony import */ var _utilities_TreatmentFunctions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utilities/TreatmentFunctions */ "./resources/js/components/Models/Treatment/utilities/TreatmentFunctions.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -94430,6 +94435,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -94451,13 +94457,16 @@ function ManageActiveTreatments(props) {
   };
 
   var submit = function submit() {
+    var date = new Date();
     var values = {
-      hashedTreatmentId: props.treatment.hashed_id
+      hashedTreatmentId: props.treatment.hashed_id,
+      endedAt: date.toString()
     };
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/end-treatment", values);
     props.toggle();
   };
 
+  console.log(Object(_utilities_TreatmentFunctions__WEBPACK_IMPORTED_MODULE_7__["prepareCarbonNowDate"])());
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "border p-4 rounded w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -94485,7 +94494,7 @@ function ManageActiveTreatments(props) {
     checked: checked
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "leading-normal py-2 text-gray-500 text-base"
-  }, "Check to mark this treatment episode as completed."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }, "Check to mark this treatment episode as completed."), checked && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonBlue__WEBPACK_IMPORTED_MODULE_6__["default"], {
     handleClick: submit,
     label: "Update"
   }))));
@@ -94622,7 +94631,7 @@ function ManageTreatmentsContainer(props) {
     className: "space-y-2"
   }, !props.activeTreatments && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "border leading-normal p-4 rounded text-base text-gray-500"
-  }, "There are currently no active treatement episodes to manage. A new treatment episode will automatically be created when a client submits an assessment via a measure's unique URL link."), props.treatments.map(function (treatment, index) {
+  }, "There are currently no active treatment episodes to manage. A new treatment episode will automatically be created when a client submits an assessment via a unique 'Measure URL' link. Alternatively, you can reactivate the most recently completed treatment episode should you wish to continue adding assessments."), props.treatments.map(function (treatment, index) {
     return treatment.ended === "Present" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ManageActiveTreatments__WEBPACK_IMPORTED_MODULE_3__["default"], {
       toggle: props.toggle,
       key: index,
@@ -94759,6 +94768,27 @@ function TreatmentsContainer(props) {
     })));
   }));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Treatment/utilities/TreatmentFunctions.js":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Models/Treatment/utilities/TreatmentFunctions.js ***!
+  \**********************************************************************************/
+/*! exports provided: prepareCarbonNowDate */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prepareCarbonNowDate", function() { return prepareCarbonNowDate; });
+var prepareCarbonNowDate = function prepareCarbonNowDate() {
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth();
+  var day = date.getDate();
+  var time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+  return year + "-" + month + "-" + day + " " + time;
+};
 
 /***/ }),
 
@@ -96148,37 +96178,6 @@ function TextInput(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/UI/keys/Escape.js":
-/*!***************************************************!*\
-  !*** ./resources/js/components/UI/keys/Escape.js ***!
-  \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EscapeKey; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-function EscapeKey(props) {
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    var handleEsc = function handleEsc(event) {
-      if (event.keyCode === 27) {
-        props["function"]();
-      }
-    };
-
-    window.addEventListener("keydown", handleEsc);
-    return function () {
-      window.removeEventListener("keydown", handleEsc);
-    };
-  }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
-}
-
-/***/ }),
-
 /***/ "./resources/js/components/UI/links/LinkGray.js":
 /*!******************************************************!*\
   !*** ./resources/js/components/UI/links/LinkGray.js ***!
@@ -96266,16 +96265,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../GrayFadedBanner */ "./resources/js/components/UI/GrayFadedBanner.js");
-/* harmony import */ var _keys_Escape__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../keys/Escape */ "./resources/js/components/UI/keys/Escape.js");
-
 
 
 function ModalScrollable(props) {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var handleEsc = function handleEsc(event) {
+      if (event.keyCode === 27) {
+        props.toggle();
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+    return function () {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "absolute bg-black bg-opacity-75 h-screen left-0 min-h-screen overflow-auto to-teal-400 top-0 w-full z-10"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_keys_Escape__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    "function": props.toggle
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white w-full relative h-auto  max-w-2xl mx-auto mt-10"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GrayFadedBanner__WEBPACK_IMPORTED_MODULE_1__["default"], {
     title: props.heading

@@ -5,6 +5,7 @@ import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import CheckboxInput from "../../../UI/inputs/CheckboxInput";
 import Checkbox from "../../../UI/inputs/Checkbox";
 import ButtonBlue from "../../../UI/buttons/ButtonBlue";
+import { prepareCarbonNowDate } from "../utilities/TreatmentFunctions";
 
 export default function ManageActiveTreatments(props) {
     const [checked, setIsChecked] = useState(false);
@@ -14,12 +15,16 @@ export default function ManageActiveTreatments(props) {
     };
 
     const submit = () => {
+        const date = new Date();
         const values = {
-            hashedTreatmentId: props.treatment.hashed_id
+            hashedTreatmentId: props.treatment.hashed_id,
+            endedAt: date.toString()
         };
         Inertia.post("/end-treatment", values);
         props.toggle();
     };
+
+    console.log(prepareCarbonNowDate());
 
     return (
         <div className="border p-4 rounded w-full">
@@ -53,7 +58,9 @@ export default function ManageActiveTreatments(props) {
                     <label className="leading-normal py-2 text-gray-500 text-base">
                         Check to mark this treatment episode as completed.
                     </label>
-                    <ButtonBlue handleClick={submit} label="Update" />
+                    {checked && (
+                        <ButtonBlue handleClick={submit} label="Update" />
+                    )}
                 </div>
             </div>
         </div>

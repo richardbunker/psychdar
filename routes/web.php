@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
@@ -26,7 +27,8 @@ Route::get('/', function () {
 // });
 
 Route::get('/for-testing', function () {
-    return Redirect::route('showMeasure', '45b1gLPMaD');
+    // return Carbon::parse('2021-03-25T02:19:31.814Z')->subDays(13033)->format('d-M-Y');
+    return Carbon::createFromFormat('D M d Y H:i:s e+', 'Thu Mar 25 2021 12:50:49 GMT+1000 (Australian Eastern Standard Time)')->toDateTimeString();
 });
 
 Route::get('/query', function () {
