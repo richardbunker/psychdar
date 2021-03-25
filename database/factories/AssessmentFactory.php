@@ -23,20 +23,18 @@ class AssessmentFactory extends Factory
     {
         return
         [
-            // 'data' => json_encode([
-            //     'responses' => [
-            //         'item_1' => rand(0, 4),
-            //         'item_2' => rand(0, 4),
-            //         'item_3' => rand(0, 4),
-            //         'item_4' => rand(0, 4),
-            //         'item_5' => rand(0, 4),
-            //         'item_6' => rand(0, 4),
-            //         'item_7' => rand(0, 4),
-            //         'item_8' => rand(0, 4),
-            //         'item_9' => rand(0, 4),
-            //         'item_10' => rand(0, 4),
-            //     ]
-            // ]),
+            'responses' => json_encode([
+                'item_0' => rand(0, 4),
+                'item_1' => rand(0, 4),
+                'item_2' => rand(0, 4),
+                'item_3' => rand(0, 4),
+                'item_4' => rand(0, 4),
+                'item_5' => rand(0, 4),
+                'item_6' => rand(0, 4),
+                'item_7' => rand(0, 4),
+                'item_8' => rand(0, 4),
+                'item_9' => rand(0, 4),
+            ]),
         ];
     }
 }

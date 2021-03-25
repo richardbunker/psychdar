@@ -1,3 +1,4 @@
+import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import QuestionMark from "../../UI/dropdowns/QuestionMark";
 import Spinner from "../../UI/spinners/Spinner";
@@ -29,6 +30,15 @@ export default function EffectSizeRow(props) {
         setIsLoading(false);
     };
 
+    const checkCanRunStatistics = ({ pre, post }) => {
+        if (pre.length > 30) {
+            console.log("Running Stats");
+            // runStatistics(pre, post);
+        } else {
+            disableProcess();
+        }
+    };
+
     const toggleInfoBox = () => {
         setShowInfoBox(preState => !preState);
     };
@@ -43,18 +53,13 @@ export default function EffectSizeRow(props) {
     };
 
     useEffect(() => {
-        if (props.clinician.clients.length >= 30) {
-            axios
-                .get("/api/pre_post/" + props.clinician.hashed_id + "/core10")
-                .then(response => {
-                    runStatistics(response.data);
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        } else {
-            disableProcess();
-        }
+        Axios.get("/effect-size-calculation/" + props.measure_id)
+            .then(response => {
+                checkCanRunStatistics(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
     }, []);
 
     const size = props.iconSize;

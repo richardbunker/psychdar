@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ButtonGray from "../../../UI/buttons/ButtonGray";
-import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import ManageActiveTreatments from "./ManageActiveTreatments";
 import ManageEndedTreatments from "./ManageEndedTreatments";
 

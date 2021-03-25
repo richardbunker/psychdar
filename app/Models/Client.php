@@ -64,4 +64,9 @@ class Client extends Model
     {
         return $this->belongsToMany(Measure::class);
     }
+
+    public function scopeByUser($query, $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
 }

@@ -1,5 +1,6 @@
-import React from "react";
-import GrayFadedBanner from "../../UI/GrayFadedBanner";
+import React, { useState } from "react";
+import GrayFadedMenuBanner from "../../UI/GrayFadedMenuBanner";
+import ButtonBlue from "../../UI/buttons/ButtonBlue";
 import EffectSizeRow from "../../Stats/row/EffectSize";
 import { sum } from "../../Stats/Stats";
 import ClientsRow from "../../Stats/row/Clients";
@@ -7,8 +8,16 @@ import TreatmentEpisodesRow from "../../Stats/row/TreatmentEpisodes";
 import TotalAssessmentsRow from "../../Stats/row/TotalAssessments";
 import SaveableBanner from "../../UI/SaveableBanner";
 import MeasureRow from "../../Stats/row/Measure";
+import ModalScrollable from "../../UI/modals/Scrollable";
+import UserSettings from "./components/UserSettings";
 
 export default function UserStats(props) {
+    const [displayUserSettings, setDisplayUserSettings] = useState(false);
+
+    const toggleUserSettings = () => {
+        setDisplayUserSettings(prevState => !prevState);
+    };
+
     const totalTreatmentEpisodes = props.user.clients
         .map(client => {
             return client.treatments.length;
@@ -25,8 +34,22 @@ export default function UserStats(props) {
 
     return (
         <div className="space-y-2">
+            {displayUserSettings && (
+                <ModalScrollable toggle={toggleUserSettings} heading="Settings">
+                    <UserSettings
+                        toggle={toggleUserSettings}
+                        measures={props.user.measures}
+                        data={props.user.data}
+                    />
+                </ModalScrollable>
+            )}
             <div className="w-full bg-white rounded-b">
-                <GrayFadedBanner title={props.user.name} />
+                <GrayFadedMenuBanner title={props.user.name}>
+                    <ButtonBlue
+                        label="Settings"
+                        handleClick={toggleUserSettings}
+                    />
+                </GrayFadedMenuBanner>
                 <div className="text-lg py-4 px-6 space-y-4">
                     <ClientsRow
                         iconSize="10"
@@ -52,7 +75,7 @@ export default function UserStats(props) {
                     <EffectSizeRow
                         iconSize="10"
                         iconColour="text-yellow-400"
-                        clinician={props.user}
+                        user={props.user}
                     />
                 </div>
             </div>

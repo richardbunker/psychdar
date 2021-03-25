@@ -4,16 +4,16 @@ namespace App\Services;
 
 class EffectSizeService
 {
-    public function prepareArray($clinician, $questionnaire_name)
+    public function prepareArray($clients)
     {
         $pre = collect();
         $post = collect();
 
-        $clinician->clients->each(function ($client) use ($questionnaire_name, $pre, $post){
-            $client->treatments->each(function ($treatment) use ($questionnaire_name, $pre, $post) {
+        $clients->each(function ($client) use ($pre, $post){
+            $client->treatments->each(function ($treatment) use ($pre, $post) {
                 if ($treatment->assessments->count() > 1) {                        
-                    $pre->push(collect($treatment->assessments->first()->data->responses)->values()->sum());
-                    $post->push(collect($treatment->assessments->last()->data->responses)->values()->sum());
+                    $pre->push(collect($treatment->assessments->first()->responses));
+                    $post->push(collect($treatment->assessments->last()->responses));
                 }
             });
         });        

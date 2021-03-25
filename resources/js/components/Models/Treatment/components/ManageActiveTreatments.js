@@ -24,8 +24,6 @@ export default function ManageActiveTreatments(props) {
         props.toggle();
     };
 
-    console.log(prepareCarbonNowDate());
-
     return (
         <div className="border p-4 rounded w-full">
             <div className="flex flex-col items-start space-y-3 w-full">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\EffectSizeService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,8 +28,12 @@ Route::get('/', function () {
 // });
 
 Route::get('/for-testing', function () {
-    // return Carbon::parse('2021-03-25T02:19:31.814Z')->subDays(13033)->format('d-M-Y');
-    return Carbon::createFromFormat('D M d Y H:i:s e+', 'Thu Mar 25 2021 12:50:49 GMT+1000 (Australian Eastern Standard Time)')->toDateTimeString();
+    $clients = \App\Models\Client::byUser(Auth::user()->id)
+        ->with(['treatments.assessments' => function ($query) {
+            $query->where('measure_id', 1);
+        }])->get();
+    $prePost = new \App\Services\EffectSizeService;
+    return $prePost->prepareArray($clients);
 });
 
 Route::get('/query', function () {
@@ -107,7 +112,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
     // Effect Sizes
-    Route::get('/api/pre_post/{hashed_clinician_id}/{questionnaire_name}', [App\Http\Controllers\ClinicianEffectSizeController::class, 'show']);
+    Route::get('/effect-size-calculation/{measure_id}', [App\Http\Controllers\UserEffectSizeController::class, 'index']);
 });
 
 

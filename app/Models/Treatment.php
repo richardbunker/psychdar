@@ -47,11 +47,6 @@ class Treatment extends Model
         return Carbon::parse($this->attributes['ended_at'])->format('d/m/Y');
     }
 
-    // public function consultations()
-    // {
-    //     return $this->hasMany(Consultation::class);
-    // }
-
     public function assessments()
     {
         return $this->hasMany(Assessment::class);

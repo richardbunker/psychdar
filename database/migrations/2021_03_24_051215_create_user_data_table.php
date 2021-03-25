@@ -17,7 +17,7 @@ class CreateUserDataTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('measure_id_for_outcome_stats');
-            $table->json('outcome_data');
+            $table->json('outcome_data')->nullable();
             $table->timestamps();
         });
     }
