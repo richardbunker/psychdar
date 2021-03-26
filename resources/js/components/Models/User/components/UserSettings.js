@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Inertia } from "@inertiajs/inertia";
 import ButtonGray from "../../../UI/buttons/ButtonGray";
 import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import SelectInput from "../../../UI/inputs/SelectInput";
@@ -24,17 +25,38 @@ export default function UserSettings(props) {
             });
     };
 
+    const getMeasureName = hashedMeasureId => {
+        const measure = props.measures.find(measure => {
+            return measure.hashed_id === hashedMeasureId;
+        });
+        return measure.name;
+    };
+
     const onMeasureSelect = event => {
         setSelectedMeasure(event.target.value);
         setDisplaySelectScales(true);
     };
 
     const onScaleSelect = event => {
-        setSelectedScale(event.target.value);
+        const measure = props.measures.find(measure => {
+            return measure.hashed_id === selectedMeasure;
+        });
+        const scale = measure.scales.find(
+            scale => scale.title === event.target.value
+        );
+        setSelectedScale(scale);
     };
 
-    const sumbit = () => {
-        console.log("Submitted!");
+    const submit = () => {
+        const values = {
+            outcomeMeasureDetails: {
+                name: getMeasureName(selectedMeasure),
+                scale: selectedScale,
+                hashedMeasureId: selectedMeasure
+            }
+        };
+        Inertia.post("/user-data", values);
+        props.toggle();
     };
 
     return (
@@ -58,7 +80,7 @@ export default function UserSettings(props) {
             {selectedScale !== "" && (
                 <div className="flex items-center justify-end space-x-2">
                     <ButtonGray label="Cancel" handleClick={props.toggle} />
-                    <ButtonTeal label="Submit" handleClick={sumbit} />
+                    <ButtonTeal label="Submit" handleClick={submit} />
                 </div>
             )}
         </div>

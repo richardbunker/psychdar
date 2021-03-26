@@ -1,13 +1,12 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { calculateScaleScore } from "../../Models/Assessment/utilities/ScaleScoring";
 import QuestionMark from "../../UI/dropdowns/QuestionMark";
 import Spinner from "../../UI/spinners/Spinner";
-import { mean, correllation, stdDev } from "../Stats";
+import { mean, correllation, stdDev, tTest } from "../Stats";
 
 export default function EffectSizeRow(props) {
     const [isLoading, setIsLoading] = useState(true);
-
-    const [showInfoBox, setShowInfoBox] = useState(false);
 
     const [notEnoughData, setNotEnoughData] = useState(false);
 
@@ -15,36 +14,46 @@ export default function EffectSizeRow(props) {
 
     const [esRmc, setEsRmc] = useState(0);
 
-    const runStatistics = ({ pre, post }) => {
-        const preMean = mean(pre);
-        const postMean = mean(post);
-        const r = correllation(pre, post);
-        const preSD = stdDev(pre);
+    const [result, setResult] = useState("");
 
-        const esPre = ((postMean - preMean) / preSD).toFixed(2);
-        const esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
+    const runStatistics = (pre, post) => {
+        const tStat = tTest(pre, post);
+        if (tStat.p < 0.05) {
+            const preMean = mean(pre);
+            const postMean = mean(post);
+            const r = correllation(pre, post);
+            const preSD = stdDev(pre);
+            const esPre = ((postMean - preMean) / preSD).toFixed(2);
 
-        setEsPre(esPre);
-        setEsRmc(esRmc);
+            const esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
+            setResult({
+                significant: true,
+                ...tStat,
+                esRmc: esRmc
+            });
+        } else {
+            setResult({
+                significant: false,
+                ...tStat,
+                esRmc: "ns"
+            });
+        }
 
         setIsLoading(false);
     };
 
     const checkCanRunStatistics = ({ pre, post }) => {
         if (pre.length > 30) {
-            console.log("Running Stats");
-            // runStatistics(pre, post);
+            const preCalc = pre.map(set => {
+                return calculateScaleScore(props.data.outcome_data.scale, set);
+            });
+            const postCalc = post.map(set => {
+                return calculateScaleScore(props.data.outcome_data.scale, set);
+            });
+            runStatistics(preCalc, postCalc);
         } else {
             disableProcess();
         }
-    };
-
-    const toggleInfoBox = () => {
-        setShowInfoBox(preState => !preState);
-    };
-
-    const handleClick = () => {
-        toggleInfoBox();
     };
 
     const disableProcess = () => {
@@ -53,14 +62,17 @@ export default function EffectSizeRow(props) {
     };
 
     useEffect(() => {
-        Axios.get("/effect-size-calculation/" + props.measure_id)
+        Axios.get(
+            "/effect-size-calculation/" +
+                props.data.measure_id_for_outcome_stats
+        )
             .then(response => {
                 checkCanRunStatistics(response.data);
             })
             .catch(e => {
                 console.log(e);
             });
-    }, []);
+    }, [props]);
 
     const size = props.iconSize;
     const colour = props.iconColour;
@@ -93,12 +105,48 @@ export default function EffectSizeRow(props) {
                                     size={size}
                                 />
                             ) : (
-                                <span>
-                                    <span className="text-gray-500 italic">
-                                        ES<sub>RMC</sub>
+                                <div className="flex items-center space-x-2">
+                                    <span>
+                                        (
+                                        <span className="text-gray-500 italic font-semibold">
+                                            t{" "}
+                                            <span className="not-italic">
+                                                =
+                                            </span>
+                                        </span>
+                                        <span className="ml-1">
+                                            {result.t.toFixed(2)}
+                                        </span>
+                                        ,
                                     </span>
-                                    <span className="ml-1">{esRmc}</span>
-                                </span>
+                                    <span>
+                                        <span className="text-gray-500 italic font-semibold">
+                                            p{" "}
+                                            <span className="not-italic">
+                                                =
+                                            </span>
+                                        </span>
+                                        <span className="ml-1">
+                                            {result.p.toFixed(2)}
+                                        </span>
+                                        {!result.significant && (
+                                            <span className="ml-1 italic">
+                                                ns
+                                            </span>
+                                        )}
+                                        )
+                                    </span>
+                                    {result.significant && (
+                                        <span>
+                                            <span className="text-gray-500 italic font-semibold">
+                                                ES<sub>RMC</sub>
+                                            </span>
+                                            <span className="ml-1">
+                                                {result.esRmc}
+                                            </span>
+                                        </span>
+                                    )}
+                                </div>
                             )}
                         </div>
                     )}

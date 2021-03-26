@@ -94808,10 +94808,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Stats_row_Clients__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Stats/row/Clients */ "./resources/js/components/Stats/row/Clients.js");
 /* harmony import */ var _Stats_row_TreatmentEpisodes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../Stats/row/TreatmentEpisodes */ "./resources/js/components/Stats/row/TreatmentEpisodes.js");
 /* harmony import */ var _Stats_row_TotalAssessments__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Stats/row/TotalAssessments */ "./resources/js/components/Stats/row/TotalAssessments.js");
-/* harmony import */ var _UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../UI/SaveableBanner */ "./resources/js/components/UI/SaveableBanner.js");
-/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
-/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
-/* harmony import */ var _components_UserSettings__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/UserSettings */ "./resources/js/components/Models/User/components/UserSettings.js");
+/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
+/* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+/* harmony import */ var _components_UserSettings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/UserSettings */ "./resources/js/components/Models/User/components/UserSettings.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -94823,7 +94822,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -94858,10 +94856,10 @@ function UserStats(props) {
   }).reduce(_Stats_Stats__WEBPACK_IMPORTED_MODULE_4__["sum"], 0);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
-  }, displayUserSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, displayUserSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_9__["default"], {
     toggle: toggleUserSettings,
     heading: "Settings"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UserSettings__WEBPACK_IMPORTED_MODULE_11__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UserSettings__WEBPACK_IMPORTED_MODULE_10__["default"], {
     toggle: toggleUserSettings,
     measures: props.user.measures,
     data: props.user.data
@@ -94886,22 +94884,16 @@ function UserStats(props) {
     iconSize: "10",
     iconColour: "text-gray-400",
     number: totalAssessments
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_8__["default"], {
     heading: "Effect Size Measure",
     iconSize: "10",
     iconColour: "text-teal-400",
-    title: "CORE10"
+    title: props.user.data.outcome_data.name + " (" + props.user.data.outcome_data.scale.title + ")"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_3__["default"], {
     iconSize: "10",
-    iconColour: "text-yellow-400",
-    user: props.user
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full bg-white"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_SaveableBanner__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    title: "Settings"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-lg text-gray-600 pt-2 pb-6 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Outcome Measure"))));
+    iconColour: "text-yellow-300",
+    data: props.user.data
+  }))));
 }
 
 /***/ }),
@@ -94918,9 +94910,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserSettings; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
-/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
-/* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
+/* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
+/* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -94932,6 +94926,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -94973,28 +94968,49 @@ function UserSettings(props) {
     });
   };
 
+  var getMeasureName = function getMeasureName(hashedMeasureId) {
+    var measure = props.measures.find(function (measure) {
+      return measure.hashed_id === hashedMeasureId;
+    });
+    return measure.name;
+  };
+
   var onMeasureSelect = function onMeasureSelect(event) {
     setSelectedMeasure(event.target.value);
     setDisplaySelectScales(true);
   };
 
   var onScaleSelect = function onScaleSelect(event) {
-    setSelectedScale(event.target.value);
+    var measure = props.measures.find(function (measure) {
+      return measure.hashed_id === selectedMeasure;
+    });
+    var scale = measure.scales.find(function (scale) {
+      return scale.title === event.target.value;
+    });
+    setSelectedScale(scale);
   };
 
-  var sumbit = function sumbit() {
-    console.log("Submitted!");
+  var submit = function submit() {
+    var values = {
+      outcomeMeasureDetails: {
+        name: getMeasureName(selectedMeasure),
+        scale: selectedScale,
+        hashedMeasureId: selectedMeasure
+      }
+    };
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/user-data", values);
+    props.toggle();
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     title: "Outcome Measure",
     onSelect: onMeasureSelect,
     defaultText: "Please Select...",
     defaultValue: "Please Select...",
     options: userMeasures
-  }), displaySelectScales && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), displaySelectScales && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     title: "Scale",
     onSelect: onScaleSelect,
     defaultText: "Please Select...",
@@ -95002,12 +95018,12 @@ function UserSettings(props) {
     options: showMeasureScales(selectedMeasure)
   }), selectedScale !== "" && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "Cancel",
     handleClick: props.toggle
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: "Submit",
-    handleClick: sumbit
+    handleClick: submit
   })));
 }
 
@@ -95017,7 +95033,7 @@ function UserSettings(props) {
 /*!************************************************!*\
   !*** ./resources/js/components/Stats/Stats.js ***!
   \************************************************/
-/*! exports provided: sum, mean, median, frequency, correllation, stdDev */
+/*! exports provided: sum, mean, median, frequency, correllation, stdDev, tTest */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95028,6 +95044,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "frequency", function() { return frequency; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "correllation", function() { return correllation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stdDev", function() { return stdDev; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tTest", function() { return tTest; });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -95115,6 +95132,87 @@ var stdDev = function stdDev(array) {
   return Math.sqrt(sumOfSquares / (array.length - 1));
 };
 
+var sDiff = function sDiff(array1, array2) {
+  var sumOfDiff = array2.map(function (x, i) {
+    return x - array1[i];
+  });
+  return stdDev(sumOfDiff);
+};
+
+var gammaln = function gammaln(x) {
+  var j = 0;
+  var cof = [76.18009172947146, -86.50532032941678, 24.01409824083091, -1.231739572450155, 0.001208650973866179, -5395239384953e-18];
+  var ser = 1.000000000190015;
+  var xx, y, tmp;
+  tmp = (y = xx = x) + 5.5;
+  tmp -= (xx + 0.5) * Math.log(tmp);
+
+  for (; j < 6; j++) {
+    ser += cof[j] / ++y;
+  }
+
+  return Math.log(2.5066282746310007 * ser / xx) - tmp;
+};
+
+var betacf = function betacf(x, a, b) {
+  var fpmin = 1e-30;
+  var m = 1;
+  var qab = a + b;
+  var qap = a + 1;
+  var qam = a - 1;
+  var c = 1;
+  var d = 1 - qab * x / qap;
+  var m2, aa, del, h;
+  if (Math.abs(d) < fpmin) d = fpmin;
+  d = 1 / d;
+  h = d;
+
+  for (; m <= 100; m++) {
+    m2 = 2 * m;
+    aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+    d = 1 + aa * d;
+    if (Math.abs(d) < fpmin) d = fpmin;
+    c = 1 + aa / c;
+    if (Math.abs(c) < fpmin) c = fpmin;
+    d = 1 / d;
+    h *= d * c;
+    aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+    d = 1 + aa * d;
+    if (Math.abs(d) < fpmin) d = fpmin;
+    c = 1 + aa / c;
+    if (Math.abs(c) < fpmin) c = fpmin;
+    d = 1 / d;
+    del = d * c;
+    h *= del;
+    if (Math.abs(del - 1) < 3e-7) break;
+  }
+
+  return h;
+};
+
+var ibeta = function ibeta(x, a, b) {
+  var bt = x === 0 || x === 1 ? 0 : Math.exp(gammaln(a + b) - gammaln(a) - gammaln(b) + a * Math.log(x) + b * Math.log(1 - x));
+  if (x < 0 || x > 1) return false;
+  if (x < (a + 1) / (a + b + 2)) return bt * betacf(x, a, b) / a;
+  return 1 - bt * betacf(1 - x, b, a) / b;
+};
+
+var cdf = function cdf(x, dof) {
+  var dof2 = dof / 2;
+  return ibeta((x + Math.sqrt(x * x + dof)) / (2 * Math.sqrt(x * x + dof)), dof2, dof2);
+};
+
+var tTest = function tTest(pre, post) {
+  var df = pre.length - 1;
+  var t = (mean(post) - mean(pre)) / (sDiff(pre, post) / Math.sqrt(pre.length));
+  var p = cdf(-Math.abs(t), df) * 2;
+  return {
+    df: df,
+    t: t,
+    p: p
+  };
+};
+
 /***/ }),
 
 /***/ "./resources/js/components/Stats/row/Clients.js":
@@ -95171,9 +95269,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../UI/dropdowns/QuestionMark */ "./resources/js/components/UI/dropdowns/QuestionMark.js");
-/* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
-/* harmony import */ var _Stats__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _Models_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Models/Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
+/* harmony import */ var _UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../UI/dropdowns/QuestionMark */ "./resources/js/components/UI/dropdowns/QuestionMark.js");
+/* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
+/* harmony import */ var _Stats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Stats */ "./resources/js/components/Stats/Stats.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -95191,6 +95296,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function EffectSizeRow(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -95199,57 +95305,68 @@ function EffectSizeRow(props) {
 
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
-      showInfoBox = _useState4[0],
-      setShowInfoBox = _useState4[1];
+      notEnoughData = _useState4[0],
+      setNotEnoughData = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState6 = _slicedToArray(_useState5, 2),
-      notEnoughData = _useState6[0],
-      setNotEnoughData = _useState6[1];
+      esPre = _useState6[0],
+      setEsPre = _useState6[1];
 
   var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState8 = _slicedToArray(_useState7, 2),
-      esPre = _useState8[0],
-      setEsPre = _useState8[1];
+      esRmc = _useState8[0],
+      setEsRmc = _useState8[1];
 
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
       _useState10 = _slicedToArray(_useState9, 2),
-      esRmc = _useState10[0],
-      setEsRmc = _useState10[1];
+      result = _useState10[0],
+      setResult = _useState10[1];
 
-  var runStatistics = function runStatistics(_ref) {
-    var pre = _ref.pre,
-        post = _ref.post;
-    var preMean = Object(_Stats__WEBPACK_IMPORTED_MODULE_4__["mean"])(pre);
-    var postMean = Object(_Stats__WEBPACK_IMPORTED_MODULE_4__["mean"])(post);
-    var r = Object(_Stats__WEBPACK_IMPORTED_MODULE_4__["correllation"])(pre, post);
-    var preSD = Object(_Stats__WEBPACK_IMPORTED_MODULE_4__["stdDev"])(pre);
-    var esPre = ((postMean - preMean) / preSD).toFixed(2);
-    var esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
-    setEsPre(esPre);
-    setEsRmc(esRmc);
+  var runStatistics = function runStatistics(pre, post) {
+    var tStat = Object(_Stats__WEBPACK_IMPORTED_MODULE_5__["tTest"])(pre, post);
+
+    if (tStat.p < 0.05) {
+      var preMean = Object(_Stats__WEBPACK_IMPORTED_MODULE_5__["mean"])(pre);
+      var postMean = Object(_Stats__WEBPACK_IMPORTED_MODULE_5__["mean"])(post);
+      var r = Object(_Stats__WEBPACK_IMPORTED_MODULE_5__["correllation"])(pre, post);
+      var preSD = Object(_Stats__WEBPACK_IMPORTED_MODULE_5__["stdDev"])(pre);
+
+      var _esPre = ((postMean - preMean) / preSD).toFixed(2);
+
+      var _esRmc = (_esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
+
+      setResult(_objectSpread(_objectSpread({
+        significant: true
+      }, tStat), {}, {
+        esRmc: _esRmc
+      }));
+    } else {
+      setResult(_objectSpread(_objectSpread({
+        significant: false
+      }, tStat), {}, {
+        esRmc: "ns"
+      }));
+    }
+
     setIsLoading(false);
   };
 
-  var checkCanRunStatistics = function checkCanRunStatistics(_ref2) {
-    var pre = _ref2.pre,
-        post = _ref2.post;
+  var checkCanRunStatistics = function checkCanRunStatistics(_ref) {
+    var pre = _ref.pre,
+        post = _ref.post;
 
     if (pre.length > 30) {
-      console.log("Running Stats"); // runStatistics(pre, post);
+      var preCalc = pre.map(function (set) {
+        return Object(_Models_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__["calculateScaleScore"])(props.data.outcome_data.scale, set);
+      });
+      var postCalc = post.map(function (set) {
+        return Object(_Models_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__["calculateScaleScore"])(props.data.outcome_data.scale, set);
+      });
+      runStatistics(preCalc, postCalc);
     } else {
       disableProcess();
     }
-  };
-
-  var toggleInfoBox = function toggleInfoBox() {
-    setShowInfoBox(function (preState) {
-      return !preState;
-    });
-  };
-
-  var handleClick = function handleClick() {
-    toggleInfoBox();
   };
 
   var disableProcess = function disableProcess() {
@@ -95258,12 +95375,12 @@ function EffectSizeRow(props) {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/effect-size-calculation/" + props.measure_id).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/effect-size-calculation/" + props.data.measure_id_for_outcome_stats).then(function (response) {
       checkCanRunStatistics(response.data);
     })["catch"](function (e) {
       console.log(e);
     });
-  }, []);
+  }, [props]);
   var size = props.iconSize;
   var colour = props.iconColour;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -95283,19 +95400,35 @@ function EffectSizeRow(props) {
     className: ""
   }, "Effect Size"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "ml-2  flex"
-  }, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: "20px"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex flex-col space-y-3"
-  }, notEnoughData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, notEnoughData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_3__["default"], {
     position: " bottom-0 right-0 w-60",
     text: "Sample size too small (n < 30)",
     size: size
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "text-gray-500 italic"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "flex items-center space-x-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "(", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "text-gray-500 italic font-semibold"
+  }, "t", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "not-italic"
+  }, "=")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "ml-1"
+  }, result.t.toFixed(2)), ","), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "text-gray-500 italic font-semibold"
+  }, "p", " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "not-italic"
+  }, "=")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "ml-1"
+  }, result.p.toFixed(2)), !result.significant && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "ml-1 italic"
+  }, "ns"), ")"), result.significant && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "text-gray-500 italic font-semibold"
   }, "ES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("sub", null, "RMC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "ml-1"
-  }, esRmc))))));
+  }, result.esRmc)))))));
 }
 
 /***/ }),
@@ -95502,59 +95635,6 @@ function GrayFadedMenuBanner(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-between w-full text-lg font-bold text-white h-10 px-2 bg-gradient-to-r from-gray-400 to-gray-300 uppercase"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, props.children));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/UI/SaveableBanner.js":
-/*!******************************************************!*\
-  !*** ./resources/js/components/UI/SaveableBanner.js ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SaveableBanner; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-function SaveableBanner(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
-      _useState2 = _slicedToArray(_useState, 2),
-      time = _useState2[0],
-      setTime = _useState2[1];
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    displaySaved();
-  }, [props.savedAt]);
-
-  var displaySaved = function displaySaved() {
-    setTime(function (prevState) {
-      return prevState === "" ? "" : "Saving...";
-    });
-    setTimeout(function () {
-      setTime(props.savedAt);
-    }, 300);
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "w-full text-lg text-gray-400 p-2 bg-white uppercase flex items-center justify-between"
-  }, props.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "text-base italic normal-case pr-2"
-  }, time));
 }
 
 /***/ }),

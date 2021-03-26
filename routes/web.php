@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 
     //Dashboard
     Route::get('/dashboard', [App\Http\Controllers\UserDashboardController::class, 'index'])->name('userDashboard');
+    Route::post('/user-data', [App\Http\Controllers\UserDataController::class, 'store']);
 
 
     // Clients

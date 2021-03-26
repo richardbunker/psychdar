@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserEffectSizeController extends Controller
 {
-    public function index(Request $request)
+    public function index($measure_id)
     {        
         $clients = Client::byUser(Auth::user()->id)
-            ->with(['treatments.assessments' => function ($query) use ($request) {
-                $query->where('measure_id', 1);
+            ->with(['treatments.assessments' => function ($query) use ($measure_id) {
+                $query->where('measure_id', $measure_id);
             }])->get();
         $prePost = new EffectSizeService;
         return $prePost->prepareArray($clients);

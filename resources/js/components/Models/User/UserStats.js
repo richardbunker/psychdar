@@ -6,7 +6,6 @@ import { sum } from "../../Stats/Stats";
 import ClientsRow from "../../Stats/row/Clients";
 import TreatmentEpisodesRow from "../../Stats/row/TreatmentEpisodes";
 import TotalAssessmentsRow from "../../Stats/row/TotalAssessments";
-import SaveableBanner from "../../UI/SaveableBanner";
 import MeasureRow from "../../Stats/row/Measure";
 import ModalScrollable from "../../UI/modals/Scrollable";
 import UserSettings from "./components/UserSettings";
@@ -70,19 +69,18 @@ export default function UserStats(props) {
                         heading="Effect Size Measure"
                         iconSize="10"
                         iconColour="text-teal-400"
-                        title={"CORE10"}
+                        title={
+                            props.user.data.outcome_data.name +
+                            " (" +
+                            props.user.data.outcome_data.scale.title +
+                            ")"
+                        }
                     />
                     <EffectSizeRow
                         iconSize="10"
-                        iconColour="text-yellow-400"
-                        user={props.user}
+                        iconColour="text-yellow-300"
+                        data={props.user.data}
                     />
-                </div>
-            </div>
-            <div className="w-full bg-white">
-                <SaveableBanner title="Settings" />
-                <div className="text-lg text-gray-600 pt-2 pb-6 px-6 space-y-4">
-                    <div>Outcome Measure</div>
                 </div>
             </div>
         </div>
