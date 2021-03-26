@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import GrayFadedMenuBanner from "../../UI/GrayFadedMenuBanner";
 import ButtonBlue from "../../UI/buttons/ButtonBlue";
-import EffectSizeRow from "../../Stats/row/EffectSize";
 import { sum } from "../../Stats/Stats";
 import ClientsRow from "../../Stats/row/Clients";
 import TreatmentEpisodesRow from "../../Stats/row/TreatmentEpisodes";
 import TotalAssessmentsRow from "../../Stats/row/TotalAssessments";
-import MeasureRow from "../../Stats/row/Measure";
 import ModalScrollable from "../../UI/modals/Scrollable";
 import UserSettings from "./components/UserSettings";
+import EffectSizeContainer from "./components/EffectSizeContainer";
+import ChangeEffectSizeMeasure from "./components/ChangeEffectSizeMeasure";
 
 export default function UserStats(props) {
     const [displayUserSettings, setDisplayUserSettings] = useState(false);
+    const [displayEffectSizeSettings, setDisplayEffectSizeSettings] = useState(
+        false
+    );
 
     const toggleUserSettings = () => {
         setDisplayUserSettings(prevState => !prevState);
+    };
+
+    const toggleEffectSizeSettings = () => {
+        setDisplayEffectSizeSettings(prevState => !prevState);
     };
 
     const totalTreatmentEpisodes = props.user.clients
@@ -42,7 +49,7 @@ export default function UserStats(props) {
                     />
                 </ModalScrollable>
             )}
-            <div className="w-full bg-white rounded-b">
+            <div className="w-full bg-white">
                 <GrayFadedMenuBanner title={props.user.name}>
                     <ButtonBlue
                         label="Settings"
@@ -65,23 +72,28 @@ export default function UserStats(props) {
                         iconColour="text-gray-400"
                         number={totalAssessments}
                     />
-                    <MeasureRow
-                        heading="Effect Size Measure"
-                        iconSize="10"
-                        iconColour="text-teal-400"
-                        title={
-                            props.user.data.outcome_data.name +
-                            " (" +
-                            props.user.data.outcome_data.scale.title +
-                            ")"
-                        }
-                    />
-                    <EffectSizeRow
-                        iconSize="10"
-                        iconColour="text-yellow-300"
-                        data={props.user.data}
-                    />
                 </div>
+            </div>
+            <div className="bg-white w-full">
+                <GrayFadedMenuBanner title="Effect Size">
+                    <ButtonBlue
+                        label="Settings"
+                        handleClick={toggleEffectSizeSettings}
+                    />
+                </GrayFadedMenuBanner>
+                {displayEffectSizeSettings && (
+                    <ModalScrollable
+                        toggle={toggleEffectSizeSettings}
+                        heading="Change Effect Size Measure"
+                    >
+                        <ChangeEffectSizeMeasure
+                            toggle={toggleEffectSizeSettings}
+                            measures={props.user.measures}
+                            data={props.user.data}
+                        />
+                    </ModalScrollable>
+                )}
+                <EffectSizeContainer user={props.user} />
             </div>
         </div>
     );
