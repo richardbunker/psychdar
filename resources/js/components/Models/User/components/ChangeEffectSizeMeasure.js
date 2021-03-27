@@ -54,7 +54,7 @@ export default function ChangeEffectSizeMeasure(props) {
 
     const submit = () => {
         const values = {
-            outcomeMeasureDetails: {
+            effectSizeSettings: {
                 name: getMeasureName(selectedMeasure),
                 scale: selectedScale,
                 hashedMeasureId: selectedMeasure

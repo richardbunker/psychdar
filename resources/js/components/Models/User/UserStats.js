@@ -84,7 +84,7 @@ export default function UserStats(props) {
                 {displayEffectSizeSettings && (
                     <ModalScrollable
                         toggle={toggleEffectSizeSettings}
-                        heading="Change Effect Size Measure"
+                        heading="Effect Size Settings"
                     >
                         <ChangeEffectSizeMeasure
                             toggle={toggleEffectSizeSettings}
@@ -93,7 +93,9 @@ export default function UserStats(props) {
                         />
                     </ModalScrollable>
                 )}
-                <EffectSizeContainer user={props.user} />
+                {props.user.data && (
+                    <EffectSizeContainer data={props.user.data} />
+                )}
             </div>
         </div>
     );

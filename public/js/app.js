@@ -94904,13 +94904,13 @@ function UserStats(props) {
     handleClick: toggleEffectSizeSettings
   })), displayEffectSizeSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_7__["default"], {
     toggle: toggleEffectSizeSettings,
-    heading: "Change Effect Size Measure"
+    heading: "Effect Size Settings"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ChangeEffectSizeMeasure__WEBPACK_IMPORTED_MODULE_10__["default"], {
     toggle: toggleEffectSizeSettings,
     measures: props.user.measures,
     data: props.user.data
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_EffectSizeContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    user: props.user
+  })), props.user.data && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_EffectSizeContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    data: props.user.data
   })));
 }
 
@@ -95023,7 +95023,7 @@ function ChangeEffectSizeMeasure(props) {
 
   var submit = function submit() {
     var values = {
-      outcomeMeasureDetails: {
+      effectSizeSettings: {
         name: getMeasureName(selectedMeasure),
         scale: selectedScale,
         hashedMeasureId: selectedMeasure
@@ -95074,12 +95074,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/row/EffectSize */ "./resources/js/components/Stats/row/EffectSize.js");
-/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
-/* harmony import */ var _Stats_row_Scale__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Stats/row/Scale */ "./resources/js/components/Stats/row/Scale.js");
-/* harmony import */ var _Stats_row_Significance__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Stats/row/Significance */ "./resources/js/components/Stats/row/Significance.js");
-/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-/* harmony import */ var _Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
+/* harmony import */ var _Stats_row_DescriptiveStats__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../Stats/row/DescriptiveStats */ "./resources/js/components/Stats/row/DescriptiveStats.js");
+/* harmony import */ var _Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../Stats/row/EffectSize */ "./resources/js/components/Stats/row/EffectSize.js");
+/* harmony import */ var _Stats_row_Measure__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../Stats/row/Measure */ "./resources/js/components/Stats/row/Measure.js");
+/* harmony import */ var _Stats_row_Scale__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Stats/row/Scale */ "./resources/js/components/Stats/row/Scale.js");
+/* harmony import */ var _Stats_row_Significance__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Stats/row/Significance */ "./resources/js/components/Stats/row/Significance.js");
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -95106,8 +95107,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function EffectSizeContainer(_ref) {
-  var user = _ref.user;
+  var data = _ref.data;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -95125,30 +95127,23 @@ function EffectSizeContainer(_ref) {
       setResult = _useState6[1];
 
   var runStatistics = function runStatistics(pre, post) {
-    var tStat = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_6__["tTest"])(pre, post);
-
-    if (tStat.p < 0.05) {
-      var preMean = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_6__["mean"])(pre);
-      var postMean = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_6__["mean"])(post);
-      var r = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_6__["correllation"])(pre, post);
-      var preSD = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_6__["stdDev"])(pre);
-      var esPre = ((postMean - preMean) / preSD).toFixed(2);
-      var esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
-      setResult(_objectSpread(_objectSpread({
-        significant: true
-      }, tStat), {}, {
-        esRmc: esRmc,
-        esPre: esPre
-      }));
-    } else {
-      setResult(_objectSpread(_objectSpread({
-        significant: false
-      }, tStat), {}, {
-        esRmc: "n/a",
-        esPre: "n/a"
-      }));
-    }
-
+    var tStat = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_7__["tTest"])(pre, post);
+    var preMean = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_7__["mean"])(pre);
+    var postMean = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_7__["mean"])(post);
+    var r = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_7__["correllation"])(pre, post);
+    var preSD = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_7__["stdDev"])(pre);
+    var esPre = ((postMean - preMean) / preSD).toFixed(2);
+    var esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
+    setResult(_objectSpread(_objectSpread({
+      significant: tStat.p < 0.05 ? true : false
+    }, tStat), {}, {
+      sdPre: preSD,
+      r: r,
+      esRmc: esRmc,
+      esPre: esPre,
+      preMean: preMean,
+      postMean: postMean
+    }));
     setIsLoading(false);
   };
 
@@ -95158,10 +95153,10 @@ function EffectSizeContainer(_ref) {
 
     if (pre.length > 30) {
       var preCalc = pre.map(function (set) {
-        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_7__["calculateScaleScore"])(user.data.outcome_data.scale, set);
+        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_8__["calculateScaleScore"])(data.effect_size_settings.scale, set);
       });
       var postCalc = post.map(function (set) {
-        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_7__["calculateScaleScore"])(user.data.outcome_data.scale, set);
+        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_8__["calculateScaleScore"])(data.effect_size_settings.scale, set);
       });
       runStatistics(preCalc, postCalc);
       setNotEnoughData(false);
@@ -95176,38 +95171,45 @@ function EffectSizeContainer(_ref) {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/effect-size-calculation/" + user.data.measure_id_for_outcome_stats).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/effect-size-calculation/" + data.effect_size_settings.hashedMeasureId).then(function (response) {
       checkCanRunStatistics(response.data);
     })["catch"](function (e) {
       console.log(e);
     });
-  }, [user]);
+  }, [data]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "text-lg py-4 px-6 space-y-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    heading: "Effect Size Measure",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_Measure__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    heading: "Measure",
     iconSize: "10",
     iconColour: "text-teal-400",
-    title: user.data.outcome_data.name
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_Scale__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    heading: "Effect Size Scale",
+    title: data.effect_size_settings.name
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_Scale__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    heading: "Scale",
     iconSize: "10",
     iconColour: "text-green-400",
-    title: user.data.outcome_data.scale.title
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_Significance__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    heading: "Statistical Significance",
+    title: data.effect_size_settings.scale.title
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_DescriptiveStats__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    heading: "Descriptive Statistics",
+    isLoading: isLoading,
+    notEnoughData: notEnoughData,
+    iconSize: "10",
+    iconColour: "text-pink-400",
+    result: result
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_Significance__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    heading: "Repeated Measures t-test",
     isLoading: isLoading,
     notEnoughData: notEnoughData,
     iconSize: "10",
     iconColour: "text-blue-400",
     result: result
-  }), result.significant && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_Stats_row_EffectSize__WEBPACK_IMPORTED_MODULE_3__["default"], {
     heading: "Effect Sizes",
     isLoading: isLoading,
     notEnoughData: notEnoughData,
     iconSize: "10",
     iconColour: "text-yellow-300",
-    data: user.data,
+    data: data,
     result: result
   }));
 }
@@ -95571,6 +95573,74 @@ function ClientsRow(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Stats/row/DescriptiveStats.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/Stats/row/DescriptiveStats.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DescriptiveStats; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_infoboxes_StatsInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UI/infoboxes/StatsInfo */ "./resources/js/components/UI/infoboxes/StatsInfo.js");
+/* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
+
+
+
+function DescriptiveStats(props) {
+  var size = props.iconSize;
+  var colour = props.iconColour;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "w-" + size + " " + "h-" + size + " " + colour,
+    fill: "currentColor",
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    fillRule: "evenodd",
+    d: "M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm2 10a1 1 0 10-2 0v3a1 1 0 102 0v-3zm2-3a1 1 0 011 1v5a1 1 0 11-2 0v-5a1 1 0 011-1zm4-1a1 1 0 10-2 0v7a1 1 0 102 0V8z",
+    clipRule: "evenodd"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600 ml-3 mt-1 flex items-center justify-between w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "w-full"
+  }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "ml-2 flex items-center justify-end w-full text-right"
+  }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    size: "20px"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex flex-col space-y-3"
+  }, props.notEnoughData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_infoboxes_StatsInfo__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    size: size
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-end space-x-2 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "flex items-center space-x-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-gray-500 italic font-semibold"
+  }, "M", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, "PRE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-sans"
+  }, props.result.preMean.toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "flex items-center space-x-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-gray-500 italic font-semibold"
+  }, "M", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, "POST")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-sans"
+  }, props.result.postMean.toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "flex items-center space-x-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-gray-500 italic font-semibold"
+  }, "SD", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, "PRE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-sans"
+  }, props.result.sdPre.toFixed(2))))))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Stats/row/EffectSize.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/Stats/row/EffectSize.js ***!
@@ -95625,23 +95695,17 @@ function EffectSizeRow(props) {
     size: size
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex items-center space-x-2"
-  }, props.result.significant ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex items-center space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "text-gray-500 italic font-semibold"
   }, "ES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("sub", null, "PRE")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "ml-1"
-  }, props.result.esPre)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "text-gray-500 font-semibold"
-  }, "/"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, props.result.esPre)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "text-gray-500 italic font-semibold"
   }, "ES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("sub", null, "RMC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "ml-1"
-  }, props.result.esRmc))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "text-gray-500 italic font-semibold"
-  }, "ES", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("sub", null, "RMC")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "ml-1"
-  }, "(ns)")))))));
+  }, props.result.esRmc))))))));
 }
 
 /***/ }),
@@ -95658,6 +95722,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Measure; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
+
 
 function Measure(props) {
   var size = props.iconSize;
@@ -95681,7 +95747,7 @@ function Measure(props) {
     className: "w-full"
   }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ml-2 text-right w-full"
-  }, props.title)));
+  }, Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__["truncateString"])(props.title, 40))));
 }
 
 /***/ }),
@@ -95736,7 +95802,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Significance; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UI/dropdowns/QuestionMark */ "./resources/js/components/UI/dropdowns/QuestionMark.js");
+/* harmony import */ var _UI_infoboxes_StatsInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../UI/infoboxes/StatsInfo */ "./resources/js/components/UI/infoboxes/StatsInfo.js");
 /* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
 
 
@@ -95760,19 +95826,17 @@ function Significance(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "w-full"
   }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ml-2  flex"
+    className: "ml-2 flex items-center justify-end w-full text-right"
   }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_2__["default"], {
     size: "20px"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex flex-col space-y-3"
-  }, props.notEnoughData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    position: " bottom-0 right-0 w-60",
-    text: "Sample size too small (n < 30)",
+  }, props.notEnoughData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_infoboxes_StatsInfo__WEBPACK_IMPORTED_MODULE_1__["default"], {
     size: size
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center space-x-2"
+    className: "flex items-center justify-end space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "flex items-center space-x-1"
+    className: "flex items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-gray-500 italic font-semibold"
   }, "t"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -95780,16 +95844,24 @@ function Significance(props) {
   }, "="), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: ""
   }, props.result.t.toFixed(2))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "flex items-center space-x-1"
+    className: "flex items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-gray-500 italic font-semibold"
+  }, "df"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "not-italic"
+  }, "="), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "font-sans"
+  }, props.result.df)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "flex items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-gray-500 italic font-semibold"
   }, "p"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "not-italic"
   }, "="), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: ""
-  }, props.result.p.toFixed(2)), !props.result.significant && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, props.result.p.toFixed(2)), props.result.significant ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sup", null, "***") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "ml-1 italic"
-  }, "(ns)")))))));
+  }, "ns")))))));
 }
 
 /***/ }),
@@ -96472,6 +96544,75 @@ function UpdateStatusForm(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/UI/infoboxes/StatsInfo.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/UI/infoboxes/StatsInfo.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return StatsInfo; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modals_Scrollable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+function StatsInfo(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      showInfoBox = _useState2[0],
+      setShowInfoBox = _useState2[1];
+
+  var toggleInfoBox = function toggleInfoBox() {
+    setShowInfoBox(function (prevState) {
+      return !prevState;
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: toggleInfoBox,
+    className: "cursor-pointer"
+  }, showInfoBox && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modals_Scrollable__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    heading: "Information",
+    toggle: toggleInfoBox
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "leading-normal w-full p-4 text-left space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-lg text-gray-600"
+  }, "Your sample size is too small (n < 30). It's recommended you have at least 30 completed treatment episodes with a minimum of 2 assessments of the same measure within that treatment episode. Repeated Measures effect size calculations are deemed unreliable if there are fewer than 30 cases (Seidel, Miller & Chow 2013)."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1 text-base"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "font-semibold text-gray-500"
+  }, "Reference"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600 text-sm"
+  }, "Jason A. Seidel, Scott D. Miller & Daryl L. Chow , Psychotherapy Research (2013): Effect size calculations for the clinician: Methods and comparability, Psychotherapy Research, DOI: 10.1080/10503307.2013.840812")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    className: "w-" + (props.size - 2) + " " + "h-" + (props.size - 2) + " " + "text-gray-400",
+    fill: "currentColor",
+    viewBox: "0 0 20 20",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    fillRule: "evenodd",
+    d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z",
+    clipRule: "evenodd"
+  }))));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/UI/inputs/Checkbox.js":
 /*!*******************************************************!*\
   !*** ./resources/js/components/UI/inputs/Checkbox.js ***!
@@ -96747,7 +96888,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function LinkGray(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "flex bg-gray-400 items-center px-2 rounded hover:bg-gray-500 w-full py-1 space-x-2",
+    className: "flex font-semibold bg-gray-400 items-center px-3 rounded text-sm text-white hover:bg-gray-500 min-w-max-content uppercase py-2 space-x-2",
     href: props.url,
     target: props.shouldOpenInNewTab ? "_blank" : "_self"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {

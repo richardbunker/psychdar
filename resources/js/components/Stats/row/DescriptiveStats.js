@@ -2,7 +2,7 @@ import React from "react";
 import StatsInfo from "../../UI/infoboxes/StatsInfo";
 import Spinner from "../../UI/spinners/Spinner";
 
-export default function Significance(props) {
+export default function DescriptiveStats(props) {
     const size = props.iconSize;
     const colour = props.iconColour;
     return (
@@ -15,7 +15,7 @@ export default function Significance(props) {
             >
                 <path
                     fillRule="evenodd"
-                    d="M4.649 3.084A1 1 0 015.163 4.4 13.95 13.95 0 004 10c0 1.993.416 3.886 1.164 5.6a1 1 0 01-1.832.8A15.95 15.95 0 012 10c0-2.274.475-4.44 1.332-6.4a1 1 0 011.317-.516zM12.96 7a3 3 0 00-2.342 1.126l-.328.41-.111-.279A2 2 0 008.323 7H8a1 1 0 000 2h.323l.532 1.33-1.035 1.295a1 1 0 01-.781.375H7a1 1 0 100 2h.039a3 3 0 002.342-1.126l.328-.41.111.279A2 2 0 0011.677 14H12a1 1 0 100-2h-.323l-.532-1.33 1.035-1.295A1 1 0 0112.961 9H13a1 1 0 100-2h-.039zm1.874-2.6a1 1 0 011.833-.8A15.95 15.95 0 0118 10c0 2.274-.475 4.44-1.332 6.4a1 1 0 11-1.832-.8A13.949 13.949 0 0016 10c0-1.993-.416-3.886-1.165-5.6z"
+                    d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm2 10a1 1 0 10-2 0v3a1 1 0 102 0v-3zm2-3a1 1 0 011 1v5a1 1 0 11-2 0v-5a1 1 0 011-1zm4-1a1 1 0 10-2 0v7a1 1 0 102 0V8z"
                     clipRule="evenodd"
                 />
             </svg>
@@ -29,40 +29,30 @@ export default function Significance(props) {
                             {props.notEnoughData ? (
                                 <StatsInfo size={size} />
                             ) : (
-                                <div className="flex items-center justify-end space-x-2">
-                                    <span className="flex items-center">
+                                <div className="flex items-center justify-end space-x-2 w-full">
+                                    <span className="flex items-center space-x-1">
                                         <span className="text-gray-500 italic font-semibold">
-                                            t
+                                            M<sub>PRE</sub>
                                         </span>
-                                        <span className="not-italic">=</span>
-                                        <span className="">
-                                            {props.result.t.toFixed(2)}
-                                        </span>
-                                    </span>
-                                    <span className="flex items-center">
-                                        <span className="text-gray-500 italic font-semibold">
-                                            df
-                                        </span>
-                                        <span className="not-italic">=</span>
                                         <span className="font-sans">
-                                            {props.result.df}
+                                            {props.result.preMean.toFixed(2)}
                                         </span>
                                     </span>
-                                    <span className="flex items-center">
+                                    <span className="flex items-center space-x-1">
                                         <span className="text-gray-500 italic font-semibold">
-                                            p
+                                            M<sub>POST</sub>
                                         </span>
-                                        <span className="not-italic">=</span>
-                                        <span className="">
-                                            {props.result.p.toFixed(2)}
+                                        <span className="font-sans">
+                                            {props.result.postMean.toFixed(2)}
                                         </span>
-                                        {props.result.significant ? (
-                                            <sup>***</sup>
-                                        ) : (
-                                            <span className="ml-1 italic">
-                                                ns
-                                            </span>
-                                        )}
+                                    </span>
+                                    <span className="flex items-center space-x-1">
+                                        <span className="text-gray-500 italic font-semibold">
+                                            SD<sub>PRE</sub>
+                                        </span>
+                                        <span className="font-sans">
+                                            {props.result.sdPre.toFixed(2)}
+                                        </span>
                                     </span>
                                 </div>
                             )}

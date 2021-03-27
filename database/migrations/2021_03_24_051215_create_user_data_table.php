@@ -16,8 +16,8 @@ class CreateUserDataTable extends Migration
         Schema::create('user_data', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('measure_id_for_outcome_stats');
-            $table->json('outcome_data')->nullable();
+            $table->json('effect_size_settings')->nullable();
+            $table->json('snapshots')->nullable();
             $table->timestamps();
         });
     }

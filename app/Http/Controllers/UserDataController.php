@@ -18,8 +18,7 @@ class UserDataController extends Controller
         } else {
             $userData = Auth::user()->data;
         }
-        $userData->measure_id_for_outcome_stats = Hasher::decode($request->outcomeMeasureDetails["hashedMeasureId"]);
-        $userData->outcome_data = json_encode($request->outcomeMeasureDetails);
+        $userData->effect_size_settings = json_encode($request->effectSizeSettings);
         $userData->save();
         
         return Redirect::route('userDashboard');  

@@ -9,7 +9,7 @@ class UserData extends Model
 {
     use HasFactory;
 
-    public function getOutcomeDataAttribute($value)
+    public function getEffectSizeSettingsAttribute($value)
     {
         return json_decode($value);
     }

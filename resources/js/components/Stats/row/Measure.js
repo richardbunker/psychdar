@@ -1,4 +1,5 @@
 import React from "react";
+import { truncateString } from "../../../utilities/HelperFunctions";
 
 export default function Measure(props) {
     const size = props.iconSize;
@@ -20,7 +21,9 @@ export default function Measure(props) {
             </svg>
             <div className="text-gray-600 ml-3 mt-1 flex items-center justify-between w-full">
                 <div className="w-full">{props.heading}</div>
-                <div className="ml-2 text-right w-full">{props.title}</div>
+                <div className="ml-2 text-right w-full">
+                    {truncateString(props.title, 40)}
+                </div>
             </div>
         </div>
     );

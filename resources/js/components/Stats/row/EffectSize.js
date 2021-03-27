@@ -38,36 +38,24 @@ export default function EffectSizeRow(props) {
                                 />
                             ) : (
                                 <div className="flex items-center space-x-2">
-                                    {props.result.significant ? (
-                                        <div className="flex items-center space-x-2">
-                                            <span>
-                                                <span className="text-gray-500 italic font-semibold">
-                                                    ES<sub>PRE</sub>
-                                                </span>
-                                                <span className="ml-1">
-                                                    {props.result.esPre}
-                                                </span>
+                                    <div className="flex items-center space-x-2">
+                                        <span>
+                                            <span className="text-gray-500 italic font-semibold">
+                                                ES<sub>PRE</sub>
                                             </span>
-                                            <span className="text-gray-500 font-semibold">
-                                                /
+                                            <span className="ml-1">
+                                                {props.result.esPre}
                                             </span>
-                                            <span>
-                                                <span className="text-gray-500 italic font-semibold">
-                                                    ES<sub>RMC</sub>
-                                                </span>
-                                                <span className="ml-1">
-                                                    {props.result.esRmc}
-                                                </span>
-                                            </span>
-                                        </div>
-                                    ) : (
+                                        </span>
                                         <span>
                                             <span className="text-gray-500 italic font-semibold">
                                                 ES<sub>RMC</sub>
                                             </span>
-                                            <span className="ml-1">(ns)</span>
+                                            <span className="ml-1">
+                                                {props.result.esRmc}
+                                            </span>
                                         </span>
-                                    )}
+                                    </div>
                                 </div>
                             )}
                         </div>

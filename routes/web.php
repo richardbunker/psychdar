@@ -113,7 +113,7 @@ Route::group(['middleware' => ['auth:web']], function () {
 
 
     // Effect Sizes
-    Route::get('/effect-size-calculation/{measure_id}', [App\Http\Controllers\UserEffectSizeController::class, 'index']);
+    Route::get('/effect-size-calculation/{hashed_measure_id}', [App\Http\Controllers\UserEffectSizeController::class, 'index']);
 });
 
 

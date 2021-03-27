@@ -1,5 +1,6 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import DescriptiveStats from "../../../Stats/row/DescriptiveStats";
 import EffectSizeRow from "../../../Stats/row/EffectSize";
 import Measure from "../../../Stats/row/Measure";
 import Scale from "../../../Stats/row/Scale";
@@ -7,46 +8,45 @@ import Significance from "../../../Stats/row/Significance";
 import { correllation, mean, stdDev, tTest } from "../../../Stats/Stats";
 import { calculateScaleScore } from "../../Assessment/utilities/ScaleScoring";
 
-export default function EffectSizeContainer({ user }) {
+export default function EffectSizeContainer({ data }) {
     const [isLoading, setIsLoading] = useState(true);
     const [notEnoughData, setNotEnoughData] = useState(false);
     const [result, setResult] = useState({});
 
     const runStatistics = (pre, post) => {
         const tStat = tTest(pre, post);
-        if (tStat.p < 0.05) {
-            const preMean = mean(pre);
-            const postMean = mean(post);
-            const r = correllation(pre, post);
-            const preSD = stdDev(pre);
-            const esPre = ((postMean - preMean) / preSD).toFixed(2);
-
-            const esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
-            setResult({
-                significant: true,
-                ...tStat,
-                esRmc: esRmc,
-                esPre: esPre
-            });
-        } else {
-            setResult({
-                significant: false,
-                ...tStat,
-                esRmc: "n/a",
-                esPre: "n/a"
-            });
-        }
-
+        const preMean = mean(pre);
+        const postMean = mean(post);
+        const r = correllation(pre, post);
+        const preSD = stdDev(pre);
+        const esPre = ((postMean - preMean) / preSD).toFixed(2);
+        const esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
+        setResult({
+            significant: tStat.p < 0.05 ? true : false,
+            ...tStat,
+            sdPre: preSD,
+            r: r,
+            esRmc: esRmc,
+            esPre: esPre,
+            preMean: preMean,
+            postMean: postMean
+        });
         setIsLoading(false);
     };
 
     const checkCanRunStatistics = ({ pre, post }) => {
         if (pre.length > 30) {
             const preCalc = pre.map(set => {
-                return calculateScaleScore(user.data.outcome_data.scale, set);
+                return calculateScaleScore(
+                    data.effect_size_settings.scale,
+                    set
+                );
             });
             const postCalc = post.map(set => {
-                return calculateScaleScore(user.data.outcome_data.scale, set);
+                return calculateScaleScore(
+                    data.effect_size_settings.scale,
+                    set
+                );
             });
             runStatistics(preCalc, postCalc);
             setNotEnoughData(false);
@@ -62,7 +62,8 @@ export default function EffectSizeContainer({ user }) {
 
     useEffect(() => {
         Axios.get(
-            "/effect-size-calculation/" + user.data.measure_id_for_outcome_stats
+            "/effect-size-calculation/" +
+                data.effect_size_settings.hashedMeasureId
         )
             .then(response => {
                 checkCanRunStatistics(response.data);
@@ -70,41 +71,47 @@ export default function EffectSizeContainer({ user }) {
             .catch(e => {
                 console.log(e);
             });
-    }, [user]);
+    }, [data]);
 
     return (
         <div className="text-lg py-4 px-6 space-y-4">
             <Measure
-                heading="Effect Size Measure"
+                heading="Measure"
                 iconSize="10"
                 iconColour="text-teal-400"
-                title={user.data.outcome_data.name}
+                title={data.effect_size_settings.name}
             />
             <Scale
-                heading="Effect Size Scale"
+                heading="Scale"
                 iconSize="10"
                 iconColour="text-green-400"
-                title={user.data.outcome_data.scale.title}
+                title={data.effect_size_settings.scale.title}
+            />
+            <DescriptiveStats
+                heading="Descriptive Statistics"
+                isLoading={isLoading}
+                notEnoughData={notEnoughData}
+                iconSize="10"
+                iconColour="text-pink-400"
+                result={result}
             />
             <Significance
-                heading="Statistical Significance"
+                heading="Repeated Measures t-test"
                 isLoading={isLoading}
                 notEnoughData={notEnoughData}
                 iconSize="10"
                 iconColour="text-blue-400"
                 result={result}
             />
-            {result.significant && (
-                <EffectSizeRow
-                    heading="Effect Sizes"
-                    isLoading={isLoading}
-                    notEnoughData={notEnoughData}
-                    iconSize="10"
-                    iconColour="text-yellow-300"
-                    data={user.data}
-                    result={result}
-                />
-            )}
+            <EffectSizeRow
+                heading="Effect Sizes"
+                isLoading={isLoading}
+                notEnoughData={notEnoughData}
+                iconSize="10"
+                iconColour="text-yellow-300"
+                data={data}
+                result={result}
+            />
         </div>
     );
 }

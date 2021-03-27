@@ -1,6 +1,9 @@
 **TODOS**
 
--   implement effect size feature -> maybe also incorperate snapshots?
+-   snapshots
+-   t-test graph
+-   ES graph
+-   RC for client assessments
 
 On the Client
 
