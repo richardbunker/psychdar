@@ -1,8 +1,6 @@
 **TODOS**
 
 -   snapshots
--   t-test graph
--   ES graph
 -   RC for client assessments
 
 On the Client

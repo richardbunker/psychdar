@@ -15,7 +15,8 @@ class UserEffectSizeController extends Controller
         $clients = Client::byUser(Auth::user()->id)
             ->with(['treatments.assessments' => function ($query) use ($hashed_measure_id) {
                 $query->where('measure_id', Hasher::decode($hashed_measure_id));
-            }])->get();
+            }])
+            ->get();
         $prePost = new EffectSizeService;
         return $prePost->prepareArray($clients);
     }

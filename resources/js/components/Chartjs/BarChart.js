@@ -22,7 +22,7 @@ export default function BarChart(props) {
                         borderWidth: 1,
                         borderColor: "#718096",
                         backgroundColor: props.colour,
-                        barThickness: props.barThickness || 'flex'
+                        barThickness: props.barThickness || "flex"
                         // backgroundColor: function(context) {
                         //     var index = context.dataIndex;
                         //     return props.colours[cycleColour(index)];

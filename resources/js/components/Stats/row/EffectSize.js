@@ -2,6 +2,7 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { calculateScaleScore } from "../../Models/Assessment/utilities/ScaleScoring";
 import QuestionMark from "../../UI/dropdowns/QuestionMark";
+import StatsInfo from "../../UI/infoboxes/StatsInfo";
 import Spinner from "../../UI/spinners/Spinner";
 import { mean, correllation, stdDev, tTest } from "../Stats";
 
@@ -31,11 +32,7 @@ export default function EffectSizeRow(props) {
                     ) : (
                         <div className="flex flex-col space-y-3">
                             {props.notEnoughData ? (
-                                <QuestionMark
-                                    position=" bottom-0 right-0 w-60"
-                                    text="Sample size too small (n < 30)"
-                                    size={size}
-                                />
+                                <StatsInfo size={size} />
                             ) : (
                                 <div className="flex items-center space-x-2">
                                     <div className="flex items-center space-x-2">

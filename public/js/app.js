@@ -88836,6 +88836,107 @@ if (token) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Chartjs/BarChart.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Chartjs/BarChart.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return BarChart; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function BarChart(props) {
+  var chartRef = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+
+  function cycleColour(index) {
+    return index > 5 ? index % 6 : index;
+  }
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var ctx = chartRef.current;
+    new chart_js__WEBPACK_IMPORTED_MODULE_1___default.a(ctx, {
+      type: "bar",
+      data: {
+        labels: props.labels,
+        datasets: [{
+          label: props.label,
+          data: props.data,
+          fill: false,
+          borderWidth: 1,
+          borderColor: "#718096",
+          backgroundColor: props.colour,
+          barThickness: props.barThickness || "flex" // backgroundColor: function(context) {
+          //     var index = context.dataIndex;
+          //     return props.colours[cycleColour(index)];
+          // }
+
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+              zeroLineColor: "#718096"
+            },
+            ticks: {
+              beginAtZero: true,
+              fontColor: "#718096"
+            },
+            scaleLabel: {
+              display: true,
+              labelString: props.yAxisLabel || ""
+            }
+          }],
+          xAxes: [{
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+              zeroLineColor: "#718096"
+            },
+            ticks: {
+              fontColor: "#718096"
+            },
+            scaleLabel: {
+              display: true,
+              labelString: props.xAxisLabel || ""
+            }
+          }]
+        },
+        layout: {
+          padding: {
+            left: 15,
+            right: 15,
+            top: 15,
+            bottom: 5
+          }
+        },
+        legend: {
+          display: false,
+          position: "bottom",
+          labels: {
+            padding: 10,
+            fontSize: 12,
+            boxWidth: 14,
+            fontColor: "#718096"
+          }
+        }
+      }
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("canvas", {
+    ref: chartRef
+  }));
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Chartjs/LineChart.js":
 /*!******************************************************!*\
   !*** ./resources/js/components/Chartjs/LineChart.js ***!
@@ -95081,6 +95182,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Stats_row_Significance__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Stats/row/Significance */ "./resources/js/components/Stats/row/Significance.js");
 /* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
 /* harmony import */ var _Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
+/* harmony import */ var _GraphPrePostMeans__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./GraphPrePostMeans */ "./resources/js/components/Models/User/components/GraphPrePostMeans.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -95098,6 +95200,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -95211,6 +95314,43 @@ function EffectSizeContainer(_ref) {
     iconColour: "text-yellow-300",
     data: data,
     result: result
+  }), result.preMean && !notEnoughData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_GraphPrePostMeans__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    effectSizeData: data.effect_size_settings,
+    means: [result.preMean.toFixed(2), result.postMean.toFixed(2)],
+    significant: result.significant
+  }));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/User/components/GraphPrePostMeans.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/Models/User/components/GraphPrePostMeans.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GraphPrePostMeans; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Chartjs/BarChart */ "./resources/js/components/Chartjs/BarChart.js");
+
+
+function GraphPrePostMeans(props) {
+  var colours = ["#4FD1C5", "#63B3ED", "#F687B3", "#F6AD55", "#F6E05E", "#68D391", "#B794F4"];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-white py-2 space-y-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "font-semibold text-lg text-gray-500"
+  }, props.effectSizeData.name + " Data"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    labels: ["Pre-Treatment", "Post-Treatment"],
+    label: "Group Mean",
+    data: props.means,
+    colour: "#4FD1C5",
+    barThickness: "100",
+    yAxisLabel: props.effectSizeData.name + " - " + props.effectSizeData.scale.title
   }));
 }
 
@@ -95657,8 +95797,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Models_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Models/Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
 /* harmony import */ var _UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../UI/dropdowns/QuestionMark */ "./resources/js/components/UI/dropdowns/QuestionMark.js");
-/* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
-/* harmony import */ var _Stats__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _UI_infoboxes_StatsInfo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../UI/infoboxes/StatsInfo */ "./resources/js/components/UI/infoboxes/StatsInfo.js");
+/* harmony import */ var _UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../UI/spinners/Spinner */ "./resources/js/components/UI/spinners/Spinner.js");
+/* harmony import */ var _Stats__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Stats */ "./resources/js/components/Stats/Stats.js");
+
 
 
 
@@ -95685,13 +95827,11 @@ function EffectSizeRow(props) {
     className: ""
   }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "ml-2  flex"
-  }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, props.isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_spinners_Spinner__WEBPACK_IMPORTED_MODULE_5__["default"], {
     size: "20px"
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex flex-col space-y-3"
-  }, props.notEnoughData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    position: " bottom-0 right-0 w-60",
-    text: "Sample size too small (n < 30)",
+  }, props.notEnoughData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_infoboxes_StatsInfo__WEBPACK_IMPORTED_MODULE_4__["default"], {
     size: size
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "flex items-center space-x-2"

@@ -11,7 +11,10 @@ class EffectSizeService
 
         $clients->each(function ($client) use ($pre, $post){
             $client->treatments->each(function ($treatment) use ($pre, $post) {
-                if ($treatment->assessments->count() > 1) {                        
+                $hasMultiple = $treatment->assessments->count() > 1;
+                $canBeInStats = $treatment->included_in_stats;
+                $hasBeenCompleted = !is_null($treatment->ended_at);
+                if ($hasMultiple && $canBeInStats && $hasBeenCompleted){                        
                     $pre->push(collect($treatment->assessments->first()->responses));
                     $post->push(collect($treatment->assessments->last()->responses));
                 }

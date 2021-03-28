@@ -7,6 +7,7 @@ import Scale from "../../../Stats/row/Scale";
 import Significance from "../../../Stats/row/Significance";
 import { correllation, mean, stdDev, tTest } from "../../../Stats/Stats";
 import { calculateScaleScore } from "../../Assessment/utilities/ScaleScoring";
+import GraphPrePostMeans from "./GraphPrePostMeans";
 
 export default function EffectSizeContainer({ data }) {
     const [isLoading, setIsLoading] = useState(true);
@@ -112,6 +113,16 @@ export default function EffectSizeContainer({ data }) {
                 data={data}
                 result={result}
             />
+            {result.preMean && !notEnoughData && (
+                <GraphPrePostMeans
+                    effectSizeData={data.effect_size_settings}
+                    means={[
+                        result.preMean.toFixed(2),
+                        result.postMean.toFixed(2)
+                    ]}
+                    significant={result.significant}
+                />
+            )}
         </div>
     );
 }
