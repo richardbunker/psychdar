@@ -18,7 +18,7 @@ class UserDataController extends Controller
         } else {
             $userData = Auth::user()->data;
         }
-        $userData->effect_size_settings = json_encode($request->effectSizeSettings);
+        $userData->effect_size_settings = json_encode($request->all());
         $userData->save();
         
         return Redirect::route('userDashboard');  

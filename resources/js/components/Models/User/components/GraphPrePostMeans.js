@@ -1,15 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BarChart from "../../../Chartjs/BarChart";
 
 export default function GraphPrePostMeans(props) {
-    const colours = [
-        "#4FD1C5",
-        "#63B3ED",
-        "#F687B3",
-        "#F6AD55",
-        "#F6E05E",
-        "#68D391",
-        "#B794F4"
+    const means = [
+        props.result.preMean.toFixed(2),
+        props.result.postMean.toFixed(2)
     ];
     return (
         <div className="bg-white py-2 space-y-2">
@@ -19,7 +14,7 @@ export default function GraphPrePostMeans(props) {
             <BarChart
                 labels={["Pre-Treatment", "Post-Treatment"]}
                 label={"Group Mean"}
-                data={props.means}
+                data={means}
                 colour="#4FD1C5"
                 barThickness={"100"}
                 yAxisLabel={

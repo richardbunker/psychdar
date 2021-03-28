@@ -6,6 +6,7 @@ import Measure from "../../../Stats/row/Measure";
 import Scale from "../../../Stats/row/Scale";
 import Significance from "../../../Stats/row/Significance";
 import { correllation, mean, stdDev, tTest } from "../../../Stats/Stats";
+import SpinnerLarge from "../../../UI/spinners/LargeSpinner";
 import { calculateScaleScore } from "../../Assessment/utilities/ScaleScoring";
 import GraphPrePostMeans from "./GraphPrePostMeans";
 
@@ -64,7 +65,11 @@ export default function EffectSizeContainer({ data }) {
     useEffect(() => {
         Axios.get(
             "/effect-size-calculation/" +
-                data.effect_size_settings.hashedMeasureId
+                data.effect_size_settings.hashedMeasureId +
+                "/" +
+                data.effect_size_settings.start +
+                "_" +
+                data.effect_size_settings.end
         )
             .then(response => {
                 checkCanRunStatistics(response.data);
@@ -113,13 +118,15 @@ export default function EffectSizeContainer({ data }) {
                 data={data}
                 result={result}
             />
-            {result.preMean && !notEnoughData && (
+            {isLoading && (
+                <div className="w-full flex items-center justify-center my-10 py-10">
+                    <SpinnerLarge size="200px" />
+                </div>
+            )}
+            {!isLoading && !notEnoughData && (
                 <GraphPrePostMeans
                     effectSizeData={data.effect_size_settings}
-                    means={[
-                        result.preMean.toFixed(2),
-                        result.postMean.toFixed(2)
-                    ]}
+                    result={result}
                     significant={result.significant}
                 />
             )}

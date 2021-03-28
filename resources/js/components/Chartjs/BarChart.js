@@ -23,10 +23,6 @@ export default function BarChart(props) {
                         borderColor: "#718096",
                         backgroundColor: props.colour,
                         barThickness: props.barThickness || "flex"
-                        // backgroundColor: function(context) {
-                        //     var index = context.dataIndex;
-                        //     return props.colours[cycleColour(index)];
-                        // }
                     }
                 ]
             },
@@ -81,10 +77,13 @@ export default function BarChart(props) {
                         boxWidth: 14,
                         fontColor: "#718096"
                     }
+                },
+                animation: {
+                    duration: 0
                 }
             }
         });
-    }, []);
+    }, [props]);
 
     return (
         <>

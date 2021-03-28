@@ -24,7 +24,12 @@ class Treatment extends Model
         'client_id',
         'organisation_id',
         'created_at',
+        'ended_at',
         'updated_at',
+    ];
+
+    protected $dates = [
+        'ended_at'
     ];
 
     protected $appends = ['hashed_id', 'started', 'ended'];

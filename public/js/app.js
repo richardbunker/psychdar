@@ -88872,11 +88872,7 @@ function BarChart(props) {
           borderWidth: 1,
           borderColor: "#718096",
           backgroundColor: props.colour,
-          barThickness: props.barThickness || "flex" // backgroundColor: function(context) {
-          //     var index = context.dataIndex;
-          //     return props.colours[cycleColour(index)];
-          // }
-
+          barThickness: props.barThickness || "flex"
         }]
       },
       options: {
@@ -88926,10 +88922,13 @@ function BarChart(props) {
             boxWidth: 14,
             fontColor: "#718096"
           }
+        },
+        animation: {
+          duration: 0
         }
       }
     });
-  }, []);
+  }, [props]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("canvas", {
     ref: chartRef
   }));
@@ -94911,7 +94910,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../UI/modals/Scrollable */ "./resources/js/components/UI/modals/Scrollable.js");
 /* harmony import */ var _components_UserSettings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/UserSettings */ "./resources/js/components/Models/User/components/UserSettings.js");
 /* harmony import */ var _components_EffectSizeContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/EffectSizeContainer */ "./resources/js/components/Models/User/components/EffectSizeContainer.js");
-/* harmony import */ var _components_ChangeEffectSizeMeasure__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/ChangeEffectSizeMeasure */ "./resources/js/components/Models/User/components/ChangeEffectSizeMeasure.js");
+/* harmony import */ var _components_EffectSizeCalculationSettings__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/EffectSizeCalculationSettings */ "./resources/js/components/Models/User/components/EffectSizeCalculationSettings.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -95005,11 +95004,11 @@ function UserStats(props) {
     handleClick: toggleEffectSizeSettings
   })), displayEffectSizeSettings && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_modals_Scrollable__WEBPACK_IMPORTED_MODULE_7__["default"], {
     toggle: toggleEffectSizeSettings,
-    heading: "Effect Size Settings"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ChangeEffectSizeMeasure__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    heading: "Effect Size Calculation Settings"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_EffectSizeCalculationSettings__WEBPACK_IMPORTED_MODULE_10__["default"], {
     toggle: toggleEffectSizeSettings,
     measures: props.user.measures,
-    data: props.user.data
+    data: props.user.data ? props.user.data : false
   })), props.user.data && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_EffectSizeContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
     data: props.user.data
   })));
@@ -95017,16 +95016,16 @@ function UserStats(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Models/User/components/ChangeEffectSizeMeasure.js":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/Models/User/components/ChangeEffectSizeMeasure.js ***!
-  \***********************************************************************************/
+/***/ "./resources/js/components/Models/User/components/EffectSizeCalculationSettings.js":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/Models/User/components/EffectSizeCalculationSettings.js ***!
+  \*****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ChangeEffectSizeMeasure; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EffectSizeCalculationSettings; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
@@ -95034,6 +95033,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../UI/buttons/ButtonGray */ "./resources/js/components/UI/buttons/ButtonGray.js");
 /* harmony import */ var _UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../UI/buttons/ButtonTeal */ "./resources/js/components/UI/buttons/ButtonTeal.js");
 /* harmony import */ var _UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../UI/inputs/SelectInput */ "./resources/js/components/UI/inputs/SelectInput.js");
+/* harmony import */ var _UI_inputs_DateInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../UI/inputs/DateInput */ "./resources/js/components/UI/inputs/DateInput.js");
+/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -95051,31 +95058,38 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function ChangeEffectSizeMeasure(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+
+
+function EffectSizeCalculationSettings(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    dates: {
+      start: props.data === false ? Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["returnCurrentDateString"])() : Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["returnDateString"])(props.data.effect_size_settings.start),
+      end: props.data === false ? Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["returnCurrentDateString"])() : Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["returnDateString"])(props.data.effect_size_settings.end)
+    },
+    hashedMeasureId: "",
+    scale: {}
+  }),
       _useState2 = _slicedToArray(_useState, 2),
-      selectedMeasure = _useState2[0],
-      setSelectedMeasure = _useState2[1];
+      values = _useState2[0],
+      setValues = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    start: true,
+    end: true,
+    measure: false,
+    scale: false,
+    validate: function validate() {
+      return this.start && this.end && this.measure && this.scale;
+    }
+  }),
       _useState4 = _slicedToArray(_useState3, 2),
-      measureScales = _useState4[0],
-      setMeasureScales = _useState4[1];
+      inputFields = _useState4[0],
+      setInputFields = _useState4[1];
 
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      selectedScale = _useState6[0],
-      setSelectedScale = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState8 = _slicedToArray(_useState7, 2),
-      displaySelectScales = _useState8[0],
-      setDisplaySelectScales = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      canSubmit = _useState10[0],
-      setCanSubmit = _useState10[1];
+      measureScales = _useState6[0],
+      setMeasureScales = _useState6[1];
 
   var userMeasures = props.measures.map(function (measure) {
     return {
@@ -95084,16 +95098,55 @@ function ChangeEffectSizeMeasure(props) {
     };
   });
 
+  var updateDateRangeStart = function updateDateRangeStart(value) {
+    setValues(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        dates: _objectSpread(_objectSpread({}, prevState.dates), {}, {
+          start: value
+        })
+      });
+    });
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        start: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["validateDateString"])(value)
+      });
+    });
+  };
+
+  var updateDateRangeEnd = function updateDateRangeEnd(value) {
+    setValues(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        dates: _objectSpread(_objectSpread({}, prevState.dates), {}, {
+          end: value
+        })
+      });
+    });
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        end: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["validateDateString"])(value)
+      });
+    });
+  };
+
   var showMeasureScales = function showMeasureScales(hashedMeasureId) {
     return props.measures.filter(function (measure) {
       return measure.hashed_id === hashedMeasureId;
     }).flatMap(function (measure) {
-      return measure.scales.map(function (scale) {
-        return {
-          title: scale.title,
-          value: scale.title
-        };
-      });
+      if (measure.scales) {
+        return measure.scales.map(function (scale) {
+          return {
+            title: scale.title,
+            value: scale.title
+          };
+        });
+      } else {
+        setInputFields(function (prevState) {
+          return _objectSpread(_objectSpread({}, prevState), {}, {
+            measure: false
+          });
+        });
+        return [];
+      }
     });
   };
 
@@ -95104,56 +95157,93 @@ function ChangeEffectSizeMeasure(props) {
     return measure.name;
   };
 
-  var onMeasureSelect = function onMeasureSelect(event) {
-    setSelectedMeasure(event.target.value);
-    setMeasureScales(showMeasureScales(event.target.value));
-    setDisplaySelectScales(true);
-    setCanSubmit(false);
+  var onMeasureSelect = function onMeasureSelect(hashedMeasureId) {
+    setValues(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        hashedMeasureId: hashedMeasureId
+      });
+    });
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        measure: true
+      });
+    });
+    setMeasureScales(showMeasureScales(hashedMeasureId));
   };
 
   var onScaleSelect = function onScaleSelect(event) {
     var measure = props.measures.find(function (measure) {
-      return measure.hashed_id === selectedMeasure;
+      return measure.hashed_id === values.hashedMeasureId;
     });
     var scale = measure.scales.find(function (scale) {
       return scale.title === event.target.value;
     });
-    setSelectedScale(scale);
-    setCanSubmit(true);
+    setValues(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        scale: scale
+      });
+    });
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        scale: true
+      });
+    });
   };
 
   var submit = function submit() {
-    var values = {
-      effectSizeSettings: {
-        name: getMeasureName(selectedMeasure),
-        scale: selectedScale,
-        hashedMeasureId: selectedMeasure
-      }
+    var settings = {
+      name: getMeasureName(values.hashedMeasureId),
+      scale: values.scale,
+      hashedMeasureId: values.hashedMeasureId,
+      start: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["returnCarbonDateStringFormat"])(values.dates.start),
+      end: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_6__["returnCarbonDateStringFormat"])(values.dates.end)
     };
-    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/user-data", values);
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__["Inertia"].post("/user-data", settings);
     props.toggle();
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    className: "space-y-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center space-x-2 w-full"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-600 font-semibold w-1/3"
+  }, "Treatment Range"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between w-full space-x-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_DateInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    handleOnChange: function handleOnChange(value) {
+      return updateDateRangeStart(value);
+    },
+    value: values.dates.start,
+    validInput: inputFields.start
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-gray-500 font-semibold"
+  }, "to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_DateInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    handleOnChange: function handleOnChange(value) {
+      return updateDateRangeEnd(value);
+    },
+    value: values.dates.end,
+    validInput: inputFields.end
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     title: "Outcome Measure",
-    onSelect: onMeasureSelect,
+    onSelect: function onSelect(event) {
+      return onMeasureSelect(event.target.value);
+    },
     defaultText: "Please Select...",
     defaultValue: "Please Select...",
     options: userMeasures
-  }), displaySelectScales && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }), inputFields.measure && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
     title: "Scale",
     onSelect: onScaleSelect,
     defaultText: "Please Select...",
     defaultValue: "Please Select...",
     options: measureScales
-  }), canSubmit && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center justify-end space-x-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonGray__WEBPACK_IMPORTED_MODULE_2__["default"], {
     label: "Cancel",
     handleClick: props.toggle
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }), inputFields.validate() && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_buttons_ButtonTeal__WEBPACK_IMPORTED_MODULE_3__["default"], {
     label: "Submit",
     handleClick: submit
   })));
@@ -95181,8 +95271,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Stats_row_Scale__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../Stats/row/Scale */ "./resources/js/components/Stats/row/Scale.js");
 /* harmony import */ var _Stats_row_Significance__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../Stats/row/Significance */ "./resources/js/components/Stats/row/Significance.js");
 /* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
-/* harmony import */ var _Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
-/* harmony import */ var _GraphPrePostMeans__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./GraphPrePostMeans */ "./resources/js/components/Models/User/components/GraphPrePostMeans.js");
+/* harmony import */ var _UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../UI/spinners/LargeSpinner */ "./resources/js/components/UI/spinners/LargeSpinner.js");
+/* harmony import */ var _Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../Assessment/utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
+/* harmony import */ var _GraphPrePostMeans__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./GraphPrePostMeans */ "./resources/js/components/Models/User/components/GraphPrePostMeans.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -95200,6 +95291,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -95256,10 +95348,10 @@ function EffectSizeContainer(_ref) {
 
     if (pre.length > 30) {
       var preCalc = pre.map(function (set) {
-        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_8__["calculateScaleScore"])(data.effect_size_settings.scale, set);
+        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_9__["calculateScaleScore"])(data.effect_size_settings.scale, set);
       });
       var postCalc = post.map(function (set) {
-        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_8__["calculateScaleScore"])(data.effect_size_settings.scale, set);
+        return Object(_Assessment_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_9__["calculateScaleScore"])(data.effect_size_settings.scale, set);
       });
       runStatistics(preCalc, postCalc);
       setNotEnoughData(false);
@@ -95274,7 +95366,7 @@ function EffectSizeContainer(_ref) {
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/effect-size-calculation/" + data.effect_size_settings.hashedMeasureId).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/effect-size-calculation/" + data.effect_size_settings.hashedMeasureId + "/" + data.effect_size_settings.start + "_" + data.effect_size_settings.end).then(function (response) {
       checkCanRunStatistics(response.data);
     })["catch"](function (e) {
       console.log(e);
@@ -95314,9 +95406,13 @@ function EffectSizeContainer(_ref) {
     iconColour: "text-yellow-300",
     data: data,
     result: result
-  }), result.preMean && !notEnoughData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_GraphPrePostMeans__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }), isLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "w-full flex items-center justify-center my-10 py-10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_UI_spinners_LargeSpinner__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    size: "200px"
+  })), !isLoading && !notEnoughData && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_GraphPrePostMeans__WEBPACK_IMPORTED_MODULE_10__["default"], {
     effectSizeData: data.effect_size_settings,
-    means: [result.preMean.toFixed(2), result.postMean.toFixed(2)],
+    result: result,
     significant: result.significant
   }));
 }
@@ -95339,7 +95435,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function GraphPrePostMeans(props) {
-  var colours = ["#4FD1C5", "#63B3ED", "#F687B3", "#F6AD55", "#F6E05E", "#68D391", "#B794F4"];
+  var means = [props.result.preMean.toFixed(2), props.result.postMean.toFixed(2)];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white py-2 space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -95347,7 +95443,7 @@ function GraphPrePostMeans(props) {
   }, props.effectSizeData.name + " Data"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
     labels: ["Pre-Treatment", "Post-Treatment"],
     label: "Group Mean",
-    data: props.means,
+    data: means,
     colour: "#4FD1C5",
     barThickness: "100",
     yAxisLabel: props.effectSizeData.name + " - " + props.effectSizeData.scale.title
@@ -96821,6 +96917,33 @@ function CheckboxInput(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/UI/inputs/DateInput.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/UI/inputs/DateInput.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DateInput; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function DateInput(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "py-1 px-2 w-full rounded bg-white shadow text-gray-600 focus:outline-none " + (props.validInput ? "" : "border-2 focus:border-red-400 border-red-400"),
+    onChange: function onChange(event) {
+      return props.handleOnChange(event.target.value);
+    },
+    placeholder: "dd/mm/yyyy",
+    type: "text",
+    value: props.value
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/UI/inputs/ErrorInput.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/UI/inputs/ErrorInput.js ***!
@@ -97351,7 +97474,7 @@ if(false) {}
 /*!***************************************************!*\
   !*** ./resources/js/utilities/HelperFunctions.js ***!
   \***************************************************/
-/*! exports provided: truncateString, validateString, validateChronbachsAlpha, returnEmptyStringIfNullValue */
+/*! exports provided: truncateString, validateString, validateChronbachsAlpha, returnEmptyStringIfNullValue, validateDateString, returnCurrentDateString, returnDateString, datefilter, returnDateObjectFromDateString, returnCarbonDateStringFormat */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -97360,6 +97483,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateString", function() { return validateString; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateChronbachsAlpha", function() { return validateChronbachsAlpha; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "returnEmptyStringIfNullValue", function() { return returnEmptyStringIfNullValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateDateString", function() { return validateDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "returnCurrentDateString", function() { return returnCurrentDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "returnDateString", function() { return returnDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "datefilter", function() { return datefilter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "returnDateObjectFromDateString", function() { return returnDateObjectFromDateString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "returnCarbonDateStringFormat", function() { return returnCarbonDateStringFormat; });
 var truncateString = function truncateString(str, num) {
   if (str.length <= num) {
     return str;
@@ -97376,7 +97505,6 @@ var validateString = function validateString(string, minLength) {
 };
 var validateChronbachsAlpha = function validateChronbachsAlpha(string) {
   var reg = new RegExp(/^(0?(\.\d+)?|1(\.0+)?)$/);
-  console.log(reg.test(Number(string)));
 
   if (reg.test(string)) {
     return true;
@@ -97390,6 +97518,37 @@ var returnEmptyStringIfNullValue = function returnEmptyStringIfNullValue(value) 
   }
 
   return value;
+};
+var validateDateString = function validateDateString(string) {
+  var reg = new RegExp(/^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[\/]\d{4}$/);
+
+  if (reg.test(string)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+var returnCurrentDateString = function returnCurrentDateString() {
+  var date = new Date();
+  var dateString = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+  return dateString;
+};
+var returnDateString = function returnDateString(value) {
+  var date = new Date(value);
+  var dateString = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear();
+  return dateString;
+};
+var datefilter = function datefilter(date) {
+  var dateString = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
+  return dateString;
+};
+var returnDateObjectFromDateString = function returnDateObjectFromDateString(dateString) {
+  var dateParts = dateString.split("/");
+  var dateObject = new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
+  return dateObject;
+};
+var returnCarbonDateStringFormat = function returnCarbonDateStringFormat(dateString) {
+  return datefilter(returnDateObjectFromDateString(dateString));
 };
 
 /***/ }),

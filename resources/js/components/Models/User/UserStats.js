@@ -8,7 +8,7 @@ import TotalAssessmentsRow from "../../Stats/row/TotalAssessments";
 import ModalScrollable from "../../UI/modals/Scrollable";
 import UserSettings from "./components/UserSettings";
 import EffectSizeContainer from "./components/EffectSizeContainer";
-import ChangeEffectSizeMeasure from "./components/ChangeEffectSizeMeasure";
+import EffectSizeCalculationSettings from "./components/EffectSizeCalculationSettings";
 
 export default function UserStats(props) {
     const [displayUserSettings, setDisplayUserSettings] = useState(false);
@@ -84,12 +84,12 @@ export default function UserStats(props) {
                 {displayEffectSizeSettings && (
                     <ModalScrollable
                         toggle={toggleEffectSizeSettings}
-                        heading="Effect Size Settings"
+                        heading="Effect Size Calculation Settings"
                     >
-                        <ChangeEffectSizeMeasure
+                        <EffectSizeCalculationSettings
                             toggle={toggleEffectSizeSettings}
                             measures={props.user.measures}
-                            data={props.user.data}
+                            data={props.user.data ? props.user.data : false}
                         />
                     </ModalScrollable>
                 )}
