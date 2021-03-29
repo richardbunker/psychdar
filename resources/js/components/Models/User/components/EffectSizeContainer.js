@@ -22,8 +22,8 @@ export default function EffectSizeContainer({ data }) {
         const postMean = mean(post);
         const r = correllation(pre, post);
         const preSD = stdDev(pre);
-        const esPre = ((postMean - preMean) / preSD).toFixed(2);
-        const esRmc = (esPre / Math.sqrt(2 * (1 - r))).toFixed(2);
+        const esPre = (postMean - preMean) / preSD;
+        const esRmc = esPre / Math.sqrt(2 * (1 - r));
         setResult({
             significant: tStat.p < 0.05 ? true : false,
             ...tStat,

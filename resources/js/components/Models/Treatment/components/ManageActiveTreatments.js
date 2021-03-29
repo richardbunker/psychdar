@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import ButtonGray from "../../../UI/buttons/ButtonGray";
-import ButtonTeal from "../../../UI/buttons/ButtonTeal";
-import CheckboxInput from "../../../UI/inputs/CheckboxInput";
 import Checkbox from "../../../UI/inputs/Checkbox";
 import ButtonBlue from "../../../UI/buttons/ButtonBlue";
-import { prepareCarbonNowDate } from "../utilities/TreatmentFunctions";
 
 export default function ManageActiveTreatments(props) {
     const [checked, setIsChecked] = useState(false);

@@ -38,7 +38,7 @@ export default function EffectSizeRow(props) {
                                                 ES<sub>PRE</sub>
                                             </span>
                                             <span className="ml-1">
-                                                {props.result.esPre}
+                                                {props.result.esPre.toFixed(2)}
                                             </span>
                                         </span>
                                         <span>
@@ -46,7 +46,7 @@ export default function EffectSizeRow(props) {
                                                 ES<sub>RMC</sub>
                                             </span>
                                             <span className="ml-1">
-                                                {props.result.esRmc}
+                                                {props.result.esRmc.toFixed(2)}
                                             </span>
                                         </span>
                                     </div>

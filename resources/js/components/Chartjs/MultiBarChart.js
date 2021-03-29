@@ -1,30 +1,16 @@
 import React, { useRef, useEffect } from "react";
 import Chart from "chart.js";
 
-export default function BarChart(props) {
+export default function MultiBarChart(props) {
     const chartRef = useRef(null);
-
-    function cycleColour(index) {
-        return index > 5 ? index % 6 : index;
-    }
 
     useEffect(() => {
         const ctx = chartRef.current;
-        const barChart = new Chart(ctx, {
+        const multiBarChart = new Chart(ctx, {
             type: "bar",
             data: {
                 labels: props.labels,
-                datasets: [
-                    {
-                        label: props.label,
-                        data: props.data,
-                        fill: false,
-                        borderWidth: 1,
-                        borderColor: "#718096",
-                        backgroundColor: props.colour,
-                        barThickness: props.barThickness || "flex"
-                    }
-                ]
+                datasets: [...props.dataSets]
             },
             options: {
                 scales: {
@@ -36,7 +22,9 @@ export default function BarChart(props) {
                             },
                             ticks: {
                                 beginAtZero: true,
-                                fontColor: "#718096"
+                                fontColor: "#718096",
+                                suggestedMin: props.suggestedMin || "",
+                                suggestedMax: props.suggestedMax || ""
                             },
                             scaleLabel: {
                                 display: true,
@@ -84,7 +72,7 @@ export default function BarChart(props) {
             }
         });
         return () => {
-            barChart.destroy();
+            multiBarChart.destroy();
         };
     }, [props]);
 

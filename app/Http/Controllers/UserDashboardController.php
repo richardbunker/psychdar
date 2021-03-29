@@ -14,6 +14,7 @@ class UserDashboardController extends Controller
             'user' => User::find(Auth::user()->id)
                 ->with('clients.treatments.assessments')
                 ->with('data')
+                ->with('snapshots')
                 ->with('measures')
                 ->first()
         ]);

@@ -9,6 +9,7 @@ import ModalScrollable from "../../UI/modals/Scrollable";
 import EffectSizeContainer from "./components/EffectSizeContainer";
 import EffectSizeCalculationSettings from "./components/EffectSizeCalculationSettings";
 import GrayFadedBanner from "../../UI/GrayFadedBanner";
+import SnapshotsContainer from "../Snapshot/components/SnapshotsContainer";
 
 export default function UserStats(props) {
     const [displayEffectSizeSettings, setDisplayEffectSizeSettings] = useState(
@@ -78,6 +79,9 @@ export default function UserStats(props) {
                     <EffectSizeContainer data={props.user.data} />
                 )}
             </div>
+            {props.user.snapshots.length > 0 && (
+                <SnapshotsContainer snapshots={props.user.snapshots} />
+            )}
         </div>
     );
 }

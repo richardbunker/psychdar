@@ -10,11 +10,11 @@ export default function LineChart(props) {
 
     useEffect(() => {
         const ctx = chartRef.current;
-        new Chart(ctx, {
+        const lineChart = new Chart(ctx, {
             type: "line",
             data: {
                 labels: props.labels,
-                datasets: [...props.scaleScores]
+                datasets: [...props.data]
             },
             options: {
                 animation: {
@@ -29,7 +29,9 @@ export default function LineChart(props) {
                             },
                             ticks: {
                                 beginAtZero: true,
-                                fontColor: "#718096"
+                                fontColor: "#718096",
+                                suggestedMin: props.suggestedMin || "",
+                                suggestedMax: props.suggestedMax || ""
                             }
                         }
                     ],
@@ -65,6 +67,9 @@ export default function LineChart(props) {
                 }
             }
         });
+        return () => {
+            lineChart.destroy();
+        };
     });
 
     return <canvas ref={chartRef} />;

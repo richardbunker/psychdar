@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(5)->create();
 
         \App\Models\User::all()->each(function ($user) {
-            $randomNumber = rand(7, 59);
+            $randomNumber = rand(30, 59);
             for ($i = 0; $i < $randomNumber; $i++) {
                 $user->clients()->save(\App\Models\Client::factory()->create([
                     'user_id' => $user->id
@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         });
 
         \App\Models\Client::all()->each(function ($client) {
-            $randomNumber = rand(1, 3);
+            $randomNumber = rand(1, 6);
             for ($i = 0; $i < $randomNumber; $i++) {
                 $client->treatments()->save(\App\Models\Treatment::factory()->create([
                     'user_id' => $client->user_id,
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         });
 
         \App\Models\Treatment::all()->each(function ($treatment) {
-            $randomNumber = rand(1, 12);
+            $randomNumber = rand(1, 27);
             for ($i = 0; $i < $randomNumber; $i++) {
                 $treatment->assessments()->save(\App\Models\Assessment::factory()->create([
                     'user_id' => $treatment->user_id,

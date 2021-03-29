@@ -17,6 +17,7 @@ class CreateUserSnapshotsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->json('data');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

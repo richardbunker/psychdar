@@ -15,7 +15,7 @@ export default function GraphMeasureAssessment(props) {
     const cycleColour = index => {
         return index > 6 ? index % 7 : index;
     };
-    const scaleScores = props.measure.scales.map((scale, index) => {
+    const data = props.measure.scales.map((scale, index) => {
         return {
             label: scale.title,
             data: props.assessments.map(assessment => {
@@ -34,7 +34,7 @@ export default function GraphMeasureAssessment(props) {
     });
     return (
         props.measure.scales.length > 0 && (
-            <LineChart labels={dates} scaleScores={scaleScores} />
+            <LineChart labels={dates} data={data} />
         )
     );
 }

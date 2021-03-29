@@ -70,7 +70,10 @@ Route::group(['middleware' => ['auth:web']], function () {
     //Dashboard
     Route::get('/dashboard', [App\Http\Controllers\UserDashboardController::class, 'index'])->name('userDashboard');
     Route::post('/user-data', [App\Http\Controllers\UserDataController::class, 'store']);
+
+    // Snapshots
     Route::post('/user-snapshots', [App\Http\Controllers\UserSnapshotsController::class, 'store']);
+    Route::post('/delete-snapshot', [App\Http\Controllers\UserSnapshotsController::class, 'destroy']);
 
 
     // Clients
