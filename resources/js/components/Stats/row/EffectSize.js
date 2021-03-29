@@ -1,10 +1,7 @@
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
-import { calculateScaleScore } from "../../Models/Assessment/utilities/ScaleScoring";
-import QuestionMark from "../../UI/dropdowns/QuestionMark";
+import React from "react";
 import StatsInfo from "../../UI/infoboxes/StatsInfo";
 import Spinner from "../../UI/spinners/Spinner";
-import { mean, correllation, stdDev, tTest } from "../Stats";
 
 export default function EffectSizeRow(props) {
     const size = props.iconSize;

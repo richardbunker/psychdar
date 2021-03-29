@@ -83,7 +83,7 @@ export default function EffectSizeCalculationSettings(props) {
                     });
                 } else {
                     setInputFields(prevState => {
-                        return { ...prevState, measure: false };
+                        return { ...prevState, measure: false, scale: false };
                     });
                     return [];
                 }
@@ -142,18 +142,22 @@ export default function EffectSizeCalculationSettings(props) {
 
     return (
         <div className="space-y-4">
-            <div className="flex items-center space-x-2 w-full">
+            <div className="flex items-baseline space-x-2 w-full">
                 <div className="text-gray-600 font-semibold w-1/3">
-                    Treatment Range
+                    Treatments
                 </div>
-                <div className="flex items-center justify-between w-full space-x-4">
+                <div className="flex items-baseline justify-between w-full space-x-4">
                     <DateInput
+                        id="started"
+                        label="Started"
                         handleOnChange={value => updateDateRangeStart(value)}
                         value={values.dates.start}
                         validInput={inputFields.start}
                     />
                     <span className="text-gray-500 font-semibold">to</span>
                     <DateInput
+                        id="completed"
+                        label="Completed"
                         handleOnChange={value => updateDateRangeEnd(value)}
                         value={values.dates.end}
                         validInput={inputFields.end}

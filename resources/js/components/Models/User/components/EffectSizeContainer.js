@@ -5,6 +5,7 @@ import EffectSizeRow from "../../../Stats/row/EffectSize";
 import Measure from "../../../Stats/row/Measure";
 import Scale from "../../../Stats/row/Scale";
 import Significance from "../../../Stats/row/Significance";
+import Snapshot from "../../../Stats/row/Snapshot";
 import { correllation, mean, stdDev, tTest } from "../../../Stats/Stats";
 import SpinnerLarge from "../../../UI/spinners/LargeSpinner";
 import { calculateScaleScore } from "../../Assessment/utilities/ScaleScoring";
@@ -118,6 +119,16 @@ export default function EffectSizeContainer({ data }) {
                 data={data}
                 result={result}
             />
+            {!notEnoughData && (
+                <Snapshot
+                    effectSizeSettings={data.effect_size_settings}
+                    result={result}
+                    heading="Snapshot"
+                    isLoading={isLoading}
+                    iconSize="10"
+                    iconColour="text-orange-400"
+                />
+            )}
             {isLoading && (
                 <div className="w-full flex items-center justify-center my-10 py-10">
                     <SpinnerLarge size="200px" />

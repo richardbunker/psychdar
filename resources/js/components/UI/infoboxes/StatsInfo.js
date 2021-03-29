@@ -10,14 +10,17 @@ export default function StatsInfo(props) {
     return (
         <div onClick={toggleInfoBox} className="cursor-pointer">
             {showInfoBox && (
-                <ModalScrollable heading="Information" toggle={toggleInfoBox}>
+                <ModalScrollable
+                    heading="Small Sample Size"
+                    toggle={toggleInfoBox}
+                >
                     <div className="leading-normal w-full p-4 text-left space-y-4">
                         <div className="text-lg text-gray-600">
                             {
-                                "Your sample size is too small (n < 30). It's recommended you have at least 30 completed treatment episodes with a minimum of 2 assessments of the same measure within that treatment episode. Repeated Measures effect size calculations are deemed unreliable if there are fewer than 30 cases (Seidel, Miller & Chow 2013)."
+                                "Your treatment sample size is too small (N < 30). It is recommended you have at least 30 completed treatment episodes with a minimum of 2 assessments of the same measure within that treatment episode. Repeated Measures effect size calculations are deemed unreliable if there are fewer than 30 cases (Seidel, Miller & Chow 2013)."
                             }
                         </div>
-                        <div className="space-y-1 text-base">
+                        <div className="space-y-1 text-base pb-2">
                             <div className="font-semibold text-gray-500">
                                 Reference
                             </div>

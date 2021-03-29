@@ -68,6 +68,11 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserData::class);
     }
+    
+    public function snapshots()
+    {
+        return $this->hasMany(UserSnapshots::class);
+    }
 
     public function activeClients()
     {

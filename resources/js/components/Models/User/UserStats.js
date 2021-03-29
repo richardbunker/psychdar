@@ -6,19 +6,14 @@ import ClientsRow from "../../Stats/row/Clients";
 import TreatmentEpisodesRow from "../../Stats/row/TreatmentEpisodes";
 import TotalAssessmentsRow from "../../Stats/row/TotalAssessments";
 import ModalScrollable from "../../UI/modals/Scrollable";
-import UserSettings from "./components/UserSettings";
 import EffectSizeContainer from "./components/EffectSizeContainer";
 import EffectSizeCalculationSettings from "./components/EffectSizeCalculationSettings";
+import GrayFadedBanner from "../../UI/GrayFadedBanner";
 
 export default function UserStats(props) {
-    const [displayUserSettings, setDisplayUserSettings] = useState(false);
     const [displayEffectSizeSettings, setDisplayEffectSizeSettings] = useState(
         false
     );
-
-    const toggleUserSettings = () => {
-        setDisplayUserSettings(prevState => !prevState);
-    };
 
     const toggleEffectSizeSettings = () => {
         setDisplayEffectSizeSettings(prevState => !prevState);
@@ -40,22 +35,8 @@ export default function UserStats(props) {
 
     return (
         <div className="space-y-2">
-            {displayUserSettings && (
-                <ModalScrollable toggle={toggleUserSettings} heading="Settings">
-                    <UserSettings
-                        toggle={toggleUserSettings}
-                        measures={props.user.measures}
-                        data={props.user.data}
-                    />
-                </ModalScrollable>
-            )}
             <div className="w-full bg-white">
-                <GrayFadedMenuBanner title={props.user.name}>
-                    <ButtonBlue
-                        label="Settings"
-                        handleClick={toggleUserSettings}
-                    />
-                </GrayFadedMenuBanner>
+                <GrayFadedBanner title={props.user.name} />
                 <div className="text-lg py-4 px-6 space-y-4">
                     <ClientsRow
                         iconSize="10"
