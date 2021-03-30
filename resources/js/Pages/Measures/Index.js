@@ -19,7 +19,7 @@ export default function UserMeasures(props) {
                     <GrayFadedBanner title="My Measures" />
                     <MeasureTileContainer measures={props.measures} />
                 </ScrollableScreenContainer>
-                <AdsContainer />
+                {/* <AdsContainer /> */}
             </div>
         </MainContainer>
     );

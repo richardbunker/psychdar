@@ -84,12 +84,10 @@ export default function SnapshotsContainer(props) {
                 />
             </GrayFadedMenuBanner>
             <div className="bg-white py-4 px-6 space-y-2">
-                <div className="font-semibold text-lg text-gray-500">
+                <div className="font-semibold text-lg text-gray-500 pb-2">
                     Effect Size Snapshots
                 </div>
                 <MultiBarChart
-                    suggestedMin={0}
-                    suggestedMax={1}
                     labels={dates}
                     dataSets={data}
                     yAxisLabel="Effect Size"

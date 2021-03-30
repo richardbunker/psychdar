@@ -24,7 +24,7 @@ export default function UserClients(props) {
                 <ScrollableScreenContainer>
                     <ClientsContainer clients={props.userClients} />
                 </ScrollableScreenContainer>
-                <AdsContainer />
+                {/* <AdsContainer /> */}
             </div>
         </MainContainer>
     );

@@ -88478,7 +88478,7 @@ function UserClients(props) {
     tab: "clients"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_ScrollableScreenContainer__WEBPACK_IMPORTED_MODULE_6__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientsContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
     clients: props.userClients
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+  }))));
 }
 
 /***/ }),
@@ -88518,7 +88518,7 @@ function UserClient(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_ScrollableScreenContainer__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Client_components_ClientContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
     client: props.client,
     userPublishedMeasures: props.userPublishedMeasures
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  }))));
 }
 
 /***/ }),
@@ -88555,7 +88555,7 @@ function UserDashboard(props) {
     tab: "dashboard"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_containers_ScrollableScreenContainer__WEBPACK_IMPORTED_MODULE_5__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_User_UserStats__WEBPACK_IMPORTED_MODULE_3__["default"], {
     user: props.user
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+  })));
 }
 
 /***/ }),
@@ -88672,7 +88672,7 @@ function UserMeasures(props) {
     title: "My Measures"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Models_Measure_components_Tiles_MeasureTileContainer__WEBPACK_IMPORTED_MODULE_3__["default"], {
     measures: props.measures
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UI_ads_AdsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  }))));
 }
 
 /***/ }),
@@ -89185,10 +89185,12 @@ function GraphMeasureAssessment(props) {
   var dates = props.assessments.map(function (assessment) {
     return assessment.assessed_at;
   });
-  return props.measure.scales.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_LineChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  return props.measure.scales.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "border border-gray-200 mb-2 p-2 rounded-lg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_LineChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
     labels: dates,
     data: data
-  });
+  }));
 }
 
 /***/ }),
@@ -89263,6 +89265,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UI_dropdowns_OpenCloseContainerRounded__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/dropdowns/OpenCloseContainerRounded */ "./resources/js/components/UI/dropdowns/OpenCloseContainerRounded.js");
 /* harmony import */ var _GraphMeasureAssessment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./GraphMeasureAssessment */ "./resources/js/components/Models/Assessment/components/GraphMeasureAssessment.js");
 /* harmony import */ var _PresentAssessmentResponses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./PresentAssessmentResponses */ "./resources/js/components/Models/Assessment/components/PresentAssessmentResponses.js");
+/* harmony import */ var _ReliableChangeStatsContainer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ReliableChangeStatsContainer */ "./resources/js/components/Models/Assessment/components/ReliableChangeStatsContainer.js");
+
+
 
 
 
@@ -89277,13 +89282,18 @@ function PresentMeasureAssessment(props) {
     className: "bg-white space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "font-semibold text-lg text-gray-500"
-  }, measure.name), measure.scales && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GraphMeasureAssessment__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, measure.name), measure.scales && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ReliableChangeStatsContainer__WEBPACK_IMPORTED_MODULE_4__["default"], {
     measure: measure,
     assessments: assessments
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-2"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GraphMeasureAssessment__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    measure: measure,
+    assessments: assessments
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-2 py-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-base text-gray-400"
+    className: "text-base font-semibold text-gray-400"
   }, "Responses"), assessments.map(function (assessment, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_OpenCloseContainerRounded__WEBPACK_IMPORTED_MODULE_1__["default"], {
       key: index,
@@ -89293,6 +89303,116 @@ function PresentMeasureAssessment(props) {
       measure: measure,
       responses: assessment.responses
     }));
+  })));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Assessment/components/PresentReliableChangeForScale.js":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/Models/Assessment/components/PresentReliableChangeForScale.js ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PresentReliableChangeForScale; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Stats_Stats__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Stats/Stats */ "./resources/js/components/Stats/Stats.js");
+/* harmony import */ var _utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utilities/ScaleScoring */ "./resources/js/components/Models/Assessment/utilities/ScaleScoring.js");
+
+
+
+function PresentReliableChangeForScale(_ref) {
+  var assessments = _ref.assessments,
+      scale = _ref.scale;
+  var scaleScores = assessments.map(function (assessment) {
+    return Object(_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__["calculateScaleScore"])(scale, assessment.responses);
+  });
+  var alpha = Number(scale.alpha);
+  var initialScore = scaleScores[0];
+  var mostRecentScore = scaleScores[scaleScores.length - 1];
+  var differencScore = mostRecentScore - initialScore;
+  var rci = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["reliableChangeIndex"])(initialScore, mostRecentScore, Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["standardErrorOfDifference"])(Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["standardErrorOfMeasurement"])(Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["stdDev"])(scaleScores), alpha)));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "leading-normal p-2 space-y-1 text-sm border-t"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "font-semibold text-gray-400 text-base"
+  }, scale.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500"
+  }, "Most Recent Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500"
+  }, mostRecentScore)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500"
+  }, "Initial Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500"
+  }, initialScore)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500"
+  }, "Pre-Post Change"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500"
+  }, Math.abs(differencScore))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-gray-500 font-semibold"
+  }, "Change From Initial Score"), Math.abs(rci) > 1.96 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-green-400 text-white py-1 px-2 rounded font-semibold text-sm"
+  }, "Reliable"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-xs text-gray-400 text-right italic"
+  }, "p < .05")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "bg-gray-400 text-white py-1 px-2 rounded font-semibold text-sm"
+  }, "Non-Reliable"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-xs text-gray-400 text-right italic"
+  }, "p > .05"))));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Models/Assessment/components/ReliableChangeStatsContainer.js":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/Models/Assessment/components/ReliableChangeStatsContainer.js ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ReliableChangeStatsContainer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _UI_dropdowns_OpenCloseContainerRounded__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../UI/dropdowns/OpenCloseContainerRounded */ "./resources/js/components/UI/dropdowns/OpenCloseContainerRounded.js");
+/* harmony import */ var _PresentReliableChangeForScale__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PresentReliableChangeForScale */ "./resources/js/components/Models/Assessment/components/PresentReliableChangeForScale.js");
+
+
+
+function ReliableChangeStatsContainer(_ref) {
+  var measure = _ref.measure,
+      assessments = _ref.assessments;
+  var scalesWithAnAlpha = measure.scales.map(function (scale) {
+    if (scale.alpha !== null) {
+      return scale;
+    }
+  }).filter(function (item) {
+    return item !== undefined;
+  });
+  return scalesWithAnAlpha.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_OpenCloseContainerRounded__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    title: "Reliable Change Statistics",
+    isOpen: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, scalesWithAnAlpha.map(function (scale, index) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PresentReliableChangeForScale__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      scale: scale,
+      key: index,
+      assessments: assessments
+    });
   })));
 }
 
@@ -94872,10 +94992,8 @@ function SnapshotsContainer(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white py-4 px-6 space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "font-semibold text-lg text-gray-500"
+    className: "font-semibold text-lg text-gray-500 pb-2"
   }, "Effect Size Snapshots"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_MultiBarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    suggestedMin: 0,
-    suggestedMax: 1,
     labels: dates,
     dataSets: data,
     yAxisLabel: "Effect Size",
@@ -95788,7 +95906,7 @@ function GraphPrePostMeans(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white py-2 space-y-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "font-semibold text-lg text-gray-500"
+    className: "font-semibold text-lg text-gray-500 pb-2"
   }, props.effectSizeData.name + " Data"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Chartjs_BarChart__WEBPACK_IMPORTED_MODULE_1__["default"], {
     labels: ["Pre-Treatment", "Post-Treatment"],
     label: "Group Mean",
@@ -95805,7 +95923,7 @@ function GraphPrePostMeans(props) {
 /*!************************************************!*\
   !*** ./resources/js/components/Stats/Stats.js ***!
   \************************************************/
-/*! exports provided: sum, mean, median, frequency, correllation, stdDev, tTest */
+/*! exports provided: sum, mean, median, frequency, correllation, stdDev, tTest, standardErrorOfMeasurement, standardErrorOfDifference, reliableChangeIndex */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95817,6 +95935,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "correllation", function() { return correllation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stdDev", function() { return stdDev; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tTest", function() { return tTest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "standardErrorOfMeasurement", function() { return standardErrorOfMeasurement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "standardErrorOfDifference", function() { return standardErrorOfDifference; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reliableChangeIndex", function() { return reliableChangeIndex; });
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -95983,6 +96104,15 @@ var tTest = function tTest(pre, post) {
     t: t,
     p: p
   };
+};
+var standardErrorOfMeasurement = function standardErrorOfMeasurement(sd, alhpa) {
+  return sd * Math.sqrt(1 - alhpa);
+};
+var standardErrorOfDifference = function standardErrorOfDifference(sem) {
+  return Math.sqrt(2 * (sem * sem));
+};
+var reliableChangeIndex = function reliableChangeIndex(preTest, postTest, stdErrDiff) {
+  return (postTest - preTest) / stdErrDiff;
 };
 
 /***/ }),
@@ -96498,6 +96628,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Url; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../utilities/HelperFunctions */ "./resources/js/utilities/HelperFunctions.js");
+
 
 function Url(props) {
   var size = props.iconSize;
@@ -96514,12 +96646,12 @@ function Url(props) {
     d: "M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z",
     clipRule: "evenodd"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-gray-600 ml-3 flex items-center justify-between w-full"
+    className: "text-gray-500 text-base ml-3 flex items-center justify-between w-full"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: " w-full"
-  }, props.heading), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_1__["truncateString"])(props.heading, 35)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: props.link,
-    className: "ml-2 text-right text-blue-600 hover:underline",
+    className: "ml-2 text-right text-blue-500 hover:text-blue-600 hover:underline",
     target: "_blank"
   }, props.link)));
 }
@@ -96925,9 +97057,9 @@ function OpenCloseContainerRounded(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white " + (isOpen ? " border border-gray-200 rounded" : "")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex items-center justify-between p-1 " + (isOpen ? "" : "border border-gray-200 rounded")
+    className: "flex items-center justify-between p-2 " + (isOpen ? "" : "border border-gray-200 rounded")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-sm text-gray-500"
+    className: "text-base text-gray-500 font-semibold"
   }, props.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_buttons_DropdownButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
     toggle: toggleContainer,
     isOpen: isOpen,

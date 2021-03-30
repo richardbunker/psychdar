@@ -135,3 +135,15 @@ export const tTest = (pre, post) => {
         p: p
     };
 };
+
+export const standardErrorOfMeasurement = (sd, alhpa) => {
+    return sd * Math.sqrt(1 - alhpa);
+};
+
+export const standardErrorOfDifference = sem => {
+    return Math.sqrt(2 * (sem * sem));
+};
+
+export const reliableChangeIndex = (preTest, postTest, stdErrDiff) => {
+    return (postTest - preTest) / stdErrDiff;
+};

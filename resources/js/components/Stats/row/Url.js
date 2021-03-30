@@ -1,4 +1,5 @@
 import React from "react";
+import { truncateString } from "../../../utilities/HelperFunctions";
 
 export default function Url(props) {
     const size = props.iconSize;
@@ -17,11 +18,13 @@ export default function Url(props) {
                     clipRule="evenodd"
                 />
             </svg>
-            <div className="text-gray-600 ml-3 flex items-center justify-between w-full">
-                <div className=" w-full">{props.heading}</div>
+            <div className="text-gray-500 text-base ml-3 flex items-center justify-between w-full">
+                <div className=" w-full">
+                    {truncateString(props.heading, 35)}
+                </div>
                 <a
                     href={props.link}
-                    className="ml-2 text-right text-blue-600 hover:underline"
+                    className="ml-2 text-right text-blue-500 hover:text-blue-600 hover:underline"
                     target="_blank"
                 >
                     {props.link}

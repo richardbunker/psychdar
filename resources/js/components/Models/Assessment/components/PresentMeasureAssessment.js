@@ -2,6 +2,8 @@ import React from "react";
 import OpenCloseContainerRounded from "../../../UI/dropdowns/OpenCloseContainerRounded";
 import GraphMeasureAssessment from "./GraphMeasureAssessment";
 import PresentAssessmentResponses from "./PresentAssessmentResponses";
+import ReliableChangeStatsContainer from "./ReliableChangeStatsContainer";
+import PresentReliableChangeStats from "./ReliableChangeStatsContainer";
 
 export default function PresentMeasureAssessment(props) {
     const { measure, assessments } = props.measureAssessment;
@@ -12,14 +14,22 @@ export default function PresentMeasureAssessment(props) {
                     {measure.name}
                 </div>
                 {measure.scales && (
-                    <GraphMeasureAssessment
-                        measure={measure}
-                        assessments={assessments}
-                    />
+                    <div className="space-y-2">
+                        <ReliableChangeStatsContainer
+                            measure={measure}
+                            assessments={assessments}
+                        />
+                        <GraphMeasureAssessment
+                            measure={measure}
+                            assessments={assessments}
+                        />
+                    </div>
                 )}
             </div>
-            <div className="space-y-2">
-                <div className="text-base text-gray-400">Responses</div>
+            <div className="space-y-2 py-2">
+                <div className="text-base font-semibold text-gray-400">
+                    Responses
+                </div>
                 {assessments.map((assessment, index) => {
                     return (
                         <OpenCloseContainerRounded

@@ -8,7 +8,7 @@ export default function GraphPrePostMeans(props) {
     ];
     return (
         <div className="bg-white py-2 space-y-2">
-            <div className="font-semibold text-lg text-gray-500">
+            <div className="font-semibold text-lg text-gray-500 pb-2">
                 {props.effectSizeData.name + " Data"}
             </div>
             <BarChart

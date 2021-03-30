@@ -18,7 +18,7 @@ export default function UserClient(props) {
                         userPublishedMeasures={props.userPublishedMeasures}
                     />
                 </ScrollableScreenContainer>
-                <AdsContainer />
+                {/* <AdsContainer /> */}
             </div>
         </MainContainer>
     );

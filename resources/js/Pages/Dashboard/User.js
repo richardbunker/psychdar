@@ -14,7 +14,7 @@ export default function UserDashboard(props) {
             <ScrollableScreenContainer>
                 <UserStats user={props.user} />
             </ScrollableScreenContainer>
-            <AdsContainer />
+            {/* <AdsContainer /> */}
         </MainContainer>
     );
 }

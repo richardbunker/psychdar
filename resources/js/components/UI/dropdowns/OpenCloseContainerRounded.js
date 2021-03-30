@@ -16,11 +16,13 @@ export default function OpenCloseContainerRounded(props) {
         >
             <div
                 className={
-                    "flex items-center justify-between p-1 " +
+                    "flex items-center justify-between p-2 " +
                     (isOpen ? "" : "border border-gray-200 rounded")
                 }
             >
-                <div className="text-sm text-gray-500">{props.title}</div>
+                <div className="text-base text-gray-500 font-semibold">
+                    {props.title}
+                </div>
                 <DropdownButton
                     toggle={toggleContainer}
                     isOpen={isOpen}
