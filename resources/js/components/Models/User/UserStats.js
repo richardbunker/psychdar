@@ -56,29 +56,31 @@ export default function UserStats(props) {
                     />
                 </div>
             </div>
-            <div className="bg-white w-full">
-                <GrayFadedMenuBanner title="Effect Size">
-                    <ButtonBlue
-                        label="Settings"
-                        handleClick={toggleEffectSizeSettings}
-                    />
-                </GrayFadedMenuBanner>
-                {displayEffectSizeSettings && (
-                    <ModalScrollable
-                        toggle={toggleEffectSizeSettings}
-                        heading="Effect Size Calculation Settings"
-                    >
-                        <EffectSizeCalculationSettings
-                            toggle={toggleEffectSizeSettings}
-                            measures={props.user.measures}
-                            data={props.user.data ? props.user.data : false}
+            {totalTreatmentEpisodes >= 30 && (
+                <div className="bg-white w-full">
+                    <GrayFadedMenuBanner title="Effect Size">
+                        <ButtonBlue
+                            label="Settings"
+                            handleClick={toggleEffectSizeSettings}
                         />
-                    </ModalScrollable>
-                )}
-                {props.user.data && (
-                    <EffectSizeContainer data={props.user.data} />
-                )}
-            </div>
+                    </GrayFadedMenuBanner>
+                    {displayEffectSizeSettings && (
+                        <ModalScrollable
+                            toggle={toggleEffectSizeSettings}
+                            heading="Effect Size Calculation Settings"
+                        >
+                            <EffectSizeCalculationSettings
+                                toggle={toggleEffectSizeSettings}
+                                measures={props.user.measures}
+                                data={props.user.data ? props.user.data : false}
+                            />
+                        </ModalScrollable>
+                    )}
+                    {props.user.data && (
+                        <EffectSizeContainer data={props.user.data} />
+                    )}
+                </div>
+            )}
             {props.user.snapshots.length > 0 && (
                 <SnapshotsContainer snapshots={props.user.snapshots} />
             )}

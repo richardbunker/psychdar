@@ -31,7 +31,7 @@ export default function Sidebar(props) {
                 >
                     <a href={"/measures"}>Measures</a>
                 </div>
-                <div className={tabInActive}>
+                <div className={tabInActive + " mt-4"}>
                     <a href={"/logout"}>Logout</a>
                 </div>
             </div>

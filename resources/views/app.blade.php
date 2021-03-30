@@ -14,6 +14,9 @@
     
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+
+    <link rel="icon" type="image/png" href={{asset("/images/favicon.png")}}>
 </head>
 <body class="bg-gray-200">
     @inertia
