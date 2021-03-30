@@ -7,10 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    @yield('title')
     
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -19,7 +16,6 @@
     <div class="bg-gray-100 antialiased leading-none font-sans flex flex-col min-h-screen">
         @include('layouts.partials.navbar')
         @yield('content')
-        {{-- @inertia --}}
     </div>
 </body>
 </html>

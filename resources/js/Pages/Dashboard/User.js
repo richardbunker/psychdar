@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Sidebar from "../../components/UI/navs/Sidebar";
 import MainContainer from "../../components/UI/containers/MainContainer";
 import UserStats from "../../components/Models/User/UserStats";
@@ -8,7 +8,7 @@ import MobileNav from "../../components/UI/navs/MobileNav";
 
 export default function UserDashboard(props) {
     return (
-        <MainContainer>
+        <MainContainer title={"Welcome " + props.user.name}>
             <Sidebar tab="dashboard" />
             <MobileNav tab="dashboard" />
             <ScrollableScreenContainer>

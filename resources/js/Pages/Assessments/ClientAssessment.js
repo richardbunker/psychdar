@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
+import { Helmet } from "react-helmet";
 import RenderMeasure from "../../components/Models/Measure/components/Render/Measure";
 import ModalScrollable from "../../components/UI/modals/Scrollable";
 import {
@@ -105,6 +106,9 @@ export default function ClientAssessment(props) {
 
     return (
         <div className="h-screen min-h-screen w-full max-w-6xl mx-auto overflow-auto">
+            <Helmet>
+                <title>{props.measure.name}</title>
+            </Helmet>
             {displayInvalidItems && (
                 <ModalScrollable heading="Incomplete Items">
                     <div className="text-xl text-gray-700 p-4 leading-normal space-y-2">

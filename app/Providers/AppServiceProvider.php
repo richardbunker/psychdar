@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {        
         $this->app->bind(Hashids::class, function () {
-            return new Hashids('therapy_outcomes_salt', 6);
+            return new Hashids('psychdar_salt', 6);
         });
     }
 

@@ -8,11 +8,8 @@ import PresentReliableChangeStats from "./ReliableChangeStatsContainer";
 export default function PresentMeasureAssessment(props) {
     const { measure, assessments } = props.measureAssessment;
     return (
-        <div className="px-2 pb-2 space-y-2">
-            <div className="bg-white space-y-2">
-                <div className="font-semibold text-lg text-gray-500">
-                    {measure.name}
-                </div>
+        <OpenCloseContainerRounded title={measure.name} isOpen={true}>
+            <div className="px-2 pb-2 space-y-2">
                 {measure.scales && (
                     <div className="space-y-2">
                         <ReliableChangeStatsContainer
@@ -25,26 +22,26 @@ export default function PresentMeasureAssessment(props) {
                         />
                     </div>
                 )}
-            </div>
-            <div className="space-y-2 py-2">
-                <div className="text-base font-semibold text-gray-400">
-                    Responses
+                <div className="space-y-2 py-2">
+                    <div className="text-base font-semibold text-gray-400">
+                        Responses
+                    </div>
+                    {assessments.map((assessment, index) => {
+                        return (
+                            <OpenCloseContainerRounded
+                                key={index}
+                                title={assessment.assessed_at}
+                                isOpen={false}
+                            >
+                                <PresentAssessmentResponses
+                                    measure={measure}
+                                    responses={assessment.responses}
+                                />
+                            </OpenCloseContainerRounded>
+                        );
+                    })}
                 </div>
-                {assessments.map((assessment, index) => {
-                    return (
-                        <OpenCloseContainerRounded
-                            key={index}
-                            title={assessment.assessed_at}
-                            isOpen={false}
-                        >
-                            <PresentAssessmentResponses
-                                measure={measure}
-                                responses={assessment.responses}
-                            />
-                        </OpenCloseContainerRounded>
-                    );
-                })}
             </div>
-        </div>
+        </OpenCloseContainerRounded>
     );
 }

@@ -40,13 +40,15 @@ export default function TreatmentContainer(props) {
             <LargeSpinner size="80px" />
         </div>
     ) : (
-        measureAssessments.map((measureAssessment, index) => {
-            return (
-                <PresentMeasureAssessment
-                    key={index}
-                    measureAssessment={measureAssessment}
-                />
-            );
-        })
+        <div className="p-2 space-y-2">
+            {measureAssessments.map((measureAssessment, index) => {
+                return (
+                    <PresentMeasureAssessment
+                        key={index}
+                        measureAssessment={measureAssessment}
+                    />
+                );
+            })}
+        </div>
     );
 }

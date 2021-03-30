@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')    
+    <title>{{ config('app.name', 'Laravel') }} | Verify Email</title>
+@endsection
 @section('content')
 <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
     <div class="flex">
@@ -12,7 +15,7 @@
             </div>
             @endif
 
-            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+            <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm">
                 <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
                     {{ __('Verify Your Email Address') }}
                 </header>

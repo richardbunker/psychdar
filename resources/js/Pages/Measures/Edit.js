@@ -7,7 +7,7 @@ import MobileNav from "../../components/UI/navs/MobileNav";
 
 export default function EditMeasure(props) {
     return (
-        <MainContainer>
+        <MainContainer title="Measure | Edit">
             <div className="flex w-full">
                 <Sidebar tab="measures" />
                 <MobileNav tab="measures" />

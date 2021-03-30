@@ -36,7 +36,7 @@ export default function PresentReliableChangeForScale({ assessments, scale }) {
                 <div className="text-gray-500">{initialScore}</div>
             </div>
             <div className="flex items-center justify-between">
-                <div className="text-gray-500">Pre-Post Change</div>
+                <div className="text-gray-500">Difference</div>
                 <div className="text-gray-500">{Math.abs(differencScore)}</div>
             </div>
             <div className="flex items-center justify-between">

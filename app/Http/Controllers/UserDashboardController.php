@@ -11,7 +11,7 @@ class UserDashboardController extends Controller
     public function index()
     {
         return Inertia::render('Dashboard/User', [
-            'user' => User::find(Auth::user()->id)
+            'user' => User::where('id', Auth::user()->id)
                 ->with('clients.treatments.assessments')
                 ->with('data')
                 ->with('snapshots')

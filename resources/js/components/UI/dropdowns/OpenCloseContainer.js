@@ -12,7 +12,7 @@ export default function OpenCloseContainer(props) {
         <div className="bg-white relative">
             <div className="flex items-center justify-between p-2">
                 <div>
-                    <span className="text-base text-gray-500">
+                    <span className="text-base text-gray-500 font-semibold">
                         {props.title}
                     </span>
                 </div>

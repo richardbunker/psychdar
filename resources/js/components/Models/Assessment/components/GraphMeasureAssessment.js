@@ -34,7 +34,7 @@ export default function GraphMeasureAssessment(props) {
     });
     return (
         props.measure.scales.length > 0 && (
-            <div className="border border-gray-200 mb-2 p-2 rounded-lg">
+            <div className="border border-gray-200 mb-2 p-2 rounded">
                 <LineChart labels={dates} data={data} />
             </div>
         )

@@ -46,12 +46,7 @@ export default function ClientsContainer(props) {
 
     const submitCreateClient = () => {
         const values = {
-            name: newClient,
-            preferences: {
-                create_own_resources: true,
-                include_in_analyses: true,
-                outcome_measure: ""
-            }
+            name: newClient
         };
         Inertia.post("/clients", values);
         toggleCreateClientModal();

@@ -17,7 +17,7 @@ export default function UserClients(props) {
     };
 
     return (
-        <MainContainer>
+        <MainContainer title="Clients">
             <div className="flex w-full">
                 <Sidebar tab="clients" />
                 <MobileNav tab="clients" />

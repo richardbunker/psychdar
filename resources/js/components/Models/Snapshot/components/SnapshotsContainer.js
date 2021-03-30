@@ -91,7 +91,6 @@ export default function SnapshotsContainer(props) {
                     labels={dates}
                     dataSets={data}
                     yAxisLabel="Effect Size"
-                    xAxisLabel="Snapshots"
                 />
             </div>
         </div>

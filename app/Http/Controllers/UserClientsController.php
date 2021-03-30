@@ -42,8 +42,6 @@ class UserClientsController extends Controller
         $client = new Client;
         $client->user_id = Auth::user()->id;
         $client->identifier = $request->name;
-        $client->is_active = true;
-        $client->preferences = json_encode($request->preferences);
         $client->save();
         return Redirect::route('showClient', $client->hashed_id);  
     }

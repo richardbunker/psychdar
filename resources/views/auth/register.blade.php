@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')    
+    <title>{{ config('app.name', 'Laravel') }} | Register</title>
+@endsection
 @section('content')
 <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
     <div class="flex">

@@ -1,6 +1,5 @@
 **TODOS**
 
--   RC for client assessments
 -   Email varification
 -   Login/Register w/ inertia or Laravel?
 

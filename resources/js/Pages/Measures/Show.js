@@ -7,7 +7,7 @@ import MobileNav from "../../components/UI/navs/MobileNav";
 
 export default function ShowMeasure(props) {
     return (
-        <MainContainer>
+        <MainContainer title={props.measure.name}>
             <div className="flex w-full">
                 <Sidebar tab="measures" />
                 <MobileNav tab="measures" />

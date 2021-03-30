@@ -8,7 +8,7 @@ import MobileNav from "../../components/UI/navs/MobileNav";
 
 export default function UserClient(props) {
     return (
-        <MainContainer>
+        <MainContainer title={props.client.identifier}>
             <div className="flex w-full">
                 <Sidebar tab="clients" />
                 <MobileNav tab="clients" />

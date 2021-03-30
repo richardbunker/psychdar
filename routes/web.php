@@ -1,10 +1,12 @@
 <?php
 
-use App\Services\EffectSizeService;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Services\EffectSizeService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,51 +23,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/query', function () {
-//     return \App\Models\Clinician::where('clinic_id', 1)
-//         ->with('clients.treatments.consultations')
-//         ->get();
-// });
-
-Route::get('/for-testing', function () {
-    $clients = \App\Models\Client::byUser(Auth::user()->id)
-        ->with(['treatments.assessments' => function ($query) {
-            $query->where('measure_id', 1);
-        }])->get();
-    $prePost = new \App\Services\EffectSizeService;
-    return $prePost->prepareArray($clients);
-});
-
-Route::get('/query', function () {
-    return $lags = \App\Models\AnchorGroup::orderBy('name')->get();
-    // $collect = collect($lags);
-    // return $collect->map(function($item) {
-    //     return $item->structure->anchors;
-    // });
-});
-// Route::get('/query', function () {
-//     return \App\Models\Organisation::where('id', 3)
-//         ->with('clinics.clinicians.clients.treatments.consultations')
-//         ->get();
-// });
-
-Route::get('/query/client', function () {
-    return \App\Models\Client::where('id', 591)
-        ->with('treatments.assessments')
-        ->first();
-
-    // return $client->treatments->first()->assessments->map(function ($consult) {
-    //     return collect($consult->data->questionnaires->core10->response_data)->values()->sum();
-    // });
-});
-
 Auth::routes();
+
+Route::get('/email/verify', function () {
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
 // USER ROUTES
-Route::group(['middleware' => ['auth:web']], function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     //Dashboard
     Route::get('/dashboard', [App\Http\Controllers\UserDashboardController::class, 'index'])->name('userDashboard');

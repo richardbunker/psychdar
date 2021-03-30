@@ -10,7 +10,7 @@ import SearchPublicMeasures from "../../components/Models/Measure/components/Pub
 
 export default function UserMeasures(props) {
     return (
-        <MainContainer>
+        <MainContainer title="My Measures">
             <div className="flex w-full">
                 <Sidebar tab="measures" />
                 <MobileNav tab="measures" />

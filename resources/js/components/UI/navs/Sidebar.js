@@ -24,15 +24,16 @@ export default function Sidebar(props) {
                 >
                     <a href={"/clients"}>Clients</a>
                 </div>
-                <>
-                    <div
-                        className={
-                            props.tab === "measures" ? tabActive : tabInActive
-                        }
-                    >
-                        <a href={"/measures"}>Measures</a>
-                    </div>
-                </>
+                <div
+                    className={
+                        props.tab === "measures" ? tabActive : tabInActive
+                    }
+                >
+                    <a href={"/measures"}>Measures</a>
+                </div>
+                <div className={tabInActive}>
+                    <a href={"/logout"}>Logout</a>
+                </div>
             </div>
         </div>
     );

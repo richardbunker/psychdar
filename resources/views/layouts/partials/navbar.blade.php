@@ -1,4 +1,4 @@
-<header class="bg-gradient-to-r from-teal-700 to-teal-500 py-2 text-gray-50 border-b-4 border-blue-300">
+<header class="bg-gradient-to-r from-teal-700 to-teal-500 py-4 text-gray-50 border-b-4 border-blue-300">
     <div class="flex justify-between items-center px-4 py-2">
         <div class="flex items-center">
             <div class="">
@@ -7,7 +7,7 @@
                 </div>                    
             </div>
         </div>
-        <nav class="space-x-4 text-base font-semibold">
+        <nav class="space-x-4 text-lg font-semibold">
             @guest
                 <a class="no-underline hover:text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
                 @if (Route::has('register'))
