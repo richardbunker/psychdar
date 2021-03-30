@@ -16,6 +16,7 @@ class Measure extends Model
         'id',
         'created_at',
         'updated_at',
+        'pivot'
     ];
 
     protected $appends = ['hashed_id'];
