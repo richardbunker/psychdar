@@ -263,17 +263,13 @@ export default function MeasureContainer({ measure }) {
                 </div>
                 <div className="bg-white rounded-b">
                     <GrayFadedBanner title="Preview" />
-                    <div className="p-6">
-                        <RenderMeasure
-                            handleSubmit={() =>
-                                console.log(
-                                    "Well then, aren't you a stickybeak?"
-                                )
-                            }
-                            handleOnItemChange={handleOnItemChange}
-                            measure={measure}
-                        />
-                    </div>
+                    <RenderMeasure
+                        handleSubmit={() =>
+                            console.log("Well then, aren't you a stickybeak?")
+                        }
+                        handleOnItemChange={handleOnItemChange}
+                        measure={measure}
+                    />
                 </div>
             </div>
         </main>
