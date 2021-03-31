@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Qualitative(props) {
     return (
-        <div className="leading-normal text-xl space-y-1">
+        <div className="leading-normal text-base sm:text-xl space-y-1">
             <div className="font-semibold flex items-center space-x-2 text-gray-600">
                 {props.item.title}
             </div>

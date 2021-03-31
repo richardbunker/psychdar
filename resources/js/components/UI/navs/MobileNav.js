@@ -72,17 +72,18 @@ export default function MobileNav(props) {
                         >
                             <a href={"/clients"}>Clients</a>
                         </div>
-                        <>
-                            <div
-                                className={
-                                    props.tab === "measures"
-                                        ? tabActive
-                                        : tabInActive
-                                }
-                            >
-                                <a href={"/measures"}>Measures</a>
-                            </div>
-                        </>
+                        <div
+                            className={
+                                props.tab === "measures"
+                                    ? tabActive
+                                    : tabInActive
+                            }
+                        >
+                            <a href={"/measures"}>Measures</a>
+                        </div>
+                        <div className={tabInActive + " mt-4"}>
+                            <a href={"/logout"}>Logout</a>
+                        </div>
                     </div>
                 </div>
             )}

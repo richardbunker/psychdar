@@ -3,7 +3,7 @@ import { truncateString } from "../../../../utilities/HelperFunctions";
 
 export default function PresentAssessmentResponses(props) {
     return (
-        <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal rounded-b">
+        <div className="py-4 px-6 bg-gray-800 text-sm sm:text-lg space-y-4 leading-normal rounded-b">
             <div className="space-y-2">
                 {props.measure.structure.items.map((item, index) => {
                     switch (item.type) {

@@ -7,7 +7,7 @@ export default function ManageTreatmentsContainer(props) {
     return (
         <div className="space-y-2">
             {!props.activeTreatments && (
-                <div className="border leading-normal p-4 rounded text-base text-gray-500">
+                <div className="border leading-normal p-4 rounded text-sm sm:text-base text-gray-500">
                     There are currently no active treatment episodes to manage.
                     A new treatment episode will automatically be created when a
                     client submits an assessment via a unique 'Measure URL'

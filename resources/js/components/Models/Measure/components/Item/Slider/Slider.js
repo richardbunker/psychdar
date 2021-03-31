@@ -8,7 +8,7 @@ export default function Slider(props) {
         props.handleOnChange(Math.round(right.value / 2));
     }, []);
     return (
-        <div className="leading-normal text-xl">
+        <div className="leading-normal text-base sm:text-xl">
             <div className="font-semibold flex items-center justify-center space-x-2 text-gray-600">
                 {props.item.title}
             </div>
@@ -31,8 +31,8 @@ export default function Slider(props) {
                     {right.label}
                 </div>
             </div>
-            <div className="flex flex-col sm:hidden items-center justify-between py-4 space-x-2">
-                <div className="text-gray-500 flex items-center justify-between font-semibold text-base w-full pb-4">
+            <div className="flex flex-col sm:hidden items-center justify-between py-4 space-x-2 text-xs">
+                <div className="text-gray-500 flex items-center justify-between font-semibold w-full pb-4">
                     <span className="w-1/2 text-left">{left.label}</span>
                     <span className="w-1/2 text-right">{right.label}</span>
                 </div>

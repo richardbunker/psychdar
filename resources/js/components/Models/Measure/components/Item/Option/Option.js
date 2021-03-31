@@ -3,7 +3,7 @@ import "./Option.css";
 
 export default function Option(props) {
     return (
-        <div className="leading-normal text-xl">
+        <div className="leading-normal text-base sm:text-xl">
             <div className="font-semibold flex items-center space-x-2 text-gray-600">
                 {props.item.title}
             </div>

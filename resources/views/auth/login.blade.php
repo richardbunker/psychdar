@@ -12,7 +12,7 @@
                 <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
                     {{ __('Login') }}
                 </header>
-                <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
+                <form onsubmit="onButtonSubmit()" class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
 
                     @csrf
 
@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="flex flex-wrap pb-6">
-                        <button type="submit"
+                        <button id="submitButton" type="submit"
                         class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
                             {{ __('Login') }}
                         </button>

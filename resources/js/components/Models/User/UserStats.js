@@ -38,7 +38,7 @@ export default function UserStats(props) {
         <div className="space-y-2">
             <div className="w-full bg-white">
                 <GrayFadedBanner title={props.user.name} />
-                <div className="text-lg py-4 px-6 space-y-4">
+                <div className="text-sm sm:text-lg py-4 px-6 space-y-4">
                     <ClientsRow
                         iconSize="10"
                         iconColour="text-green-400"

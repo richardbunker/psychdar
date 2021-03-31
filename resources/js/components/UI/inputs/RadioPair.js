@@ -3,7 +3,7 @@ import React from "react";
 export default function RadioPair(props) {
     return (
         <div className="flex items-center justify-between space-x-3 text-gray-500 font-semibold">
-            <label className="flex items-center justify-start w-24">
+            <label className="flex items-center justify-start w-full sm:w-24">
                 <input
                     className="mr-1"
                     type="radio"
@@ -13,7 +13,7 @@ export default function RadioPair(props) {
                 />
                 {props.truthyLabel}
             </label>
-            <label className="flex items-center justify-start w-24">
+            <label className="flex items-center justify-start w-full sm:w-24">
                 <input
                     className="mr-1"
                     type="radio"

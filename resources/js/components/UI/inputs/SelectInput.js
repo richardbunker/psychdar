@@ -3,7 +3,7 @@ import { truncateString } from "../../../utilities/HelperFunctions";
 
 export default function SelectInput(props) {
     return (
-        <div className="flex items-center space-x-2 w-full">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-2 w-full">
             <div className="text-gray-600 font-semibold w-1/3">
                 {props.title}
             </div>

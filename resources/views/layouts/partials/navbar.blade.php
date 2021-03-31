@@ -2,12 +2,12 @@
     <div class="flex justify-between items-center px-4 py-2">
         <div class="flex items-center">
             <div class="">
-                <div class="ml-3 w-48 text-teal-50">
+                <div class="ml-3 w-32 sm:w-48 text-teal-50">
                     @include('layouts.UI.logo')
                 </div>                    
             </div>
         </div>
-        <nav class="space-x-4 text-lg font-semibold">
+        <nav class="space-x-2 sm:space-x-4 text-base sm:text-lg font-semibold">
             @guest
                 <a class="no-underline hover:text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
                 @if (Route::has('register'))

@@ -20,7 +20,7 @@ export default function OpenCloseContainerRounded(props) {
                     (isOpen ? "" : "border border-gray-200 rounded")
                 }
             >
-                <div className="text-base text-gray-500 font-semibold">
+                <div className="text-sm sm:text-base text-gray-500 font-semibold">
                     {props.title}
                 </div>
                 <DropdownButton

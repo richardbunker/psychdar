@@ -1227,12 +1227,12 @@ class MeasureBuilder
         $therapyFeedback->structure = json_encode(
             array (
                 'name' => 'Therapy Feedback',
-                'instructions' => 'Research suggests that collecting feedback about your therapy experiences often yields better therapy outcomes. Please think about your most recent session and answer the following.',
+                'instructions' => 'This information is only used for the purpose of enhancing your therapy experience. For example, when a therapy session is experienced as effective, the therapist reflects on the process to understand what types of interventions were best suited for that individual. Research suggests that feedback becomes a compass for the therapist to better understand and help their clients.',
                 'items' => 
                 array (
                     0 => 
                     array (
-                    'title' => 'How helpful was you most recent session?',
+                    'title' => 'How helpful was your most recent session?',
                     'subtitle' => NULL,
                     'type' => 'Slider',
                     'anchors' => 

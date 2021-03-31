@@ -40,7 +40,7 @@ export default function TreatmentContainer(props) {
             <LargeSpinner size="80px" />
         </div>
     ) : (
-        <div className="p-2 space-y-2">
+        <div className="p-1 sm:p-2 space-y-2">
             {measureAssessments.map((measureAssessment, index) => {
                 return (
                     <PresentMeasureAssessment

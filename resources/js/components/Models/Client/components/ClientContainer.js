@@ -61,7 +61,7 @@ export default function ClientContainer(props) {
                         label="Settings"
                     />
                 </GrayFadedMenuBanner>
-                <div className="text-lg py-4 px-6 space-y-4">
+                <div className="text-sm sm:text-lg py-4 px-6 space-y-4">
                     <TreatmentEpisodesRow
                         iconSize="10"
                         iconColour="text-pink-400"

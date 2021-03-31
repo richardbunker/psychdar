@@ -20,5 +20,13 @@
         @include('layouts.partials.navbar')
         @yield('content')
     </div>
+    <script>
+        const onButtonSubmit = () => {
+        const button = document.getElementById("submitButton");
+        button.disabled = true;
+        button.setAttribute("class", "w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-700 hover:bg-blue-900 sm:py-4 cursor-not-allowed")
+        button.innerHTML = "Please wait..."
+        };
+    </script>
 </body>
 </html>

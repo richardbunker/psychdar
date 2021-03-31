@@ -64,7 +64,7 @@ export default function ClientsContainer(props) {
     const row = "p-2 flex items-center justify-between w-full rounded-b";
 
     const bubble =
-        "text-white rounded py-1 px-3 flex items-center justify-center text-sm uppercase";
+        "text-white rounded py-1 px-3 flex items-center justify-center text-xs sm:text-sm uppercase";
 
     const handleKeyUp = e => {
         filterClientsBySearch(e.target.value);
@@ -149,7 +149,7 @@ export default function ClientsContainer(props) {
                 onKeyUp={handleKeyUp}
                 type="text"
                 placeholder="Search..."
-                className="focus:outline-none p-2 text-lg text-gray-700 w-full"
+                className="focus:outline-none py-3 px-3 text-base sm:text-lg text-gray-700 w-full"
             />
             <div className="bg-white">
                 <GrayFadedMenuBanner title="Identifier">
@@ -159,7 +159,7 @@ export default function ClientsContainer(props) {
                     />
                 </GrayFadedMenuBanner>
                 <div className="w-full bg-white rounded overflow-auto">
-                    <div className="min-w-min-content overflow-auto text-gray-600 text-lg w-full">
+                    <div className="min-w-min-content overflow-auto text-gray-600 text-sm sm:text-lg w-full">
                         {filtered.length > 0 ? filterResults() : noResults()}
                     </div>
                 </div>

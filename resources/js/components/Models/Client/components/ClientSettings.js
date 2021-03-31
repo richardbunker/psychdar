@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { validateString } from "../../../../utilities/HelperFunctions";
 import StringInput from "../../../UI/inputs/StringInput";
@@ -54,7 +54,7 @@ export default function ClientSettings(props) {
 
     return (
         <div className="space-y-2">
-            <div className="p-2 space-y-3 text-lg">
+            <div className="p-0 sm:p-2 space-y-3 text-sm sm:text-lg">
                 <StringInput
                     value={clientSettings.identifier}
                     handleOnStringChange={e => updateName(e.target.value)}
@@ -68,7 +68,7 @@ export default function ClientSettings(props) {
                         max="25"
                     />
                 )}
-                <div className="p-4 bg-gray-50 border rounded space-y-4">
+                <div className="p-2 sm:p-4 bg-gray-50 border rounded space-y-4 text-sm sm:text-lg">
                     <UpdateStatusForm
                         title="Client Status"
                         onStatusUpdate={onStatusUpdate}
@@ -87,7 +87,7 @@ export default function ClientSettings(props) {
                     />
                 </div>
             </div>
-            <div className="flex items-center justify-end space-x-2 w-80 ml-auto">
+            <div className="flex items-center justify-end space-x-2">
                 <ButtonGray label="Close" handleClick={props.toggleModal} />
                 {inputFields.name && (
                     <ButtonTeal

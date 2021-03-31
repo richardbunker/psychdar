@@ -21,9 +21,9 @@ export default function ManageActiveTreatments(props) {
     };
 
     return (
-        <div className="border p-4 rounded w-full">
+        <div className="border p-4 rounded w-full text-sm sm:text-lg">
             <div className="flex flex-col items-start space-y-3 w-full">
-                <div className="text-gray-500 flex items-center space-x-2 font-semibold w-full text-lg">
+                <div className="text-gray-500 flex items-center space-x-2 font-semibold w-full">
                     <span>{props.treatment.started}</span>
                     <svg
                         className="w-5 h-5 text-gray-500"
@@ -49,7 +49,7 @@ export default function ManageActiveTreatments(props) {
                         disabled={false}
                         checked={checked}
                     />
-                    <label className="leading-normal py-2 text-gray-500 text-base">
+                    <label className="leading-normal py-2 text-gray-500">
                         Check to mark this treatment episode as completed.
                     </label>
                     {checked && (

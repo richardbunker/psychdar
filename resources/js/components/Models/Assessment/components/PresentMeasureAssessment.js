@@ -9,7 +9,7 @@ export default function PresentMeasureAssessment(props) {
     const { measure, assessments } = props.measureAssessment;
     return (
         <OpenCloseContainerRounded title={measure.name} isOpen={true}>
-            <div className="px-2 pb-2 space-y-2">
+            <div className="px-1 sm:px-2 pb-2 space-y-2">
                 {measure.scales && (
                     <div className="space-y-2">
                         <ReliableChangeStatsContainer
@@ -23,7 +23,7 @@ export default function PresentMeasureAssessment(props) {
                     </div>
                 )}
                 <div className="space-y-2 py-2">
-                    <div className="text-base font-semibold text-gray-400">
+                    <div className="text-sm sm:text-base font-semibold text-gray-400">
                         Responses
                     </div>
                     {assessments.map((assessment, index) => {
