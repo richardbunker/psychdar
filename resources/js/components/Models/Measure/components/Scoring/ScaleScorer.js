@@ -5,7 +5,7 @@ export default function ScaleScorer(props) {
     const calculateCuttOff = scaleScore => {
         return props.scale.cuttOffs.map(cuttOff => {
             if (scaleScore >= cuttOff.min && scaleScore <= cuttOff.max) {
-                return '"' + cuttOff.label + '"';
+                return cuttOff.label;
             }
         });
     };

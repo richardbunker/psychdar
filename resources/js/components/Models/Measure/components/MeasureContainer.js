@@ -203,7 +203,7 @@ export default function MeasureContainer({ measure }) {
                             <div></div>
                         )}
                     </GrayFadedMenuBanner>
-                    <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal text-gray-200">
+                    <div className="py-4 px-4 sm:px-6 bg-gray-800 text-sm sm:text-lg space-y-4 leading-normal text-gray-200">
                         <div className="flex items-center justify-between">
                             <div className="font-semibold">Reference</div>
                             <div>
@@ -214,20 +214,20 @@ export default function MeasureContainer({ measure }) {
                 </div>
                 <div className="">
                     <GrayFadedBanner title="Items" />
-                    <div className="py-4 px-6 bg-gray-800 text-lg space-y-4 leading-normal">
-                        <div className="space-y-2">
+                    <div className="py-4 px-4 sm:px-6 bg-gray-800 text-sm sm:text-lg space-y-4 leading-normal">
+                        <div className="space-y-4">
                             {measure.structure.items.map((item, index) => {
                                 return item.type === "Text" ? (
                                     <div key={index}></div>
                                 ) : (
                                     <div
                                         key={index}
-                                        className="flex items-center justify-between font-semibold"
+                                        className="flex items-start justify-between font-semibold"
                                     >
                                         <div className="text-green-400">
-                                            {truncateString(item.title, 50)}
+                                            {truncateString(item.title, 45)}
                                         </div>
-                                        <div className="text-blue-400">
+                                        <div className="text-blue-400 pl-2">
                                             {item.type === "Qualitative"
                                                 ? truncateString(
                                                       String(
