@@ -69,6 +69,7 @@ export default function ClientSettings(props) {
                     }
                 };
             });
+            throttledApiCall({ customClientUri: value });
         }
         if (value.length === 0) {
             setInputFields(prevState => {
@@ -81,7 +82,6 @@ export default function ClientSettings(props) {
                 };
             });
         }
-        throttledApiCall({ customClientUri: value });
     };
 
     const onStatusUpdate = statusObject => {
