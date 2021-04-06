@@ -9,6 +9,7 @@ import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import Axios from "axios";
 import { debounce } from "lodash";
 import ErrorInput from "../../../UI/inputs/ErrorInput";
+import DisplayCustomUri from "./DisplayCustomUri";
 
 export default function ClientSettings(props) {
     const [clientSettings, setClientSettings] = useState({
@@ -69,15 +70,15 @@ export default function ClientSettings(props) {
                     }
                 };
             });
-            throttledApiCall({ customClientUri: value });
+            value.length > 0 && throttledApiCall({ customClientUri: value });
         }
         if (value.length === 0) {
             setInputFields(prevState => {
                 return {
                     ...prevState,
                     customClientUri: {
-                        ...prevState.customClientUri,
-                        status: true
+                        status: true,
+                        message: "Available"
                     }
                 };
             });
@@ -96,7 +97,6 @@ export default function ClientSettings(props) {
     const validateCustomUri = value => {
         Axios.post("/validate-custom-uri", value)
             .then(function(response) {
-                console.log("Valid");
                 setInputFields(prevState => {
                     return {
                         ...prevState,
@@ -108,7 +108,6 @@ export default function ClientSettings(props) {
                 });
             })
             .catch(function(error) {
-                console.log("Invalid");
                 setInputFields(prevState => {
                     return {
                         ...prevState,
