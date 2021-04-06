@@ -5,7 +5,7 @@ export default function Url(props) {
     const size = props.iconSize;
     const colour = props.iconColour;
     return (
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full text-gray-500 text-sm sm:text-base leading-normal">
+        <div className="flex flex-col sm:flex-row items-start justify-between w-full text-gray-500 text-sm sm:text-base leading-normal">
             <div className="flex items-center space-x-2">
                 <svg
                     className={"w-" + size + " " + "h-" + size + " " + colour}
@@ -21,13 +21,24 @@ export default function Url(props) {
                 </svg>
                 <div className="">{truncateString(props.heading, 35)}</div>
             </div>
-            <a
-                href={props.link}
-                className="text-blue-500 py-2 hover:text-blue-600 hover:underline"
-                target="_blank"
-            >
-                {props.link}
-            </a>
+            <div className="flex flex-col sm:items-end space-y-2 sm:space-y-1 py-1">
+                {props.displayCustomLink && (
+                    <a
+                        href={props.customLink}
+                        className="text-green-500 hover:text-green-600 hover:underline"
+                        target="_blank"
+                    >
+                        {props.customLink}
+                    </a>
+                )}
+                <a
+                    href={props.link}
+                    className="text-blue-500 hover:text-blue-600 hover:underline"
+                    target="_blank"
+                >
+                    {props.link}
+                </a>
+            </div>
         </div>
     );
 }

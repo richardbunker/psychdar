@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Helpers\CanUserAccess;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class UserClientsController extends Controller
 {
@@ -45,6 +46,15 @@ class UserClientsController extends Controller
         $client->save();
         return Redirect::route('showClient', $client->hashed_id);  
     }
+
+    public function validateCustomUri(Request $request)
+    {
+        $validated = $request->validate([
+            'customClientUri' => 'unique:clients,custom_client_uri'
+        ]);
+
+        return response()->json();
+    }
     
     public function updateSettings(Request $request)
     {
@@ -53,6 +63,7 @@ class UserClientsController extends Controller
             $client->identifier  = $request->identifier;
             $client->is_active = (int)$request->active;
             $client->url_access = (int)$request->url;
+            $client->custom_client_uri = $request->customClientUri;
             $client->save();
             return Redirect::route('showClient', $request->clientHashedId);  
         }

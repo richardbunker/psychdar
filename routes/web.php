@@ -62,6 +62,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/client/{hashed_client_id}', [App\Http\Controllers\UserClientsController::class, 'show'])->name('showClient');
     Route::get('/api/organisation/{hashed_organisation_id}/clients', [App\Http\Controllers\OrganisationClientsController::class, 'index']);
     Route::post('/client-settings', [App\Http\Controllers\UserClientsController::class, 'updateSettings']);
+    Route::post('/validate-custom-uri', [App\Http\Controllers\UserClientsController::class, 'validateCustomUri']);
 
     // ClientMeasure
     Route::post('/client-measure', [App\Http\Controllers\ClientMeasureController::class, 'store']);
@@ -103,5 +104,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Client Assessments
 Route::get('/a/{hashed_client_id}/{hashed_measure_id}', [App\Http\Controllers\ClientAssessmentController::class, 'show']);
+Route::get('/ca/{custom_client_uri}/{hashed_measure_id}', function($custom_client_uri, $hashed_measure_id) {
+    $client = App\Models\Client::where('custom_client_uri', $custom_client_uri)->firstOrFail();
+    return redirect('/a/'.$client->hashed_id.'/'.$hashed_measure_id);
+});
 Route::post('/a/client', [App\Http\Controllers\ClientAssessmentController::class, 'store'])->name('saveClientAssessment');
 Route::get('/thankyou', [App\Http\Controllers\ClientAssessmentController::class, 'thankyou'])->name('thankyou');

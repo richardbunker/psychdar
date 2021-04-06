@@ -28,7 +28,7 @@ class Client extends Model
         'updated_at',
     ];
 
-    protected $appends = ['hashed_id', 'url'];
+    protected $appends = ['hashed_id', 'url', 'customUrl'];
 
     public function getHashedIdAttribute()
     {
@@ -38,6 +38,11 @@ class Client extends Model
     public function getUrlAttribute()
     {
         return url("/a")."/".$this->hashed_id;
+    }
+
+    public function getCustomUrlAttribute()
+    {
+        return url("/ca")."/".$this->attributes['custom_client_uri'];
     }
 
     public function getPreferencesAttribute($value)

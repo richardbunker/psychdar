@@ -40,6 +40,15 @@ export const validateDateString = string => {
     }
 };
 
+export const validateUriString = string => {
+    const reg = new RegExp(/^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/);
+    if (reg.test(string)) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
 export const returnCurrentDateString = () => {
     const date = new Date();
     let dateString =
