@@ -97,6 +97,9 @@ export default function ScalesBuilder(props) {
                                     {scales.map((scale, index) => {
                                         return (
                                             <ScalePreview
+                                                editable={
+                                                    props.measure.is_private
+                                                }
                                                 index={index}
                                                 deleteScaleItem={onDeleteScale}
                                                 editScaleItem={onEditScale}
@@ -109,28 +112,41 @@ export default function ScalesBuilder(props) {
                             </div>
                         </div>
                     )}
-                    <div className="w-full">
-                        <button
-                            onClick={() => toggleScaleBuilder()}
-                            className="border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
-                        >
-                            Create Scale
-                        </button>
-                    </div>
-                    <div className="w-full flex items-center justify-end space-x-2">
-                        <button
-                            onClick={props.toggleModal}
-                            className="font-semibold bg-gray-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-gray-500"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            onClick={updateScales}
-                            className="font-semibold bg-blue-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-blue-500"
-                        >
-                            Update Scoring
-                        </button>
-                    </div>
+                    {props.measure.is_private ? (
+                        <div className="space-y-2">
+                            <div className="w-full">
+                                <button
+                                    onClick={() => toggleScaleBuilder()}
+                                    className="border-2 border-teal-300 font-semibold hover:bg-teal-50 px-3 py-4 rounded text-teal-400 uppercase w-full"
+                                >
+                                    Create Scale
+                                </button>
+                            </div>
+                            <div className="w-full flex items-center justify-end space-x-2">
+                                <button
+                                    onClick={props.toggleModal}
+                                    className="font-semibold bg-gray-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-gray-500"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    onClick={updateScales}
+                                    className="font-semibold bg-blue-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-blue-500"
+                                >
+                                    Update Scoring
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="w-full flex items-center justify-end space-x-2">
+                            <button
+                                onClick={props.toggleModal}
+                                className="font-semibold bg-gray-400 px-3 py-2 rounded text-white uppercase hover:shadow hover:bg-gray-500"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    )}
                 </>
             )}
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ErrorInput from "../../../../../UI/inputs/ErrorInput";
 import StringCounter from "../../../../../UI/inputs/StringCounter";
 import StringInput from "../../../../../UI/inputs/StringInput";
@@ -69,6 +69,7 @@ export default function AnchorBuilder(props) {
         <div className="space-y-2">
             <div>
                 <StringInput
+                    shouldInputBeFocused={true}
                     required
                     value={label}
                     handleOnStringChange={e => updateLabel(e.target.value)}

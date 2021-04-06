@@ -137,6 +137,7 @@ export default function ItemBuilder(props) {
         <div className="space-y-2">
             <div>
                 <StringInput
+                    shouldInputBeFocused={true}
                     required
                     value={title}
                     handleOnStringChange={e => updateTitle(e.target.value)}

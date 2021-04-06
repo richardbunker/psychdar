@@ -116,6 +116,7 @@ export default function ClientsContainer(props) {
                 >
                     <div className="pb-4">
                         <StringInput
+                            shouldInputBeFocused={true}
                             value={newClient}
                             handleOnStringChange={e =>
                                 updateName(e.target.value)

@@ -146,6 +146,7 @@ export default function ScaleBuilder(props) {
         <div className="space-y-4">
             <div className="space-y-1">
                 <StringInput
+                    shouldInputBeFocused={true}
                     value={scale.title}
                     handleOnStringChange={e => updateTitle(e.target.value)}
                     title="Title"

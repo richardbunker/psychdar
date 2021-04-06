@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import { v4 as uuidv4 } from "uuid";
-import SaveSubmitButton from "../../../../UI/forms/SaveSubmitButton";
 import ItemBuilder from "../../../Measure/components/Structure/Item/Builder";
 import ItemPreview from "../../../Measure/components/Structure/Item/Preview";
 import PreviewBuilder from "../../../Measure/components/Structure/Preview/Bulider";
@@ -197,6 +196,7 @@ export default function StructureBuilder(props) {
             <div className="p-4 w-full text-lg space-y-6 bg-white">
                 <div className="space-y-1">
                     <StringInput
+                        shouldInputBeFocused={true}
                         value={name}
                         handleOnStringChange={e => updateName(e.target.value)}
                         title="Name"

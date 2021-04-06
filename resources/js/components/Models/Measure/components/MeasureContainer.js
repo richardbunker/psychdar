@@ -110,7 +110,7 @@ export default function MeasureContainer({ measure }) {
             {showDetailsBuilder && (
                 <ModalScrollable
                     heading="Measure Details"
-                    toggleModal={toggleDetailsModal}
+                    toggle={toggleDetailsModal}
                 >
                     <DetailsBuilder
                         onDetailsSubmit={onDetailsSubmit}
@@ -122,7 +122,7 @@ export default function MeasureContainer({ measure }) {
             {showScalesBuilder && (
                 <ModalScrollable
                     heading="Scoring Details"
-                    toggleModal={toggleScoringModal}
+                    toggle={toggleScoringModal}
                 >
                     <ScalesBuilder
                         onScalesSubmit={onScalesSubmit}
@@ -250,14 +250,10 @@ export default function MeasureContainer({ measure }) {
                 </div>
                 <div className="">
                     <GrayFadedMenuBanner title="Scoring">
-                        {measure.is_private ? (
-                            <ButtonBlue
-                                handleClick={toggleScoringModal}
-                                label="Update"
-                            />
-                        ) : (
-                            <div></div>
-                        )}
+                        <ButtonBlue
+                            handleClick={toggleScoringModal}
+                            label={measure.is_private ? "Edit" : "View"}
+                        />
                     </GrayFadedMenuBanner>
                     <ScalesContainer responses={responses} measure={measure} />
                 </div>
