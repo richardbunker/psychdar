@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
-import { validateUriString } from "../../../../utilities/HelperFunctions";
+import {
+    validateString,
+    validateUriString
+} from "../../../../utilities/HelperFunctions";
 import StringInput from "../../../UI/inputs/StringInput";
 import StringCounter from "../../../UI/inputs/StringCounter";
 import UpdateStatusForm from "../../../UI/forms/UpdateStatusForm";
@@ -9,7 +12,6 @@ import ButtonTeal from "../../../UI/buttons/ButtonTeal";
 import Axios from "axios";
 import { debounce } from "lodash";
 import ErrorInput from "../../../UI/inputs/ErrorInput";
-import DisplayCustomUri from "./DisplayCustomUri";
 
 export default function ClientSettings(props) {
     const [clientSettings, setClientSettings] = useState({
