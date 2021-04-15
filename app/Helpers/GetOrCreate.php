@@ -13,7 +13,7 @@ class GetOrCreate
     {
         if ($client->activeTreatments->count() === 0) {
             $treatment = new Treatment;  
-            $treatment->user_id = Auth::user()->id;
+            $treatment->user_id = $client->user_id;
             $treatment->client_id = $client->id;
             $treatment->save();
             return $treatment->id;        
