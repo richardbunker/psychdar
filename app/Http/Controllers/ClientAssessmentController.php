@@ -11,21 +11,17 @@ use App\Helpers\GetOrCreate;
 use Illuminate\Http\Request;
 use App\Helpers\CanClientAccess;
 use App\Jobs\SendEmail;
-use App\Mail\ScaleScoreAlert;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class ClientAssessmentController extends Controller
 {
-    public function show($client_hashed_id, $measure_hashed_id)
+    public function show($hashed_measure_id, $hashed_client_id)
     {
-        if (CanClientAccess::assessment($client_hashed_id)) {
+        if (CanClientAccess::assessment($hashed_client_id)) {
             return Inertia::render('Assessments/ClientAssessment', [
-                'clientHashedId' => $client_hashed_id,
-                'measure' => Measure::findOrFail(Hasher::decode($measure_hashed_id))
+                'clientHashedId' => $hashed_client_id,
+                'measure' => Measure::findOrFail(Hasher::decode($hashed_measure_id))
             ]);            
         }
         return Inertia::render('Assessments/NoAccess');

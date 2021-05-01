@@ -81,10 +81,7 @@ export default function ClientContainer(props) {
             <div className="space-y-2 mt-2">
                 <div className="bg-white">
                     <GrayFadedBanner title="Measures" />
-                    <ClientMeasures
-                        userPublishedMeasures={props.userPublishedMeasures}
-                        client={props.client}
-                    />
+                    <ClientMeasures {...props} />
                 </div>
                 <div className="bg-white">
                     <GrayFadedMenuBanner title="Treatment Episodes">

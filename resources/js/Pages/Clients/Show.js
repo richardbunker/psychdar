@@ -15,6 +15,7 @@ export default function UserClient(props) {
                 <ScrollableScreenContainer>
                     <ClientContainer
                         client={props.client}
+                        hashedUserId={props.hashed_user_id}
                         userPublishedMeasures={props.userPublishedMeasures}
                     />
                 </ScrollableScreenContainer>

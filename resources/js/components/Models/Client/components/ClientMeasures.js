@@ -79,14 +79,24 @@ export default function ClientMeasures(props) {
                             heading={measure.name}
                             iconSize="6"
                             iconColour="text-gray-500"
-                            link={props.client.url + "/" + measure.hashed_id}
+                            link={
+                                props.client.url +
+                                measure.hashed_id +
+                                "/" +
+                                props.client.hashed_id
+                            }
                             displayCustomLink={
                                 props.client.custom_client_uri
                                     ? props.client.custom_client_uri.length > 0
                                     : false
                             }
                             customLink={
-                                props.client.customUrl + "/" + measure.hashed_id
+                                props.client.customUrl +
+                                props.hashedUserId +
+                                "/" +
+                                measure.hashed_id +
+                                "/" +
+                                props.client.custom_client_uri
                             }
                         />
                     );

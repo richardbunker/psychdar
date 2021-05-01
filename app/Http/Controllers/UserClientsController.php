@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Client;
 use App\Helpers\Hasher;
-use App\Models\Measure;
-use App\Helpers\ApiError;
 use Illuminate\Http\Request;
 use App\Helpers\CanUserAccess;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Validator;
 
 class UserClientsController extends Controller
 {
@@ -33,6 +29,7 @@ class UserClientsController extends Controller
                                 ->with('activeTreatments')
                                 ->first(),
                 'userPublishedMeasures' => Auth::user()->publishedMeasures,
+                'hashed_user_id' => Hasher::encode(Auth::user()->id),
             ]);            
         }
         return abort(403);            
@@ -45,15 +42,6 @@ class UserClientsController extends Controller
         $client->identifier = $request->name;
         $client->save();
         return Redirect::route('showClient', $client->hashed_id);  
-    }
-
-    public function validateCustomUri(Request $request)
-    {
-        $validated = $request->validate([
-            'customClientUri' => 'unique:clients,custom_client_uri'
-        ]);
-
-        return response()->json();
     }
     
     public function updateSettings(Request $request)

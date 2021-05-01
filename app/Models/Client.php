@@ -37,12 +37,12 @@ class Client extends Model
 
     public function getUrlAttribute()
     {
-        return url("/a")."/".$this->hashed_id;
+        return url("/a")."/";
     }
 
     public function getCustomUrlAttribute()
     {
-        return url("/ca")."/".$this->attributes['custom_client_uri'];
+        return url("/u")."/";
     }
 
     public function getPreferencesAttribute($value)

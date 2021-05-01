@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import {
     validateString,
@@ -9,8 +9,6 @@ import StringCounter from "../../../UI/inputs/StringCounter";
 import UpdateStatusForm from "../../../UI/forms/UpdateStatusForm";
 import ButtonGray from "../../../UI/buttons/ButtonGray";
 import ButtonTeal from "../../../UI/buttons/ButtonTeal";
-import Axios from "axios";
-import { debounce } from "lodash";
 import ErrorInput from "../../../UI/inputs/ErrorInput";
 
 export default function ClientSettings(props) {
@@ -22,16 +20,9 @@ export default function ClientSettings(props) {
     });
     const [inputFields, setInputFields] = useState({
         name: true,
-        customClientUri: {
-            status: true,
-            message: ""
-        },
+        customClientUri: true,
         validate() {
-            return (
-                this.name &&
-                this.customClientUri.status &&
-                this.customClientUri.message !== "Unavailable"
-            );
+            return this.name && this.customClientUri;
         }
     });
 
@@ -52,36 +43,23 @@ export default function ClientSettings(props) {
         }
     };
 
-    const throttledApiCall = useRef(
-        debounce(value => {
-            validateCustomUri(value);
-        }, 300)
-    ).current;
-
     const updateCustomUri = value => {
         if (value.length <= 50) {
             setClientSettings(prevState => {
                 return { ...prevState, customClientUri: value };
             });
-            setInputFields(prevState => {
-                return {
-                    ...prevState,
-                    customClientUri: {
-                        ...prevState.customClientUri,
-                        status: validateUriString(value)
-                    }
-                };
-            });
-            value.length > 0 && throttledApiCall({ customClientUri: value });
         }
+        setInputFields(prevState => {
+            return {
+                ...prevState,
+                customClientUri: validateUriString(value)
+            };
+        });
         if (value.length === 0) {
             setInputFields(prevState => {
                 return {
                     ...prevState,
-                    customClientUri: {
-                        status: true,
-                        message: "Available"
-                    }
+                    customClientUri: true
                 };
             });
         }
@@ -94,32 +72,6 @@ export default function ClientSettings(props) {
                 [statusObject.identifier]: statusObject.value
             };
         });
-    };
-
-    const validateCustomUri = value => {
-        Axios.post("/validate-custom-uri", value)
-            .then(function(response) {
-                setInputFields(prevState => {
-                    return {
-                        ...prevState,
-                        customClientUri: {
-                            ...prevState.customClientUri,
-                            message: "Available"
-                        }
-                    };
-                });
-            })
-            .catch(function(error) {
-                setInputFields(prevState => {
-                    return {
-                        ...prevState,
-                        customClientUri: {
-                            ...prevState.customClientUri,
-                            message: "Unavailable"
-                        }
-                    };
-                });
-            });
     };
 
     const submitClientSettings = () => {
@@ -156,22 +108,12 @@ export default function ClientSettings(props) {
                             updateCustomUri(e.target.value)
                         }
                         title="Custom URI"
-                        placeholder="Jane-Smith-10-Feb-1992"
+                        placeholder="Smith-Jane-10-Feb-1984 | 56056289"
                     />
                     {clientSettings.customClientUri &&
                         clientSettings.customClientUri.length > 0 && (
-                            <div className="flex font-semibold items-center py-1">
-                                <div
-                                    className={
-                                        inputFields.customClientUri.message ===
-                                        "Available"
-                                            ? "text-green-400 text-base font-semibold uppercase"
-                                            : "text-red-500 text-base font-semibold uppercase"
-                                    }
-                                >
-                                    {inputFields.customClientUri.message}
-                                </div>
-                                {inputFields.customClientUri.status ? (
+                            <div className="flex font-semibold items-center pt-2">
+                                {inputFields.customClientUri ? (
                                     <StringCounter
                                         isValid={inputFields.customClientUri}
                                         number={
@@ -181,7 +123,7 @@ export default function ClientSettings(props) {
                                         max="50"
                                     />
                                 ) : (
-                                    <ErrorInput error="No spaces, and words must be dash-delimited (e.g., this-is-acceptable)." />
+                                    <ErrorInput error="Error! Input needs to be a valid URI string (e.g., this-is-acceptable)." />
                                 )}
                             </div>
                         )}
