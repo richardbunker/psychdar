@@ -5,13 +5,18 @@ import {
     standardErrorOfMeasurement,
     stdDev
 } from "../../../Stats/Stats";
-import { calculateScaleScore } from "../utilities/ScaleScoring";
+import {
+    calculateScaleScore,
+    returnScaleResponses
+} from "../utilities/ScaleScoring";
 
 export default function PresentReliableChangeForScale({ assessments, scale }) {
     const scaleScores = assessments.map(assessment => {
         return calculateScaleScore(scale, assessment.responses);
     });
-    const alpha = Number(scale.alpha);
+    const s1 = returnScaleResponses(scale, assessments[0]["responses"]);
+    const s2 = returnScaleResponses(scale, assessments[1]["responses"]);
+    const alpha = parseFloat(scale.alpha);
     const initialScore = scaleScores[0];
     const mostRecentScore = scaleScores[scaleScores.length - 1];
     const differencScore = mostRecentScore - initialScore;
@@ -19,9 +24,14 @@ export default function PresentReliableChangeForScale({ assessments, scale }) {
         initialScore,
         mostRecentScore,
         standardErrorOfDifference(
-            standardErrorOfMeasurement(stdDev(scaleScores), alpha)
+            standardErrorOfMeasurement(0.75, alpha)
+            // standardErrorOfMeasurement(stdDev(s1), alpha)
         )
     );
+    console.log(scaleScores);
+    console.log(differencScore);
+    console.log(stdDev(s1), 0.75);
+    console.log(rci);
     return (
         <div className="leading-normal p-2 space-y-1 text-sm border-t">
             <div className="font-semibold text-gray-400 text-base">
@@ -37,7 +47,13 @@ export default function PresentReliableChangeForScale({ assessments, scale }) {
             </div>
             <div className="flex items-center justify-between">
                 <div className="text-gray-500">Difference</div>
-                <div className="text-gray-500">{Math.abs(differencScore)}</div>
+                <div className="text-gray-500">
+                    {Math.abs(differencScore).toFixed(2)}
+                </div>
+            </div>
+            <div className="flex items-center justify-between">
+                <div className="text-gray-500">Reliable Change Index</div>
+                <div className="text-gray-500">{rci.toFixed(2)}</div>
             </div>
             <div className="flex items-center justify-between">
                 <div className="text-gray-500 font-semibold">

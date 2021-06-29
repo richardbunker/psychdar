@@ -6,10 +6,19 @@ export const calculateScaleScore = (scale, responses) => {
         }
     });
     if (scale.operation === "Mean") {
-        return (totalScore / Object.keys(responses).length).toFixed(2);
+        const result = totalScore / scale.items.length;
+        return Math.round(result * 1e2) / 1e2;
     } else {
         return totalScore;
     }
+};
+
+export const returnScaleResponses = (scale, responses) => {
+    return scale.items.map(scaleItem => {
+        if (Object.keys(responses).includes("item_" + String(scaleItem))) {
+            return responses["item_" + String(scaleItem)];
+        }
+    });
 };
 
 export const calculateCuttOff = (scale, scaleScore) => {
