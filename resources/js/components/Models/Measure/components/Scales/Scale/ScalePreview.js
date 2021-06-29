@@ -5,36 +5,33 @@ export default function ScalePreview(props) {
         <div className="bg-gray-800 flex items-center justify-between p-4 rounded space-x-2 text-base w-full">
             <div className="space-y-2 text-gray-300">
                 <div className="space-y-2 items-center">
-                    <div className="text-green-400">{props.scale.title}</div>
-                    <div className="flex flex-col">
-                        <div>
-                            {"= "}
-                            {props.scale.operation}
-                            {" ("}
-                        </div>
-                        <div className="pl-6">
-                            {props.scale.items
-                                .sort((a, b) => a - b)
-                                .map((item, index) => {
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="text-orange-400 space-x-1"
-                                        >
-                                            {item}
-                                            {props.scale.items.length ===
-                                            index + 1
-                                                ? ""
-                                                : ","}
-                                        </div>
-                                    );
-                                })}
-                        </div>
-                        <div className="pl-4">{")"}</div>
+                    <div className="text-green-400 text-2xl">
+                        {props.scale.title}
                     </div>
+                    <div className="text-gray-300">Operation:</div>
+                    <ul className="list-disc pl-6">
+                        <li className="text-teal-300 text-base">
+                            {props.scale.operation}
+                        </li>
+                    </ul>
+                    <div className="text-teal-300">Items:</div>
+                    <ul className="list-disc pl-6">
+                        {props.scale.items
+                            .sort((a, b) => a - b)
+                            .map((item, index) => {
+                                return (
+                                    <li
+                                        key={index}
+                                        className="text-teal-300 text-base"
+                                    >
+                                        {item}
+                                    </li>
+                                );
+                            })}
+                    </ul>
                     {props.scale.alpha && (
                         <div className="flex items-center space-x-1">
-                            <span className="text-pink-400">Alpha</span>
+                            <span className="text-pink-400 italic">alpha</span>
                             <span className="text-gray-200">=</span>
                             <span className="text-gray-200">
                                 {props.scale.alpha}
@@ -43,9 +40,7 @@ export default function ScalePreview(props) {
                     )}
                     {props.scale.sd && (
                         <div className="flex items-center space-x-1">
-                            <span className="text-teal-300">
-                                Standard Deviation (Clinical Sample)
-                            </span>
+                            <span className="text-teal-300 italic">sd</span>
                             <span className="text-gray-200">=</span>
                             <span className="text-gray-200">
                                 {props.scale.sd}

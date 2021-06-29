@@ -91412,18 +91412,12 @@ function PresentReliableChangeForScale(_ref) {
   var scaleScores = assessments.map(function (assessment) {
     return Object(_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__["calculateScaleScore"])(scale, assessment.responses);
   });
-  var s1 = Object(_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__["returnScaleResponses"])(scale, assessments[0]["responses"]);
-  var s2 = Object(_utilities_ScaleScoring__WEBPACK_IMPORTED_MODULE_2__["returnScaleResponses"])(scale, assessments[1]["responses"]);
   var alpha = parseFloat(scale.alpha);
+  var sd = parseFloat(scale.sd);
   var initialScore = scaleScores[0];
   var mostRecentScore = scaleScores[scaleScores.length - 1];
   var differencScore = mostRecentScore - initialScore;
-  var rci = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["reliableChangeIndex"])(initialScore, mostRecentScore, Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["standardErrorOfDifference"])(Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["standardErrorOfMeasurement"])(0.75, alpha) // standardErrorOfMeasurement(stdDev(s1), alpha)
-  ));
-  console.log(scaleScores);
-  console.log(differencScore);
-  console.log(Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["stdDev"])(s1), 0.75);
-  console.log(rci);
+  var rci = Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["reliableChangeIndex"])(initialScore, mostRecentScore, Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["standardErrorOfDifference"])(Object(_Stats_Stats__WEBPACK_IMPORTED_MODULE_1__["standardErrorOfMeasurement"])(sd, alpha)));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "leading-normal p-2 space-y-1 text-sm border-t"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -91516,13 +91510,12 @@ function ReliableChangeStatsContainer(_ref) {
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/Models/Assessment/utilities/ScaleScoring.js ***!
   \*****************************************************************************/
-/*! exports provided: calculateScaleScore, returnScaleResponses, calculateCuttOff, detectAlertableScaleScore */
+/*! exports provided: calculateScaleScore, calculateCuttOff, detectAlertableScaleScore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculateScaleScore", function() { return calculateScaleScore; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "returnScaleResponses", function() { return returnScaleResponses; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "calculateCuttOff", function() { return calculateCuttOff; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "detectAlertableScaleScore", function() { return detectAlertableScaleScore; });
 var calculateScaleScore = function calculateScaleScore(scale, responses) {
@@ -91539,13 +91532,6 @@ var calculateScaleScore = function calculateScaleScore(scale, responses) {
   } else {
     return totalScore;
   }
-};
-var returnScaleResponses = function returnScaleResponses(scale, responses) {
-  return scale.items.map(function (scaleItem) {
-    if (Object.keys(responses).includes("item_" + String(scaleItem))) {
-      return responses["item_" + String(scaleItem)];
-    }
-  });
 };
 var calculateCuttOff = function calculateCuttOff(scale, scaleScore) {
   return scale.cuttOffs.map(function (cuttOff) {
@@ -93712,6 +93698,7 @@ function ScaleBuilder(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: "",
     alpha: "",
+    sd: "",
     operation: "Please Select...",
     items: [],
     cuttOffs: []
@@ -93738,6 +93725,7 @@ function ScaleBuilder(props) {
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: false,
     alpha: true,
+    sd: true,
     operation: false,
     scaleItems: false,
     validate: function validate() {
@@ -93760,6 +93748,22 @@ function ScaleBuilder(props) {
     setInputFields(function (prevState) {
       return _objectSpread(_objectSpread({}, prevState), {}, {
         alpha: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateChronbachsAlpha"])(string)
+      });
+    });
+  };
+
+  var updateStandardDeviation = function updateStandardDeviation(string) {
+    if (string.length <= 4) {
+      setScale(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          sd: string
+        });
+      });
+    }
+
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        sd: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateChronbachsAlpha"])(string)
       });
     });
   };
@@ -93873,7 +93877,7 @@ function ScaleBuilder(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "space-y-4"
+    className: "space-y-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_StringInput__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -93908,14 +93912,35 @@ function ScaleBuilder(props) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex font-semibold items-center space-x-1 text-gray-600 pb-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Reliable Change Index"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    position: " top-0 left-0 w-96",
+    text: "Chronbach's Alpha and a Standard Deviation (Clinical Sample) is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
+    size: 8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-2 w-full justify-between leading-normal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex font-semibold items-center space-x-1 text-gray-600 w-1/3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    position: " top-0 left-0 w-96",
-    text: "Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
-    size: 8
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "font-semibold text-sm space-y-1 text-gray-500 w-1/3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Standard Deviation")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: scale.sd === null ? "" : scale.sd,
+    onChange: function onChange(e) {
+      return updateStandardDeviation(e.target.value);
+    },
+    type: "text",
+    className: "bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full",
+    placeholder: "0.75",
+    required: true
+  })), !inputFields.sd && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    error: "Must be a number between 0 and 1."
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center space-x-2 w-full justify-between leading-normal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex font-semibold items-center space-x-1 text-gray-500 w-1/3 text-sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: scale.alpha === null ? "" : scale.alpha,
     onChange: function onChange(e) {
       return updateAlpha(e.target.value);
@@ -93926,7 +93951,7 @@ function ScaleBuilder(props) {
     required: true
   })), !inputFields.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__["default"], {
     error: "Must be a number between 0 and 1."
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSelect: function onSelect(e) {
       return handleOnSelect(e.target.value);
     },
@@ -94076,6 +94101,7 @@ function ScaleEditor(props) {
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     title: true,
     alpha: true,
+    sd: true,
     operation: true,
     scaleItems: true,
     validate: function validate() {
@@ -94150,6 +94176,22 @@ function ScaleEditor(props) {
     setInputFields(function (prevState) {
       return _objectSpread(_objectSpread({}, prevState), {}, {
         alpha: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateChronbachsAlpha"])(string)
+      });
+    });
+  };
+
+  var updateStandardDeviation = function updateStandardDeviation(string) {
+    if (string.length <= 4) {
+      setScale(function (prevState) {
+        return _objectSpread(_objectSpread({}, prevState), {}, {
+          sd: string
+        });
+      });
+    }
+
+    setInputFields(function (prevState) {
+      return _objectSpread(_objectSpread({}, prevState), {}, {
+        sd: Object(_utilities_HelperFunctions__WEBPACK_IMPORTED_MODULE_2__["validateChronbachsAlpha"])(string)
       });
     });
   };
@@ -94248,14 +94290,35 @@ function ScaleEditor(props) {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex font-semibold items-center space-x-1 text-gray-600 pb-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Reliable Change Index"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    position: " top-0 left-0 w-96",
+    text: "Chronbach's Alpha and a Standard Deviation (Clinical Sample) is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
+    size: 8
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-2 w-full justify-between leading-normal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex font-semibold items-center space-x-1 text-gray-600 w-1/3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_dropdowns_QuestionMark__WEBPACK_IMPORTED_MODULE_11__["default"], {
-    position: " top-0 left-0 w-96",
-    text: "Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant.",
-    size: 8
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: "font-semibold text-sm space-y-1 text-gray-500 w-1/3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Standard Deviation")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: scale.sd === null ? "" : scale.sd,
+    onChange: function onChange(e) {
+      return updateStandardDeviation(e.target.value);
+    },
+    type: "text",
+    className: "bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full",
+    placeholder: "0.75",
+    required: true
+  })), !inputFields.sd && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    error: "Must be a number between 0 and 1."
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "space-y-1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex items-center space-x-2 w-full justify-between leading-normal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "flex font-semibold items-center space-x-1 text-gray-500 w-1/3 text-sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Alpha Score")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: scale.alpha === null ? "" : scale.alpha,
     onChange: function onChange(e) {
       return updateAlpha(e.target.value);
@@ -94266,7 +94329,7 @@ function ScaleEditor(props) {
     required: true
   })), !inputFields.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_ErrorInput__WEBPACK_IMPORTED_MODULE_12__["default"], {
     error: "Must be a number between 0 and 1."
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UI_inputs_SelectInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
     onSelect: function onSelect(e) {
       return handleOnSelect(e.target.value);
     },
@@ -94350,33 +94413,37 @@ function ScalePreview(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "space-y-2 items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "text-green-400"
+    className: "text-green-400 text-2xl"
   }, props.scale.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "flex flex-col"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "= ", props.scale.operation, " ("), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pl-6"
+    className: "text-gray-300"
+  }, "Operation:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "list-disc pl-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "text-teal-300 text-base"
+  }, props.scale.operation)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "text-teal-300"
+  }, "Items:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "list-disc pl-6"
   }, props.scale.items.sort(function (a, b) {
     return a - b;
   }).map(function (item, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: index,
-      className: "text-orange-400 space-x-1"
-    }, item, props.scale.items.length === index + 1 ? "" : ",");
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pl-4"
-  }, ")")), props.scale.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "text-teal-300 text-base"
+    }, item);
+  })), props.scale.alpha && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "text-pink-400"
-  }, "Alpha"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-pink-400 italic"
+  }, "alpha"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-gray-200"
   }, "="), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-gray-200"
   }, props.scale.alpha)), props.scale.sd && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "flex items-center space-x-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "text-teal-300"
-  }, "Standard Deviation (Clinical Sample)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "text-teal-300 italic"
+  }, "sd"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-gray-200"
   }, "="), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-gray-200"

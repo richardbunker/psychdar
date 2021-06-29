@@ -13,14 +13,6 @@ export const calculateScaleScore = (scale, responses) => {
     }
 };
 
-export const returnScaleResponses = (scale, responses) => {
-    return scale.items.map(scaleItem => {
-        if (Object.keys(responses).includes("item_" + String(scaleItem))) {
-            return responses["item_" + String(scaleItem)];
-        }
-    });
-};
-
 export const calculateCuttOff = (scale, scaleScore) => {
     return scale.cuttOffs.map(cuttOff => {
         if (scaleScore >= cuttOff.min && scaleScore <= cuttOff.max) {

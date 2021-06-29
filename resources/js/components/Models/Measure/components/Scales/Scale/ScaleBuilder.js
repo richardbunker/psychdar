@@ -20,6 +20,7 @@ export default function ScaleBuilder(props) {
     const [scale, setScale] = useState({
         title: "",
         alpha: "",
+        sd: "",
         operation: "Please Select...",
         items: [],
         cuttOffs: []
@@ -30,6 +31,7 @@ export default function ScaleBuilder(props) {
     const [inputFields, setInputFields] = useState({
         title: false,
         alpha: true,
+        sd: true,
         operation: false,
         scaleItems: false,
         validate() {
@@ -50,6 +52,20 @@ export default function ScaleBuilder(props) {
         }
         setInputFields(prevState => {
             return { ...prevState, alpha: validateChronbachsAlpha(string) };
+        });
+    };
+
+    const updateStandardDeviation = string => {
+        if (string.length <= 4) {
+            setScale(prevState => {
+                return {
+                    ...prevState,
+                    sd: string
+                };
+            });
+        }
+        setInputFields(prevState => {
+            return { ...prevState, sd: validateChronbachsAlpha(string) };
         });
     };
 
@@ -143,7 +159,7 @@ export default function ScaleBuilder(props) {
     };
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             <div className="space-y-1">
                 <StringInput
                     shouldInputBeFocused={true}
@@ -195,27 +211,52 @@ export default function ScaleBuilder(props) {
                 </div>
             </div>
             <div className="space-y-1">
-                <div className="flex items-center space-x-2 w-full justify-between leading-normal">
-                    <div className="flex font-semibold items-center space-x-1 text-gray-600 w-1/3">
-                        <span>Alpha Score</span>
-                        <QuestionMark
-                            position=" top-0 left-0 w-96"
-                            text="Chronbach's Alpha is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant."
-                            size={8}
-                        />
-                    </div>
-                    <input
-                        value={scale.alpha === null ? "" : scale.alpha}
-                        onChange={e => updateAlpha(e.target.value)}
-                        type="text"
-                        className="bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full"
-                        placeholder="0.95"
-                        required
+                <div className="flex font-semibold items-center space-x-1 text-gray-600 pb-2">
+                    <span>Reliable Change Index</span>
+                    <QuestionMark
+                        position=" top-0 left-0 w-96"
+                        text="Chronbach's Alpha and a Standard Deviation (Clinical Sample) is required should you wish to calculate the reliable change index (RCI). An RCI is a psychometric criterion used to evaluate whether change over time of an individual score (i.e., the difference score between two measurements in time) is considered statistically significant."
+                        size={8}
                     />
                 </div>
-                {!inputFields.alpha && (
-                    <ErrorInput error="Must be a number between 0 and 1." />
-                )}
+                <div className="space-y-1">
+                    <div className="flex items-center space-x-2 w-full justify-between leading-normal">
+                        <div className="font-semibold text-sm space-y-1 text-gray-500 w-1/3">
+                            <div>Standard Deviation</div>
+                        </div>
+                        <input
+                            value={scale.sd === null ? "" : scale.sd}
+                            onChange={e =>
+                                updateStandardDeviation(e.target.value)
+                            }
+                            type="text"
+                            className="bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full"
+                            placeholder="0.75"
+                            required
+                        />
+                    </div>
+                    {!inputFields.sd && (
+                        <ErrorInput error="Must be a number between 0 and 1." />
+                    )}
+                </div>
+                <div className="space-y-1">
+                    <div className="flex items-center space-x-2 w-full justify-between leading-normal">
+                        <div className="flex font-semibold items-center space-x-1 text-gray-500 w-1/3 text-sm">
+                            <span>Alpha Score</span>
+                        </div>
+                        <input
+                            value={scale.alpha === null ? "" : scale.alpha}
+                            onChange={e => updateAlpha(e.target.value)}
+                            type="text"
+                            className="bg-white font-semibold mr-auto px-2 py-1 rounded shadow text-gray-600 w-full"
+                            placeholder="0.95"
+                            required
+                        />
+                    </div>
+                    {!inputFields.alpha && (
+                        <ErrorInput error="Must be a number between 0 and 1." />
+                    )}
+                </div>
             </div>
             <SelectInput
                 onSelect={e => handleOnSelect(e.target.value)}
