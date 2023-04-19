@@ -1,6 +1,6 @@
 # Psychdar
 
-Custom survey creatiton and administration for privacy conscious people.
+A survey creation and administration application for privacy conscious people.
 
 Application is built using:
 - Laravel
